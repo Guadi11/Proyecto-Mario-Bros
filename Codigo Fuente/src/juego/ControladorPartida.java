@@ -25,6 +25,7 @@ public class ControladorPartida {
 	
 	public void iniciarPartida(GameFactory factory){
 		this.fabrica = factory;
+		fabrica.setControladorPartida(this);
 		this.creadorNivel = new NivelBuilder(fabrica, numNivelActual);
 		this.nivelActual = this.creadorNivel.getNivel();
 		registrarObservers();
@@ -48,6 +49,11 @@ public class ControladorPartida {
 			Observer observer = pantallas.registrarElemento(elemento);
 			elemento.registrarObserver(observer);
 		}
+	}
+	
+	public void registrarObserverElementoIndividual(Elemento elem){
+			Observer observer = pantallas.registrarElemento(elem);
+			elem.registrarObserver(observer);
 	}
 
 	public void iniciarNivel(Nivel nivel){

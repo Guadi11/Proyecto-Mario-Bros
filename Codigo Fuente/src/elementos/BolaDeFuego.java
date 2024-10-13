@@ -23,4 +23,11 @@ public class BolaDeFuego extends Movible implements Visitor{
 		return posicionY;
 	}
 
+
+	@Override
+	public void moverse() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

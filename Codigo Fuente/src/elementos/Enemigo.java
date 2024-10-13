@@ -12,16 +12,20 @@ public abstract class Enemigo extends Movible implements Visitor, Visitable{
 	protected Observer observer;
 	protected Nivel nivel;
 
-	public void visitar (Jugador j) {}
+	
 	public Enemigo(int x, int y, Sprite im) {
 		super(x, y, im);
 	}
-	public void aceptarVisita (Visitor v) {}
-	public void recibirDaño() {}
-	public int puntosQueResta() {}
-	public int puntosQueDa() {}
+	
+	public abstract void visitar (Jugador j);
+	public abstract void aceptarVisita (Visitor v);
+	public abstract void recibirDaño();
+	public abstract int puntosQueResta();
+	public abstract int puntosQueDa();
 	public void morir() {
-		imagen.eliminar();
+		//imagen.eliminar();
 	}
-	public void setNivel(Nivel n) {}
+	public void setNivel(Nivel n) {
+		this.nivel = n;
+	}
 }

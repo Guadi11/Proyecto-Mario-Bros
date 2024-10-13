@@ -22,21 +22,16 @@ public class ControladorPantallas implements ControladorDePantallas, Controlador
 	
 	public ControladorPantallas(ControladorPartida controladorPartida) {
 		this.partida = controladorPartida;
-		panelInicio = new PantallaInicio();
-		panelSeleccion = new PantallaSeleccionModo();
+		panelInicio = new PantallaInicio(this);
+		panelSeleccion = new PantallaSeleccionModo(this);
 		panelRanking = new PantallaRanking();
 		panelJuego = new PantallaJuego(this);
 		panelGameOver = new PantallaGameOver();
 		configurarVentana();
-		//registrarOyenteVentana();
+		registrarOyenteVentana();
 	}
 	
-	/* este lo hizo el profe no se si es necesario
-	private void registrarOyenteVentana() {
-		// TODO Auto-generated method stub
-		
-	}
-	*/
+	
 
 
 	private void configurarVentana() {
@@ -71,7 +66,7 @@ public class ControladorPantallas implements ControladorDePantallas, Controlador
 	}
 
 	@Override
-	public void mostrarPantallaSelecion() {
+	public void mostrarPantallaSeleccion() {
 		ventana.setContentPane(panelSeleccion);
 		refrescar();
 		

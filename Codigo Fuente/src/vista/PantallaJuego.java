@@ -75,7 +75,7 @@ public class PantallaJuego extends JPanel{
 		labelPuntaje = new JLabel("000000");
 		labelMonedas = new JLabel("00");
 		labelTiempo = new JLabel("400");
-		labelVidas = new JLabel("1");
+		labelVidas = new JLabel("3");
 		labelNivelActual = new JLabel("1");
 		
 		decorarLabelsInfo();
@@ -119,7 +119,7 @@ public class PantallaJuego extends JPanel{
 	}
 	
 	public Observer incorporarElementoJugador(ElementoJugador player) {
-		ObserverJugador observerJugador = new ObserverJugador(player);
+		ObserverJugador observerJugador = new ObserverJugador(this, player);
 		imagenFondoJuego.add(observerJugador);
 		actualizarInfoJugador(player);
 		
@@ -157,7 +157,7 @@ public class PantallaJuego extends JPanel{
 	    return texto;
 	}
 	
-	private void actualizarScroll(ElementoJugador player) {
+	public void actualizarScroll(ElementoJugador player) {
 		// TODO
 		panelScroll.getVerticalScrollBar().setValue(panelScroll.getVerticalScrollBar().getValue() + player.getVelocidad());
 		

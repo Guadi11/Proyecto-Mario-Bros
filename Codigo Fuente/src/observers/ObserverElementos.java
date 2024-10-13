@@ -4,9 +4,11 @@ import elementos.ElementoLogico;
 
 public class ObserverElementos extends ObserverGrafico{
 
+	private static final long serialVersionUID = 1L;
+
 	public ObserverElementos(ElementoLogico observado) {
 		super(observado);
-		// TODO Auto-generated constructor stub
+		actualizar();
 	}
 
 }

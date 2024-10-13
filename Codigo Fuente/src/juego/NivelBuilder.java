@@ -4,7 +4,6 @@ import java.io.File;
 
 public class NivelBuilder {
 	protected GameFactory fabrica;
-	//protected File imagenMapa; ???? por qué estaba esto en el extendido?
 	protected Nivel nivelCreado;
 	protected int numNivel;
 	
@@ -21,13 +20,6 @@ public class NivelBuilder {
 		
 	}
 
-	private void leerArchivo() {
-		//bucle anidado
-	}
-	
-	private void procesarCaracter() {
-		//aca se dan los llamados a la fabrica
-	}
 	
 	public Nivel getNivel() {
 		return this.nivelCreado;

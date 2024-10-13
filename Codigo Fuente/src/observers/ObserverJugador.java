@@ -1,12 +1,24 @@
 package observers;
 
-import elementos.ElementoLogico;
+import elementos.ElementoJugador;
+import vista.PantallaJuego;
 
 public class ObserverJugador extends ObserverGrafico{
 
-	public ObserverJugador(ElementoLogico observado) {
+	private static final long serialVersionUID = 1L;
+	protected PantallaJuego pantallaJuego;
+	protected ElementoJugador jugadorObservado;
+
+	public ObserverJugador(PantallaJuego pantallaJuego, ElementoJugador observado) {
 		super(observado);
-		// TODO Auto-generated constructor stub
+		this.pantallaJuego = pantallaJuego;
+		this.jugadorObservado = observado;
+		actualizar();		
+	}
+	
+	public void actualizar() {
+		super.actualizar();
+		pantallaJuego.actualizarScroll(jugadorObservado);
 	}
 
 }

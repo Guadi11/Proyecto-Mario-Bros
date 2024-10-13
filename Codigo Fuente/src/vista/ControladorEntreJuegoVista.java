@@ -7,7 +7,7 @@ import observers.Observer;
 public interface ControladorEntreJuegoVista {
 
 	public void mostrarPantallaJuego();
-	public void mostrarPantallaSelecion();
+	public void mostrarPantallaSeleccion();
 	public Observer registrarElemento(ElementoLogico elem);
 	public Observer registrarElemento(ElementoJugador jugador);
 }

@@ -16,18 +16,19 @@ public void serLanzado() {
 	moverse(-1);
 }
 public void moverse(int sentido) {
-	if (sentido==-1)
-		imagen.cambiarImagen("Spiny_a_izq.png");
-	else
-		imagen.cambiarImagen("Sprite_a_der.png");
-	int nuevaPosicionX=posicionX + [velocidad*(1/60)]*sentido;
+	if (sentido==-1) {
+		//imagen.cambiarImagen("Spiny_a_izq.png");
+	}else {
+		//imagen.cambiarImagen("Sprite_a_der.png");
+	}
+	int nuevaPosicionX= (int) (posicionX +(velocidad*(1/60))*sentido);
 }
 public void visitar (Jugador j) {
 	int puntosDaño=this.puntosQueResta();
-	j.recibirDaño(puntosDaño);
+	//j.recibirDaño(puntosDaño);
 }
 public void aceptarVisita (Visitor v) {
-	v.visit(this);
+	//v.visit(this);
 }
 public void recibirDaño() {
 	this.morir();
@@ -52,6 +53,11 @@ public int puntosQueDa() {
 	
 	public int getPosY() {
 		return posicionY;
+	}
+	@Override
+	public void moverse() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

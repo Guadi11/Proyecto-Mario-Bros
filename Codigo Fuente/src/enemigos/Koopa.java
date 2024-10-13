@@ -11,10 +11,10 @@ public class Koopa extends Enemigo{
 		}
 		public void visitar (Jugador j) {
 			int puntosDaño=this.puntosQueResta();
-			j.recibirDaño(puntosDaño);
+			//j.recibirDaño(puntosDaño);
 		}
 		public void aceptarVisita (Visitor v) {
-			v.visit (this);
+			//v.visit (this);
 		}
 		public void recibirDaño() {
 			this.morir();
@@ -29,9 +29,10 @@ public class Koopa extends Enemigo{
 		public void moverse(int velocidad) {
 			int nuevaPosicionX=posicionX + velocidad*(1/60);
 		if (velocidad<0) {
-			imagen.cambiarImagen("Koopa_a_izq.png");}
+			//imagen.cambiarImagen("Koopa_a_izq.png");
+		}
 		setPosX(nuevaPosicionX);
-		imagen.actualizarPosicion (posicionX, posicionY);
+		//imagen.actualizarPosicion (posicionX, posicionY);
 		}
 
 		public Sprite getSprite() {
@@ -44,6 +45,11 @@ public class Koopa extends Enemigo{
 
 		public int getPosY() {
 			return posicionY;
+		}
+		@Override
+		public void moverse() {
+			// TODO Auto-generated method stub
+			
 		}
 
 
