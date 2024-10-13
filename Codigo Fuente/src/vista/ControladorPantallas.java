@@ -7,6 +7,8 @@ import elementos.ElementoLogico;
 import juego.ControladorPartida;
 import juego.GameFactory;
 import observers.Observer;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class ControladorPantallas implements ControladorDePantallas, ControladorEntreJuegoVista{
 
@@ -73,6 +75,15 @@ public class ControladorPantallas implements ControladorDePantallas, Controlador
 		ventana.setContentPane(panelSeleccion);
 		refrescar();
 		
+	}
+
+	public void registrarOyenteVentana(){
+	        ventana.addWindowListener(new WindowAdapter() {
+	            @Override
+	            public void windowClosing(WindowEvent evento){
+	                System.out.println("Se cerró la ventana");
+	            }
+	        });
 	}
 
 	@Override
