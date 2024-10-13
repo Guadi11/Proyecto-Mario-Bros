@@ -2,26 +2,33 @@ package plataformas;
 
 import archivos.Sprite;
 import colisiones.Visitable;
+import colisiones.Visitor;
 import elementos.Plataforma;
 
 public class LadrilloSolido extends Plataforma implements Visitable{
+	public LadrilloSolido(int x, int y, Sprite im) {
+		super(x, y, im);
+	}
 
 	@Override
 	public Sprite getSprite() {
-		// TODO Auto-generated method stub
-		return null;
+		return imagen;
 	}
 
 	@Override
 	public int getPosX() {
-		// TODO Auto-generated method stub
-		return 0;
+		return posicionX;
 	}
 
 	@Override
 	public int getPosY() {
-		// TODO Auto-generated method stub
-		return 0;
+		return posicionY;
+	}
+	public void romperse() {
+		imagen.eliminar();
+	}
+	public void aceptarVisita(Visitor v) {
+		v.visit(this);
 	}
 
 }

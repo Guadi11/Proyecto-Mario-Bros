@@ -2,26 +2,32 @@ package plataformas;
 
 import archivos.Sprite;
 import colisiones.Visitable;
+import colisiones.Visitor;
 import elementos.Plataforma;
+import elementos.PowerUp;
 
 public class BloqueDePregunta extends Plataforma implements Visitable{
 
-	@Override
+	protected PowerUp powerUp;
+
+	public BloqueDePregunta(int x, int y, Sprite im) {
+		super(x, y, im);
+	}
+
+	public void generarPowerUp() {
+		nivel.agregarPowerUp(powerUp);
+	}
+	public void aceptarVisita (Visitor v) {
+		v.visit(this);
+	}
 	public Sprite getSprite() {
-		// TODO Auto-generated method stub
-		return null;
+		return imagen;
 	}
 
-	@Override
 	public int getPosX() {
-		// TODO Auto-generated method stub
-		return 0;
+		return posicionX;
 	}
-
-	@Override
 	public int getPosY() {
-		// TODO Auto-generated method stub
-		return 0;
+		return posicionY;
 	}
-
 }

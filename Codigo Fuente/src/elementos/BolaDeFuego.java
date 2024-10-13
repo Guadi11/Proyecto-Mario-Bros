@@ -4,23 +4,23 @@ import archivos.Sprite;
 import colisiones.Visitor;
 
 public class BolaDeFuego extends Movible implements Visitor{
+	public BolaDeFuego(int x, int y, Sprite im) {
+		super(x, y, im);
+	}
 
-	@Override
+	
 	public Sprite getSprite() {
-		// TODO Auto-generated method stub
-		return null;
+		return imagen;
 	}
 
-	@Override
+	
 	public int getPosX() {
-		// TODO Auto-generated method stub
-		return 0;
+		return posicionX;
 	}
 
-	@Override
+	
 	public int getPosY() {
-		// TODO Auto-generated method stub
-		return 0;
+		return posicionY;
 	}
 
 }

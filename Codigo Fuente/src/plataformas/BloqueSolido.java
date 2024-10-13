@@ -4,23 +4,23 @@ import archivos.Sprite;
 import elementos.Plataforma;
 
 public class BloqueSolido extends Plataforma{
+	public BloqueSolido(int x, int y, Sprite im) {
+		super(x, y, im);
+	}
 
 	@Override
 	public Sprite getSprite() {
-		// TODO Auto-generated method stub
-		return null;
+		return imagen;
 	}
 
 	@Override
 	public int getPosX() {
-		// TODO Auto-generated method stub
-		return 0;
+		return posicionX;
 	}
 
 	@Override
 	public int getPosY() {
-		// TODO Auto-generated method stub
-		return 0;
+		return posicionY;
 	}
 
 }
