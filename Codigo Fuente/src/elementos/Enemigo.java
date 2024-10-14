@@ -22,8 +22,9 @@ public abstract class Enemigo extends Movible implements Visitor, Visitable{
 	public abstract void recibirDaño();
 	public abstract int puntosQueResta();
 	public abstract int puntosQueDa();
-	public void morir() {
+	public int morir() {
 		//imagen.eliminar();
+		puntosQueDa();
 	}
 	public void setNivel(Nivel n) {
 		this.nivel = n;

@@ -17,7 +17,7 @@ public class Goomba extends Enemigo{
 	public void aceptarVisita (Visitor v) {
 		//v.visit (this);
 	}
-	public void recibirDaño() {
+	public int recibirDaño() {
 		this.morir();
 		this.puntosQueDa();
 	}
@@ -47,10 +47,5 @@ public class Goomba extends Enemigo{
 
 	public int getPosY() {
 		return posicionY;
-	}
-	@Override
-	public void moverse() {
-		// TODO Auto-generated method stub
-		
 	}
 }

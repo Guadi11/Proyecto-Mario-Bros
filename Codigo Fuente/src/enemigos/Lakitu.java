@@ -20,7 +20,8 @@ public class Lakitu extends Enemigo{
 	protected long intervaloLanzamientoSpinys=2000;
 	protected GameFactory fabrica;
 	protected ControladorPartida controladorPartida;
-	
+	protected long ALTURA_MAXIMA=600;
+	protected long ahora;
 	public Lakitu (int x, int y, Sprite im) {
 		super (x,y,im);
 		this.velocidad=3;
@@ -29,7 +30,7 @@ public class Lakitu extends Enemigo{
 		
 	}
 	public void actualizar() {
-        long ahora = System.currentTimeMillis();
+        ahora = System.currentTimeMillis();
         if (ahora - ultimoLanzamiento >= intervaloLanzamientoSpinys) {
             lanzarSpiny();
             ultimoLanzamiento = ahora;

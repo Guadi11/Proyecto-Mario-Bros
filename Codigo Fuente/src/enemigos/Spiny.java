@@ -22,6 +22,7 @@ public void moverse(int sentido) {
 		//imagen.cambiarImagen("Sprite_a_der.png");
 	}
 	int nuevaPosicionX= (int) (posicionX +(velocidad*(1/60))*sentido);
+	this.setPosX(nuevaPosicionX);
 }
 public void visitar (Jugador j) {
 	int puntosDaño=this.puntosQueResta();

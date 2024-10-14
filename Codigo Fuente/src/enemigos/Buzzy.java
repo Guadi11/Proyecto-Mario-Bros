@@ -14,56 +14,56 @@ public class Buzzy extends Enemigo{
 
 	@Override
 	public Sprite getSprite() {
-		// TODO Auto-generated method stub
-		return null;
+		return imagen;
 	}
 
 	@Override
 	public int getPosX() {
-		// TODO Auto-generated method stub
-		return 0;
+		return posicionX;
 	}
 
 	@Override
 	public int getPosY() {
-		// TODO Auto-generated method stub
-		return 0;
+		return posicionY;
 	}
 
 	@Override
 	public void visitar(Jugador j) {
-		// TODO Auto-generated method stub
-		
+		int puntosDaño=this.puntosQueResta();
+		j.getInfo().actualizarPuntaje(-puntosDaño);
 	}
 
 	@Override
 	public void aceptarVisita(Visitor v) {
-		// TODO Auto-generated method stub
-		
+		v.visit(this);
 	}
 
 	@Override
-	public void recibirDaño() {
-		// TODO Auto-generated method stub
-		
+	public int recibirDaño() {
+		this.morir();
+		this.puntosQueDa();
 	}
 
 	@Override
 	public int puntosQueResta() {
-		// TODO Auto-generated method stub
-		return 0;
+		return 15;
 	}
 
 	@Override
 	public int puntosQueDa() {
-		// TODO Auto-generated method stub
-		return 0;
+		return 30;
 	}
 
 	@Override
-	public void moverse() {
-		// TODO Auto-generated method stub
+	public void moverse(int velocidad) {
+		int nuevaPosicionX=posicionX + velocidad*(1/60);
+		setPosX(nuevaPosicionX);
+		if (velocidad<0) {
+			//imagen.cambiarImagen("Goomba_a_izq.png");
+		}else
+			//imagen.cambiarImagen("Goomba_a_der.png");
 		
+		//imagen.actualizarPosicion(posicionX, posicionY);
 	}
 
 }

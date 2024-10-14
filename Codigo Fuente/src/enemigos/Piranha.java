@@ -6,8 +6,14 @@ import elementos.Enemigo;
 import juego.Jugador;
 
 public class Piranha extends Enemigo{
+	protected long intervaloParaSalir=3000;
+	protected long ultimaAparicion;
+	protected long tiempoFueraTuberia=2000;
+	protected long contadorTiempoFuera=0;
+	protected long ahora;
 	public Piranha(int x, int y, Sprite im) {
 		super(x, y, im);
+		ultimaAparicion=System.currentTimeMillis();
 	}
 
 	public Sprite getSprite() {
@@ -24,38 +30,41 @@ public class Piranha extends Enemigo{
 
 	@Override
 	public void visitar(Jugador j) {
-		// TODO Auto-generated method stub
-		
+	int restarPuntos=puntosQueResta();
+	j.getInfo().actualizarPuntaje(restarPuntos);
 	}
 
 	@Override
 	public void aceptarVisita(Visitor v) {
-		// TODO Auto-generated method stub
-		
+		v.visit(this);
 	}
 
 	@Override
-	public void recibirDaño() {
-		// TODO Auto-generated method stub
-		
+	public int recibirDaño() {
+		this.morir();
+		this.puntosQueDa();
 	}
 
 	@Override
 	public int puntosQueResta() {
-		// TODO Auto-generated method stub
-		return 0;
+		return 30;
 	}
 
 	@Override
 	public int puntosQueDa() {
-		// TODO Auto-generated method stub
-		return 0;
+		return 30;
 	}
 
 	@Override
 	public void moverse() {
-		// TODO Auto-generated method stub
-		
+		ahora = System.currentTimeMillis();
+        if (ahora - ultimaAparicion >= intervaloParaSalir)
+        	comenzarAscenso();
+	}
+	private void comenzarAscenso() {
+		//ver como hacer para el ascenso y que se quede cierto tiempo fuera
+		int posicionXactual=posicionX;
+		while (posicionXactual<posicion)
 	}
 
 }
