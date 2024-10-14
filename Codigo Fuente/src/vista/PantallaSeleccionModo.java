@@ -21,7 +21,7 @@ public class PantallaSeleccionModo extends JPanel{
         }
     
         public void agregarImagenFondo(){
-            ImageIcon icon = new ImageIcon("C:\\Users\\corte\\Desktop\\UNI\\TDP\\ventanaprueba\\imagenseleccionmodo.png");
+            ImageIcon icon = new ImageIcon("https://github.com/2024-Proyectos-TdP-2C/p-comision-21/blob/master/Codigo%20Fuente/src/imagenes/imagenseleccionmodo.png");
             Image imagen = icon.getImage().getScaledInstance(600,400,Image.SCALE_SMOOTH);
             imagenFondo = new JLabel(new ImageIcon(imagen));
             imagenFondo.setBounds(0,0,600,400);
