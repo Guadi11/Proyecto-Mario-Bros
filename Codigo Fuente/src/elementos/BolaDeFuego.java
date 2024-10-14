@@ -43,8 +43,9 @@ public class BolaDeFuego extends Movible implements Visitor{
         verificarEliminacion();
         }
 	public void verificarEliminacion() {
-	if (posicionY>LIMITE_INFERIOR ||posicionY<LIMITE_SUPERIOR ||posicionX<LIMITE_IZQUIERDO ||posicionX>LIMITE_DERECHO) 
+		if (posicionY>LIMITE_INFERIOR ||posicionY<LIMITE_SUPERIOR ||posicionX<LIMITE_IZQUIERDO ||posicionX>LIMITE_DERECHO) { 
            // imagen.eliminar();
+		}
 	}
 	public void visitar (Enemigo e) {
 		int puntosPorMatar=e.puntosQueDa();

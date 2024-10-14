@@ -36,7 +36,7 @@ public class ControladorPartida {
 	private void registrarObservers() {
 		// TODO Auto-generated method stub
 		registrarObserverJugador(this.nivelActual.getJugador());
-		registrarObserverFondo(this.nivelActual.getFondo());
+		//registrarObserverFondo(this.nivelActual.getFondo());
 		registrarObserversElementos(this.nivelActual.getPlataformas());
 		registrarObserversElementos(this.nivelActual.getEnemigos());
 		//haria para los power ups pero no estan creados desde 0 o si??
@@ -46,11 +46,11 @@ public class ControladorPartida {
 		Observer observerJugador = pantallas.registrarElemento(player);
 		player.registrarObserver(observerJugador);
 	}
-	
+	/*
 	private void registrarObserverFondo(Fondo fondo) {
 		Observer observerFondo = pantallas.registrarFondo(fondo);
 		fondo.registrarObserver(observerFondo);
-	}
+	}*/
 	
 	private void registrarObserversElementos(List<Elemento> elem){
 		for(Elemento elemento : elem) {

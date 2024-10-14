@@ -24,7 +24,7 @@ public class Piranha extends Enemigo{
 
 	@Override
 	public void aceptarVisita(Visitor v) {
-		v.visit(this);
+		//v.visit(this);
 	}
 
 	public void recibirDaño() {

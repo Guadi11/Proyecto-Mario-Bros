@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.Image;
 
 import javax.swing.Icon;
@@ -54,17 +55,18 @@ public class PantallaJuego extends JPanel implements KeyListener{
 	}
 
 	private void agregarPanelJuego() {
+		
 		imagenFondoJuego = new JLabel();
 		imagenFondoJuego.setLayout(null);
 		imagenFondoJuego.setBounds(0, 0, ConstantesPantalla.panelAncho, ConstantesPantalla.panelJuegoAlto);
 		
-		
 		panelJuego = new JPanel(null);
 		panelJuego.setPreferredSize(new Dimension(ConstantesPantalla.panelAncho, ConstantesPantalla.panelJuegoAlto));
-		//agregarImagenFondo();
+		
+		agregarImagenFondo();
 		panelJuego.add(imagenFondoJuego);
 		
-		//panelJuego.setPreferredSize(new Dimension(imagenFondoJuego.getWidth(), imagenFondoJuego.getHeight()));
+		panelJuego.setPreferredSize(new Dimension(imagenFondoJuego.getWidth(), imagenFondoJuego.getHeight()));
 		
 		panelScroll = new JScrollPane(panelJuego);
 		panelScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -73,8 +75,46 @@ public class PantallaJuego extends JPanel implements KeyListener{
 		
 		this.add(panelScroll, BorderLayout.CENTER);
 		
+		
+		/*imagenFondoJuego = new JLabel();
+		imagenFondoJuego.setLayout(null);
+		//imagenFondoJuego.setBounds(0, 0, ConstantesPantalla.panelAncho, ConstantesPantalla.panelJuegoAlto);
+		
+		
+		panelJuego = new JPanel(null);
+		//panelJuego.setPreferredSize(new Dimension(ConstantesPantalla.panelAncho, ConstantesPantalla.panelJuegoAlto));
+		//agregarImagenFondo();
+		//panelJuego.add(imagenFondoJuego);
+		
+		//panelJuego.setPreferredSize(new Dimension(imagenFondoJuego.getWidth(), imagenFondoJuego.getHeight()));
+		/*
+		panelScroll = new JScrollPane(panelJuego);
+		panelScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		panelScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+		panelScroll.setBounds(0, 0, ConstantesPantalla.panelAncho, ConstantesPantalla.panelJuegoAlto);
+		
+		this.add(panelScroll, BorderLayout.CENTER);
+		*/
 	}
-	
+	private void agregarImagenFondo() {
+		// TODO Auto-generated method stub
+		imagenFondoJuego = new JLabel();
+		ImageIcon iconoImagen = new ImageIcon(this.getClass().getResource("/imagenes/background.png"));
+		
+		Image imagenOriginal = iconoImagen.getImage();
+		int anchoOriginal = imagenOriginal.getWidth(null);
+		int altoOriginal = imagenOriginal.getHeight(null);
+		int nuevoAlto = ConstantesPantalla.panelJuegoAlto;
+		int nuevoAncho = (int) ((anchoOriginal / (double) altoOriginal) * nuevoAlto);
+		
+		
+		
+		Image imagenEscalada = iconoImagen.getImage().getScaledInstance(nuevoAncho, ConstantesPantalla.panelJuegoAlto,  Image.SCALE_SMOOTH);
+		Icon iconoImagenEscalado = new ImageIcon(imagenEscalada);
+		imagenFondoJuego.setIcon(iconoImagenEscalado);
+		imagenFondoJuego.setBounds(0, 0, nuevoAncho, nuevoAlto);
+		
+	}
 	 
 	private void agregarPanelInformacion() {
 		panelInformacion = new JPanel();
@@ -126,9 +166,11 @@ public class PantallaJuego extends JPanel implements KeyListener{
 	}
 	
 	//incorporarMapa si hacemos el fondo con observers y todo
+	/*
 	public Observer incorporarFondo(ElementoLogico fondo) {
+		//ajustarImagenFondo(fondo);
 		ObserverElementos observerFondo = new ObserverElementos(fondo);
-		ajustarImagenFondo(fondo);
+		
 		//ImageIcon iconoImagen = new ImageIcon(getClass().getClassLoader().getResource(fondo.getSprite().getRutaImagen()));
 		//Image imagenEscalada = iconoImagen.getImage().getScaledInstance(ConstantesPantalla.panelAncho, ConstantesPantalla.panelJuegoAlto, Image.SCALE_SMOOTH);
 		
@@ -139,8 +181,8 @@ public class PantallaJuego extends JPanel implements KeyListener{
 		imagenFondoJuego.add(observerFondo);
 		
 		return observerFondo;
-	}
-
+	}*/
+/*
 	private void ajustarImagenFondo(ElementoLogico fondo) {
 	
 		ImageIcon iconoImagen = new ImageIcon(getClass().getClassLoader().getResource(fondo.getSprite().getRutaImagen()));
@@ -148,16 +190,40 @@ public class PantallaJuego extends JPanel implements KeyListener{
 		Image imagenOriginal = iconoImagen.getImage();
 		int anchoOriginal = imagenOriginal.getWidth(null);
 		int altoOriginal = imagenOriginal.getHeight(null);
+		
+		//int nuevoAlto = ConstantesPantalla.panelJuegoAlto;
 		int nuevoAncho = (int) ((anchoOriginal / (double) altoOriginal) * ConstantesPantalla.panelJuegoAlto);
-	
-		Image imagenEscalada = iconoImagen.getImage().getScaledInstance(nuevoAncho, ConstantesPantalla.panelJuegoAlto,  Image.SCALE_SMOOTH);
+		
+		System.out.println("Dimensiones ancho y alto original: " + imagenOriginal.getWidth(null)+ "x" + imagenOriginal.getHeight(null));
+		
+		Image imagenEscalada = imagenOriginal.getScaledInstance(nuevoAncho, ConstantesPantalla.panelJuegoAlto,  Image.SCALE_SMOOTH);
 		Icon iconoImagenEscalado = new ImageIcon(imagenEscalada);
+		
+		System.out.println("Dimensiones ancho y alto original: " + imagenEscalada.getWidth(null)+ "x" + imagenEscalada.getHeight(null));
+		
 		imagenFondoJuego.setIcon(iconoImagenEscalado);
 		imagenFondoJuego.setBounds(0, 0, nuevoAncho, ConstantesPantalla.panelJuegoAlto);
+	
+		//imagenFondoJuego.setIcon(iconoImagen);
+		//imagenFondoJuego.setBounds(0, 0, anchoOriginal, altoOriginal);
 		
+		panelJuego.setPreferredSize(new Dimension(imagenFondoJuego.getIcon().getIconWidth(), imagenFondoJuego.getIcon().getIconHeight()));
+		//panelJuego.add(imagenFondoJuego);
+		//panelScroll.setViewportView(panelJuego);
 		panelJuego.add(imagenFondoJuego);
-		panelJuego.setPreferredSize(new Dimension(imagenFondoJuego.getWidth(), imagenFondoJuego.getHeight()));
-	}
+	
+		panelScroll = new JScrollPane(panelJuego);
+		panelScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		panelScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+		panelScroll.setBounds(0, 0, ConstantesPantalla.panelAncho, ConstantesPantalla.panelJuegoAlto);
+		
+		
+		//panelScroll.getViewport().setLayout( new BorderLayout());
+		this.add(panelJuego, BorderLayout.CENTER);
+		
+	
+		
+	}*/
 	
 	/*
 	private void ajustarImagenFondo(ElementoLogico fondo) {
@@ -221,7 +287,7 @@ public class PantallaJuego extends JPanel implements KeyListener{
 	
 	public void actualizarScroll(ElementoJugador player) {
 		// TODO
-		panelScroll.getVerticalScrollBar().setValue(panelScroll.getVerticalScrollBar().getValue() + player.getVelocidad());
+		//panelScroll.getHorizontalScrollBar().setValue(panelScroll.getHorizontalScrollBar().getValue() + player.getVelocidad());
 		
 	}
 

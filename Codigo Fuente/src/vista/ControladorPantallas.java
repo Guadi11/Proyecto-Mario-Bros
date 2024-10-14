@@ -98,12 +98,12 @@ public class ControladorPantallas implements ControladorDePantallas, Controlador
 		refrescar();
 		return observerJugador;
 	}
-	
+	/*
 	public Observer registrarFondo(ElementoLogico fondo) {
 		Observer observerFondo = this.panelJuego.incorporarFondo(fondo);
 		refrescar();
 		return observerFondo;
-	}
+	}*/
 
 	@Override
 	public void accionarPantallaRanking() {

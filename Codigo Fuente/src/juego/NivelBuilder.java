@@ -18,14 +18,14 @@ public class NivelBuilder {
 	public NivelBuilder(GameFactory factory, int nivelACrear) {
 		this.fabrica = factory;
 		this.numNivel = nivelACrear;
-		this.nivelCreado = new Nivel(); //almacenar el creado
+		this.nivelCreado = new Nivel(); 
 		crearNivel();
 		
 	}
 	
 	private void crearNivel() {
-		Fondo fondoCreado = fabrica.crearFondo(0, 0);
-    	nivelCreado.agregarFondo(fondoCreado);
+		/*Fondo fondoCreado = fabrica.crearFondo(0, 0);
+    	nivelCreado.agregarFondo(fondoCreado);*/
 		
 		
 		try {
@@ -58,8 +58,8 @@ public class NivelBuilder {
 			int lakitu = new Color(160, 0, 160).getRGB();
 			int buzzy = new Color(160, 0, 160).getRGB();
 			*/
-			int multiplicadorPixel = 48;
-	      
+			int multiplicadorPixel = 36;
+			System.out.println("LLego hasta antes del for. NivelBuilder");
 		    for (int x = 0; x < ancho; x++) {
 		    	for (int y = 0; y < alto; y++) {
 	
@@ -95,7 +95,7 @@ public class NivelBuilder {
 	                } */
 	            }
 	        }
-		            
+		    System.out.println("LLego hasta despues del for. NivelBuilder");
 		}  catch (IOException e) {
            System.out.println("Error al cargar la imagen: " + e.getMessage());
 		}
