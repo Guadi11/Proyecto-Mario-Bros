@@ -45,5 +45,8 @@ public class Jugador extends Movible implements Visitor, Visitable{
 		
 	}
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3b043fa3a6548f8f19d2e9660e9765af588c89db
 }

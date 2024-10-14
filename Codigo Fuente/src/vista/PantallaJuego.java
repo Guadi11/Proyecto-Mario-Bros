@@ -9,14 +9,16 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-
 import elementos.ElementoJugador;
 import elementos.ElementoLogico;
 import observers.Observer;
 import observers.ObserverElementos;
 import observers.ObserverJugador;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import juego.ControladorPartida;
 
-public class PantallaJuego extends JPanel{
+public class PantallaJuego extends JPanel implements KeyListener{
 
 	protected JPanel panelJuego;
 	protected JPanel panelInformacion;
@@ -28,16 +30,19 @@ public class PantallaJuego extends JPanel{
 	protected JLabel labelTiempo;
 	protected JLabel labelVidas;
 	protected JLabel labelNivelActual;
-
+	protected ControladorPartida manager; //quizas cambiar nombre al atributo
 	protected ControladorPantallas controlador;
 	protected float timerNivel; //???
 	
-	public PantallaJuego(ControladorPantallas controladorPantalla) {
+	public PantallaJuego(ControladorPantallas controladorPantalla, ControladorPartida manager) {
+		this.manager = manager;
 		this.controlador = controladorPantalla;
 		this.setPreferredSize(new Dimension(ConstantesPantalla.panelAncho, ConstantesPantalla.panelAlto));
 		this.setLayout(new BorderLayout());;
 		agregarPanelInformacion();
 		agregarPanelJuego();
+		 this.setFocusable(true);
+	     this.addKeyListener(this);
 		
 	}
 
@@ -176,6 +181,20 @@ public class PantallaJuego extends JPanel{
 		
 	}
 	
+    public void keyPressed(KeyEvent e) {
+        manager.handleKeyPress(e);
+    }
+
+  
+    public void keyReleased(KeyEvent e) {
+        // Opcional: manejar la liberación de teclas
+    }
+
+    
+    public void keyTyped(KeyEvent e) {
+        // es para taclas especiales. generalmente no se usa para 
+    }
+
 	
 	
 	

@@ -1,5 +1,6 @@
 package juego;
 
+import java.awt.event.KeyEvent;
 import java.util.List;
 
 import archivos.Ranking;
@@ -101,5 +102,19 @@ public class ControladorPartida {
 	public int getNumNivel() {
 		return this.numNivelActual;
 	}
+	public void handleKeyPress(KeyEvent tecla) {
+	    switch (tecla.getKeyCode()) {
+	        case KeyEvent.VK_LEFT:
+	            nivelActual.getJugador().moverIzquierda();
+	            break;
+	        case KeyEvent.VK_RIGHT:
+	        	nivelActual.getJugador().moverDerecha();
+	            break;
+	        case KeyEvent.VK_SPACE:
+	        	nivelActual.getJugador().saltar();
+	            break;
+	        // Agrega más teclas según sea necesario
+	    }
 	
+	}
 }
