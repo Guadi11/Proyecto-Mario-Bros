@@ -6,6 +6,7 @@ import java.util.List;
 import elementos.BolaDeFuego;
 import elementos.Elemento;
 import elementos.Enemigo;
+import elementos.Fondo;
 import elementos.Plataforma;
 import elementos.PowerUp;
 
@@ -15,6 +16,7 @@ public class Nivel {
 		protected List<Elemento> enemigos;
 		protected List<Elemento> powerUps;
 		protected List<Elemento> bolasDeFuego;
+		protected Fondo fondo;
 		protected Jugador jugador;
 		protected float tiempoPartida; //ojo si quedo obsoleto esto
 		protected ControladorPartida controladorPartida;
@@ -46,6 +48,10 @@ public class Nivel {
 		public void agregarJugador(Jugador player){
 			this.jugador = player;
 		}
+		
+		public void agregarFondo(Fondo fondo) {
+			this.fondo = fondo;
+		}
 	
 		//Getters
 		public List<Elemento> getPlataformas(){
@@ -66,6 +72,10 @@ public class Nivel {
 		
 		public Jugador getJugador(){
 			return this.jugador;
+		}
+		
+		public Fondo getFondo() {
+			return this.fondo;
 		}
 		
 		public ControladorPartida getControladorPartida() {

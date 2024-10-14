@@ -25,7 +25,7 @@ public class ControladorPantallas implements ControladorDePantallas, Controlador
 		panelInicio = new PantallaInicio(this);
 		panelSeleccion = new PantallaSeleccionModo(this);
 		panelRanking = new PantallaRanking();
-		panelJuego = new PantallaJuego(this);
+		panelJuego = new PantallaJuego(this, partida);
 		panelGameOver = new PantallaGameOver();
 		configurarVentana();
 		registrarOyenteVentana();
@@ -44,10 +44,6 @@ public class ControladorPantallas implements ControladorDePantallas, Controlador
 	
 	}
 
-	public void mostrarPantallaInicial() {
-		ventana.setContentPane(panelInicio);
-		refrescar();
-	}
 	
 	public ControladorPartida getControladorPartida() {
 		return this.partida;
@@ -57,7 +53,12 @@ public class ControladorPantallas implements ControladorDePantallas, Controlador
 		ventana.revalidate();
 		ventana.repaint();
 	}
-
+	
+	public void mostrarPantallaInicial() {
+		ventana.setContentPane(panelInicio);
+		refrescar();
+	}
+	
 	@Override
 	public void mostrarPantallaJuego() {
 		ventana.setContentPane(panelJuego);
@@ -93,6 +94,12 @@ public class ControladorPantallas implements ControladorDePantallas, Controlador
 		Observer observerJugador = this.panelJuego.incorporarElementoJugador(jugador);
 		refrescar();
 		return observerJugador;
+	}
+	
+	public Observer registrarFondo(ElementoLogico fondo) {
+		Observer observerFondo = this.panelJuego.incorporarFondo(fondo);
+		refrescar();
+		return observerFondo;
 	}
 
 	@Override

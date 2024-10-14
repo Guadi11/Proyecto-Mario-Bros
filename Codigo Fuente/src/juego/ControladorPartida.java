@@ -5,6 +5,7 @@ import java.util.List;
 
 import archivos.Ranking;
 import elementos.Elemento;
+import elementos.Fondo;
 import observers.Observer;
 import vista.ControladorEntreJuegoVista;
 
@@ -35,6 +36,7 @@ public class ControladorPartida {
 	private void registrarObservers() {
 		// TODO Auto-generated method stub
 		registrarObserverJugador(this.nivelActual.getJugador());
+		registrarObserverFondo(this.nivelActual.getFondo());
 		registrarObserversElementos(this.nivelActual.getPlataformas());
 		registrarObserversElementos(this.nivelActual.getEnemigos());
 		//haria para los power ups pero no estan creados desde 0 o si??
@@ -45,6 +47,11 @@ public class ControladorPartida {
 		player.registrarObserver(observerJugador);
 	}
 	
+	private void registrarObserverFondo(Fondo fondo) {
+		Observer observerFondo = pantallas.registrarFondo(fondo);
+		fondo.registrarObserver(observerFondo);
+	}
+	
 	private void registrarObserversElementos(List<Elemento> elem){
 		for(Elemento elemento : elem) {
 			Observer observer = pantallas.registrarElemento(elemento);
@@ -53,6 +60,7 @@ public class ControladorPartida {
 	}
 	
 	public void registrarObserverElementoIndividual(Elemento elem){
+		//sirve tambien para el fondo
 			Observer observer = pantallas.registrarElemento(elem);
 			elem.registrarObserver(observer);
 	}
@@ -102,6 +110,7 @@ public class ControladorPartida {
 	public int getNumNivel() {
 		return this.numNivelActual;
 	}
+	
 	public void handleKeyPress(KeyEvent tecla) {
 	    switch (tecla.getKeyCode()) {
 	        case KeyEvent.VK_LEFT:

@@ -10,4 +10,5 @@ public interface ControladorEntreJuegoVista {
 	public void mostrarPantallaSeleccion();
 	public Observer registrarElemento(ElementoLogico elem);
 	public Observer registrarElemento(ElementoJugador jugador);
+	public Observer registrarFondo(ElementoLogico fondo);
 }

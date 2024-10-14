@@ -4,7 +4,9 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Image;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -20,25 +22,29 @@ import juego.ControladorPartida;
 
 public class PantallaJuego extends JPanel implements KeyListener{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected JPanel panelJuego;
 	protected JPanel panelInformacion;
 	protected JLabel imagenFondoJuego;
-	protected JLabel imagenFondoInfo; //no sirve mas, es solo color negro
+	protected JLabel imagenFondoInfo; //de momento es solo color negro
 	protected JScrollPane panelScroll;
 	protected JLabel labelPuntaje;
 	protected JLabel labelMonedas;
 	protected JLabel labelTiempo;
 	protected JLabel labelVidas;
 	protected JLabel labelNivelActual;
-	protected ControladorPartida manager; //quizas cambiar nombre al atributo
-	protected ControladorPantallas controlador;
+	protected ControladorPartida controladorPartida;
+	protected ControladorPantallas controladorPantalla;
 	protected float timerNivel; //???
 	
 	public PantallaJuego(ControladorPantallas controladorPantalla, ControladorPartida manager) {
-		this.manager = manager;
-		this.controlador = controladorPantalla;
+		this.controladorPartida = manager;
+		this.controladorPantalla = controladorPantalla;
 		this.setPreferredSize(new Dimension(ConstantesPantalla.panelAncho, ConstantesPantalla.panelAlto));
-		this.setLayout(new BorderLayout());;
+		this.setLayout(new BorderLayout());
 		agregarPanelInformacion();
 		agregarPanelJuego();
 		 this.setFocusable(true);
@@ -51,9 +57,13 @@ public class PantallaJuego extends JPanel implements KeyListener{
 		imagenFondoJuego.setLayout(null);
 		imagenFondoJuego.setBounds(0, 0, ConstantesPantalla.panelAncho, ConstantesPantalla.panelJuegoAlto);
 		
+		
 		panelJuego = new JPanel(null);
 		panelJuego.setPreferredSize(new Dimension(ConstantesPantalla.panelAncho, ConstantesPantalla.panelJuegoAlto));
+		//agregarImagenFondo();
 		panelJuego.add(imagenFondoJuego);
+		
+		//panelJuego.setPreferredSize(new Dimension(imagenFondoJuego.getWidth(), imagenFondoJuego.getHeight()));
 		
 		panelScroll = new JScrollPane(panelJuego);
 		panelScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -63,7 +73,22 @@ public class PantallaJuego extends JPanel implements KeyListener{
 		this.add(panelScroll, BorderLayout.CENTER);
 		
 	}
-
+	/*
+	private void agregarImagenFondo() {
+		imagenFondoJuego = new JLabel();
+		ImageIcon iconoImagen = new ImageIcon(this.getClass().getResource("/imagenes/background.png"));
+		
+		Image imagenOriginal = iconoImagen.getImage();
+		int anchoOriginal = imagenOriginal.getWidth(null);
+		int altoOriginal = imagenOriginal.getHeight(null);
+		int nuevoAncho = (int) ((anchoOriginal / (double) altoOriginal) * ConstantesPantalla.panelJuegoAlto);
+	
+		Image imagenEscalada = iconoImagen.getImage().getScaledInstance(nuevoAncho, ConstantesPantalla.panelJuegoAlto,  Image.SCALE_SMOOTH);
+		Icon iconoImagenEscalado = new ImageIcon(imagenEscalada);
+		imagenFondoJuego.setIcon(iconoImagenEscalado);
+		imagenFondoJuego.setBounds(0, 0, nuevoAncho, ConstantesPantalla.panelJuegoAlto);
+	}
+	 */
 	private void agregarPanelInformacion() {
 		panelInformacion = new JPanel();
 		panelInformacion.setLayout(null);
@@ -113,7 +138,17 @@ public class PantallaJuego extends JPanel implements KeyListener{
 		labelNivelActual.setFont(new Font(labelNivelActual.getFont().getName(), Font.BOLD, 24));
 	}
 	
-	//agregarImagenFondo o incorporarMapa si hacemos el fondo con observers y todo
+	//incorporarMapa si hacemos el fondo con observers y todo
+	public Observer incorporarFondo(ElementoLogico fondo) {
+		ObserverElementos observerFondo = new ObserverElementos(fondo);
+		imagenFondoJuego.setIcon(new ImageIcon(getClass().getClassLoader().getResource(fondo.getSprite().getRutaImagen())));
+		imagenFondoJuego.setBounds(0,0, imagenFondoJuego.getIcon().getIconWidth(), imagenFondoJuego.getIcon().getIconHeight());
+		imagenFondoJuego.setPreferredSize(new Dimension(imagenFondoJuego.getIcon().getIconWidth(), imagenFondoJuego.getIcon().getIconHeight()));
+		
+		//imagenFondoJuego.add(observerFondo);
+		
+		return observerFondo;
+	}
 	
 	
 	public Observer incorporarElemento(ElementoLogico elem) {
@@ -182,7 +217,7 @@ public class PantallaJuego extends JPanel implements KeyListener{
 	}
 	
     public void keyPressed(KeyEvent e) {
-        manager.handleKeyPress(e);
+        controladorPartida.handleKeyPress(e);
     }
 
   

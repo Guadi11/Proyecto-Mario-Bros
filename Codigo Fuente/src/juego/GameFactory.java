@@ -2,6 +2,7 @@ package juego;
 
 import archivos.Sprite;
 import elementos.BolaDeFuego;
+import elementos.Fondo;
 import enemigos.*;
 import powerUps.*;
 import plataformas.*;
@@ -142,6 +143,13 @@ public abstract class GameFactory {
 		Jugador jugador = new Jugador(x, y, sprite);
 		
 		return jugador;
+	}
+	
+	public Fondo crearFondo(int x, int y) {
+		Sprite sprite = new Sprite(rutaCarpeta + "/background.png");
+		Fondo fondo = new Fondo(x, y, sprite);
+		
+		return fondo;
 	}
 	
 	
