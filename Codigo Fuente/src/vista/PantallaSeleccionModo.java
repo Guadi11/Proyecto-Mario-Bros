@@ -41,7 +41,7 @@ public class PantallaSeleccionModo extends JPanel{
             botonModo1.setBorderPainted(true); 
             botonModo1.setFocusPainted(false); 
             botonModo1.setOpaque(false);
-            //botonModo1.addActionListener(e -> controlador.mostrarPantallaJuego());
+            botonModo1.addActionListener(e -> controlador.mostrarPantallaJuego());
             
             add(botonModo1);
             imagenFondo.add(botonModo1);
