@@ -24,8 +24,8 @@ public class Launcher {
 						ControladorPartida partida =  new ControladorPartida();
 						ControladorPantallas pantallas = new ControladorPantallas(partida);
 						partida.setControladorPantallas(pantallas);
-						pantallas.mostrarPantallaInicial();
-						//pantallas.mostrarPantallaJuego();
+						//pantallas.mostrarPantallaInicial();
+						pantallas.mostrarPantallaJuego();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

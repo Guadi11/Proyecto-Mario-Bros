@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import elementos.ElementoJugador;
 import elementos.ElementoLogico;
+import elementos.Fondo;
 import observers.Observer;
 import observers.ObserverElementos;
 import observers.ObserverJugador;
@@ -73,22 +74,8 @@ public class PantallaJuego extends JPanel implements KeyListener{
 		this.add(panelScroll, BorderLayout.CENTER);
 		
 	}
-	/*
-	private void agregarImagenFondo() {
-		imagenFondoJuego = new JLabel();
-		ImageIcon iconoImagen = new ImageIcon(this.getClass().getResource("/imagenes/background.png"));
-		
-		Image imagenOriginal = iconoImagen.getImage();
-		int anchoOriginal = imagenOriginal.getWidth(null);
-		int altoOriginal = imagenOriginal.getHeight(null);
-		int nuevoAncho = (int) ((anchoOriginal / (double) altoOriginal) * ConstantesPantalla.panelJuegoAlto);
 	
-		Image imagenEscalada = iconoImagen.getImage().getScaledInstance(nuevoAncho, ConstantesPantalla.panelJuegoAlto,  Image.SCALE_SMOOTH);
-		Icon iconoImagenEscalado = new ImageIcon(imagenEscalada);
-		imagenFondoJuego.setIcon(iconoImagenEscalado);
-		imagenFondoJuego.setBounds(0, 0, nuevoAncho, ConstantesPantalla.panelJuegoAlto);
-	}
-	 */
+	 
 	private void agregarPanelInformacion() {
 		panelInformacion = new JPanel();
 		panelInformacion.setLayout(null);
@@ -141,16 +128,51 @@ public class PantallaJuego extends JPanel implements KeyListener{
 	//incorporarMapa si hacemos el fondo con observers y todo
 	public Observer incorporarFondo(ElementoLogico fondo) {
 		ObserverElementos observerFondo = new ObserverElementos(fondo);
-		imagenFondoJuego.setIcon(new ImageIcon(getClass().getClassLoader().getResource(fondo.getSprite().getRutaImagen())));
-		imagenFondoJuego.setBounds(0,0, imagenFondoJuego.getIcon().getIconWidth(), imagenFondoJuego.getIcon().getIconHeight());
-		imagenFondoJuego.setPreferredSize(new Dimension(imagenFondoJuego.getIcon().getIconWidth(), imagenFondoJuego.getIcon().getIconHeight()));
+		ajustarImagenFondo(fondo);
+		//ImageIcon iconoImagen = new ImageIcon(getClass().getClassLoader().getResource(fondo.getSprite().getRutaImagen()));
+		//Image imagenEscalada = iconoImagen.getImage().getScaledInstance(ConstantesPantalla.panelAncho, ConstantesPantalla.panelJuegoAlto, Image.SCALE_SMOOTH);
 		
-		//imagenFondoJuego.add(observerFondo);
+		//imagenFondoJuego.setIcon(new ImageIcon(getClass().getClassLoader().getResource(fondo.getSprite().getRutaImagen())));
+		//imagenFondoJuego.setBounds(0,0, imagenFondoJuego.getIcon().getIconWidth(), imagenFondoJuego.getIcon().getIconHeight());
+		
+		
+		imagenFondoJuego.add(observerFondo);
 		
 		return observerFondo;
 	}
+
+	private void ajustarImagenFondo(ElementoLogico fondo) {
 	
+		ImageIcon iconoImagen = new ImageIcon(getClass().getClassLoader().getResource(fondo.getSprite().getRutaImagen()));
+		
+		Image imagenOriginal = iconoImagen.getImage();
+		int anchoOriginal = imagenOriginal.getWidth(null);
+		int altoOriginal = imagenOriginal.getHeight(null);
+		int nuevoAncho = (int) ((anchoOriginal / (double) altoOriginal) * ConstantesPantalla.panelJuegoAlto);
 	
+		Image imagenEscalada = iconoImagen.getImage().getScaledInstance(nuevoAncho, ConstantesPantalla.panelJuegoAlto,  Image.SCALE_SMOOTH);
+		Icon iconoImagenEscalado = new ImageIcon(imagenEscalada);
+		imagenFondoJuego.setIcon(iconoImagenEscalado);
+		imagenFondoJuego.setBounds(0, 0, nuevoAncho, ConstantesPantalla.panelJuegoAlto);
+		
+		panelJuego.add(imagenFondoJuego);
+		panelJuego.setPreferredSize(new Dimension(imagenFondoJuego.getWidth(), imagenFondoJuego.getHeight()));
+	}
+	
+	/*
+	private void ajustarImagenFondo(ElementoLogico fondo) {
+		// TODO Auto-generated method stub
+
+		
+		ImageIcon iconoImagen = new ImageIcon(getClass().getClassLoader().getResource(fondo.getSprite().getRutaImagen()));
+		Image imagenEscalada = iconoImagen.getImage().getScaledInstance(ConstantesPantalla.panelAncho, ConstantesPantalla.panelJuegoAlto, Image.SCALE_SMOOTH);
+		
+		imagenFondoJuego.setIcon(new ImageIcon(imagenEscalada));
+		imagenFondoJuego.setBounds(0, 0, ConstantesPantalla.panelAncho, ConstantesPantalla.panelJuegoAlto);
+		
+		panelJuego.setPreferredSize(new Dimension(ConstantesPantalla.panelAncho, ConstantesPantalla.panelJuegoAlto));
+	}  */
+
 	public Observer incorporarElemento(ElementoLogico elem) {
 		ObserverElementos observerElemento = new ObserverElementos(elem);
 		imagenFondoJuego.add(observerElemento);

@@ -6,6 +6,7 @@ import elementos.ElementoJugador;
 import elementos.ElementoLogico;
 import juego.ControladorPartida;
 import juego.GameFactory;
+import juego.ModoUnoFactory;
 import observers.Observer;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -62,6 +63,8 @@ public class ControladorPantallas implements ControladorDePantallas, Controlador
 	@Override
 	public void mostrarPantallaJuego() {
 		ventana.setContentPane(panelJuego);
+		GameFactory modoUno = new ModoUnoFactory(); //Editar luego cuando tengamos los dos modos funcionando
+		accionarInicioJuego(modoUno);
 		refrescar();
 		
 	}
