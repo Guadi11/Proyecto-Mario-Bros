@@ -5,25 +5,30 @@ import colisiones.Visitable;
 import colisiones.Visitor;
 import elementos.Enemigo;
 import elementos.Movible;
+import states.State;
 
 public class Jugador extends Movible implements Visitor, Visitable{
-	public Sprite getSprite() {
-		// TODO Auto-generated method stub
-		return null;
+	
+	protected State estado;
+	protected InfoJugador info;
+	protected float velocidad;
+	
+	
+	public Jugador(int x, int y, Sprite im) {
+		super(x, y, im);
+		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public int getPosX() {
-		// TODO Auto-generated method stub
-		return 0;
+	
+	//Get
+	public State getState() {
+		return this.estado;
 	}
-
-	@Override
-	public int getPosY() {
-		// TODO Auto-generated method stub
-		return 0;
+	
+	public InfoJugador getInfo() {
+		return this.info;
 	}
-
+	
 	@Override
 	public void moverse() {
 		// TODO Auto-generated method stub
@@ -41,12 +46,9 @@ public class Jugador extends Movible implements Visitor, Visitable{
 	}
 
 	public void moverDerecha() {
-		// TODO Auto-generated method stub
 		
 	}
-
-<<<<<<< HEAD
-
-=======
->>>>>>> 3b043fa3a6548f8f19d2e9660e9765af588c89db
+		
 }
+
+

@@ -35,11 +35,11 @@ public class Buzzy extends Enemigo{
 
 	@Override
 	public void aceptarVisita(Visitor v) {
-		v.visit(this);
+		//v.visit(this);
 	}
 
 	@Override
-	public int recibirDaño() {
+	public void recibirDaño() {
 		this.morir();
 		this.puntosQueDa();
 	}
