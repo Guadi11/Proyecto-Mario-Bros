@@ -36,4 +36,19 @@ public class Jugador extends Movible implements Visitor, Visitable{
 		
 	}
 
+	public void moverIzquierda() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void saltar() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void moverDerecha() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
