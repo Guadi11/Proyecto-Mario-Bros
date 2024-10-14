@@ -20,11 +20,9 @@ public class Lakitu extends Enemigo{
 	protected long intervaloLanzamientoSpinys=2000;
 	protected GameFactory fabrica;
 	protected ControladorPartida controladorPartida;
-	protected long ALTURA_MAXIMA=600;
 	protected long ahora;
 	public Lakitu (int x, int y, Sprite im) {
 		super (x,y,im);
-		this.velocidad=3;
 		//spinys= new ArrayList<>();
 		ultimoLanzamiento=System.currentTimeMillis();
 		
@@ -35,22 +33,24 @@ public class Lakitu extends Enemigo{
             lanzarSpiny();
             ultimoLanzamiento = ahora;
         }
-        //spinys.removeIf(spiny -> spiny.getPosY() > ALTURA_MAXIMA);
     }
 	
 	public void lanzarSpiny() {
-		Spiny nuevoSpiny = fabrica.crearSpiny(this.posicionX, this.posicionY + 1);
-		this.nivel.agregarEnemigo(nuevoSpiny);
-		controladorPartida.registrarObserverElementoIndividual(nuevoSpiny);
+		enemigos.Spiny nuevoSpiny = inicializarSpiny();
 		nuevoSpiny.serLanzado();
-		/*
-		Spiny nuevoSpiny = new Spiny(this.posicionX, this.posicionY + 1, nube);
-        spinys.add(nuevoSpiny);*/
     }
-	
+	private Spiny inicializarSpiny() {
+		Spiny nuevoSpiny = fabrica.crearSpiny(this.posicionX-1, this.posicionY);
+		this.nivel.agregarEnemigo(nuevoSpiny);
+		observerSpiny(nuevoSpiny);
+		return nuevoSpiny;
+	}
+	private void observerSpiny(Spiny s) {
+		controladorPartida.registrarObserverElementoIndividual(s);
+	}
 	public void visitar (Jugador j) {
 		int puntosDaño=this.puntosQueResta();
-		//j.recibirDaño(puntosDaño);
+		j.getInfo().actualizarPuntaje(-puntosDaño);
 	}
 	public void aceptarVisita (Visitor v) {
 		//v.visit (this);
@@ -66,33 +66,23 @@ public class Lakitu extends Enemigo{
 		return 60;
 	}
 	public void moverse() {
-		int nuevaPosicionX=(int) (posicionX + velocidad*(1/60));
+		/*ver tema colisiones/heapbox y sentido del enemigo
+		 int nuevaPosicionX=(int) (posicionX + velocidad*(1/60));
+		 
 		if (velocidad<0) {
 			//imagen.cambiarImagen("Lakitu_a_izq.png");
 		}else {
 			//imagen.cambiarImagen ("Lakitu_a_der.png");
 		}
 		setPosX(nuevaPosicionX);
-		//imagen.actualizarPosicion (posicionX, posicionY);
+		//imagen.actualizarPosicion (posicionX, posicionY);*/
 	}
-	
-	public Sprite getSprite() {
-		return imagen;
-	}
-
-	public int getPosX() {
-		return posicionX;
-	}
-	public int getPosY() {
-		return posicionY;
-	}
-	
-	public void setFabrica(GameFactory factory) {
-		this.fabrica = factory;
-	}
-	public void setControlador(ControladorPartida partida) {
-		this.controladorPartida = partida;
-	}
+public void setFabrica(GameFactory factory) {
+	this.fabrica = factory;
+}
+public void setControlador(ControladorPartida partida) {
+	this.controladorPartida = partida;
+}
 	
 
 }

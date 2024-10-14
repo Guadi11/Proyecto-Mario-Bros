@@ -12,58 +12,39 @@ public class Buzzy extends Enemigo{
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public Sprite getSprite() {
-		return imagen;
-	}
-
-	@Override
-	public int getPosX() {
-		return posicionX;
-	}
-
-	@Override
-	public int getPosY() {
-		return posicionY;
-	}
-
-	@Override
 	public void visitar(Jugador j) {
 		int puntosDaño=this.puntosQueResta();
 		j.getInfo().actualizarPuntaje(-puntosDaño);
 	}
 
-	@Override
 	public void aceptarVisita(Visitor v) {
 		//v.visit(this);
 	}
 
-	@Override
 	public void recibirDaño() {
 		this.morir();
 		this.puntosQueDa();
 	}
 
-	@Override
 	public int puntosQueResta() {
 		return 15;
 	}
 
-	@Override
 	public int puntosQueDa() {
 		return 30;
 	}
 
-	@Override
-	public void moverse(int velocidad) {
-		int nuevaPosicionX=posicionX + velocidad*(1/60);
+	public void moverse() {
+		/* cambiar cuando esten colisione/heapbox
+		 int nuevaPosicionX=posicionX + velocidad*(1/60);
+		 
 		setPosX(nuevaPosicionX);
 		if (velocidad<0) {
 			//imagen.cambiarImagen("Goomba_a_izq.png");
 		}else
 			//imagen.cambiarImagen("Goomba_a_der.png");
 		
-		//imagen.actualizarPosicion(posicionX, posicionY);
+		//imagen.actualizarPosicion(posicionX, posicionY);*/
 	}
 
 }

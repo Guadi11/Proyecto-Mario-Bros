@@ -16,22 +16,9 @@ public class Piranha extends Enemigo{
 		ultimaAparicion=System.currentTimeMillis();
 	}
 
-	public Sprite getSprite() {
-		return imagen;
-	}
-
-	public int getPosX() {
-		return posicionX;
-	}
-
-	public int getPosY() {
-		return posicionY;
-	}
-
-	@Override
 	public void visitar(Jugador j) {
 	int restarPuntos=puntosQueResta();
-	j.getInfo().actualizarPuntaje(restarPuntos);
+	j.getInfo().actualizarPuntaje(-restarPuntos);
 	}
 
 	@Override
@@ -39,32 +26,29 @@ public class Piranha extends Enemigo{
 		v.visit(this);
 	}
 
-	@Override
-	public int recibirDaño() {
+	public void recibirDaño() {
 		this.morir();
 		this.puntosQueDa();
 	}
 
-	@Override
 	public int puntosQueResta() {
 		return 30;
 	}
 
-	@Override
 	public int puntosQueDa() {
 		return 30;
 	}
 
-	@Override
 	public void moverse() {
-		ahora = System.currentTimeMillis();
-        if (ahora - ultimaAparicion >= intervaloParaSalir)
         	comenzarAscenso();
 	}
-	private void comenzarAscenso() {
-		//ver como hacer para el ascenso y que se quede cierto tiempo fuera
-		int posicionXactual=posicionX;
-		while (posicionXactual<posicion)
+	public void comenzarAscenso() {
+			this.setPosY(posicionY+1);
+			//ir cambiando imagen para que parexca que asciende
+	}
+	public void descender() {
+			this.setPosY(posicionY-1);
+			//cambiar imagenes
 	}
 
 }

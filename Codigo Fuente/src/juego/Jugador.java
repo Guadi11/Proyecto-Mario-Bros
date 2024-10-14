@@ -5,6 +5,7 @@ import colisiones.Visitable;
 import colisiones.Visitor;
 import elementos.Enemigo;
 import elementos.Movible;
+import states.Invulnerable;
 import states.State;
 
 public class Jugador extends Movible implements Visitor, Visitable{
@@ -46,6 +47,18 @@ public class Jugador extends Movible implements Visitor, Visitable{
 	}
 
 	public void moverDerecha() {
+		
+	}
+
+
+	public void setEstrella(boolean b) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public void setState(Invulnerable invulnerable) {
+		// TODO Auto-generated method stub
 		
 	}
 		

@@ -20,8 +20,7 @@ public class BloqueDePregunta extends Plataforma implements Visitable{
 
 	public void generarPowerUp() {
 		PowerUp creado = null;
-		int posicionYCreado = this.posicionY; //editar, seria el bloque de arriba
-		
+		int posicionYCreado = this.posicionY+1; //editar, seria el bloque de arriba
 		switch(powerUp) {
 			case "Moneda":
 				creado = fabrica.crearMoneda(posicionX, posicionYCreado);

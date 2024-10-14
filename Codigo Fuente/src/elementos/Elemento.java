@@ -41,7 +41,6 @@ public abstract class Elemento implements ElementoLogico{
 	}
 	
 	public void eliminarObserver() {
-		//TODO
 	}
 	
 	public void notificar() {

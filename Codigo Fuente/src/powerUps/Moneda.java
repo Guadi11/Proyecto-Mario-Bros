@@ -2,36 +2,24 @@ package powerUps;
 
 import archivos.Sprite;
 import elementos.PowerUp;
+import juego.Jugador;
 
 public class Moneda extends PowerUp{
 
 	public Moneda(int x, int y, Sprite im) {
 		super(x, y, im);
-		// TODO Auto-generated constructor stub
 	}
-
-	@Override
-	public Sprite getSprite() {
-		// TODO Auto-generated method stub
-		return null;
+	public void visitar (Jugador j) {
+		j.getInfo().actualizarPuntaje(puntosQueDa());
+		morir();
 	}
-
-	@Override
-	public int getPosX() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int puntosQueDa() {
+		return 5;
 	}
-
-	@Override
-	public int getPosY() {
-		// TODO Auto-generated method stub
-		return 0;
+	public void morir() {
+		//imagen.eliminar()
 	}
-
-	@Override
 	public void moverse() {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

@@ -8,9 +8,9 @@ import juego.Nivel;
 import observers.Observer;
 
 public abstract class Enemigo extends Movible implements Visitor, Visitable{
-	protected float velocidad;
 	protected Observer observer;
 	protected Nivel nivel;
+	protected long velocidadEnMill=3000; 
 
 	
 	public Enemigo(int x, int y, Sprite im) {
@@ -22,7 +22,7 @@ public abstract class Enemigo extends Movible implements Visitor, Visitable{
 	public abstract void recibirDaño();
 	public abstract int puntosQueResta();
 	public abstract int puntosQueDa();
-	public int morir() {
+	public void morir() {
 		//imagen.eliminar();
 		puntosQueDa();
 	}

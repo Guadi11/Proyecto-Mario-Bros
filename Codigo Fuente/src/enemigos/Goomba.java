@@ -12,12 +12,12 @@ public class Goomba extends Enemigo{
 	}
 	public void visitar (Jugador j) {
 		int puntosDaño=this.puntosQueResta();
-		//j.recibirDaño(puntosDaño);
+		j.recibirDaño(puntosDaño);
 	}
 	public void aceptarVisita (Visitor v) {
 		//v.visit (this);
 	}
-	public int recibirDaño() {
+	public void recibirDaño() {
 		this.morir();
 		this.puntosQueDa();
 	}
@@ -27,25 +27,15 @@ public class Goomba extends Enemigo{
 	public int puntosQueDa() {
 		return 60;
 	}
-	public void moverse(int velocidad) {
-		int nuevaPosicionX=posicionX + velocidad*(1/60);
+	public void moverse() {
+		/* modificar
+		 int nuevaPosicionX=posicionX + velocidad*(1/60);
+		 
 		if (velocidad<0) {
 			//imagen.cambiarImagen("Goomba_a_izq.png");
 		}else
 			//imagen.cambiarImagen("Goomba_a_der.png");
 		setPosX(nuevaPosicionX);
-		//imagen.actualizarPosicion(posicionX, posicionY);
-	}
-	
-	public Sprite getSprite() {
-		return imagen;
-	}
-
-	public int getPosX() {
-		return posicionX;
-	}
-
-	public int getPosY() {
-		return posicionY;
+		//imagen.actualizarPosicion(posicionX, posicionY);*/
 	}
 }

@@ -2,36 +2,50 @@ package powerUps;
 
 import archivos.Sprite;
 import elementos.PowerUp;
+import juego.Jugador;
+import states.State;
 
 public class SuperChampiñon extends PowerUp{
-
+	private long limiteInferior;
 	public SuperChampiñon(int x, int y, Sprite im) {
 		super(x, y, im);
-		// TODO Auto-generated constructor stub
 	}
-
-	@Override
-	public Sprite getSprite() {
-		// TODO Auto-generated method stub
-		return null;
+	public void visitar (Jugador j) {
+		j.getState().aumentarEstado(this);
+		j.getInfo().actualizarPuntaje(puntosQueDa(j.getState()));
+		morir();
 	}
-
-	@Override
-	public int getPosX() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int puntosQueDa(State estado) {
+		int puntos=0;
+		switch (estado) {
+		case Normal: { puntos=10;
+		break;
+		}
+		case SuperMario: { puntos=50;
+		break;
+		}
+		default:
+			break;
+		}
+		return puntos;
 	}
-
-	@Override
-	public int getPosY() {
-		// TODO Auto-generated method stub
-		return 0;
+	public void morir() {
+		//imagen.eliminar
 	}
-
-	@Override
 	public void moverse() {
-		// TODO Auto-generated method stub
-		
+		descender();
+		movimientoADerecha();
 	}
+	public void descender() {
+		if (posicionY <limiteInferior)
+			setPosY(posicionY-1);
+	}
+	public void movimientoADerecha() {
+		int nuevaPosicionX= posicionX+velocidad*(1/60);
+		setPosX(nuevaPosicionX);
+	}
+	/*private long establecerLimiteInferior() {
+		return alturaVentana- alturaDelSuelo;
+	}*/
 
 }

@@ -6,27 +6,34 @@ import elementos.Enemigo;
 import juego.Jugador;
 
 public class Spiny extends Enemigo{
+	protected long ALTURA_MAXIMA=600;
+	private int nuevaPosicionX=0;
+	private int nuevaPosicionY=0;
 	public Spiny (int x, int y, Sprite im) {
 		super (x,y,im);
-		this.velocidad=5;
 	}
 public void serLanzado() {
-	int  nuevaPosicionY=(int) (posicionY-velocidad*(1/60));
+	while (getPosY() < ALTURA_MAXIMA) {
+	nuevaPosicionY=(int) (posicionY-velocidadEnMill*(1/60));
 	setPosY(nuevaPosicionY);
-	moverse(-1);
+	nuevaPosicionX= (int) (posicionX - velocidadEnMill*(1/60));
+	setPosX (nuevaPosicionX);
+	}
+	moverse();
 }
-public void moverse(int sentido) {
+public void moverse() { //para cuando se desplaza por el suelo
+	/*ver tema colisiones/heapbox y sentido del enemigo
 	if (sentido==-1) {
 		//imagen.cambiarImagen("Spiny_a_izq.png");
 	}else {
 		//imagen.cambiarImagen("Sprite_a_der.png");
 	}
 	int nuevaPosicionX= (int) (posicionX +(velocidad*(1/60))*sentido);
-	this.setPosX(nuevaPosicionX);
+	this.setPosX(nuevaPosicionX);*/
 }
 public void visitar (Jugador j) {
 	int puntosDaño=this.puntosQueResta();
-	//j.recibirDaño(puntosDaño);
+	j.recibirDaño(puntosDaño);
 }
 public void aceptarVisita (Visitor v) {
 	//v.visit(this);
@@ -41,24 +48,4 @@ public int puntosQueResta() {
 public int puntosQueDa() {
 	return 60;
 }
-	
-	public Sprite getSprite() {
-		return imagen;
-	}
-
-	
-	public int getPosX() {
-		return posicionX;
-	}
-
-	
-	public int getPosY() {
-		return posicionY;
-	}
-	@Override
-	public void moverse() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }
