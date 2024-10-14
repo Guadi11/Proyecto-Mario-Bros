@@ -6,7 +6,6 @@ import juego.Jugador;
 
 public abstract class State {
 protected Jugador jugador;
-	public void aumentarEstado(PowerUp p) {
-	}
-
+	public abstract void aumentarEstado(PowerUp p);
+	public abstract void recibirDaño();
 }

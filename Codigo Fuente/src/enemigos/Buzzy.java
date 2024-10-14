@@ -15,6 +15,7 @@ public class Buzzy extends Enemigo{
 	public void visitar(Jugador j) {
 		int puntosDaño=this.puntosQueResta();
 		j.getInfo().actualizarPuntaje(-puntosDaño);
+		j.getState().recibirDaño();
 	}
 
 	public void aceptarVisita(Visitor v) {

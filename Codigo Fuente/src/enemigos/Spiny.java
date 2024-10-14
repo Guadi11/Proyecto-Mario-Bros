@@ -33,7 +33,8 @@ public void moverse() { //para cuando se desplaza por el suelo
 }
 public void visitar (Jugador j) {
 	int puntosDaño=this.puntosQueResta();
-	j.recibirDaño(puntosDaño);
+	j.getInfo().actualizarPuntaje(-puntosDaño);
+	j.getState().recibirDaño();
 }
 public void aceptarVisita (Visitor v) {
 	//v.visit(this);

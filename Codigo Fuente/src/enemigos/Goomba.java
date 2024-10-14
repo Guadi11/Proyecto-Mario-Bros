@@ -12,7 +12,8 @@ public class Goomba extends Enemigo{
 	}
 	public void visitar (Jugador j) {
 		int puntosDaño=this.puntosQueResta();
-		j.recibirDaño(puntosDaño);
+		j.getState().recibirDaño();
+		j.getInfo().actualizarPuntaje(-puntosDaño);
 	}
 	public void aceptarVisita (Visitor v) {
 		//v.visit (this);

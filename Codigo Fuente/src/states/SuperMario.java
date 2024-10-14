@@ -1,23 +1,25 @@
 package states;
 
-import juego.Jugador;
+import elementos.PowerUp;
 
 public class SuperMario extends State{
+	protected State volverANormal= new Normal();
 	private long tiempoActivacion;
 	private final long duracion =6500;
-	public synchronized void activar(Jugador j) {
-	    tiempoActivacion = System.currentTimeMillis();
-	            new Thread(() -> {
-	                try {
-	                    Thread.sleep(duracion);
-	                } catch (InterruptedException e) {
-	                    e.printStackTrace();
-	                }
-	                desactivar(j);
-	            }).start();
-}
-
-	public synchronized void desactivar(Jugador j) {
-	        j.getState().
-	    }
+	public SuperMario() {
+		//jugador.getSprite().cambiar(SuperMario);
+	}
+	public void recibirDaño() {
+		jugador.setState(volverANormal);
+	}
+	public void actualizar() {
+        long ahora = System.currentTimeMillis();
+        if (ahora - tiempoActivacion >= duracion) {
+            jugador.setState(volverANormal);
+        }
+	}
+	@Override
+	public void aumentarEstado(PowerUp p) {
+		jugador.setState(this);
+	}
 }

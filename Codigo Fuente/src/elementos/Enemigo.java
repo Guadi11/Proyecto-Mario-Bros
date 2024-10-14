@@ -11,7 +11,6 @@ public abstract class Enemigo extends Movible implements Visitor, Visitable{
 	protected Observer observer;
 	protected Nivel nivel;
 	protected long velocidadEnMill=3000; 
-
 	
 	public Enemigo(int x, int y, Sprite im) {
 		super(x, y, im);

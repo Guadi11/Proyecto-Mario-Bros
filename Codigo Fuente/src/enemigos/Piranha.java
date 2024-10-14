@@ -19,6 +19,7 @@ public class Piranha extends Enemigo{
 	public void visitar(Jugador j) {
 	int restarPuntos=puntosQueResta();
 	j.getInfo().actualizarPuntaje(-restarPuntos);
+	j.getState().recibirDaño();
 	}
 
 	@Override

@@ -57,7 +57,7 @@ public class Jugador extends Movible implements Visitor, Visitable{
 	}
 
 
-	public void setState(Invulnerable invulnerable) {
+	public void setState(State estado) {
 		// TODO Auto-generated method stub
 		
 	}
