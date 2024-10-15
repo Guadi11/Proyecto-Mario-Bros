@@ -1,5 +1,6 @@
 package vista;
 
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
@@ -8,14 +9,15 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+
 public class PantallaSeleccionModo extends JPanel{
    
         protected JButton botonModo1;
         protected JButton botonModo2;
         protected JLabel imagenFondo;
         protected ControladorPantallas controlador;
-        
-    
+
+   
         public PantallaSeleccionModo(ControladorPantallas controlador){
             this.controlador = controlador;
             this.setPreferredSize(new Dimension(ConstantesPantalla.panelAncho, ConstantesPantalla.panelAlto));
@@ -23,6 +25,7 @@ public class PantallaSeleccionModo extends JPanel{
             agregarImagenFondo();
             agregarBotonModoUno();
             agregarBotonModoDos();
+           
         }
     
         private void agregarImagenFondo(){
@@ -32,6 +35,7 @@ public class PantallaSeleccionModo extends JPanel{
             imagenFondo.setBounds(0,-40,ConstantesPantalla.panelAncho,ConstantesPantalla.panelAlto);
        
             add(imagenFondo);
+           
         }
     
         private void agregarBotonModoUno(){
@@ -46,6 +50,7 @@ public class PantallaSeleccionModo extends JPanel{
             add(botonModo1);
             imagenFondo.add(botonModo1);
             //botonModo1.setVisible(false);
+           
         }
     
         private void agregarBotonModoDos(){
@@ -59,6 +64,7 @@ public class PantallaSeleccionModo extends JPanel{
             add(botonModo2);
             imagenFondo.add(botonModo2);
             //botonModo2.setVisible(false);
+           
         }
 
 }
