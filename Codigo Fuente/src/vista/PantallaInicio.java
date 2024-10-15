@@ -12,10 +12,11 @@ import javax.swing.JPanel;
 public class PantallaInicio extends JPanel{
 
 	private static final long serialVersionUID = 1L;
-		protected JButton botonStart;
+	protected JButton botonStart;
         protected JButton botonRanking;
         protected JLabel imagenFondo;
         protected ControladorPantallas controlador;
+	
     
         public PantallaInicio(ControladorPantallas controlador){
             this.controlador=controlador;
@@ -29,9 +30,9 @@ public class PantallaInicio extends JPanel{
     
         private void agregarImagenFondo(){
             ImageIcon icon = new ImageIcon(getClass().getResource("/imagenes/imageninicio.png"));
-            Image imagen = icon.getImage().getScaledInstance(ConstantesPantalla.panelAncho,ConstantesPantalla.panelAlto,Image.SCALE_SMOOTH);
+            Image imagen = icon.getImage().getScaledInstance(ConstantesPantalla.panelAncho, ConstantesPantalla.panelAlto, Image.SCALE_SMOOTH);
             imagenFondo = new JLabel(new ImageIcon(imagen));
-            imagenFondo.setBounds(0,-40,ConstantesPantalla.panelAncho,ConstantesPantalla.panelAlto);
+            imagenFondo.setBounds(0, -40, ConstantesPantalla.panelAncho, ConstantesPantalla.panelAlto);
 		
             add(imagenFondo);
 		
@@ -39,7 +40,7 @@ public class PantallaInicio extends JPanel{
     
         private void agregarBotonStart(){
             botonStart = new JButton();
-            botonStart.setBounds(310,325,150,70);
+            botonStart.setBounds(310, 325, 150, 70);
             botonStart.setContentAreaFilled(false); 
             botonStart.setBorderPainted(false); 
             botonStart.setFocusPainted(false); 
@@ -54,7 +55,7 @@ public class PantallaInicio extends JPanel{
         
         private void agregarBotonRanking(){
             botonRanking = new JButton();
-            botonRanking.setBounds(295,435,200,70);
+            botonRanking.setBounds(295, 435, 200, 70);
             botonRanking.setContentAreaFilled(false); // Hace el fondo transparente
             botonRanking.setBorderPainted(false); // Elimina el borde
             botonRanking.setFocusPainted(false); // Elimina el borde cuando el botón está enfocado
