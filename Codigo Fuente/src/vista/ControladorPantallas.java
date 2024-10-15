@@ -1,7 +1,7 @@
 package vista;
 
-import javax.swing.JFrame;
 
+import javax.swing.JFrame;
 import elementos.ElementoJugador;
 import elementos.ElementoLogico;
 import juego.ControladorPartida;
@@ -10,6 +10,7 @@ import juego.ModoUnoFactory;
 import observers.Observer;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+
 
 public class ControladorPantallas implements ControladorDePantallas, ControladorEntreJuegoVista{
 
@@ -20,6 +21,7 @@ public class ControladorPantallas implements ControladorDePantallas, Controlador
 	protected PantallaJuego panelJuego;
 	protected PantallaGameOver panelGameOver;
 	protected ControladorPartida partida;
+
 	
 	public ControladorPantallas(ControladorPartida controladorPartida) {
 		this.partida = controladorPartida;
@@ -28,9 +30,12 @@ public class ControladorPantallas implements ControladorDePantallas, Controlador
 		panelRanking = new PantallaRanking();
 		panelJuego = new PantallaJuego(this, partida);
 		panelGameOver = new PantallaGameOver();
+		
 		configurarVentana();
 		registrarOyenteVentana();
+		
 	}
+	
 	
 	
 
@@ -48,16 +53,19 @@ public class ControladorPantallas implements ControladorDePantallas, Controlador
 	
 	public ControladorPartida getControladorPartida() {
 		return this.partida;
+		
 	}
 
 	private void refrescar() {
 		ventana.revalidate();
 		ventana.repaint();
+		
 	}
 	
 	public void mostrarPantallaInicial() {
 		ventana.setContentPane(panelInicio);
 		refrescar();
+		
 	}
 	
 	@Override
@@ -83,6 +91,7 @@ public class ControladorPantallas implements ControladorDePantallas, Controlador
 	                System.out.println("Se cerró la ventana");
 	            }
 	        });
+		
 	}
 
 	@Override
@@ -90,6 +99,7 @@ public class ControladorPantallas implements ControladorDePantallas, Controlador
 		Observer observerElemento = this.panelJuego.incorporarElemento(elem);
 		refrescar();
 		return observerElemento;
+		
 	}
 
 	@Override
@@ -97,6 +107,7 @@ public class ControladorPantallas implements ControladorDePantallas, Controlador
 		Observer observerJugador = this.panelJuego.incorporarElementoJugador(jugador);
 		refrescar();
 		return observerJugador;
+		
 	}
 	/*
 	public Observer registrarFondo(ElementoLogico fondo) {
