@@ -64,7 +64,6 @@ public class NivelBuilder {
 			int buzzy = new Color(160, 0, 160).getRGB();
 			*/
 			double multiplicadorPixel = 36.8;
-			System.out.println("LLego hasta antes del for. NivelBuilder");
 		    for (int x = 0; x < ancho; x++) {
 		    	for (int y = 0; y < alto; y++) {
 	
@@ -107,7 +106,6 @@ public class NivelBuilder {
 	                } */
 	            }
 	        }
-		    System.out.println("LLego hasta despues del for. NivelBuilder");
 		}  catch (IOException e) {
            System.out.println("Error al cargar la imagen: " + e.getMessage());
 		}

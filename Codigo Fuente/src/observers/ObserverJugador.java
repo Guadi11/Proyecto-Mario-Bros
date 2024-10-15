@@ -16,8 +16,11 @@ public class ObserverJugador extends ObserverGrafico{
 		actualizar();		
 	}
 	
+	@Override
 	public void actualizar() {
+		System.out.println("Llego a actualizar de observer jugador antes del super");
 		super.actualizar();
+		System.out.println("Llego a actualizar de observer jugador");
 		pantallaJuego.actualizarScroll(jugadorObservado);
 	}
 

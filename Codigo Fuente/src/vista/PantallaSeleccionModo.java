@@ -42,7 +42,7 @@ public class PantallaSeleccionModo extends JPanel{
             botonModo1 = new JButton(); //para ver la visibilidad agregar texto
             botonModo1.setBounds(280,300,200,50);
             botonModo1.setContentAreaFilled(false); 
-            botonModo1.setBorderPainted(true); 
+            botonModo1.setBorderPainted(false); 
             botonModo1.setFocusPainted(false); 
             botonModo1.setOpaque(false);
             botonModo1.addActionListener(e -> controlador.mostrarPantallaJuego());
@@ -58,7 +58,7 @@ public class PantallaSeleccionModo extends JPanel{
             botonModo2.setBounds(280,390,200,50);
             botonModo2.setBackground(new Color(223,227,40));
             botonModo2.setContentAreaFilled(false); 
-            botonModo2.setBorderPainted(true); 
+            botonModo2.setBorderPainted(false); 
             botonModo2.setFocusPainted(false); 
             botonModo2.setOpaque(false);
             add(botonModo2);

@@ -8,6 +8,8 @@ import juego.ControladorPartida;
 import juego.GameFactory;
 import juego.ModoUnoFactory;
 import observers.Observer;
+import observers.ObserverJugador;
+
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -104,7 +106,7 @@ public class ControladorPantallas implements ControladorDePantallas, Controlador
 
 	@Override
 	public Observer registrarElemento(ElementoJugador jugador) {
-		Observer observerJugador = this.panelJuego.incorporarElementoJugador(jugador);
+		ObserverJugador observerJugador = this.panelJuego.incorporarElementoJugador(jugador);
 		refrescar();
 		return observerJugador;
 		

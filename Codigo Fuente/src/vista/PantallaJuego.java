@@ -252,7 +252,7 @@ public class PantallaJuego extends JPanel implements KeyListener{
 		return observerElemento;
 	}
 	
-	public Observer incorporarElementoJugador(ElementoJugador player) {
+	public ObserverJugador incorporarElementoJugador(ElementoJugador player) {
 		ObserverJugador observerJugador = new ObserverJugador(this, player);
 		imagenFondoJuego.add(observerJugador);
 		actualizarInfoJugador(player);
@@ -293,8 +293,21 @@ public class PantallaJuego extends JPanel implements KeyListener{
 	
 	public void actualizarScroll(ElementoJugador player) {
 		// TODO
-		//panelScroll.getHorizontalScrollBar().setValue(panelScroll.getHorizontalScrollBar().getValue() + player.getVelocidad());
-		
+		System.out.println("entro a actualizar Scroll");
+	    int jugadorX = player.getPosX();
+
+	    // Calcula el valor deseado del scroll para centrar al jugador
+	    int nuevaPosScroll = jugadorX - (panelScroll.getViewport().getWidth() / 2);
+
+	    // Asegúrate de que el scroll no se mueva más allá de los límites
+	    if (nuevaPosScroll < 0) {
+	        nuevaPosScroll = 0;
+	    } else if (nuevaPosScroll > panelJuego.getWidth() - panelScroll.getViewport().getWidth()) {
+	        nuevaPosScroll = panelJuego.getWidth() - panelScroll.getViewport().getWidth();
+	    }
+
+	    // Mueve el scroll horizontalmente para seguir al jugador
+	    panelScroll.getHorizontalScrollBar().setValue(nuevaPosScroll);
 	}
 
 	public void iniciarTimer() {

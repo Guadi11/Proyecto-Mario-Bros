@@ -11,7 +11,6 @@ public class HiloJugador extends Thread {
     }
 	
 	 public void run(){
-		 System.out.println("llego hasta run");
 	 	while(true){
 	 		controlador.getNivelActual().getJugador().actualizar();
 	 		try {

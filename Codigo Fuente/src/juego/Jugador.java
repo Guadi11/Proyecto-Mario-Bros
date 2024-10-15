@@ -42,9 +42,7 @@ public class Jugador extends Movible implements Visitor, Visitable{
 	}
 
 	public void moverDerecha() {
-		System.out.println("entro a mover derecha de jugador");
 		velX = 8;
-		System.out.println("Posicion actual en X: " + this.posicionX);
 		
 	}
 

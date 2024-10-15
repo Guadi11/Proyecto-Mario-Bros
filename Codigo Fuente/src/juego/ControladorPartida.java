@@ -5,8 +5,8 @@ import java.util.List;
 
 import archivos.Ranking;
 import elementos.Elemento;
-import elementos.Fondo;
 import observers.Observer;
+import observers.ObserverJugador;
 import vista.ControladorEntreJuegoVista;
 
 public class ControladorPartida {
@@ -117,17 +117,13 @@ public class ControladorPartida {
 	
 	public void activeMovement(KeyEvent e) {
 		int tecla = e.getKeyCode();
-		System.out.println("entro a activeMovement");
     	
 	    switch (tecla) {
 	        case KeyEvent.VK_LEFT:
-	        	System.out.println("entro a flech izquierda");
 	            nivelActual.getJugador().moverIzquierda();
 	            break;
 	        case KeyEvent.VK_RIGHT:
 	        	nivelActual.getJugador().moverDerecha();
-	        	System.out.println("entro a flech derecha");
-	        	
 	            break;
 	        case KeyEvent.VK_SPACE:
 	        	nivelActual.getJugador().saltar();
