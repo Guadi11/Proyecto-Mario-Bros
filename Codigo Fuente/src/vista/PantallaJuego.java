@@ -305,12 +305,12 @@ public class PantallaJuego extends JPanel implements KeyListener{
 	}
 	
     public void keyPressed(KeyEvent e) {
-        controladorPartida.handleKeyPress(e);
+        controladorPartida.activeMovement(e);
     }
 
   
     public void keyReleased(KeyEvent e) {
-        // Opcional: manejar la liberación de teclas
+        controladorPartida.desactiveMovement(e);
     }
 
     

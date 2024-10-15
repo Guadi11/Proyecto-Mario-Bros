@@ -111,8 +111,9 @@ public class ControladorPartida {
 		return this.numNivelActual;
 	}
 	
-	public void handleKeyPress(KeyEvent tecla) {
-	    switch (tecla.getKeyCode()) {
+	public void activeMovement(KeyEvent e) {
+		int tecla = e.getKeyCode();
+	    switch (tecla) {
 	        case KeyEvent.VK_LEFT:
 	            nivelActual.getJugador().moverIzquierda();
 	            break;
@@ -122,8 +123,16 @@ public class ControladorPartida {
 	        case KeyEvent.VK_SPACE:
 	        	nivelActual.getJugador().saltar();
 	            break;
-	        // Agrega más teclas según sea necesario
 	    }
-	
+	}
+	public void desactiveMovement (KeyEvent e) {
+		int tecla = e.getKeyCode();
+		if (tecla == KeyEvent.VK_LEFT || tecla == KeyEvent.VK_RIGHT) {
+	        nivelActual.getJugador().frenarMovimiento(); // Detiene el movimiento al soltar las teclas
+		}
+
+	}
+	public Nivel getNivelActual() {
+		return nivelActual;
 	}
 }
