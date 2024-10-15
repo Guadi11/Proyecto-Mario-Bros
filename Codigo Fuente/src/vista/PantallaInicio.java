@@ -19,7 +19,7 @@ public class PantallaInicio extends JPanel{
 	
     
         public PantallaInicio(ControladorPantallas controlador){
-            this.controlador=controlador;
+            this.controlador = controlador;
             this.setPreferredSize(new Dimension(ConstantesPantalla.panelAncho, ConstantesPantalla.panelAlto));
             this.setLayout(null);//para poder hacer los cambios manualmente
             agregarImagenFondo();
