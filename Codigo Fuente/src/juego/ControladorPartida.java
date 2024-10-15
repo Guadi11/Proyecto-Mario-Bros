@@ -20,6 +20,7 @@ public class ControladorPartida {
 	protected String nombreJugador;
 	protected int numNivelActual;
 	
+	
 	public ControladorPartida() {
 		this.ranking = new Ranking();
 		this.numNivelActual = 1;
@@ -31,6 +32,9 @@ public class ControladorPartida {
 		this.creadorNivel = new NivelBuilder(fabrica, numNivelActual);
 		this.nivelActual = this.creadorNivel.getNivel();
 		registrarObservers();
+		HiloJugador hiloJugador = new HiloJugador(this);
+		hiloJugador.start();
+		
 	}
 	
 	private void registrarObservers() {
@@ -113,12 +117,17 @@ public class ControladorPartida {
 	
 	public void activeMovement(KeyEvent e) {
 		int tecla = e.getKeyCode();
+		System.out.println("entro a activeMovement");
+    	
 	    switch (tecla) {
 	        case KeyEvent.VK_LEFT:
+	        	System.out.println("entro a flech izquierda");
 	            nivelActual.getJugador().moverIzquierda();
 	            break;
 	        case KeyEvent.VK_RIGHT:
 	        	nivelActual.getJugador().moverDerecha();
+	        	System.out.println("entro a flech derecha");
+	        	
 	            break;
 	        case KeyEvent.VK_SPACE:
 	        	nivelActual.getJugador().saltar();

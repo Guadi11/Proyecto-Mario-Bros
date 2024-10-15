@@ -12,7 +12,7 @@ public class Tuberia extends Plataforma{
     private final long DURACION_ESPERA = 2000;
 	public Tuberia(int x, int y, Sprite im) {
 		super(x, y, im);
-		crearPiranha();
+		//crearPiranha();
 		estadoPiranha=0;
 		tiempoCambioEstado = System.currentTimeMillis();
 	}

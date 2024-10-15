@@ -42,7 +42,9 @@ public class Jugador extends Movible implements Visitor, Visitable{
 	}
 
 	public void moverDerecha() {
+		System.out.println("entro a mover derecha de jugador");
 		velX = 8;
+		System.out.println("Posicion actual en X: " + this.posicionX);
 		
 	}
 
@@ -57,8 +59,9 @@ public class Jugador extends Movible implements Visitor, Visitable{
 		
 	}
 	public void actualizar() {
-		posicionX += velX; // Actualiza la posición en función de la velocidad
+		this.posicionX = posicionX + velX; // Actualiza la posición en función de la velocidad
         // aca podriamos añadir tambien la logica del salto. Falta chequear que no se exceda del limite de la pantalla
+		notificar();
     }
 	public void moverse() {
 		

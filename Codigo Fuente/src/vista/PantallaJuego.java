@@ -50,8 +50,14 @@ public class PantallaJuego extends JPanel implements KeyListener{
 		agregarPanelInformacion();
 		agregarPanelJuego();
 		 this.setFocusable(true);
-	     this.addKeyListener(this);
-		
+		 this.addKeyListener(this);
+		 this.requestFocusInWindow();  // Asegura que el panel recibe el foco
+	    
+	}
+	@Override
+	public void addNotify() {
+	    super.addNotify();
+	    requestFocusInWindow();  // Asegura que el panel recibe el foco cuando es mostrado
 	}
 
 	private void agregarPanelJuego() {
@@ -306,11 +312,13 @@ public class PantallaJuego extends JPanel implements KeyListener{
 	
     public void keyPressed(KeyEvent e) {
         controladorPartida.activeMovement(e);
+   
     }
 
   
     public void keyReleased(KeyEvent e) {
         controladorPartida.desactiveMovement(e);
+      
     }
 
     
