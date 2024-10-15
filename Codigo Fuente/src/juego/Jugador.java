@@ -59,8 +59,13 @@ public class Jugador extends Movible implements Visitor, Visitable{
 		
 	}
 	public void actualizar() {
-		this.posicionX = posicionX + velX; // Actualiza la posición en función de la velocidad
-        // aca podriamos añadir tambien la logica del salto. Falta chequear que no se exceda del limite de la pantalla
+		posicionX += velX;
+		
+		if (posicionX < 0) {
+	        posicionX = 0; // Limite izquierdo
+	    } else if (posicionX > 750) 
+	        posicionX = 750; // Limite derecho 
+		
 		notificar();
     }
 	public void moverse() {
