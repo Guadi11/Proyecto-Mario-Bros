@@ -24,6 +24,7 @@ public class PantallaInicio extends JPanel{
             agregarImagenFondo();
             agregarBotonStart();
             agregarBotonRanking();
+		
         }
     
         private void agregarImagenFondo(){
@@ -31,8 +32,9 @@ public class PantallaInicio extends JPanel{
             Image imagen = icon.getImage().getScaledInstance(ConstantesPantalla.panelAncho,ConstantesPantalla.panelAlto,Image.SCALE_SMOOTH);
             imagenFondo = new JLabel(new ImageIcon(imagen));
             imagenFondo.setBounds(0,-40,ConstantesPantalla.panelAncho,ConstantesPantalla.panelAlto);
-            
+		
             add(imagenFondo);
+		
         }
     
         private void agregarBotonStart(){
@@ -43,10 +45,11 @@ public class PantallaInicio extends JPanel{
             botonStart.setFocusPainted(false); 
             botonStart.setOpaque(false);
             botonStart.addActionListener(e -> controlador.mostrarPantallaSeleccion());
-            
+		
             add(botonStart);
             imagenFondo.add(botonStart);
             //botonStart.setVisible(false);
+		
         }
         
         private void agregarBotonRanking(){
@@ -59,7 +62,9 @@ public class PantallaInicio extends JPanel{
             
             add(botonRanking);
             imagenFondo.add(botonRanking);
+		
         }
+	
 }
 
 
