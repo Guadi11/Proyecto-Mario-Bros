@@ -1,6 +1,6 @@
 package vista;
 
-import juego.GameFactory;
+import parseo.GameFactory;
 
 public interface ControladorDePantallas {
 

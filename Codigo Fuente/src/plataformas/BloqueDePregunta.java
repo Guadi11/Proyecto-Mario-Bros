@@ -6,7 +6,7 @@ import colisiones.Visitor;
 import elementos.Plataforma;
 import elementos.PowerUp;
 import juego.ControladorPartida;
-import juego.GameFactory;
+import parseo.GameFactory;
 
 public class BloqueDePregunta extends Plataforma implements Visitable{
 

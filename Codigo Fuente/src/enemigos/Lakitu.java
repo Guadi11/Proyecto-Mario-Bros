@@ -8,7 +8,7 @@ import colisiones.Visitor;
 import elementos.Enemigo;
 import elementos.PowerUp;
 import juego.ControladorPartida;
-import juego.GameFactory;
+import parseo.GameFactory;
 import juego.Jugador;
 
 

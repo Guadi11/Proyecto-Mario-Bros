@@ -1,4 +1,4 @@
-package juego;
+package parseo;
 
 public class ModoDosFactory extends GameFactory{
 

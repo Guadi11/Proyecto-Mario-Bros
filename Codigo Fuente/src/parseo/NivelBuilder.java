@@ -1,4 +1,4 @@
-package juego;
+package parseo;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
@@ -11,6 +11,7 @@ import elementos.Fondo;
 import plataformas.*;
 import enemigos.*;
 import powerUps.*;
+import juego.*;
 
 public class NivelBuilder {
 	protected GameFactory fabrica;

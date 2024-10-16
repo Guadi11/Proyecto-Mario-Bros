@@ -3,6 +3,7 @@ package juego;
 import java.awt.event.KeyEvent;
 import java.util.List;
 
+import parseo.*;
 import archivos.Ranking;
 import elementos.Elemento;
 import observers.Observer;

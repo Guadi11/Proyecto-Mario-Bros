@@ -5,8 +5,8 @@ import javax.swing.JFrame;
 import elementos.ElementoJugador;
 import elementos.ElementoLogico;
 import juego.ControladorPartida;
-import juego.GameFactory;
-import juego.ModoUnoFactory;
+import parseo.GameFactory;
+import parseo.ModoUnoFactory;
 import observers.Observer;
 import observers.ObserverJugador;
 

@@ -1,4 +1,4 @@
-package juego;
+package parseo;
 
 import archivos.Sprite;
 import elementos.BolaDeFuego;
@@ -6,6 +6,7 @@ import elementos.Fondo;
 import enemigos.*;
 import powerUps.*;
 import plataformas.*;
+import juego.*;
 
 public abstract class GameFactory {
 
