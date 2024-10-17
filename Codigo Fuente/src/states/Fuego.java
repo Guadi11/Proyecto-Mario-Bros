@@ -12,7 +12,7 @@ public class Fuego extends SuperMario{
 		//jugador.getSprite().cambiar(distintoColorTraje);
 	}
 	public void activar() {
-        super.actualizar(); 
+       // super.actualizar(); 
         lanzarBolaDeFuego();
     }
     public void lanzarBolaDeFuego() {
@@ -22,4 +22,7 @@ public class Fuego extends SuperMario{
     public void aumentarEstado(PowerUp p) {
 		jugador.setState(this);
 	}
+    public int obtenerPuntosFFuego() {
+    	return 50;
+    }
 }

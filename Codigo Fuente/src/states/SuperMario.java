@@ -22,4 +22,13 @@ public class SuperMario extends State{
 	public void aumentarEstado(PowerUp p) {
 		jugador.setState(this);
 	}
+	public int obtenerPuntosEstrella() {
+		return 30;
+	}
+	public int obtenerPuntosSChamp() {
+		return 50;
+	}
+	public int obtenerPuntosFFuego() {
+		return 30;
+	}
 }

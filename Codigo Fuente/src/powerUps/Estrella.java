@@ -11,25 +11,14 @@ public class Estrella extends PowerUp{
 		super(x, y, im);
 	}
 	public void visitar (Jugador j) {
-		j.getState().aumentarEstado(this);
+		estadoMario=j.getState();
+		estadoMario.aumentarEstado(this);
 		j.setEstrella(true);
-		j.getInfo().actualizarPuntaje(puntosQueDa(j.getState()));
+		j.getInfo().actualizarPuntaje(puntosQueDa());
 		morir();
 	}
-	public int puntosQueDa(State estado) {
-		int puntos=0;
-		switch (estado) {
-			case Normal :{puntos=20;
-			break;}
-			case SuperMario: {puntos=30;
-			break;
-			}
-			case Invencible: {puntos=35;
-			break;
-			}
-		default:
-			break;
-		} return puntos;
+	public int puntosQueDa() {
+		return estadoMario.obtenerPuntosEstrella();
 	}
 	public void morir() {
 		//imagen.eliminar()

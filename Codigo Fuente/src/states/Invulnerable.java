@@ -24,5 +24,14 @@ public class Invulnerable extends State{
 	public void recibirDaño() {
 		jugador.setState(estadoAnterior);
 	}
+	public int obtenerPuntosEstrella() {
+		return estadoAnterior.obtenerPuntosEstrella();
+	}
+	public int obtenerPuntosSChamp() {
+		return estadoAnterior.obtenerPuntosSChamp();
+	}
+	public int obtenerPuntosFFuego() {
+		return estadoAnterior.obtenerPuntosFFuego();
+	}
 
 }

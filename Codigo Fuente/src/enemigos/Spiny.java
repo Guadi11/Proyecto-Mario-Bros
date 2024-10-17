@@ -47,6 +47,6 @@ public int puntosQueResta() {
 	return 30;
 }
 public int puntosQueDa() {
-	return 60;
+	return 0;
 }
 }
