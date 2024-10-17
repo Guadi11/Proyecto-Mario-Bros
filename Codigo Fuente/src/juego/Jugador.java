@@ -13,12 +13,14 @@ public class Jugador extends Movible implements Visitor, Visitable, ElementoJuga
 	
 	protected State estado;
 	protected InfoJugador info;
-	protected int velX;
-	
+	protected int velX, velY;
+	protected boolean isJumped;
 	
 	public Jugador(int x, int y, Sprite im) {
 		super(x, y, im);
 		velX = 0;
+		velY = 0;
+		isJumped = false;
 		info = new InfoJugador(this);
 	}
 
@@ -44,12 +46,12 @@ public class Jugador extends Movible implements Visitor, Visitable, ElementoJuga
 	}
 
 	public void moverDerecha() {
-		velX = 8;
+		velX = 5;
 		
 	}
 
 	public void moverIzquierda() {
-		velX = -8;
+		velX = -5;
 		
 		
 	}
@@ -59,25 +61,36 @@ public class Jugador extends Movible implements Visitor, Visitable, ElementoJuga
 		
 	}
 	public void actualizar() {
+		int altura_piso = 441;
+		int limite_derecho = 7481;
 		posicionX += velX;
+		posicionY += velY;
+		
+		if (posicionY < altura_piso) {
+		        velY += 1; 
+		    } else {
+		        posicionY = altura_piso;
+		        velY = 0; 
+		        isJumped = false;
+		    }
 		
 		if (posicionX < 0) {
-	        posicionX = 0; // Limite izquierdo
-	    } else if (posicionX > 750) 
-	        posicionX = 750; // Limite derecho 
-		
+	        posicionX = 0; 
+	    } else 
+	    	if (posicionX > limite_derecho) 
+	    		posicionX = limite_derecho;	
 		notificar();
     }
 	public void moverse() {
 		
 	}
 
-
 	public void saltar() {
-		// TODO Auto-generated method stub
-		
+		if (!isJumped) { 
+	        velY = -15; 
+	        isJumped = true;
+	    }	
 	}
-
 
 	@Override
 	public int getMonedas() {
