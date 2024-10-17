@@ -37,13 +37,8 @@ public class ControladorPantallas implements ControladorDePantallas, Controlador
 		registrarOyenteVentana();
 		
 	}
-	
-	
-	
-
 
 	private void configurarVentana() {
-		// TODO Auto-generated method stub
 		ventana = new JFrame("Super Mario Bros");
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ventana.setResizable(false);
@@ -111,12 +106,6 @@ public class ControladorPantallas implements ControladorDePantallas, Controlador
 		return observerJugador;
 		
 	}
-	/*
-	public Observer registrarFondo(ElementoLogico fondo) {
-		Observer observerFondo = this.panelJuego.incorporarFondo(fondo);
-		refrescar();
-		return observerFondo;
-	}*/
 
 	@Override
 	public void accionarPantallaRanking() {

@@ -8,8 +8,11 @@ public class InfoJugador {
 	protected int vida;
 	protected Nivel nivel;
 	
-	public InfoJugador() {
-		
+	public InfoJugador(Jugador jugador) {
+		this.jugador = jugador;
+		puntaje = 0;
+		monedas = 0;
+		vida = 3;
 	}
 	
 	//Get
