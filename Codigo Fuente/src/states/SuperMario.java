@@ -12,12 +12,12 @@ public class SuperMario extends State{
 	public void recibirDaño() {
 		jugador.setState(volverANormal);
 	}
-	public void actualizar() {
+	/*public void actualizar() {
         long ahora = System.currentTimeMillis();
         if (ahora - tiempoActivacion >= duracion) {
             jugador.setState(volverANormal);
         }
-	}
+	}*/
 	@Override
 	public void aumentarEstado(PowerUp p) {
 		jugador.setState(this);
