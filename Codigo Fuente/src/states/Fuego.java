@@ -22,7 +22,7 @@ public class Fuego extends SuperMario{
     public void aumentarEstado(PowerUp p) {
 		jugador.setState(this);
 	}
-    public int obtenerPuntosFFuego() {
+    public int obtenerPuntosFuego() {
     	return 50;
     }
 }

@@ -7,7 +7,7 @@ import parseo.*;
 import archivos.Ranking;
 import elementos.Elemento;
 import observers.Observer;
-import observers.ObserverJugador;
+import observers.ObserverGrafico;
 import vista.ControladorEntreJuegoVista;
 
 public class ControladorPartida {
@@ -35,16 +35,12 @@ public class ControladorPartida {
 		registrarObservers();
 		HiloJugador hiloJugador = new HiloJugador(this);
 		hiloJugador.start();
-		
 	}
 	
 	private void registrarObservers() {
-		// TODO Auto-generated method stub
 		registrarObserverJugador(this.nivelActual.getJugador());
-		//registrarObserverFondo(this.nivelActual.getFondo());
 		registrarObserversElementos(this.nivelActual.getPlataformas());
 		registrarObserversElementos(this.nivelActual.getEnemigos());
-		//haria para los power ups pero no estan creados desde 0 o si??
 	}
 	
 	private void registrarObserverJugador(Jugador player){
@@ -60,9 +56,13 @@ public class ControladorPartida {
 	}
 	
 	public void registrarObserverElementoIndividual(Elemento elem){
-		//sirve tambien para el fondo
+		//sirve para spinys, piranha, power ups
 			Observer observer = pantallas.registrarElemento(elem);
 			elem.registrarObserver(observer);
+	}
+	
+	public void removerObserver(ObserverGrafico observer) {
+		this.pantallas.removerObserver(observer);
 	}
 
 	public void iniciarNivel(Nivel nivel){
@@ -74,11 +74,26 @@ public class ControladorPartida {
 	}
 	
 	public void reiniciarNivel(){
-		//TODO
+		int monedas = this.nivelActual.getJugador().getMonedas();
+		int puntaje = this.nivelActual.getJugador().getPuntaje();
+		int vidas = this.nivelActual.getJugador().getVida();
+		
+		this.nivelActual = this.creadorNivel.getNivel();
+		
+		this.nivelActual.getJugador().getInfo().setMonedas(monedas);
+		this.nivelActual.getJugador().getInfo().actualizarPuntaje(puntaje);
+		this.nivelActual.getJugador().getInfo().setVidas(vidas);
+		
+		pantallas.reiniciarNivel();
+		registrarObservers();
+		HiloJugador hiloJugador = new HiloJugador(this);
+		hiloJugador.start();
+		
 	}
 	
 	public void gameOver(int puntajeFinal){
-		//TODO
+		this.pantallas.mostrarPantallaGameOver();
+		this.nivelActual = null;
 	}
 	
 	public void victoria(int puntajeFinal) {

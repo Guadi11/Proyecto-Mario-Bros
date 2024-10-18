@@ -17,17 +17,21 @@ public class BolaDeFuego extends Movible implements Visitor{
     final int LIMITE_INFERIOR = 600;
     final int LIMITE_IZQUIERDO = 0;
     final int LIMITE_DERECHO = 800;
-	public BolaDeFuego(int x, int y, Sprite im) {
-		super(x, y, im);
+	
+    public BolaDeFuego(int x, int y, Sprite imagen) {
+		super(x, y, imagen);
 		establecerVelocidadX();
 		establecerVelocidadY();
 	}
+    
 	public void establecerVelocidadX() {
 		velocidadX = VELOCIDAD_INICIAL * direccion;
 	}
+	
 	public void establecerVelocidadY() {
 		velocidadY = VELOCIDAD_INICIAL;
 	}
+	
 	public void moverse() {
         velocidadY += gravedad;
         
@@ -41,15 +45,17 @@ public class BolaDeFuego extends Movible implements Visitor{
             velocidadY = (int) (-velocidadY * VELOCIDAD_REBOTE);
         }
         verificarEliminacion();
-        }
+    }
+	
 	public void verificarEliminacion() {
-		if (posicionY>LIMITE_INFERIOR ||posicionY<LIMITE_SUPERIOR ||posicionX<LIMITE_IZQUIERDO ||posicionX>LIMITE_DERECHO) { 
+		if (posicionY > LIMITE_INFERIOR || posicionY < LIMITE_SUPERIOR || posicionX < LIMITE_IZQUIERDO || posicionX > LIMITE_DERECHO) { 
            // imagen.eliminar();
 		}
 	}
-	public void visitar (Enemigo e) {
-		int puntosPorMatar=e.puntosQueDa();
-		e.morir();
+	
+	public void visitar (Enemigo enemigo) {
+		int puntosPorMatar = enemigo.puntosQueDa();
+		enemigo.morir();
 		jugador.actualizarPuntaje(puntosPorMatar);
 	}
        

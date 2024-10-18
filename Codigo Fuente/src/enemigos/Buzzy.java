@@ -7,19 +7,18 @@ import juego.Jugador;
 
 public class Buzzy extends Enemigo{
 
-	public Buzzy(int x, int y, Sprite im) {
-		super(x, y, im);
-		// TODO Auto-generated constructor stub
+	public Buzzy(int x, int y, Sprite imagen) {
+		super(x, y, imagen);
 	}
 
-	public void visitar(Jugador j) {
-		int puntosDaño=this.puntosQueResta();
-		j.getInfo().actualizarPuntaje(-puntosDaño);
-		j.getState().recibirDaño();
+	public void visitar(Jugador jugador) {
+		int puntosDaño = this.puntosQueResta();
+		jugador.getInfo().actualizarPuntaje(-puntosDaño);
+		jugador.getState().recibirDaño();
 	}
 
-	public void aceptarVisita(Visitor v) {
-		//v.visit(this);
+	public void aceptarVisita(Visitor visitor) {
+		//visitor.visit(this);
 	}
 
 	public void recibirDaño() {

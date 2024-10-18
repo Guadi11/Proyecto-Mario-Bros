@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.Image;
 
 import javax.swing.Icon;
@@ -14,12 +13,10 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import elementos.ElementoJugador;
 import elementos.ElementoLogico;
-import elementos.Fondo;
-import observers.Observer;
-import observers.ObserverElementos;
-import observers.ObserverJugador;
+import observers.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+
 import juego.ControladorPartida;
 
 public class PantallaJuego extends JPanel implements KeyListener{
@@ -52,8 +49,8 @@ public class PantallaJuego extends JPanel implements KeyListener{
 		 this.setFocusable(true);
 		 this.addKeyListener(this);
 		 this.requestFocusInWindow();  // Asegura que el panel recibe el foco
-	    
 	}
+	
 	@Override
 	public void addNotify() {
 	    super.addNotify();
@@ -90,8 +87,6 @@ public class PantallaJuego extends JPanel implements KeyListener{
 		int altoOriginal = imagenOriginal.getHeight(null);
 		int nuevoAlto = ConstantesPantalla.panelJuegoAlto;
 		int nuevoAncho = (int) ((anchoOriginal / (double) altoOriginal) * nuevoAlto);
-		
-		
 		
 		Image imagenEscalada = iconoImagen.getImage().getScaledInstance(nuevoAncho, ConstantesPantalla.panelJuegoAlto,  Image.SCALE_SMOOTH);
 		Icon iconoImagenEscalado = new ImageIcon(imagenEscalada);
@@ -162,7 +157,11 @@ public class PantallaJuego extends JPanel implements KeyListener{
 		actualizarInfoJugador(player);
 		
 		return observerJugador;
-		
+	}
+	
+	public void removerElemento(ObserverGrafico observer) {
+	    imagenFondoJuego.remove(observer); // Remover el observer del JLabel
+	    imagenFondoJuego.repaint(); // Asegurarse de actualizar la pantalla
 	}
 
 	private void actualizarInfoJugador(ElementoJugador player) {
@@ -238,6 +237,8 @@ public class PantallaJuego extends JPanel implements KeyListener{
     public void keyTyped(KeyEvent e) {
         // es para taclas especiales. generalmente no se usa para 
     }
+    
+   
 
 	
 	

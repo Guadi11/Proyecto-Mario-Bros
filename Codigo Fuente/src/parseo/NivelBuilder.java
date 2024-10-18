@@ -80,7 +80,7 @@ public class NivelBuilder {
 	                	nivelCreado.agregarPlataforma(bloqueCreado);
 	                }else if (colorPixelActual == tuberiaSinPiranha) {
 	                	Tuberia tuberiaCreada = fabrica.crearTuberias(xLocation, yLocation-36);
-	                	//tuberiaCreada.poseePiranha(false);
+	                	tuberiaCreada.poseePiranha(false);
 	                	nivelCreado.agregarPlataforma(tuberiaCreada);
 	                }		            
 	                else if (colorPixelActual == preguntaSuperChampi) {

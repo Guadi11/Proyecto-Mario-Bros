@@ -6,8 +6,7 @@ import elementos.Plataforma;
 
 public class Vacio extends Plataforma implements Visitor{
 
-	public Vacio(int x, int y, Sprite im) {
-		super(x, y, im);
-		// TODO Auto-generated constructor stub
+	public Vacio(int x, int y, Sprite imagen) {
+		super(x, y, imagen);
 	}
 }

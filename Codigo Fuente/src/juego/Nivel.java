@@ -9,6 +9,7 @@ import elementos.Enemigo;
 import elementos.Fondo;
 import elementos.Plataforma;
 import elementos.PowerUp;
+import observers.ObserverGrafico;
 
 public class Nivel {
 
@@ -93,12 +94,8 @@ public class Nivel {
 		}
 		
 		public void removerElemento(PowerUp power){
+			this.controladorPartida.removerObserver((ObserverGrafico) power.getObserver());
 			this.powerUps.remove(power);
-		}
-		
-		public void removerElemento(Jugador player){
-			jugador = null;
-			//hay que hacer mas cosas aca
 		}
 		
 		public void actualizarMovibles() {

@@ -6,27 +6,34 @@ import elementos.Enemigo;
 import juego.Jugador;
 
 public class Koopa extends Enemigo{
-		public Koopa (int x, int y, Sprite im) {
-			super (x,y,im);
+		
+	public Koopa (int x, int y, Sprite imagen) {
+			super (x,y,imagen);
 		}
-		public void visitar (Jugador j) {
-			int puntosDaño=this.puntosQueResta();
-			j.getInfo().actualizarPuntaje(-puntosDaño);
-			j.getState().recibirDaño();
+		
+		public void visitar (Jugador jugador) {
+			int puntosDaño = this.puntosQueResta();
+			jugador.getInfo().actualizarPuntaje(-puntosDaño);
+			jugador.getState().recibirDaño();
 		}
-		public void aceptarVisita (Visitor v) {
-			//v.visit (this);
+		
+		public void aceptarVisita (Visitor visitor) {
+			//visitor.visit (this);
 		}
+		
 		public void recibirDaño() {
 			this.morir();
 			this.puntosQueDa();
 		}
+		
 		public int puntosQueResta() {
 			return 45;
 		}
+		
 		public int puntosQueDa() {
 			return 90;
 		}
+		
 		public void moverse() {
 			/* modificar
 			int nuevaPosicionX=posicionX + velocidad*(1/60);

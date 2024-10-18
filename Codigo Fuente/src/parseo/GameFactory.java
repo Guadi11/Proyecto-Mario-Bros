@@ -129,6 +129,8 @@ public abstract class GameFactory {
 	public Tuberia crearTuberias(int x, int y) {
 		Sprite sprite = new Sprite(rutaCarpeta + "/tuberia.png");
 		Tuberia tuberia = new Tuberia(x, y, sprite);
+		tuberia.setFabrica(this);
+		tuberia.setControlador(controladorPartida);
 		
 		return tuberia;
 	}

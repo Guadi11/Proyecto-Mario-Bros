@@ -6,20 +6,21 @@ import elementos.Enemigo;
 import juego.Jugador;
 
 public class Piranha extends Enemigo{
-	protected long intervaloParaSalir=3000;
+	protected long intervaloParaSalir = 3000;
 	protected long ultimaAparicion;
-	protected long tiempoFueraTuberia=2000;
-	protected long contadorTiempoFuera=0;
+	protected long tiempoFueraTuberia = 2000;
+	protected long contadorTiempoFuera = 0;
 	protected long ahora;
+	
 	public Piranha(int x, int y, Sprite im) {
 		super(x, y, im);
-		ultimaAparicion=System.currentTimeMillis();
+		ultimaAparicion = System.currentTimeMillis();
 	}
 
-	public void visitar(Jugador j) {
-	int restarPuntos=puntosQueResta();
-	j.getInfo().actualizarPuntaje(-restarPuntos);
-	j.getState().recibirDaño();
+	public void visitar(Jugador jugador) {
+		int restarPuntos = puntosQueResta();
+		jugador.getInfo().actualizarPuntaje(-restarPuntos);
+		jugador.getState().recibirDaño();
 	}
 
 	@Override

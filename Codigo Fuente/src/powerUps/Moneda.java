@@ -6,20 +6,25 @@ import juego.Jugador;
 
 public class Moneda extends PowerUp{
 
-	public Moneda(int x, int y, Sprite im) {
-		super(x, y, im);
+	public Moneda(int x, int y, Sprite imagen) {
+		super(x, y, imagen);
 	}
-	public void visitar (Jugador j) {
-		j.getInfo().actualizarPuntaje(puntosQueDa());
+	
+	public void visitar (Jugador jugador) {
+		jugador.getInfo().actualizarPuntaje(puntosQueDa());
 		morir();
 	}
+	
 	public int puntosQueDa() {
 		return 5;
 	}
+	
 	public void morir() {
 		//imagen.eliminar()
 	}
+	
 	public void moverse() {
+		
 	}
 
 }
