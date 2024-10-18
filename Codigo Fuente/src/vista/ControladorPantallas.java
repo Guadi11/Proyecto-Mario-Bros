@@ -21,7 +21,7 @@ public class ControladorPantallas implements ControladorDePantallas, Controlador
 	protected PantallaSeleccionModo panelSeleccion;
 	protected PantallaRanking panelRanking;
 	protected PantallaJuego panelJuego;
-	protected PantallaGameOver panelGameOver;
+	protected PantallaFinal panelFinal;
 	protected ControladorPartida partida;
 
 	
@@ -31,7 +31,7 @@ public class ControladorPantallas implements ControladorDePantallas, Controlador
 		panelSeleccion = new PantallaSeleccionModo(this);
 		panelRanking = new PantallaRanking();
 		panelJuego = new PantallaJuego(this, partida);
-		panelGameOver = new PantallaGameOver();
+		panelFinal = new PantallaFinal(this);
 		
 		configurarVentana();
 		registrarOyenteVentana();
