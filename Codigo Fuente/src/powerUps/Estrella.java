@@ -6,7 +6,7 @@ import juego.Jugador;
 import states.State;
 
 public class Estrella extends PowerUp{
-	private long limiteInferior;
+	private long limiteInferior=441;
 	
 	public Estrella(int x, int y, Sprite imagen) {
 		super(x, y, imagen);
@@ -15,7 +15,6 @@ public class Estrella extends PowerUp{
 	public void visitar (Jugador jugador) {
 		State estadoMario = jugador.getState();
 		estadoMario.aumentarEstado(this);
-		jugador.setEstrella(true);
 		jugador.getInfo().actualizarPuntaje(puntosQueDa());
 		morir();
 	}
@@ -42,8 +41,9 @@ public class Estrella extends PowerUp{
 		int nuevaPosicionX = posicionX + velocidad*(1/60);
 		setPosX(nuevaPosicionX);
 	}
-	/*private long establecerLimiteInferior() {
-		return alturaVentana- alturaDelSuelo;
-	}*/
+	public void movimientoAIzquierda() {
+		int nuevaPosicionX=posicionX- velocidad*(1/60);
+		setPosX(nuevaPosicionX);
+	}
 
 }

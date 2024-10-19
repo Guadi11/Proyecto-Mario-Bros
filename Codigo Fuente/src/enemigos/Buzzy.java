@@ -21,9 +21,10 @@ public class Buzzy extends Enemigo{
 		//visitor.visit(this);
 	}
 
-	public void recibirDaño() {
+	public int recibirDaño() {
 		this.morir();
-		this.puntosQueDa();
+		int puntos=this.puntosQueDa();
+		return puntos;
 	}
 
 	public int puntosQueResta() {

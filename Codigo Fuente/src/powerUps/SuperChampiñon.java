@@ -6,7 +6,7 @@ import juego.Jugador;
 import states.State;
 
 public class SuperChampiñon extends PowerUp{
-	private long limiteInferior;
+	private long limiteInferior=441;
 	
 	public SuperChampiñon(int x, int y, Sprite imagen) {
 		super(x, y, imagen);
@@ -40,8 +40,10 @@ public class SuperChampiñon extends PowerUp{
 		int nuevaPosicionX = posicionX + velocidad*(1/60);
 		setPosX(nuevaPosicionX);
 	}
-	/*private long establecerLimiteInferior() {
-		return alturaVentana- alturaDelSuelo;
-	}*/
+	public void movimientoAIzquierda() {
+		int nuevaPosicionX=posicionX- velocidad*(1/60);
+		setPosX(nuevaPosicionX);
+	}
+	
 
 }

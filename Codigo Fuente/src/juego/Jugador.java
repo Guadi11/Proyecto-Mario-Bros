@@ -4,7 +4,9 @@ import archivos.Sprite;
 import colisiones.Visitable;
 import colisiones.Visitor;
 import elementos.ElementoJugador;
+import elementos.Enemigo;
 import elementos.Movible;
+import elementos.Plataforma;
 import states.State;
 
 public class Jugador extends Movible implements Visitor, Visitable, ElementoJugador{
@@ -21,11 +23,6 @@ public class Jugador extends Movible implements Visitor, Visitable, ElementoJuga
 		isJumped = false;
 		info = new InfoJugador(this);
 	}
-
-	public void setEstrella(boolean b) {
-		
-	}
-
 	public void setState(State estado) {
 		this.estado = estado;
 	}
@@ -74,6 +71,16 @@ public class Jugador extends Movible implements Visitor, Visitable, ElementoJuga
 	        isJumped = true;
 	    }	
 	}
+	public void aceptarVisita(Visitor visitor) {
+		visitor.visitar(this);
+	}
+	public void visitar(Enemigo enemigo) {
+		int puntosGanados=enemigo.recibirDaño();
+		info.actualizarPuntaje(puntosGanados);
+	}
+	public void visitar (Plataforma plataforma) {
+		plataforma.morir();
+	}
 		
 	//Get
 	public State getState() {
@@ -84,22 +91,18 @@ public class Jugador extends Movible implements Visitor, Visitable, ElementoJuga
 		return this.info;
 	}
 
-	@Override
 	public int getMonedas() {
 		return this.info.getMonedas();
 	}
 
-	@Override
 	public int getPuntaje() {
 		return this.info.getPuntaje();
 	}
 
-	@Override
 	public int getVida() {
 		return this.info.getVida();
 	}
 
-	@Override
 	public int getVelocidad() {
 		return this.velX;
 	}

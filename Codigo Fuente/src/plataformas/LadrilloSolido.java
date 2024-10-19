@@ -11,12 +11,12 @@ public class LadrilloSolido extends Plataforma implements Visitable{
 		super(x, y, imagen);
 	}
 	
-	public void romperse() {
+	public void morir() {
 		//imagen.eliminar();
 	}
 	
 	public void aceptarVisita(Visitor visitor) {
-		//visitor.visit(this);
+		visitor.visitar(this);
 	}
 
 }

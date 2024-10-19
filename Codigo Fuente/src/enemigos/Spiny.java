@@ -42,12 +42,12 @@ public class Spiny extends Enemigo{
 	}
 	
 	public void aceptarVisita (Visitor visitor) {
-		//visitor.visit(this);
+		visitor.visitar(this);
 	}
 	
-	public void recibirDaño() {
+	public int recibirDaño() {
 		this.morir();
-		this.puntosQueDa();
+		return this.puntosQueDa();
 	}
 	
 	public int puntosQueResta() {

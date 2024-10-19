@@ -1,5 +1,7 @@
 package colisiones;
 
-public interface Visitor {
+import elementos.Elemento;
 
+public interface Visitor {
+  public default void visitar(Elemento elementoAVisitar) {}; 
 }

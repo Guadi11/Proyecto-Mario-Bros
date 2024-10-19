@@ -52,13 +52,13 @@ public class Lakitu extends Enemigo{
 		jugador.getState().recibirDaño();
 	}
 	
-	public void aceptarVisita (Visitor v) {
-		//v.visit (this);
+	public void aceptarVisita (Visitor visitor) {
+		visitor.visitar (this);
 	}
 	
-	public void recibirDaño() {
+	public int recibirDaño() {
 		this.morir();
-		this.puntosQueDa();
+		return this.puntosQueDa();
 	}
 	
 	public int puntosQueResta() {
@@ -90,4 +90,5 @@ public class Lakitu extends Enemigo{
 	public void setControlador(ControladorPartida partida) {
 		this.controladorPartida = partida;
 	}
+
 }

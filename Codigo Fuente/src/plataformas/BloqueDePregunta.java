@@ -50,9 +50,12 @@ public class BloqueDePregunta extends Plataforma implements Visitable{
 	}
 	
 	public void aceptarVisita (Visitor visitor) {
-		//visitor.visit(this);
+		visitor.visitar(this);
 	}
-	
+	public void morir() {
+		//imagen.changeSprite("Bloque apagado")
+		this.generarPowerUp();
+	}
 	//Get
 	public Sprite getSprite() {
 		return imagen;

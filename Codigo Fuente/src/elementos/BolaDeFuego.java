@@ -34,12 +34,10 @@ public class BolaDeFuego extends Movible implements Visitor{
 	
 	public void moverse() {
         velocidadY += gravedad;
-        
         setPosX(posicionX + velocidadX);
         setPosY(posicionY + velocidadY);
 
-        // Detectar colisión con el piso (suponiendo que el piso está en y = PISO_Y)
-        final int PISO_Y = 300; // Valor de ejemplo
+        final int PISO_Y = 441; 
         if (posicionY >= PISO_Y) {
             posicionY = PISO_Y;
             velocidadY = (int) (-velocidadY * VELOCIDAD_REBOTE);
