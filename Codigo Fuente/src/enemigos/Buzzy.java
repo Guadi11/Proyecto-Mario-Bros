@@ -2,6 +2,7 @@ package enemigos;
 
 import archivos.Sprite;
 import colisiones.Visitor;
+import elementos.Elemento;
 import elementos.Enemigo;
 import juego.Jugador;
 

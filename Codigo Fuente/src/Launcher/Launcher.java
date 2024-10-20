@@ -2,6 +2,7 @@ package Launcher;
 
 import java.awt.EventQueue;
 
+import colisiones.ControladorColisiones;
 import juego.ControladorPartida;
 import vista.ControladorPantallas;
 
@@ -25,7 +26,7 @@ public class Launcher {
 						ControladorPantallas pantallas = new ControladorPantallas(partida);
 						partida.setControladorPantallas(pantallas);
 						pantallas.mostrarPantallaInicial();
-						//pantallas.mostrarPantallaJuego();
+						new ControladorColisiones(partida.getNivelActual());
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

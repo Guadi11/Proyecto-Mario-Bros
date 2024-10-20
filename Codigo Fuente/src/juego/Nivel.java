@@ -1,5 +1,6 @@
 package juego;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,20 +14,20 @@ import observers.ObserverGrafico;
 
 public class Nivel {
 
-		protected List<Elemento> plataformas;
-		protected List<Elemento> enemigos;
-		protected List<Elemento> powerUps;
-		protected List<Elemento> bolasDeFuego;
+		protected List<Plataforma> plataformas;
+		protected List<Enemigo> enemigos;
+		protected List<PowerUp> powerUps;
+		protected List<BolaDeFuego> bolasDeFuego;
 		protected Fondo fondo;
 		protected Jugador jugador;
 		protected float tiempoPartida; //ojo si quedo obsoleto esto
 		protected ControladorPartida controladorPartida;
 		
 		public Nivel(){
-			plataformas = new LinkedList<Elemento>();
-			enemigos = new LinkedList<Elemento>();
-			powerUps = new LinkedList<Elemento>();
-			bolasDeFuego = new LinkedList<Elemento>();
+			plataformas = new LinkedList<Plataforma>();
+			enemigos = new LinkedList<Enemigo>();
+			powerUps = new LinkedList<PowerUp>();
+			bolasDeFuego = new LinkedList<BolaDeFuego>();
 		}
 		
 		//Agregar
@@ -55,19 +56,19 @@ public class Nivel {
 		}
 	
 		//Getters
-		public List<Elemento> getPlataformas(){
+		public List<Plataforma> getPlataformas(){
 			return plataformas;
 		}
 		
-		public List<Elemento> getEnemigos(){
+		public List<Enemigo> getEnemigos(){
 			return enemigos;
 		}
 		
-		public List<Elemento> getPowerUps(){
+		public List<PowerUp> getPowerUps(){
 			return powerUps;
 		}
 		
-		public List<Elemento> getBolasDeFuego(){
+		public List<BolaDeFuego> getBolasDeFuego(){
 			return bolasDeFuego;
 		}
 		
@@ -101,6 +102,7 @@ public class Nivel {
 		public void actualizarMovibles() {
 			
 		}
+				
 	
 	
 	

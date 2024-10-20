@@ -3,10 +3,16 @@ package juego;
 import archivos.Sprite;
 import colisiones.Visitable;
 import colisiones.Visitor;
+import elementos.Elemento;
 import elementos.ElementoJugador;
 import elementos.Enemigo;
 import elementos.Movible;
 import elementos.Plataforma;
+import enemigos.Buzzy;
+import enemigos.Goomba;
+import enemigos.Koopa;
+import enemigos.Lakitu;
+import enemigos.Piranha;
 import states.State;
 
 public class Jugador extends Movible implements Visitor, Visitable, ElementoJugador{
@@ -41,7 +47,7 @@ public class Jugador extends Movible implements Visitor, Visitable, ElementoJuga
 	
 	public void actualizar() {
 		int altura_piso = 441;
-		int limite_derecho = 7481;
+		int limite_derecho = 7471;
 		posicionX += velX;
 		posicionY += velY;
 		
@@ -57,7 +63,8 @@ public class Jugador extends Movible implements Visitor, Visitable, ElementoJuga
 	        posicionX = 0; 
 	    }else if (posicionX > limite_derecho) {
 	    	posicionX = limite_derecho;	
-	    }	
+	    	}
+		setPositionHitbox();
 		notificar();
     }
 	
@@ -67,16 +74,42 @@ public class Jugador extends Movible implements Visitor, Visitable, ElementoJuga
 
 	public void saltar() {
 		if (!isJumped) { 
-	        velY = -15; 
+	        velY = -19; 
 	        isJumped = true;
 	    }	
 	}
 	public void aceptarVisita(Visitor visitor) {
+		System.out.println("Entro al aceptarJ");
 		visitor.visitar(this);
 	}
 	public void visitar(Enemigo enemigo) {
-		int puntosGanados=enemigo.recibirDaño();
-		info.actualizarPuntaje(puntosGanados);
+		System.out.println("aver");
+		/*int puntosGanados=enemigo.recibirDaño();
+		info.actualizarPuntaje(puntosGanados);*/
+	}
+	public void visitar(Goomba g) {
+		System.out.println("Entro al visitor.");
+		if (esColisionDesdeArriba(g)) {
+			g.recibirDaño();
+			System.out.println("Goomba recibio daño desde arriba.");
+		}
+			else {
+				//this.recibirDaño();
+				System.out.println("Jugador recibe daño.");
+			}
+	}
+	
+	public void visitar(Buzzy b) {
+		
+	}
+	public void visitar(Lakitu l) {
+		
+	}
+	public void visitar(Koopa k) {
+		
+	}
+	public void visitar(Piranha p) {
+	
 	}
 	public void visitar (Plataforma plataforma) {
 		plataforma.morir();
@@ -105,6 +138,11 @@ public class Jugador extends Movible implements Visitor, Visitable, ElementoJuga
 
 	public int getVelocidad() {
 		return this.velX;
+	}
+	public boolean esColisionDesdeArriba(Elemento elementoAVisitar) {
+		//return getHitbox().getMaxY() <= elementoAVisitar.getHitbox().getMinY();
+		return getHitbox().getMaxY() <= elementoAVisitar.getHitbox().getMinY() && 
+				getHitbox().getMaxY() >= elementoAVisitar.getHitbox().getMinY() - getHitbox().getHeight();
 	}
 		
 }
