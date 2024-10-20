@@ -5,13 +5,16 @@ import elementos.PowerUp;
 import juego.Jugador;
 import states.State;
 
+
 public class Estrella extends PowerUp{
-	private long limiteInferior=441;
 	
-	public Estrella(int x, int y, Sprite imagen) {
-		super(x, y, imagen);
+	protected long limiteInferior;
+	
+	
+	public Estrella(int x, int y, Sprite im) {
+		super(x, y, im);
 	}
-	
+
 	public void visitar (Jugador jugador) {
 		State estadoMario = jugador.getState();
 		estadoMario.aumentarEstado(this);

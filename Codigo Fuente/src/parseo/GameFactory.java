@@ -22,7 +22,7 @@ public abstract class GameFactory {
 	}
 	
 	public Lakitu crearLakitu(int x, int y) {
-		Sprite sprite = new Sprite(rutaCarpeta + "/lakitu1.png");;
+		Sprite sprite = new Sprite(rutaCarpeta + "/lakitu1.png");
 		Lakitu lakitu = new Lakitu(x, y, sprite);
 		lakitu.setFabrica(this);
 		lakitu.setControlador(controladorPartida);
@@ -43,21 +43,21 @@ public abstract class GameFactory {
 	}
 	
 	public Spiny crearSpiny(int x, int y) {
-		Sprite sprite = new Sprite(rutaCarpeta + "/spiny1.png");;
+		Sprite sprite = new Sprite(rutaCarpeta + "/spiny1.png");
 		Spiny spiny = new Spiny(x, y, sprite);
 		
 		return spiny;
 	}
 	
 	public Piranha crearPiranha(int x, int y) {
-		Sprite sprite = new Sprite(rutaCarpeta + "/piranha1.png");;
+		Sprite sprite = new Sprite(rutaCarpeta + "/piranha1.png");
 		Piranha piranha = new Piranha(x, y, sprite);
 		
 		return piranha;
 	}
 	
 	public Buzzy crearBuzzy(int x, int y) {
-		Sprite sprite = new Sprite(rutaCarpeta + "/buzzy1.png");;
+		Sprite sprite = new Sprite(rutaCarpeta + "/buzzy1.png");
 		Buzzy buzzy = new Buzzy(x, y, sprite);
 		
 		return buzzy;

@@ -1,8 +1,13 @@
 package vista;
 
 import javax.swing.JPanel;
+import javax.swing.Timer;
+
 import java.awt.Dimension;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import vista.ConstantesPantalla;
@@ -13,6 +18,7 @@ public class PantallaFinal extends JPanel{
 	protected JLabel imagenGameOver;
 	protected JLabel imagenTimeUp;
 	protected ControladorPantallas controlador;
+	private Timer timer;
 	
 	public PantallaFinal(ControladorPantallas controlador) {
 		this.controlador = controlador;
@@ -29,6 +35,8 @@ public class PantallaFinal extends JPanel{
         imagenGameOver.setBounds(0, -40, ConstantesPantalla.panelAncho, ConstantesPantalla.panelAlto);
         
         add(imagenGameOver);
+        //mostrar pantalla por 3 segundos
+        iniciarTemporizador(3000);
 		
 	}
 	
@@ -39,6 +47,26 @@ public class PantallaFinal extends JPanel{
 		imagenTimeUp.setBounds(0, -40, ConstantesPantalla.panelAncho, ConstantesPantalla.panelAlto);
 		
 		add(imagenTimeUp);
+		//mostrar pantalla por 3 segundps
+		iniciarTemporizador(3000);
+		
+	}
+	
+	private void iniciarTemporizador(int delay) {
+        timer = new Timer(delay, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                finalizarPantalla();
+                timer.stop(); // Detener el temporizador una vez que haya terminado
+            }
+        });
+        timer.setRepeats(false); // Asegurarse de que solo se ejecute una vez
+        timer.start();
+    }
+    
+	
+	protected void finalizarPantalla() {
+		controlador.mostrarPantallaInicial();
 		
 	}
 
