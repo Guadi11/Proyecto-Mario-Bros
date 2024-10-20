@@ -52,15 +52,27 @@ public class InfoJugador {
 	public void restarVida() {
 		if (vida > 1) {
 			vida--;
+			reiniciarNivel();
 		}else {
 			morir();
 		}
 	}
 
+	private void reiniciarNivel() {
+		this.nivel.getControladorPartida().reiniciarNivel();
+	}
+
 	private void morir() {
-		// TODO Auto-generated method stub
-		
+		this.nivel.getControladorPartida().gameOver(puntaje);
 	}
 	
+	//son para reiniciar nivel
+	public void setVidas(int vida) {
+		this.vida = vida;
+	}
+	
+	public void setMonedas(int monedas) {
+		this.monedas = monedas;
+	}
 	
 }

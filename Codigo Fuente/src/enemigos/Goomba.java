@@ -7,27 +7,33 @@ import juego.Jugador;
 
 public class Goomba extends Enemigo{
 	
-	public Goomba (int x, int y, Sprite im) {
-		super (x,y,im);
+	public Goomba (int x, int y, Sprite imagen) {
+		super (x,y,imagen);
 	}
-	public void visitar (Jugador j) {
-		int puntosDaño=this.puntosQueResta();
-		j.getState().recibirDaño();
-		j.getInfo().actualizarPuntaje(-puntosDaño);
+	
+	public void visitar (Jugador jugador) {
+		int puntosDaño = this.puntosQueResta();
+		jugador.getState().recibirDaño();
+		jugador.getInfo().actualizarPuntaje(-puntosDaño);
 	}
-	public void aceptarVisita (Visitor v) {
-		//v.visit (this);
+	
+	public void aceptarVisita (Visitor visitor) {
+		visitor.visitar (this);
 	}
-	public void recibirDaño() {
+	
+	public int recibirDaño() {
 		this.morir();
-		this.puntosQueDa();
+		return this.puntosQueDa();
 	}
+	
 	public int puntosQueResta() {
 		return 30;
 	}
+	
 	public int puntosQueDa() {
 		return 60;
 	}
+	
 	public void moverse() {
 		/* modificar
 		 int nuevaPosicionX=posicionX + velocidad*(1/60);
@@ -38,5 +44,9 @@ public class Goomba extends Enemigo{
 			//imagen.cambiarImagen("Goomba_a_der.png");
 		setPosX(nuevaPosicionX);
 		//imagen.actualizarPosicion(posicionX, posicionY);*/
+	}
+	
+	public void morir() {
+		//this.nivel.removerElemento(this);
 	}
 }

@@ -6,19 +6,21 @@ import juego.Jugador;
 import states.State;
 
 public class FlorDeFuego extends PowerUp{
-	
-	public FlorDeFuego(int x, int y, Sprite im) {
-		super(x, y, im);
+
+	public FlorDeFuego(int x, int y, Sprite imagen) {
+		super(x, y, imagen);
 
 	}
 	
 	public void moverse() {
+		
 	}
 	
-	public void visitar(Jugador j) {
-		estadoMario=j.getState();
+
+	public void visitar(Jugador jugador) {
+		State estadoMario = jugador.getState();
 		estadoMario.aumentarEstado(this);
-		j.getInfo().actualizarPuntaje(puntosQueDa());
+		jugador.getInfo().actualizarPuntaje(puntosQueDa());
 		morir();
 	}
 	

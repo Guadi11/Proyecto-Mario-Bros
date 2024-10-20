@@ -6,14 +6,17 @@ import colisiones.Visitor;
 import elementos.Plataforma;
 
 public class LadrilloSolido extends Plataforma implements Visitable{
-	public LadrilloSolido(int x, int y, Sprite im) {
-		super(x, y, im);
+	
+	public LadrilloSolido(int x, int y, Sprite imagen) {
+		super(x, y, imagen);
 	}
-	public void romperse() {
+	
+	public void morir() {
 		//imagen.eliminar();
 	}
-	public void aceptarVisita(Visitor v) {
-		//v.visit(this);
+	
+	public void aceptarVisita(Visitor visitor) {
+		visitor.visitar(this);
 	}
 
 }

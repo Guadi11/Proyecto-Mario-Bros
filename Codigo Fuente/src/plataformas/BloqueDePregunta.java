@@ -14,13 +14,13 @@ public class BloqueDePregunta extends Plataforma implements Visitable{
 	protected GameFactory fabrica;
 	protected ControladorPartida controladorPartida;
 	
-	public BloqueDePregunta(int x, int y, Sprite im) {
-		super(x, y, im);
+	public BloqueDePregunta(int x, int y, Sprite imagen) {
+		super(x, y, imagen);
 	}
 
 	public void generarPowerUp() {
 		PowerUp creado = null;
-		int posicionYCreado = this.posicionY+1; //editar, seria el bloque de arriba
+		int posicionYCreado = this.posicionY-30; //ir probando ubicacion, seria el bloque de arriba
 		switch(powerUp) {
 			case "Moneda":
 				creado = fabrica.crearMoneda(posicionX, posicionYCreado);
@@ -47,12 +47,15 @@ public class BloqueDePregunta extends Plataforma implements Visitable{
 			this.nivel.agregarPowerUp(creado);
 			controladorPartida.registrarObserverElementoIndividual(creado);
 		}
-		
-	}
-	public void aceptarVisita (Visitor v) {
-		//v.visit(this);
 	}
 	
+	public void aceptarVisita (Visitor visitor) {
+		visitor.visitar(this);
+	}
+	public void morir() {
+		//imagen.changeSprite("Bloque apagado")
+		this.generarPowerUp();
+	}
 	//Get
 	public Sprite getSprite() {
 		return imagen;

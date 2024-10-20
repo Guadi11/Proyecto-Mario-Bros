@@ -39,8 +39,7 @@ public class Fuego extends SuperMario{
     	  
     }
 
-	
     public int obtenerPuntosFFuego() {
-    	return 50;
+          return 50;
     }
 }

@@ -8,6 +8,7 @@ import juego.ControladorPartida;
 import parseo.GameFactory;
 import parseo.ModoUnoFactory;
 import observers.Observer;
+import observers.ObserverGrafico;
 import observers.ObserverJugador;
 
 import java.awt.event.WindowAdapter;
@@ -123,6 +124,21 @@ public class ControladorPantallas implements ControladorDePantallas, Controlador
 	public void accionarInicioJuego(GameFactory fabrica) {
 		this.partida.iniciarPartida(fabrica);
 		
+	}
+
+	@Override
+	public void mostrarPantallaGameOver() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public void reiniciarNivel() {
+		this.panelJuego = new PantallaJuego(this, partida);
+		mostrarPantallaJuego();
+	}
+	
+	public void removerObserver(ObserverGrafico observer) {
+		this.panelJuego.removerElemento(observer);
 	}
 
 }

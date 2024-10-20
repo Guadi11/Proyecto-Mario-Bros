@@ -10,4 +10,5 @@ public abstract class Plataforma extends Estatico {
 		super (x,y,im);
 	}
 	public void setNivel(Nivel n) {}
+	public void morir() {};
 }

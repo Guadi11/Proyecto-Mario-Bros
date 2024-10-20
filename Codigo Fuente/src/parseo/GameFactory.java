@@ -120,7 +120,8 @@ public abstract class GameFactory {
 	}
 	
 	public Vacio crearVacio(int x, int y) {
-		Vacio vacio = new Vacio(x, y, null);
+		Sprite sprite = new Sprite(rutaCarpeta + "/vacio.png");
+		Vacio vacio = new Vacio(x, y, sprite);
 		
 		return vacio;
 	}
@@ -128,12 +129,14 @@ public abstract class GameFactory {
 	public Tuberia crearTuberias(int x, int y) {
 		Sprite sprite = new Sprite(rutaCarpeta + "/tuberia.png");
 		Tuberia tuberia = new Tuberia(x, y, sprite);
+		tuberia.setFabrica(this);
+		tuberia.setControlador(controladorPartida);
 		
 		return tuberia;
 	}
 	
 	public BloqueSolido crearBloqueSolido(int x, int y) {
-		Sprite sprite = new Sprite(rutaCarpeta + "/bloqueSolido.png");
+		Sprite sprite = new Sprite(rutaCarpeta + "/bloqueTransparente.png");
 		BloqueSolido bloqueSolido = new BloqueSolido(x, y, sprite);
 		
 		return bloqueSolido;
@@ -152,9 +155,6 @@ public abstract class GameFactory {
 		
 		return fondo;
 	}
-	
-	
-	
-	
+
 	
 }

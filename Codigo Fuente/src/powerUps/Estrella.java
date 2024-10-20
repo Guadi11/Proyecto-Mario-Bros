@@ -3,6 +3,7 @@ package powerUps;
 import archivos.Sprite;
 import elementos.PowerUp;
 import juego.Jugador;
+import states.State;
 
 
 public class Estrella extends PowerUp{
@@ -13,12 +14,11 @@ public class Estrella extends PowerUp{
 	public Estrella(int x, int y, Sprite im) {
 		super(x, y, im);
 	}
-	
-	public void visitar (Jugador j) {
-		estadoMario=j.getState();
+
+	public void visitar (Jugador jugador) {
+		State estadoMario = jugador.getState();
 		estadoMario.aumentarEstado(this);
-		j.setEstrella(true);
-		j.getInfo().actualizarPuntaje(puntosQueDa());
+		jugador.getInfo().actualizarPuntaje(puntosQueDa());
 		morir();
 	}
 	
@@ -36,16 +36,17 @@ public class Estrella extends PowerUp{
 	}
 	
 	public void descender() {
-		if (posicionY <limiteInferior)
+		if (posicionY < limiteInferior)
 			setPosY(posicionY-1);
 	}
 	
 	public void movimientoADerecha() {
-		int nuevaPosicionX= posicionX+velocidad*(1/60);
+		int nuevaPosicionX = posicionX + velocidad*(1/60);
 		setPosX(nuevaPosicionX);
 	}
-	/*private long establecerLimiteInferior() {
-		return alturaVentana- alturaDelSuelo;
-	}*/
+	public void movimientoAIzquierda() {
+		int nuevaPosicionX=posicionX- velocidad*(1/60);
+		setPosX(nuevaPosicionX);
+	}
 
 }

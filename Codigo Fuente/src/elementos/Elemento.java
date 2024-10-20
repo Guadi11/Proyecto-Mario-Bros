@@ -10,10 +10,10 @@ public abstract class Elemento implements ElementoLogico{
 	protected Sprite imagen;
 	protected Observer observer;
 	
-	public Elemento(int x, int y, Sprite im) {
+	public Elemento(int x, int y, Sprite imagen) {
 		posicionX=x;
 		posicionY=y;
-		imagen=im;
+		this.imagen=imagen;
 	}
 	
 	public Sprite getSprite() {
@@ -30,6 +30,10 @@ public abstract class Elemento implements ElementoLogico{
 	
 	public void setPosX(int pos) {
 		this.posicionX = pos;
+	}
+	
+	public Observer getObserver() {
+		return this.observer;
 	}
 	
 	public void setPosY(int pos) {
