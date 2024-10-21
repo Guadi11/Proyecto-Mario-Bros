@@ -6,7 +6,9 @@ import juego.Jugador;
 import states.State;
 
 public class SuperChampiñon extends PowerUp{
+	
 	private long limiteInferior=441;
+	
 	
 	public SuperChampiñon(int x, int y, Sprite imagen) {
 		super(x, y, imagen);

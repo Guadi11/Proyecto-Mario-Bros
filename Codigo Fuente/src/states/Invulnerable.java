@@ -2,16 +2,20 @@ package states;
 
 import elementos.PowerUp;
 import archivos.Sprite;
+import juego.Jugador;
 
 
 public class Invulnerable extends State{
 	
+	protected Jugador jugador;
 	protected long tiempoActivacion;
 	protected final long duracion =6500;
-	State estadoAnterior;
+	protected State estadoAnterior;
 	protected Sprite sprite;
 	
-	public Invulnerable() {
+	
+	public Invulnerable(Jugador jugador) {
+		super(jugador);
 		estadoAnterior = jugador.getState();
 		if(estadoAnterior instanceof Normal) {
 			this.sprite = new Sprite("/imagenes/modoUno/invulnerablemini.png");
@@ -53,5 +57,9 @@ public class Invulnerable extends State{
 	public int obtenerPuntosFFuego() {
 		return estadoAnterior.obtenerPuntosFFuego();
 	}
+	
+	public void setJugador(Jugador jugador) {
+        this.jugador = jugador;
+    }
 
 }

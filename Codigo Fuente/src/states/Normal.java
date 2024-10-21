@@ -5,13 +5,16 @@ import elementos.PowerUp;
 import powerUps.SuperChampiñon;
 import powerUps.Estrella;
 import powerUps.FlorDeFuego;
+import juego.Jugador;
 
 
 public class Normal extends State{
-	
+
+	//protected Jugador jugador;
 	protected Sprite sprite;
 	
-	public Normal() {
+	public Normal(Jugador jugador) {
+		super(jugador);
 		this.sprite = new Sprite("imagenes/modoUno/mario.png");
 	}
 	
@@ -22,13 +25,13 @@ public class Normal extends State{
 	
 	public void aumentarEstado (PowerUp p) {
 		if (p instanceof SuperChampiñon) {
-			jugador.setState(new SuperMario());
+			jugador.setState(new SuperMario(jugador));
 		}
 		else if (p instanceof FlorDeFuego) {
-			jugador.setState(new Fuego());
+			jugador.setState(new Fuego(jugador));
 			
 		} else if (p instanceof Estrella){
-			jugador.setState(new Invulnerable());
+			jugador.setState(new Invulnerable(jugador));
 		}
 	}
 	
@@ -47,5 +50,9 @@ public class Normal extends State{
 	public int obtenerPuntosFFuego() {
 		return 5;
 	}
+	
+	public void setJugador(Jugador jugador) {
+        this.jugador = jugador;
+    }
 	
 }

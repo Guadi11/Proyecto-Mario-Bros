@@ -8,6 +8,7 @@ import elementos.Enemigo;
 import elementos.Movible;
 import elementos.Plataforma;
 import states.State;
+import states.Normal;
 
 public class Jugador extends Movible implements Visitor, Visitable, ElementoJugador{
 	
@@ -22,6 +23,8 @@ public class Jugador extends Movible implements Visitor, Visitable, ElementoJuga
 		velY = 0;
 		isJumped = false;
 		info = new InfoJugador(this);
+		//estado=new Normal(this);
+		
 	}
 	public void setState(State estado) {
 		this.estado = estado;
@@ -108,5 +111,4 @@ public class Jugador extends Movible implements Visitor, Visitable, ElementoJuga
 	}
 		
 }
-
 
