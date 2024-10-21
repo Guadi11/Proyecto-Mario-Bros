@@ -3,6 +3,7 @@
 import archivos.Sprite;
 import colisiones.Visitor;
 import juego.InfoJugador;
+import juego.Jugador;
 
 public class BolaDeFuego extends Movible implements Visitor{
 	protected InfoJugador jugador;
@@ -55,6 +56,12 @@ public class BolaDeFuego extends Movible implements Visitor{
 		int puntosPorMatar = enemigo.puntosQueDa();
 		enemigo.morir();
 		jugador.actualizarPuntaje(puntosPorMatar);
+	}
+
+	@Override
+	public void visitar(Jugador jugador) {
+		// TODO Auto-generated method stub
+		
 	}
        
 

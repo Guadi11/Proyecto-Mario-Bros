@@ -153,6 +153,10 @@ public class Jugador extends Movible implements Visitor, Visitable, ElementoJuga
 		return getHitbox().getMaxY() <= elementoAVisitar.getHitbox().getMinY() && 
 				getHitbox().getMaxY() >= elementoAVisitar.getHitbox().getMinY() - getHitbox().getHeight();
 	}
+	@Override
+	public void visitar(Jugador jugador) {
+		
+	}
 		
 }
 

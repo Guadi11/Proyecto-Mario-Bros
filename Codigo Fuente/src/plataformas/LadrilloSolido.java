@@ -16,7 +16,7 @@ public class LadrilloSolido extends Plataforma implements Visitable{
 	}
 	
 	public void aceptarVisita(Visitor visitor) {
-		visitor.visitar(this);
+		//visitor.visitar(this);
 	}
 
 }

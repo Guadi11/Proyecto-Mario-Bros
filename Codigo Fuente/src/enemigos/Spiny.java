@@ -42,7 +42,7 @@ public class Spiny extends Enemigo{
 	}
 	
 	public void aceptarVisita (Visitor visitor) {
-		visitor.visitar(this);
+		//visitor.visitar(this);
 	}
 	
 	public int recibirDaño() {
