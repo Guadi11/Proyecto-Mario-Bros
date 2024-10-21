@@ -38,7 +38,7 @@ public abstract class GameFactory {
 	public Goomba crearGoomba(int x, int y) {
 		Sprite sprite = new Sprite(rutaCarpeta + "/goomba1.png");
 		Goomba goomba = new Goomba(x, y, sprite);
-		
+		goomba.setHitbox(36, 36);
 		return goomba;
 	}
 	
@@ -145,7 +145,7 @@ public abstract class GameFactory {
 	public Jugador crearJugador(int x, int y) {
 		Sprite sprite = new Sprite(rutaCarpeta + "/mario.png");
 		Jugador jugador = new Jugador(x, y, sprite);
-		
+		jugador.setHitbox(32, 32);
 		return jugador;
 	}
 	

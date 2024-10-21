@@ -5,7 +5,8 @@ import java.util.List;
 
 import parseo.*;
 import archivos.Ranking;
-import elementos.Elemento;
+import colisiones.ControladorColisiones;
+import elementos.*;
 import observers.Observer;
 import observers.ObserverGrafico;
 import vista.ControladorEntreJuegoVista;
@@ -20,6 +21,7 @@ public class ControladorPartida {
 	protected float timerNivel; 
 	protected String nombreJugador;
 	protected int numNivelActual;
+	protected ControladorColisiones colisiones;
 	
 	
 	public ControladorPartida() {
@@ -33,14 +35,15 @@ public class ControladorPartida {
 		this.creadorNivel = new NivelBuilder(fabrica, numNivelActual);
 		this.nivelActual = this.creadorNivel.getNivel();
 		registrarObservers();
-		HiloJugador hiloJugador = new HiloJugador(this);
+		colisiones = new ControladorColisiones(nivelActual);
+		HiloJugador hiloJugador = new HiloJugador(this,colisiones); /*agrege el parametro colisiones y por ende su atributo*/
 		hiloJugador.start();
 	}
 	
 	private void registrarObservers() {
 		registrarObserverJugador(this.nivelActual.getJugador());
-		registrarObserversElementos(this.nivelActual.getPlataformas());
-		registrarObserversElementos(this.nivelActual.getEnemigos());
+		registrarObserversPlataformas(this.nivelActual.getPlataformas());
+		registrarObserversEnemigos(this.nivelActual.getEnemigos());
 	}
 	
 	private void registrarObserverJugador(Jugador player){
@@ -48,8 +51,14 @@ public class ControladorPartida {
 		player.registrarObserver(observerJugador);
 	}
 	
-	private void registrarObserversElementos(List<Elemento> elem){
-		for(Elemento elemento : elem) {
+	private void registrarObserversPlataformas(List<Plataforma> elem){
+		for(Plataforma elemento : elem) {
+			Observer observer = pantallas.registrarElemento(elemento);
+			elemento.registrarObserver(observer);
+		}
+	}
+	private void registrarObserversEnemigos(List<Enemigo> elem){
+		for(Enemigo elemento : elem) {
 			Observer observer = pantallas.registrarElemento(elemento);
 			elemento.registrarObserver(observer);
 		}
@@ -86,7 +95,7 @@ public class ControladorPartida {
 		
 		pantallas.reiniciarNivel();
 		registrarObservers();
-		HiloJugador hiloJugador = new HiloJugador(this);
+		HiloJugador hiloJugador = new HiloJugador(this,colisiones);
 		hiloJugador.start();
 		
 	}
@@ -136,7 +145,7 @@ public class ControladorPartida {
 	        case KeyEvent.VK_RIGHT:
 	        	nivelActual.getJugador().moverDerecha();
 	            break;
-	        case KeyEvent.VK_SPACE:
+	        case KeyEvent.VK_UP:
 	        	nivelActual.getJugador().saltar();
 	            break;
 	    }

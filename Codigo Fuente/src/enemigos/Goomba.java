@@ -12,9 +12,19 @@ public class Goomba extends Enemigo{
 	}
 	
 	public void visitar (Jugador jugador) {
-		int puntosDaño = this.puntosQueResta();
+		if (jugador.esColisionDesdeArriba(this)) { //aca gestionar que jugador elimino a goomba
+			System.out.println("Goomba recibio daño desde arriba.");
+		}
+			else {
+				int puntosDaño = this.puntosQueResta();
+				jugador.getState().recibirDaño();
+				jugador.getInfo().actualizarPuntaje(-puntosDaño);
+				//this.recibirDaño();
+				System.out.println("Jugador recibe daño.");
+			}
+		/*int puntosDaño = this.puntosQueResta();
 		jugador.getState().recibirDaño();
-		jugador.getInfo().actualizarPuntaje(-puntosDaño);
+		jugador.getInfo().actualizarPuntaje(-puntosDaño);*/
 	}
 	
 	public void aceptarVisita (Visitor visitor) {

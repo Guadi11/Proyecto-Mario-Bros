@@ -1,18 +1,22 @@
 package elementos;
 
+import java.awt.Rectangle;
 import archivos.Sprite;
+import juego.Jugador;
 import observers.Observer;
 
 public abstract class Elemento implements ElementoLogico{
-
-	protected int posicionX;
-	protected int posicionY;
+	
+	protected Rectangle hitbox;
 	protected Sprite imagen;
 	protected Observer observer;
+	protected int posicionX,posicionY;
 	
 	public Elemento(int x, int y, Sprite imagen) {
-		posicionX=x;
-		posicionY=y;
+		posicionX = x;
+		posicionY = y;
+		hitbox = new Rectangle ();
+		hitbox.setLocation(posicionX,posicionY);
 		this.imagen=imagen;
 	}
 	
@@ -27,17 +31,17 @@ public abstract class Elemento implements ElementoLogico{
 	public int getPosY() {
 		return posicionY;
 	}
-	
-	public void setPosX(int pos) {
-		this.posicionX = pos;
+	public void setPositionHitbox() {
+		hitbox.setLocation(posicionX,posicionY);
 	}
-	
+	public void setHitbox(int width, int height) {
+		hitbox.setSize(width, height);
+	}
+	public Rectangle getHitbox() {
+		return hitbox;
+	}
 	public Observer getObserver() {
 		return this.observer;
-	}
-	
-	public void setPosY(int pos) {
-		this.posicionY = pos;
 	}
 	
 	public void registrarObserver(Observer observer) {
@@ -50,5 +54,5 @@ public abstract class Elemento implements ElementoLogico{
 	public void notificar() {
 		this.observer.actualizar();
 	}
-	
+		
 }

@@ -235,7 +235,7 @@ public class PantallaJuego extends JPanel implements KeyListener{
 
     
     public void keyTyped(KeyEvent e) {
-        // es para taclas especiales. generalmente no se usa para 
+        // es para taclas especiales. Generalmente no se usa para juegos.
     }
     
    
