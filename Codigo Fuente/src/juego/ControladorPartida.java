@@ -60,6 +60,15 @@ public class ControladorPartida {
 		registrarObserverJugador(this.nivelActual.getJugador());
 		registrarObserversPlataformas(this.nivelActual.getPlataformas());
 		registrarObserversEnemigos(this.nivelActual.getEnemigos());
+		// observers provisorios para el testeo de power ups
+		registrarObserversPowerUps(this.nivelActual.getPowerUps());
+	}
+	
+	private void registrarObserversPowerUps(List<PowerUp> powerUps) {
+		for(PowerUp elemento : powerUps) {
+			Observer observer = pantallas.registrarElemento(elemento);
+			elemento.registrarObserver(observer);
+		}
 	}
 	
 	private void registrarObserverJugador(Jugador player){
@@ -67,14 +76,14 @@ public class ControladorPartida {
 		player.registrarObserver(observerJugador);
 	}
 	
-	private void registrarObserversPlataformas(List<Plataforma> elem){
-		for(Plataforma elemento : elem) {
+	private void registrarObserversPlataformas(List<Plataforma> plataforma){
+		for(Plataforma elemento : plataforma) {
 			Observer observer = pantallas.registrarElemento(elemento);
 			elemento.registrarObserver(observer);
 		}
 	}
-	private void registrarObserversEnemigos(List<Enemigo> elem){
-		for(Enemigo elemento : elem) {
+	private void registrarObserversEnemigos(List<Enemigo> enem){
+		for(Enemigo elemento : enem) {
 			Observer observer = pantallas.registrarElemento(elemento);
 			elemento.registrarObserver(observer);
 		}

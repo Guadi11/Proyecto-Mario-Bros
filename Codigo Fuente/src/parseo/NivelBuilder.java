@@ -29,7 +29,7 @@ public class NivelBuilder {
 	private void crearNivel() {
 		
 		try {
-			 BufferedImage mapImage = ImageIO.read(new File("imagenes/mapaRGB.png"));
+			 BufferedImage mapImage = ImageIO.read(new File("imagenes/mapaRGBtest.png"));
 	        // Obtengo las dimensiones de la imagen
 	        int ancho = mapImage.getWidth();
 	        int alto = mapImage.getHeight();
@@ -56,6 +56,13 @@ public class NivelBuilder {
 			/* int bloqueSolido = new Color(255, 0, 0).getRGB();
 			int tuberiaPiranha = new Color(250, 50, 100).getRGB();	
 			*/
+			//Colores provisorios, testeo de power ups
+			int moneda = new Color(255, 180, 0).getRGB();
+			int superChamp = new Color(24, 16, 112).getRGB();
+			int florFuego = new Color(16, 112, 104).getRGB();
+			int estrella = new Color(115, 0, 60).getRGB();
+			int champVerde = new Color(25, 135, 50).getRGB();
+			
 			
 			double multiplicadorPixel = 36.8;
 		    for (int x = 0; x < ancho; x++) {
@@ -129,6 +136,26 @@ public class NivelBuilder {
 	                else if(colorPixelActual == spiny) {
 	                	Spiny spinyCreado = fabrica.crearSpiny(xLocation, yLocation);
 	                	nivelCreado.agregarEnemigo(spinyCreado);
+	                }
+	                else if(colorPixelActual == moneda) {
+	                	Moneda monedaCreada = fabrica.crearMoneda(xLocation, yLocation);
+	                	nivelCreado.agregarPowerUp(monedaCreada);
+	                }
+	                else if(colorPixelActual == superChamp) {
+	                	SuperChampiñon superChampCreado = fabrica.crearSuperChampiñon(xLocation, yLocation);
+	                	nivelCreado.agregarPowerUp(superChampCreado);
+	                }
+	                else if(colorPixelActual == florFuego) {
+	                	FlorDeFuego florFuegoCreada = fabrica.crearFlorDeFuego(xLocation, yLocation);
+	                	nivelCreado.agregarPowerUp(florFuegoCreada);
+	                }
+	                else if(colorPixelActual == estrella) {
+	                	Estrella estrellaCreada = fabrica.crearEstrella(xLocation, yLocation);
+	                	nivelCreado.agregarPowerUp(estrellaCreada);
+	                }
+	                else if(colorPixelActual == champVerde) {
+	                	ChampiñonVerde champiñonVerdeCreado = fabrica.crearChampiñonVerde(xLocation, yLocation);
+	                	nivelCreado.agregarPowerUp(champiñonVerdeCreado);
 	                }
 	            }
 	        }
