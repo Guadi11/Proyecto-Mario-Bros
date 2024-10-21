@@ -22,6 +22,7 @@ public class ControladorPartida {
 	protected String nombreJugador;
 	protected int numNivelActual;
 	protected ControladorColisiones colisiones;
+	protected HiloJugador hiloJugador;
 	
 	
 	public ControladorPartida() {
@@ -34,10 +35,25 @@ public class ControladorPartida {
 		fabrica.setControladorPartida(this);
 		this.creadorNivel = new NivelBuilder(fabrica, numNivelActual);
 		this.nivelActual = this.creadorNivel.getNivel();
+		nivelActual.setControladorPartida(this);
 		registrarObservers();
 		colisiones = new ControladorColisiones(nivelActual);
-		HiloJugador hiloJugador = new HiloJugador(this,colisiones); /*agrege el parametro colisiones y por ende su atributo*/
+		hiloJugador = new HiloJugador(this,colisiones); /*agrege el parametro colisiones y por ende su atributo*/
 		hiloJugador.start();
+	}
+	
+	public void reiniciarNivel(){
+		hiloJugador.detener();
+		int monedas = this.nivelActual.getJugador().getMonedas();
+		int puntaje = this.nivelActual.getJugador().getPuntaje();
+		int vidas = this.nivelActual.getJugador().getVida();
+		
+		pantallas.reiniciarNivel();
+		iniciarPartida(this.fabrica);
+		
+		this.nivelActual.getJugador().getInfo().setMonedas(monedas);
+		this.nivelActual.getJugador().getInfo().actualizarPuntaje(puntaje);
+		this.nivelActual.getJugador().getInfo().setVidas(vidas);	
 	}
 	
 	private void registrarObservers() {
@@ -82,27 +98,10 @@ public class ControladorPartida {
 		//TODO
 	}
 	
-	public void reiniciarNivel(){
-		int monedas = this.nivelActual.getJugador().getMonedas();
-		int puntaje = this.nivelActual.getJugador().getPuntaje();
-		int vidas = this.nivelActual.getJugador().getVida();
-		
-		this.nivelActual = this.creadorNivel.getNivel();
-		
-		this.nivelActual.getJugador().getInfo().setMonedas(monedas);
-		this.nivelActual.getJugador().getInfo().actualizarPuntaje(puntaje);
-		this.nivelActual.getJugador().getInfo().setVidas(vidas);
-		
-		pantallas.reiniciarNivel();
-		registrarObservers();
-		HiloJugador hiloJugador = new HiloJugador(this,colisiones);
-		hiloJugador.start();
-		
-	}
-	
 	public void gameOver(int puntajeFinal){
+		hiloJugador.detener();
 		this.pantallas.mostrarPantallaGameOver();
-		this.nivelActual = null;
+		//this.nivelActual = null;
 	}
 	
 	public void victoria(int puntajeFinal) {

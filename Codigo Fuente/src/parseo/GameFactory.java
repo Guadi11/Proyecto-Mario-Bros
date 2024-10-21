@@ -1,7 +1,12 @@
 package parseo;
 
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+
 import archivos.Sprite;
 import elementos.BolaDeFuego;
+import elementos.Elemento;
 import elementos.Fondo;
 import enemigos.*;
 import powerUps.*;
@@ -26,25 +31,31 @@ public abstract class GameFactory {
 		Lakitu lakitu = new Lakitu(x, y, sprite);
 		lakitu.setFabrica(this);
 		lakitu.setControlador(controladorPartida);
+		setearHitbox(lakitu, sprite);
+		
 		return null;
 	}
 	
 	public Koopa crearKoopa(int x, int y) {
 		Sprite sprite = new Sprite(rutaCarpeta + "/koopa1.png");
 		Koopa koopa = new Koopa(x, y, sprite);
+		setearHitbox(koopa, sprite);
+		
 		return koopa;
 	}
 	
 	public Goomba crearGoomba(int x, int y) {
 		Sprite sprite = new Sprite(rutaCarpeta + "/goomba1.png");
 		Goomba goomba = new Goomba(x, y, sprite);
-		goomba.setHitbox(36, 36);
+		setearHitbox(goomba, sprite);
+		
 		return goomba;
 	}
 	
 	public Spiny crearSpiny(int x, int y) {
 		Sprite sprite = new Sprite(rutaCarpeta + "/spiny1.png");
 		Spiny spiny = new Spiny(x, y, sprite);
+		setearHitbox(spiny, sprite);
 		
 		return spiny;
 	}
@@ -52,6 +63,7 @@ public abstract class GameFactory {
 	public Piranha crearPiranha(int x, int y) {
 		Sprite sprite = new Sprite(rutaCarpeta + "/piranha1.png");
 		Piranha piranha = new Piranha(x, y, sprite);
+		setearHitbox(piranha, sprite);
 		
 		return piranha;
 	}
@@ -59,6 +71,7 @@ public abstract class GameFactory {
 	public Buzzy crearBuzzy(int x, int y) {
 		Sprite sprite = new Sprite(rutaCarpeta + "/buzzy1.png");
 		Buzzy buzzy = new Buzzy(x, y, sprite);
+		setearHitbox(buzzy, sprite);
 		
 		return buzzy;
 	}
@@ -66,6 +79,7 @@ public abstract class GameFactory {
 	public SuperChampiñon crearSuperChampiñon(int x, int y) {
 		Sprite sprite = new Sprite(rutaCarpeta + "/superChampiñon.png");
 		SuperChampiñon superChamp = new SuperChampiñon(x, y, sprite);
+		setearHitbox(superChamp, sprite);
 		
 		return superChamp;
 	}
@@ -73,6 +87,7 @@ public abstract class GameFactory {
 	public Estrella crearEstrella(int x, int y) {
 		Sprite sprite = new Sprite(rutaCarpeta + "/estrella.png");
 		Estrella estrella = new Estrella(x, y, sprite);
+		setearHitbox(estrella, sprite);
 		
 		return estrella;
 	}
@@ -80,6 +95,7 @@ public abstract class GameFactory {
 	public ChampiñonVerde crearChampiñonVerde(int x, int y) {
 		Sprite sprite = new Sprite(rutaCarpeta + "/champiñonVerde.png");
 		ChampiñonVerde champVerde = new ChampiñonVerde(x, y, sprite);
+		setearHitbox(champVerde, sprite);
 		
 		return champVerde;
 	}
@@ -87,6 +103,7 @@ public abstract class GameFactory {
 	public FlorDeFuego crearFlorDeFuego(int x, int y) {
 		Sprite sprite = new Sprite(rutaCarpeta + "/florDeFuego.png");
 		FlorDeFuego florFuego = new FlorDeFuego(x, y, sprite);
+		setearHitbox(florFuego, sprite);
 		
 		return florFuego;
 	}
@@ -94,6 +111,7 @@ public abstract class GameFactory {
 	public Moneda crearMoneda(int x, int y) {
 		Sprite sprite = new Sprite(rutaCarpeta + "/moneda.png");
 		Moneda moneda = new Moneda(x, y, sprite);
+		setearHitbox(moneda, sprite);
 		
 		return moneda;
 	}
@@ -101,6 +119,7 @@ public abstract class GameFactory {
 	public BolaDeFuego crearBolaDeFuego(int x, int y) {
 		Sprite sprite = new Sprite(rutaCarpeta + "/bolaDeFuego.png");
 		BolaDeFuego bolaFuego = new BolaDeFuego(x, y, sprite);
+		setearHitbox(bolaFuego, sprite);
 		
 		return bolaFuego;
 	}
@@ -108,6 +127,7 @@ public abstract class GameFactory {
 	public BloqueDePregunta crearBloqueDePregunta(int x, int y) {
 		Sprite sprite = new Sprite(rutaCarpeta + "/bloqueDePregunta.png");
 		BloqueDePregunta bloquePregunta = new BloqueDePregunta(x, y, sprite);
+		setearHitbox(bloquePregunta, sprite);
 		
 		return bloquePregunta;
 	}
@@ -115,6 +135,7 @@ public abstract class GameFactory {
 	public LadrilloSolido crearLadrilloSolido(int x, int y) {
 		Sprite sprite = new Sprite(rutaCarpeta + "/ladrilloSolido.png");
 		LadrilloSolido ladrillo = new LadrilloSolido(x, y, sprite);
+		setearHitbox(ladrillo, sprite);
 		
 		return ladrillo;
 	}
@@ -122,6 +143,7 @@ public abstract class GameFactory {
 	public Vacio crearVacio(int x, int y) {
 		Sprite sprite = new Sprite(rutaCarpeta + "/vacio.png");
 		Vacio vacio = new Vacio(x, y, sprite);
+		setearHitbox(vacio, sprite);
 		
 		return vacio;
 	}
@@ -131,6 +153,7 @@ public abstract class GameFactory {
 		Tuberia tuberia = new Tuberia(x, y, sprite);
 		tuberia.setFabrica(this);
 		tuberia.setControlador(controladorPartida);
+		setearHitbox(tuberia, sprite);
 		
 		return tuberia;
 	}
@@ -138,6 +161,7 @@ public abstract class GameFactory {
 	public BloqueSolido crearBloqueSolido(int x, int y) {
 		Sprite sprite = new Sprite(rutaCarpeta + "/bloqueTransparente.png");
 		BloqueSolido bloqueSolido = new BloqueSolido(x, y, sprite);
+		setearHitbox(bloqueSolido, sprite);
 		
 		return bloqueSolido;
 	}
@@ -145,15 +169,17 @@ public abstract class GameFactory {
 	public Jugador crearJugador(int x, int y) {
 		Sprite sprite = new Sprite(rutaCarpeta + "/mario.png");
 		Jugador jugador = new Jugador(x, y, sprite);
-		jugador.setHitbox(32, 32);
+		setearHitbox(jugador, sprite);
+		
 		return jugador;
 	}
 	
-	public Fondo crearFondo(int x, int y) {
-		Sprite sprite = new Sprite(rutaCarpeta + "/background.png");
-		Fondo fondo = new Fondo(x, y, sprite);
-		
-		return fondo;
+	private void setearHitbox(Elemento elem, Sprite sprite) {
+		ImageIcon iconoImagen = new ImageIcon(sprite.getRutaImagen());
+		Image imagenOriginal = iconoImagen.getImage();
+		int ancho = imagenOriginal.getWidth(null);
+		int alto = imagenOriginal.getHeight(null);
+		elem.setHitbox(ancho, alto);
 	}
 
 	

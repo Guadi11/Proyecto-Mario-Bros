@@ -25,18 +25,22 @@ public class PantallaFinal extends JPanel{
 		this.setPreferredSize(new Dimension(ConstantesPantalla.panelAncho, ConstantesPantalla.panelAlto));
         this.setLayout(null);
         //agregarmetodos
+        agregarImagenGameOver();
 		
 	}
 	
+	public void iniciarTemporizador() {
+		 //mostrar pantalla por 3 segundos
+		iniciarTemporizador(3000);
+	}
+	
 	protected void agregarImagenGameOver() {
-		ImageIcon icon1 = new ImageIcon(getClass().getResource("imagenes/imagengameover.png"));
+		ImageIcon icon1 = new ImageIcon(getClass().getResource("/imagenes/imagengameover.png"));
 		Image imagen1 = icon1.getImage().getScaledInstance(ConstantesPantalla.panelAncho, ConstantesPantalla.panelAlto, Image.SCALE_SMOOTH);
         imagenGameOver = new JLabel(new ImageIcon(imagen1));
         imagenGameOver.setBounds(0, -40, ConstantesPantalla.panelAncho, ConstantesPantalla.panelAlto);
         
         add(imagenGameOver);
-        //mostrar pantalla por 3 segundos
-        iniciarTemporizador(3000);
 		
 	}
 	
@@ -67,7 +71,6 @@ public class PantallaFinal extends JPanel{
 	
 	protected void finalizarPantalla() {
 		controlador.mostrarPantallaInicial();
-		
 	}
 
 }

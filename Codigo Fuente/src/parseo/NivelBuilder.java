@@ -68,9 +68,12 @@ public class NivelBuilder {
 		            if (colorPixelActual == jugador) {
 		            	Jugador jugadorCreado = fabrica.crearJugador(xLocation, yLocation);
 	                	nivelCreado.agregarJugador(jugadorCreado);
+	                	jugadorCreado.setNivel(nivelCreado);
+	                	
 	                }else if (colorPixelActual == ladrilloSolido) {
 	                	LadrilloSolido ladrilloCreado = fabrica.crearLadrilloSolido(xLocation,yLocation);
 	                	nivelCreado.agregarPlataforma(ladrilloCreado);
+	                	
 	                }else if (colorPixelActual == goomba) {
 	                    Goomba goombaCreado = fabrica.crearGoomba(xLocation, yLocation);
 	                    nivelCreado.agregarEnemigo(goombaCreado);

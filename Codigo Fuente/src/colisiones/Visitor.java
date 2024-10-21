@@ -1,7 +1,8 @@
 package colisiones;
 
 import elementos.Elemento;
+import juego.Jugador;
 
 public interface Visitor {
-  public default void visitar(Elemento elementoAVisitar) {}; 
+  public  void visitar(Jugador jugador); 
 }

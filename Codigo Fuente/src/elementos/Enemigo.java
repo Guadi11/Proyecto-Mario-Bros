@@ -16,7 +16,6 @@ public abstract class Enemigo extends Movible implements Visitor, Visitable{
 		super(x, y, im);
 	}
 	
-	public abstract void visitar (Jugador j);
 	public abstract void aceptarVisita (Visitor v);
 	public abstract int recibirDaño();
 	public abstract int puntosQueResta();

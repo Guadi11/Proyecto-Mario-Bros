@@ -45,12 +45,9 @@ public class InfoJugador {
 		this.vida++;
 	}
 	
-	public void setJugador(Jugador player) {
-		this.jugador = player;
-	}
-	
 	public void restarVida() {
-		if (vida > 1) {
+		//reiniciarNivel();
+		if (vida >= 2) {
 			vida--;
 			reiniciarNivel();
 		}else {
@@ -73,6 +70,10 @@ public class InfoJugador {
 	
 	public void setMonedas(int monedas) {
 		this.monedas = monedas;
+	}
+	
+	public void setNivel(Nivel nivel) {
+		this.nivel = nivel;
 	}
 	
 }

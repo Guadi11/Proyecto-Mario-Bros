@@ -31,12 +31,11 @@ public class ControladorPantallas implements ControladorDePantallas, Controlador
 		panelInicio = new PantallaInicio(this);
 		panelSeleccion = new PantallaSeleccionModo(this);
 		panelRanking = new PantallaRanking();
-		panelJuego = new PantallaJuego(this, partida);
+		panelJuego = new PantallaJuego(this);
 		panelFinal = new PantallaFinal(this);
 		
 		configurarVentana();
 		registrarOyenteVentana();
-		
 	}
 
 	private void configurarVentana() {
@@ -45,25 +44,21 @@ public class ControladorPantallas implements ControladorDePantallas, Controlador
 		ventana.setResizable(false);
 		ventana.setSize(ConstantesPantalla.ventanaAncho, ConstantesPantalla.ventanaAlto);
 		ventana.setVisible(true);
-	
 	}
 
 	
 	public ControladorPartida getControladorPartida() {
 		return this.partida;
-		
 	}
 
 	private void refrescar() {
 		ventana.revalidate();
 		ventana.repaint();
-		
 	}
 	
 	public void mostrarPantallaInicial() {
 		ventana.setContentPane(panelInicio);
 		refrescar();
-		
 	}
 	
 	@Override
@@ -72,14 +67,12 @@ public class ControladorPantallas implements ControladorDePantallas, Controlador
 		GameFactory modoUno = new ModoUnoFactory(); //Editar luego cuando tengamos los dos modos funcionando
 		accionarInicioJuego(modoUno);
 		refrescar();
-		
 	}
 
 	@Override
 	public void mostrarPantallaSeleccion() {
 		ventana.setContentPane(panelSeleccion);
 		refrescar();
-		
 	}
 
 	public void registrarOyenteVentana(){
@@ -89,7 +82,6 @@ public class ControladorPantallas implements ControladorDePantallas, Controlador
 	                System.out.println("Se cerró la ventana");
 	            }
 	        });
-		
 	}
 
 	@Override
@@ -97,7 +89,6 @@ public class ControladorPantallas implements ControladorDePantallas, Controlador
 		Observer observerElemento = this.panelJuego.incorporarElemento(elem);
 		refrescar();
 		return observerElemento;
-		
 	}
 
 	@Override
@@ -105,7 +96,6 @@ public class ControladorPantallas implements ControladorDePantallas, Controlador
 		ObserverJugador observerJugador = this.panelJuego.incorporarElementoJugador(jugador);
 		refrescar();
 		return observerJugador;
-		
 	}
 
 	@Override
@@ -123,18 +113,19 @@ public class ControladorPantallas implements ControladorDePantallas, Controlador
 	@Override
 	public void accionarInicioJuego(GameFactory fabrica) {
 		this.partida.iniciarPartida(fabrica);
-		
 	}
 
 	@Override
 	public void mostrarPantallaGameOver() {
-		// TODO Auto-generated method stub
-		
+		ventana.setContentPane(panelFinal);
+		panelFinal.iniciarTemporizador();
+		refrescar();
 	}
 	
 	public void reiniciarNivel() {
-		this.panelJuego = new PantallaJuego(this, partida);
-		mostrarPantallaJuego();
+		this.panelJuego = new PantallaJuego(this);
+		ventana.setContentPane(panelJuego);
+		refrescar();
 	}
 	
 	public void removerObserver(ObserverGrafico observer) {

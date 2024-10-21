@@ -31,7 +31,16 @@ public abstract class Elemento implements ElementoLogico{
 	public int getPosY() {
 		return posicionY;
 	}
-	public void setPositionHitbox() {
+	
+	public void setPosX(int pos) {
+		this.posicionX = pos;
+	}
+	
+	public void setPosY( int pos) {
+		this.posicionY = pos;
+	}
+	
+	public void actualizarPosicionHitbox() {
 		hitbox.setLocation(posicionX,posicionY);
 	}
 	public void setHitbox(int width, int height) {

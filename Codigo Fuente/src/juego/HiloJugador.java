@@ -3,19 +3,19 @@ package juego;
 import colisiones.ControladorColisiones;
 
 public class HiloJugador extends Thread {
-	ControladorPartida controlador;
-	ControladorColisiones colisiones;
-	public HiloJugador() {
-		
-	}
+	protected ControladorPartida controlador;
+	protected ControladorColisiones colisiones;
+	protected boolean enEjecucion;
 	
-	public HiloJugador(ControladorPartida controlador, ControladorColisiones c) {
+	
+	public HiloJugador(ControladorPartida controlador, ControladorColisiones colisiones) {
         this.controlador = controlador;
-        colisiones = c;
+        this.colisiones = colisiones;
+        enEjecucion = true;
     }
 	
 	 public void run(){
-	 	while(true){
+	 	while(enEjecucion){
 	 		controlador.getNivelActual().getJugador().actualizar();
 	 		colisiones.detectarColision(); //luego de moverse chequea las colisiones
 	 		try {
@@ -27,6 +27,10 @@ public class HiloJugador extends Thread {
 	 	
 	 	} 
 	 
+	 }
+	 
+	 public void detener() {
+		 enEjecucion = false;
 	 }
 	 
 	 

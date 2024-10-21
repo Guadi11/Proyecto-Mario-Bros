@@ -22,6 +22,7 @@ public class Jugador extends Movible implements Visitor, Visitable, ElementoJuga
 	protected InfoJugador info;
 	protected int velX, velY;
 	protected boolean isJumped;
+	protected Nivel nivel;
 	
 	public Jugador(int x, int y, Sprite imagen) {
 		super(x, y, imagen);
@@ -29,11 +30,16 @@ public class Jugador extends Movible implements Visitor, Visitable, ElementoJuga
 		velY = 0;
 		isJumped = false;
 		info = new InfoJugador(this);
-		//estado=new Normal(this);
+		estado = new Normal(this);
 		
 	}
 	public void setState(State estado) {
 		this.estado = estado;
+	}
+	
+	public void setNivel(Nivel nivel) {
+		this.nivel = nivel;
+		this.info.setNivel(nivel);
 	}
 
 	public void moverDerecha() {
@@ -67,7 +73,7 @@ public class Jugador extends Movible implements Visitor, Visitable, ElementoJuga
 	    }else if (posicionX > limite_derecho) {
 	    	posicionX = limite_derecho;	
 	    	}
-		setPositionHitbox();
+		actualizarPosicionHitbox();
 		notificar();
     }
 	

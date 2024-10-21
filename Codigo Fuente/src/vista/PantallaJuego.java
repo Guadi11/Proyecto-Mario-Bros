@@ -17,8 +17,6 @@ import observers.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import juego.ControladorPartida;
-
 public class PantallaJuego extends JPanel implements KeyListener{
 
 	/**
@@ -35,12 +33,10 @@ public class PantallaJuego extends JPanel implements KeyListener{
 	protected JLabel labelTiempo;
 	protected JLabel labelVidas;
 	protected JLabel labelNivelActual;
-	protected ControladorPartida controladorPartida;
 	protected ControladorPantallas controladorPantalla;
 	protected float timerNivel; //???
 	
-	public PantallaJuego(ControladorPantallas controladorPantalla, ControladorPartida manager) {
-		this.controladorPartida = manager;
+	public PantallaJuego(ControladorPantallas controladorPantalla) {
 		this.controladorPantalla = controladorPantalla;
 		this.setPreferredSize(new Dimension(ConstantesPantalla.panelAncho, ConstantesPantalla.panelAlto));
 		this.setLayout(new BorderLayout());
@@ -223,13 +219,13 @@ public class PantallaJuego extends JPanel implements KeyListener{
 	}
 	
     public void keyPressed(KeyEvent e) {
-        controladorPartida.activeMovement(e);
+        controladorPantalla.getControladorPartida().activeMovement(e);
    
     }
 
   
     public void keyReleased(KeyEvent e) {
-        controladorPartida.desactiveMovement(e);
+        controladorPantalla.getControladorPartida().desactiveMovement(e);
       
     }
 

@@ -1,15 +1,9 @@
 package juego;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import elementos.BolaDeFuego;
-import elementos.Elemento;
-import elementos.Enemigo;
-import elementos.Fondo;
-import elementos.Plataforma;
-import elementos.PowerUp;
+import elementos.*;
 import observers.ObserverGrafico;
 
 public class Nivel {
@@ -101,6 +95,10 @@ public class Nivel {
 		
 		public void actualizarMovibles() {
 			
+		}
+		
+		public void setControladorPartida(ControladorPartida partida) {
+			this.controladorPartida = partida;
 		}
 				
 	
