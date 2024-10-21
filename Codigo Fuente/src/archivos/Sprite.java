@@ -12,4 +12,7 @@ public class Sprite {
 		return this.rutaImagen;
 	}
 	
+	public void setSprite(String ruta) {
+		this.rutaImagen = ruta;
+	}
 }

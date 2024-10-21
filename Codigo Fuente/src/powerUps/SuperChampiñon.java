@@ -16,14 +16,14 @@ public class SuperChampiñon extends PowerUp{
 	public void visitar (Jugador jugador) {
 		State estadoMario = jugador.getState();
 		estadoMario.aumentarEstado(this);
-		jugador.getInfo().actualizarPuntaje(puntosQueDa());
+		jugador.getInfo().actualizarPuntaje(estadoMario.obtenerPuntosSChamp());
 		morir();
 	}
-	
+	/*
 	public int puntosQueDa() {
 		return estadoMario.obtenerPuntosSChamp();
 	}
-	
+	*/
 	public void morir() {
 		//imagen.eliminar
 	}

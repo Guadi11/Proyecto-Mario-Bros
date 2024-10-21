@@ -11,11 +11,15 @@ import juego.Jugador;
 public class Normal extends State{
 
 	//protected Jugador jugador;
-	protected Sprite sprite;
+	protected Sprite sprite; 
 	
 	public Normal(Jugador jugador) {
 		super(jugador);
-		this.sprite = new Sprite("imagenes/modoUno/mario.png");
+	}
+	
+	public void activar() {
+		jugador.setState(this);
+		jugador.getSprite().setSprite("imagenes/modoUno/mario.png");
 	}
 	
 	public Sprite getSprite() {
@@ -24,14 +28,12 @@ public class Normal extends State{
 	}
 	
 	public void aumentarEstado (PowerUp p) {
-		if (p instanceof SuperChampiñon) {
-			jugador.setState(new SuperMario(jugador));
+		if ((p instanceof SuperChampiñon)  || (p instanceof FlorDeFuego)) {
+			jugador.getState().getSuperMario().activar();
 		}
-		else if (p instanceof FlorDeFuego) {
-			jugador.setState(new Fuego(jugador));
-			
-		} else if (p instanceof Estrella){
-			jugador.setState(new Invulnerable(jugador));
+		else if (p instanceof Estrella){
+			jugador.getState().getInvulnerable().setAnterior(this);
+			jugador.getState().getInvulnerable().activar();
 		}
 	}
 	

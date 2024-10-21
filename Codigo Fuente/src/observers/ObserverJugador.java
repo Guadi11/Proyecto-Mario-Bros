@@ -19,7 +19,7 @@ public class ObserverJugador extends ObserverGrafico{
 	@Override
 	public void actualizar() {
 		super.actualizar();
-		pantallaJuego.actualizarScroll(jugadorObservado);
+		pantallaJuego.actualizarInfoJugador(jugadorObservado);
 	}
 
 }

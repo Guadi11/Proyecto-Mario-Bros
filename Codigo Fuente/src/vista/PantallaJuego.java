@@ -160,7 +160,7 @@ public class PantallaJuego extends JPanel implements KeyListener{
 	    imagenFondoJuego.repaint(); // Asegurarse de actualizar la pantalla
 	}
 
-	private void actualizarInfoJugador(ElementoJugador player) {
+	public void actualizarInfoJugador(ElementoJugador player) {
 		actualizarLabelsJugador(player);
 		actualizarScroll(player);
 	}

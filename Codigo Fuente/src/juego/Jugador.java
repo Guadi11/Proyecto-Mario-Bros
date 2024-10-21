@@ -14,6 +14,9 @@ import enemigos.Koopa;
 import enemigos.Lakitu;
 import enemigos.Piranha;
 import states.State;
+import states.SuperMario;
+import states.Fuego;
+import states.Invulnerable;
 import states.Normal;
 
 public class Jugador extends Movible implements Visitor, Visitable, ElementoJugador{
@@ -31,6 +34,29 @@ public class Jugador extends Movible implements Visitor, Visitable, ElementoJuga
 		isJumped = false;
 		info = new InfoJugador(this);
 		estado = new Normal(this);
+		
+		Normal normal = new Normal(this);
+		SuperMario superMario = new SuperMario(this);
+	    Fuego fuego = new Fuego(this);
+	    Invulnerable invulnerable = new Invulnerable(this);
+	    
+	    normal.setFuego(fuego);
+	    normal.setSuperMario(superMario);
+	    normal.setInvulnerable(invulnerable);
+	    
+	    fuego.setNormal(normal);
+	    fuego.setSuperMario(superMario);
+	    fuego.setInvulnerable(invulnerable);
+	    
+	    superMario.setNormal(normal);
+	    superMario.setFuego(fuego);
+	    superMario.setInvulnerable(invulnerable);
+	    
+	    invulnerable.setNormal(normal);
+	    invulnerable.setSuperMario(superMario);
+	    invulnerable.setFuego(fuego);
+	    
+	    estado = normal;
 		
 	}
 	public void setState(State estado) {
@@ -88,7 +114,6 @@ public class Jugador extends Movible implements Visitor, Visitable, ElementoJuga
 	    }	
 	}
 	public void aceptarVisita(Visitor visitor) {
-		System.out.println("Entro al aceptarJ");
 		visitor.visitar(this);
 	}
 	public void visitar(Enemigo enemigo) {

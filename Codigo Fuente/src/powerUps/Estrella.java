@@ -18,12 +18,8 @@ public class Estrella extends PowerUp{
 	public void visitar (Jugador jugador) {
 		State estadoMario = jugador.getState();
 		estadoMario.aumentarEstado(this);
-		jugador.getInfo().actualizarPuntaje(puntosQueDa());
+		jugador.getInfo().actualizarPuntaje(estadoMario.obtenerPuntosEstrella());
 		morir();
-	}
-	
-	public int puntosQueDa() {
-		return estadoMario.obtenerPuntosEstrella();
 	}
 	
 	public void morir() {

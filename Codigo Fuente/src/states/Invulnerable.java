@@ -7,7 +7,7 @@ import juego.Jugador;
 
 public class Invulnerable extends State{
 	
-	protected Jugador jugador;
+	//protected Jugador jugador;
 	protected long tiempoActivacion;
 	protected final long duracion =6500;
 	protected State estadoAnterior;
@@ -16,13 +16,23 @@ public class Invulnerable extends State{
 	
 	public Invulnerable(Jugador jugador) {
 		super(jugador);
-		estadoAnterior = jugador.getState();
+	}
+	
+	public void activar() {
+		jugador.setState(this);
 		if(estadoAnterior instanceof Normal) {
-			this.sprite = new Sprite("/imagenes/modoUno/invulnerablemini.png");
+			jugador.getSprite().setSprite("imagenes/modoUno/invulnerablemini.png");
 		}
 		else if ((estadoAnterior instanceof SuperMario) || (estadoAnterior instanceof Fuego))
-			this.sprite = new Sprite("/imagenes/modoUno/invulnerable.png");
-		//jugador.getSprite().cambiar(Invulnerable);
+			jugador.getSprite().setSprite("imagenes/modoUno/mariofuego.png");
+			jugador.setPosY(jugador.getPosY()-30);
+			jugador.actualizarPosicionHitbox();
+			jugador.setHitbox(jugador.getHitbox().width, 72);
+			//la posicion esta ajustada pero no se por qué cae abajo del piso
+	}
+	
+	public void setAnterior(State anterior) {
+		this.estadoAnterior = anterior;
 	}
 	
 	public Sprite getSprite() {
@@ -30,7 +40,7 @@ public class Invulnerable extends State{
 	}
 	
 	public void aumentarEstado (PowerUp estrella) {
-		estadoAnterior=jugador.getState();
+		estadoAnterior = jugador.getState();
         jugador.setState(this);
         tiempoActivacion = System.currentTimeMillis(); 
     }
@@ -38,12 +48,12 @@ public class Invulnerable extends State{
 	public void actualizar() {
             long ahora = System.currentTimeMillis();
             if (ahora - tiempoActivacion >= duracion) {
-                jugador.setState(estadoAnterior); //no se acá que pasa con el sprite
+                jugador.setState(estadoAnterior);
             }
     }
 	
 	public void recibirDaño() {
-		jugador.setState(estadoAnterior);
+		estadoAnterior.activar();
 	}
 	
 	public int obtenerPuntosEstrella() {

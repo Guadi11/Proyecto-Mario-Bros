@@ -12,6 +12,7 @@ public class Moneda extends PowerUp{
 	
 	public void visitar (Jugador jugador) {
 		jugador.getInfo().actualizarPuntaje(puntosQueDa());
+		jugador.getInfo().aumentarMoneda();
 		morir();
 	}
 	

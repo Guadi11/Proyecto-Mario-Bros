@@ -10,5 +10,5 @@ public abstract class PowerUp extends Movible implements Visitor{
 	public PowerUp(int x, int y, Sprite im) {
 		super(x, y, im);
 	}
-	public abstract int puntosQueDa(); 
+	
 }

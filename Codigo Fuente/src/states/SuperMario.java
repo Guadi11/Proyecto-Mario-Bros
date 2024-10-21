@@ -9,15 +9,21 @@ import juego.Jugador;
 
 public class SuperMario extends State{
 	
-	//protected Jugador jugador;
-	protected State volverANormal= new Normal(jugador);
 	protected Sprite sprite;
 	protected long tiempoActivacion;
 	protected final long duracion =6500;
 	
 	public SuperMario(Jugador jugador) {
 		super(jugador);
-		this.sprite = new Sprite("/imagenes/modoUno/supermario.png");
+	}
+	
+	public void activar() {
+		jugador.setState(this);
+		jugador.getSprite().setSprite("imagenes/modoUno/supermario.png");
+		jugador.setPosY(jugador.getPosY()-30);
+		jugador.actualizarPosicionHitbox();
+		jugador.setHitbox(jugador.getHitbox().width, 72);
+		//la posicion esta ajustada pero no se por qué cae abajo del piso
 	}
 	
 	public Sprite getSprite() {
@@ -27,26 +33,24 @@ public class SuperMario extends State{
 	}
 	
 	public void recibirDaño() {
-		jugador.setState(volverANormal);
+		this.getNormal().activar();
 	}
 	
 	public void actualizar() {
         long ahora = System.currentTimeMillis();
         if (ahora - tiempoActivacion >= duracion) {
-            jugador.setState(volverANormal);
+        	this.getNormal().activar();
         }
 	}
 	
 	@Override
 	public void aumentarEstado(PowerUp p) {
 		if (p instanceof FlorDeFuego) {
-			jugador.setState(new Fuego(jugador));
-			
+			this.getFuego().activar();
 		} else if (p instanceof Estrella){
-			jugador.setState(new Invulnerable(jugador));
-		
+			this.getInvulnerable().setAnterior(this);
+			this.getInvulnerable().activar();
 		}
-		
 	}
 	
 	public int obtenerPuntosEstrella() {
