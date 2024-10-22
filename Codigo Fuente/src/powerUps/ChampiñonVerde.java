@@ -21,11 +21,6 @@ public class ChampiñonVerde extends PowerUp{
 		return 100;
 	}
 	
-	public void morir() {
-		setHitbox(0,0);
-		//imagen.eliminar();
-	}
-	
 	public void moverse() {
 		descender();
 		movimientoADerecha();

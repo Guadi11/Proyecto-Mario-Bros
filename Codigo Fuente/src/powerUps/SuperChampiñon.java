@@ -24,10 +24,6 @@ public class SuperChampiñon extends PowerUp{
 		return estadoMario.obtenerPuntosSChamp();
 	}
 	*/
-	public void morir() {
-		setHitbox(0,0);
-		//imagen.eliminar
-	}
 	
 	public void moverse() {
 		descender();

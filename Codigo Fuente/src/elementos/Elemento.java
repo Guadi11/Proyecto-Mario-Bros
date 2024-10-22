@@ -63,5 +63,9 @@ public abstract class Elemento implements ElementoLogico{
 	public void notificar() {
 		this.observer.actualizar();
 	}
+	public void morir() {
+		setHitbox(0,0);
+		//imagen.eliminar()
+	}
 		
 }

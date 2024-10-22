@@ -20,11 +20,6 @@ public class Moneda extends PowerUp{
 		return 5;
 	}
 	
-	public void morir() {
-		setHitbox(0,0);
-		//imagen.eliminar()
-	}
-	
 	public void moverse() {
 		
 	}
