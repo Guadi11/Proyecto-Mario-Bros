@@ -23,6 +23,7 @@ public class Estrella extends PowerUp{
 	}
 	
 	public void morir() {
+		setHitbox(0,0);
 		//imagen.eliminar()
 	}
 	

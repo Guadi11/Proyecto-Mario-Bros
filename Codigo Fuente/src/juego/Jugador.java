@@ -18,6 +18,7 @@ import states.SuperMario;
 import states.Fuego;
 import states.Invulnerable;
 import states.Normal;
+import states.SuperMario;
 
 public class Jugador extends Movible implements Visitor, Visitable, ElementoJugador{
 	
@@ -83,6 +84,10 @@ public class Jugador extends Movible implements Visitor, Visitable, ElementoJuga
 	public void actualizar() {
 		int altura_piso = 441;
 		int limite_derecho = 7471;
+		
+		if(estado instanceof SuperMario)
+			altura_piso = 405;
+		
 		posicionX += velX;
 		posicionY += velY;
 		
@@ -101,6 +106,9 @@ public class Jugador extends Movible implements Visitor, Visitable, ElementoJuga
 	    	}
 		actualizarPosicionHitbox();
 		notificar();
+		//System.out.println("max altura hitbox:"+hitbox.getMaxY());
+
+
     }
 	
 	public void moverse() {
@@ -120,30 +128,6 @@ public class Jugador extends Movible implements Visitor, Visitable, ElementoJuga
 		System.out.println("aver");
 		/*int puntosGanados=enemigo.recibirDaño();
 		info.actualizarPuntaje(puntosGanados);*/
-	}
-	public void visitar(Goomba g) {
-		System.out.println("Entro al visitor.");
-		if (esColisionDesdeArriba(g)) {
-			g.recibirDaño();
-			System.out.println("Goomba recibio daño desde arriba.");
-		}
-			else {
-				//this.recibirDaño();
-				System.out.println("Jugador recibe daño.");
-			}
-	}
-	
-	public void visitar(Buzzy b) {
-		
-	}
-	public void visitar(Lakitu l) {
-		
-	}
-	public void visitar(Koopa k) {
-		
-	}
-	public void visitar(Piranha p) {
-	
 	}
 	public void visitar (Plataforma plataforma) {
 		plataforma.morir();
@@ -175,10 +159,10 @@ public class Jugador extends Movible implements Visitor, Visitable, ElementoJuga
 	}
 	public boolean esColisionDesdeArriba(Elemento elementoAVisitar) {
 		//return getHitbox().getMaxY() <= elementoAVisitar.getHitbox().getMinY();
-		return getHitbox().getMaxY() <= elementoAVisitar.getHitbox().getMinY() && 
-				getHitbox().getMaxY() >= elementoAVisitar.getHitbox().getMinY() - getHitbox().getHeight();
+		/*return getHitbox().getMaxY() <= elementoAVisitar.getHitbox().getMinY() && 
+				getHitbox().getMaxY() >= elementoAVisitar.getHitbox().getMinY() - getHitbox().getHeight();*/
+		return hitbox.getMaxY()<=elementoAVisitar.getHitbox().getMinY();
 	}
-	@Override
 	public void visitar(Jugador jugador) {
 		
 	}

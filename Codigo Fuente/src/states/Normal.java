@@ -28,12 +28,17 @@ public class Normal extends State{
 	}
 	
 	public void aumentarEstado (PowerUp p) {
+		int posicionY = jugador.getPosY();
 		if ((p instanceof SuperChampiñon)  || (p instanceof FlorDeFuego)) {
 			jugador.getState().getSuperMario().activar();
+			jugador.setPosY(posicionY-36);
 		}
-		else if (p instanceof Estrella){
-			jugador.getState().getInvulnerable().setAnterior(this);
-			jugador.getState().getInvulnerable().activar();
+		else 
+			if (p instanceof Estrella){
+				System.out.println("WTF.");
+				jugador.getState().getInvulnerable().setAnterior(this);
+				jugador.getState().getInvulnerable().activar();
+				jugador.setPosY(posicionY-36);
 		}
 	}
 	

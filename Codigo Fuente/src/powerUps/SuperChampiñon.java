@@ -25,6 +25,7 @@ public class SuperChampiñon extends PowerUp{
 	}
 	*/
 	public void morir() {
+		setHitbox(0,0);
 		//imagen.eliminar
 	}
 	

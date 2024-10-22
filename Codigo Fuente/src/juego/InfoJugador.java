@@ -46,7 +46,6 @@ public class InfoJugador {
 	}
 	
 	public void restarVida() {
-		//reiniciarNivel();
 		if (vida >= 2) {
 			vida--;
 			reiniciarNivel();
@@ -74,6 +73,9 @@ public class InfoJugador {
 	
 	public void setNivel(Nivel nivel) {
 		this.nivel = nivel;
+	}
+	public void setPuntaje(int p) {
+		puntaje = p;
 	}
 	
 }

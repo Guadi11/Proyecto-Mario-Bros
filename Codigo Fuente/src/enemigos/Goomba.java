@@ -17,18 +17,19 @@ public class Goomba extends Enemigo{
 		}
 			else {
 				int puntosDaño = this.puntosQueResta();
+				int puntajeActual = jugador.getInfo().getPuntaje();
 				jugador.getState().recibirDaño();
-				jugador.getInfo().actualizarPuntaje(-puntosDaño);
-				//this.recibirDaño();
-				System.out.println("Jugador recibe daño.");
+				if (puntajeActual-puntosDaño>=0) {
+					jugador.getInfo().actualizarPuntaje(-puntosDaño);
+				}
+				else jugador.getInfo().actualizarPuntaje(-puntajeActual);
+	
 			}
-		/*int puntosDaño = this.puntosQueResta();
-		jugador.getState().recibirDaño();
-		jugador.getInfo().actualizarPuntaje(-puntosDaño);*/
 	}
 	
+	
 	public void aceptarVisita (Visitor visitor) {
-		//visitor.visitar (this);
+		//visitor.visitar(this);
 	}
 	
 	public int recibirDaño() {
@@ -57,6 +58,7 @@ public class Goomba extends Enemigo{
 	}
 	
 	public void morir() {
+		setHitbox(0,0);
 		//this.nivel.removerElemento(this);
 	}
 }

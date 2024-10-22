@@ -48,7 +48,6 @@ public abstract class GameFactory {
 		Sprite sprite = new Sprite(rutaCarpeta + "/goomba1.png");
 		Goomba goomba = new Goomba(x, y, sprite);
 		setearHitbox(goomba, sprite);
-		
 		return goomba;
 	}
 	
