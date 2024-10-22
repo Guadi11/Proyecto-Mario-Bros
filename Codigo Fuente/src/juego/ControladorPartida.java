@@ -23,6 +23,7 @@ public class ControladorPartida {
 	protected int numNivelActual;
 	protected ControladorColisiones colisiones;
 	protected HiloJugador hiloJugador;
+	protected HiloEnemigo hiloEnemigo;
 	
 	
 	public ControladorPartida() {
@@ -40,6 +41,9 @@ public class ControladorPartida {
 		colisiones = new ControladorColisiones(nivelActual);
 		hiloJugador = new HiloJugador(this,colisiones); /*agrege el parametro colisiones y por ende su atributo*/
 		hiloJugador.start();
+		hiloEnemigo = new HiloEnemigo(this);
+		//hiloEnemigo.start();
+		
 	}
 	
 	public void reiniciarNivel(){

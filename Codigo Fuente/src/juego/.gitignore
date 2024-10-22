@@ -11,3 +11,5 @@
 /TimerMovibles.class
 /ControladorPartida.class
 /HiloJugador.class
+/HiloEnemigo.class
+/HiloSonido.class

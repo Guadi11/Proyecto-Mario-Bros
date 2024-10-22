@@ -106,7 +106,6 @@ public class Jugador extends Movible implements Visitor, Visitable, ElementoJuga
 	    	}
 		actualizarPosicionHitbox();
 		notificar();
-		//System.out.println("max altura hitbox:"+hitbox.getMaxY());
 
 
     }
