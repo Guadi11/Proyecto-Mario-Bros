@@ -20,15 +20,15 @@ public class SuperMario extends State{
 	public void activar() {
 		jugador.setState(this);
 		jugador.getSprite().setSprite("imagenes/modoUno/supermario.png");
-		jugador.setPosY(jugador.getPosY()-30);
-		jugador.actualizarPosicionHitbox();
-		jugador.setHitbox(jugador.getHitbox().width, 72);
+		//gador.setPosY(jugador.getPosY()-30);
+	//ugador.actualizarPosicionHitbox();
+//jugador.setHitbox(jugador.getHitbox().width, 72);
 		//la posicion esta ajustada pero no se por qué cae abajo del piso
 	}
 	
 	public Sprite getSprite() {
 		//return this.sprite;
-		this.sprite = new Sprite("/imagenes/modoUno/supermario.png");
+		this.sprite = new Sprite("imagenes/modoUno/supermario.png");
 		return sprite;
 	}
 	
@@ -44,13 +44,17 @@ public class SuperMario extends State{
 	}
 	
 	@Override
-	public void aumentarEstado(PowerUp p) {
-		if (p instanceof FlorDeFuego) {
-			this.getFuego().activar();
-		} else if (p instanceof Estrella){
-			this.getInvulnerable().setAnterior(this);
-			this.getInvulnerable().activar();
-		}
+	public void aumentarASuperMario() {
+	}
+	
+	public void aumentarAFuego() {
+		this.getFuego().activar();
+	}
+	
+	public void aumentarAInvulnerable() {
+		//his.getInvulnerable().setAnterior(this);
+		//his.getInvulnerable().activar();
+		 jugador.setState(new Invulnerable(jugador));
 	}
 	
 	public int obtenerPuntosEstrella() {
@@ -68,4 +72,9 @@ public class SuperMario extends State{
 	public void setJugador(Jugador jugador) {
         this.jugador = jugador;
     }
+	
+	public boolean esGrande() {
+		return true;
+	}
+
 }

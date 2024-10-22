@@ -7,7 +7,6 @@ import juego.Jugador;
 
 public class Invulnerable extends State{
 	
-	//protected Jugador jugador;
 	protected long tiempoActivacion;
 	protected final long duracion =6500;
 	protected State estadoAnterior;
@@ -19,31 +18,49 @@ public class Invulnerable extends State{
 	}
 	
 	public void activar() {
+		State anterior = jugador.getState();
 		jugador.setState(this);
-		if(estadoAnterior instanceof Normal) {
-			jugador.getSprite().setSprite("imagenes/modoUno/invulnerablemini.png");
-		}
-		else if ((estadoAnterior instanceof SuperMario) || (estadoAnterior instanceof Fuego))
-			jugador.getSprite().setSprite("imagenes/modoUno/mariofuego.png");
-			jugador.setPosY(jugador.getPosY()-30);
-			jugador.actualizarPosicionHitbox();
-			jugador.setHitbox(jugador.getHitbox().width, 72);
-			//la posicion esta ajustada pero no se por qué cae abajo del piso
-	}
+        tiempoActivacion = System.currentTimeMillis();
+        if (anterior.esGrande()==true) {
+            this.sprite = new Sprite("imagenes/modoUno/invulnerable.png");
+            jugador.getSprite().setSprite("imagenes/modoUno/invulnerable.png");
+        } else {
+            this.sprite = new Sprite("imagenes/modoUno/invulnerablemini.png");
+            jugador.getSprite().setSprite("imagenes/modoUno/invulnerablemini.png");
+        }
+
+    }
+		
+		//"imagenes/modoUno/invulnerablemini.png");
+		//
+			/*jugador.getSprite().setSprite("imagenes/modoUno/mariofuego.png");
+			//jugador.setPosY(jugador.getPosY()-30);
+			//jugador.actualizarPosicionHitbox();
+			//jugador.setHitbox(jugador.getHitbox().width, 72);
+			//la posicion esta ajustada pero no se por qué cae abajo del piso*/
+	
 	
 	public void setAnterior(State anterior) {
 		this.estadoAnterior = anterior;
 	}
 	
 	public Sprite getSprite() {
-		return this.sprite;
+		return this.getSprite();
+	}
+	@Override
+	public void aumentarASuperMario() {
+		
+	}
+	@Override
+	public void aumentarAFuego() {
+	
 	}
 	
-	public void aumentarEstado (PowerUp estrella) {
+	public void aumentarAInvulnerable() {
 		estadoAnterior = jugador.getState();
-        jugador.setState(this);
-        tiempoActivacion = System.currentTimeMillis(); 
-    }
+		jugador.setState(this);
+		tiempoActivacion = System.currentTimeMillis(); 
+	}
 	
 	public void actualizar() {
             long ahora = System.currentTimeMillis();
@@ -71,5 +88,9 @@ public class Invulnerable extends State{
 	public void setJugador(Jugador jugador) {
         this.jugador = jugador;
     }
+	
+	public boolean esGrande() {
+		return true;
+	}
 
 }

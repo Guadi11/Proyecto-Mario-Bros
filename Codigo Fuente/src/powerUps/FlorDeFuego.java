@@ -19,13 +19,17 @@ public class FlorDeFuego extends PowerUp{
 
 	public void visitar(Jugador jugador) {
 		State estadoMario = jugador.getState();
-		estadoMario.aumentarEstado(this);
+		estadoMario.aumentarAFuego();
 		jugador.getInfo().actualizarPuntaje(estadoMario.obtenerPuntosFFuego());
 		morir();
 	}
 	
-	public void morir() {
+	public void aplicar(State estado) {
+		estado.aumentarAFuego();
+	}
+	
+	/*blic void morir() {
 		setHitbox(0,0);
 		//imagen.eliminar()
-	}
+	}*/
 }

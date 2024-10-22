@@ -15,7 +15,7 @@ public class SuperChampiñon extends PowerUp{
 	}
 	public void visitar (Jugador jugador) {
 		State estadoMario = jugador.getState();
-		estadoMario.aumentarEstado(this);
+		estadoMario.aumentarASuperMario();
 		jugador.getInfo().actualizarPuntaje(estadoMario.obtenerPuntosSChamp());
 		morir();
 	}
@@ -24,6 +24,10 @@ public class SuperChampiñon extends PowerUp{
 		return estadoMario.obtenerPuntosSChamp();
 	}
 	*/
+	
+	public void aplicar(State estado) {
+		estado.aumentarASuperMario();
+	}
 	
 	public void moverse() {
 		descender();

@@ -25,12 +25,16 @@ public abstract class State {
 	        return sprite;
 	}
 	
-	public abstract void aumentarEstado(PowerUp p);
+	//public abstract void aumentarEstado(PowerUp p);
 	public abstract void recibirDaño();
 	public abstract int obtenerPuntosEstrella();
 	public abstract int obtenerPuntosSChamp();
 	public abstract int obtenerPuntosFFuego();
 	public abstract void activar();
+	public abstract void aumentarASuperMario();
+	public abstract void aumentarAFuego();
+	public abstract void aumentarAInvulnerable();
+	
 	
 	
 	public void setNormal(Normal normal) {
@@ -64,5 +68,7 @@ public abstract class State {
 	public Invulnerable getInvulnerable() {
 		return invulnerable;
 	}
+
+	protected abstract boolean esGrande();
 
 }

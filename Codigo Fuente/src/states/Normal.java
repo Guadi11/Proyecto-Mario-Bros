@@ -8,9 +8,8 @@ import powerUps.FlorDeFuego;
 import juego.Jugador;
 
 
-public class Normal extends State{
-
-	//protected Jugador jugador;
+public class Normal extends State {
+	
 	protected Sprite sprite; 
 	
 	public Normal(Jugador jugador) {
@@ -27,7 +26,7 @@ public class Normal extends State{
 		
 	}
 	
-	public void aumentarEstado (PowerUp p) {
+	/*public void aumentarEstado (PowerUp p) {
 		int posicionY = jugador.getPosY();
 		if ((p instanceof SuperChampiñon)  || (p instanceof FlorDeFuego)) {
 			jugador.getState().getSuperMario().activar();
@@ -40,6 +39,18 @@ public class Normal extends State{
 				jugador.getState().getInvulnerable().activar();
 				jugador.setPosY(posicionY-36);
 		}
+	}*/
+	
+	public void aumentarASuperMario() {
+		this.getSuperMario().activar();			
+	}
+	
+	public void aumentarAFuego() {
+		this.getFuego().activar();
+	}
+	
+	public void aumentarAInvulnerable() {
+		this.getInvulnerable().activar();
 	}
 	
 	public void recibirDaño() {
@@ -62,4 +73,8 @@ public class Normal extends State{
         this.jugador = jugador;
     }
 	
+	public boolean esGrande() {
+		return false;
+	}
+
 }

@@ -17,9 +17,13 @@ public class Estrella extends PowerUp{
 
 	public void visitar (Jugador jugador) {
 		State estadoMario = jugador.getState();
-		estadoMario.aumentarEstado(this);
+		estadoMario.aumentarAInvulnerable();
 		jugador.getInfo().actualizarPuntaje(estadoMario.obtenerPuntosEstrella());
 		morir();
+	}
+	
+	public void aplicar(State estado) {
+		estado.aumentarAInvulnerable();
 	}
 	
 	public void moverse() {

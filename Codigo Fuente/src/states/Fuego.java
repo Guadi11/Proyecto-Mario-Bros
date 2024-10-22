@@ -7,9 +7,9 @@ import juego.Jugador;
 
 public class Fuego extends SuperMario{
 	
-	//protected Jugador jugador;
 	//protected List<BolaDeFuego> bolasDeFuego = new ArrayList<>();
 	protected Sprite sprite;
+	protected State estadoAnterior;
 	
 	
 	public Fuego(Jugador jugador) {
@@ -18,16 +18,25 @@ public class Fuego extends SuperMario{
 	}
 	
 	public void activar() {
+		estadoAnterior = jugador.getState();
 		jugador.setState(this);
-		jugador.getSprite().setSprite("imagenes/modoUno/mariofuego.png");
-		jugador.setPosY(jugador.getPosY()-30);
-		jugador.actualizarPosicionHitbox();
-		jugador.setHitbox(jugador.getHitbox().width, 72);
-		//la posicion esta ajustada pero no se por qué cae abajo del piso
-	}
+        //tiempoActivacion = System.currentTimeMillis();
+        //this.sprite=new Sprite(null);
+
+        // Usar el método esGrande() para determinar el sprite
+         if(estadoAnterior.esGrande()) {
+           // this.sprite = new Sprite("imagenes/modoUno/mariofuego.png");
+            jugador.getSprite().setSprite("imagenes/modoUno/mariofuego.png");
+         } else {
+           //this.sprite = new Sprite("imagenes/modoUno/invulnerablemini.png");
+           jugador.getSprite().setSprite("/imagenes/modoUno/supermario.png");}
+        }
+		
+	
 	
 	public Sprite getSprite() {
-		return this.sprite;
+		this.sprite = new Sprite("imagenes/modoUno/invulnerable.png");
+		return sprite;
 	}
 	
 	//esto va dentro de Jugador, no aca
@@ -41,19 +50,31 @@ public class Fuego extends SuperMario{
         bolasDeFuego.add(nuevaBola);
     }
     */
-    public void aumentarEstado(PowerUp p) {
-    	    if (p instanceof Estrella) {
-    	    	this.getInvulnerable().setAnterior(this);
-    	    	this.getInvulnerable().activar();
-    	    }
-    	  
+	@Override
+	public void aumentarASuperMario() {
+		
+	}
+	@Override
+	public void aumentarAFuego() {
+		
+	}
+	
+    public void aumentarAInvulnerable() {
+    	this.getInvulnerable().setAnterior(this);
+    	this.getInvulnerable().activar();
     }
-
+    	  
     public int obtenerPuntosFFuego() {
-          return 50;
+        return 50;
     }
     
     public void setJugador(Jugador jugador) {
         this.jugador = jugador;
     }
+    
+    public boolean esGrande() {
+		return false;
+	}
+    //jugador.setState(this);
+	//jugador.getSprite().setSprite("imagenes/modoUno/mariofuego.png");
 }
