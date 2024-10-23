@@ -15,7 +15,6 @@ public class HiloEnemigo extends Thread {
 	 	while(enEjecucion){
 	 		for (Enemigo e:controlador.getNivelActual().getEnemigos()) {
 	 			e.actualizar();
-	 			System.out.println("Entro.");
 	 		}
 	 		//colisiones.detectarColision(); luego de moverse chequea las colisiones
 	 		try {

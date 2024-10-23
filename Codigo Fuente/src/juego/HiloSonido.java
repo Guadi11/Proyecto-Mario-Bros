@@ -2,18 +2,19 @@ package juego;
 
 import archivos.Sonido;
 
-public class HiloSonido {
+public class HiloSonido extends Thread {
 protected boolean enEjecucion;
 protected Sonido backGround;
 	
 	
 	public HiloSonido() {
         enEjecucion = true;
-        backGround = new Sonido ()
+        backGround = new Sonido ("audio/background.wav");
     }
 	
 	 public void run(){
 	 	while(enEjecucion){
+	 		backGround.reproducirAudioFondo();
 	 		try {
 				Thread.sleep(16); //se aproxima a 60fps
 			} catch (InterruptedException e) {

@@ -24,6 +24,7 @@ public class ControladorPartida {
 	protected ControladorColisiones colisiones;
 	protected HiloJugador hiloJugador;
 	protected HiloEnemigo hiloEnemigo;
+	protected HiloSonido hiloSonido;
 	
 	
 	public ControladorPartida() {
@@ -42,7 +43,10 @@ public class ControladorPartida {
 		hiloJugador = new HiloJugador(this,colisiones); /*agrege el parametro colisiones y por ende su atributo*/
 		hiloJugador.start();
 		hiloEnemigo = new HiloEnemigo(this);
-		//hiloEnemigo.start();
+		hiloEnemigo.start();
+		hiloSonido = new HiloSonido();
+		hiloSonido.start();
+		
 		
 	}
 	

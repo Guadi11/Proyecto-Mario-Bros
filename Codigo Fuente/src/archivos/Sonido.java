@@ -5,6 +5,7 @@ import java.io.IOException;
 
 	public class Sonido {
 	    private Clip clip;
+	    private boolean audioOn;
 
 	    public Sonido(String ruta) {
 	        try {
@@ -14,11 +15,19 @@ import java.io.IOException;
 	        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
 	            e.printStackTrace();
 	        }
+	        audioOn = false;
 	    }
 
-	    public void reproducir() {
-	        clip.setFramePosition(0); // Reinicia el clip
-	        clip.start(); // Inicia la reproducción
+	    public void reproducirAudioFondo() {
+	    	if (!audioOn) {
+	        	clip.setFramePosition(0); // Reinicia el clip
+	        	clip.start(); // Inicia la reproducción
+	        	audioOn = true;
+	    	}
+	    }
+	    public void reproducirSonido() {
+	    	clip.setFramePosition(0); // Reinicia el clip
+        	clip.start();
 	    }
 
 	    public void detener() {
@@ -28,5 +37,8 @@ import java.io.IOException;
 	    public void cerrar() {
 	        clip.close(); // Cierra el clip
 	    }
+	    public boolean EnReproduccion() {
+	    	return audioOn;
+	    }
 	}
-}
+

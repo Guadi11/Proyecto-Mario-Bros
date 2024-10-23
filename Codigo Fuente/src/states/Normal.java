@@ -55,6 +55,7 @@ public class Normal extends State {
 	
 	public void recibirDaño() {
 		jugador.getInfo().restarVida();
+		//jugador.sonidoMuerte().reproducirSonido();
 	}
 	
 	public int obtenerPuntosEstrella() {

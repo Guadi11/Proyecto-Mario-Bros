@@ -31,7 +31,7 @@ public abstract class Enemigo extends Movible implements Visitor, Visitable{
 		this.nivel = n;
 	}
 	public void moverIzquierda() {
-		velX = -4;
+		velX = -2;
 	}
 	public void moverDerecha() {
 		velX = 4;
@@ -39,6 +39,7 @@ public abstract class Enemigo extends Movible implements Visitor, Visitable{
 	public void actualizar() {
 		moverIzquierda();
 		posicionX += velX;
-		System.out.println("PosicionX: "+this.posicionX);
+		actualizarPosicionHitbox();
+		notificar();
 	}
 }

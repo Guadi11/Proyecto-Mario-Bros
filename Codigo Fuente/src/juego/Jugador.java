@@ -1,5 +1,6 @@
 package juego;
 
+import archivos.Sonido;
 import archivos.Sprite;
 import colisiones.Visitable;
 import colisiones.Visitor;
@@ -27,6 +28,7 @@ public class Jugador extends Movible implements Visitor, Visitable, ElementoJuga
 	protected int velX, velY;
 	protected boolean isJumped;
 	protected Nivel nivel;
+	
 	
 	public Jugador(int x, int y, Sprite imagen) {
 		super(x, y, imagen);
@@ -85,8 +87,8 @@ public class Jugador extends Movible implements Visitor, Visitable, ElementoJuga
 		int altura_piso = 441;
 		int limite_derecho = 7471;
 		
-		if(estado instanceof SuperMario)
-			altura_piso = 405;
+		/*if(estado instanceof SuperMario)
+			altura_piso = 405;*/
 		
 		posicionX += velX;
 		posicionY += velY;
@@ -118,6 +120,7 @@ public class Jugador extends Movible implements Visitor, Visitable, ElementoJuga
 		if (!isJumped) { 
 	        velY = -19; 
 	        isJumped = true;
+	        sonidoSalto().reproducirSonido();
 	    }	
 	}
 	public void aceptarVisita(Visitor visitor) {
@@ -164,6 +167,14 @@ public class Jugador extends Movible implements Visitor, Visitable, ElementoJuga
 	}
 	public void visitar(Jugador jugador) {
 		
+	}
+	public Sonido sonidoSalto() {
+		Sonido sonidoSalto = new Sonido("audio/jump.wav");
+		return sonidoSalto;
+	}
+	public Sonido sonidoMuerte() {
+		Sonido sonidoMuerte = new Sonido("audio/marioDies.wav");
+		return sonidoMuerte;
 	}
 		
 }
