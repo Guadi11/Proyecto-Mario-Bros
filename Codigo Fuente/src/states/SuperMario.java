@@ -1,9 +1,6 @@
 package states;
 
-import elementos.PowerUp;
 import archivos.Sprite;
-import powerUps.FlorDeFuego;
-import powerUps.Estrella;
 import juego.Jugador;
 
 
@@ -20,6 +17,8 @@ public class SuperMario extends State{
 	public void activar() {
 		jugador.setState(this);
 		jugador.getSprite().setSprite("imagenes/modoUno/supermario.png");
+		//jugador.actualizarPosicionHitbox(); //actualizar pos jugador, alto y ancho de hitbox en un metodo aparte
+		
 		//gador.setPosY(jugador.getPosY()-30);
 	//ugador.actualizarPosicionHitbox();
 //jugador.setHitbox(jugador.getHitbox().width, 72);
@@ -29,11 +28,13 @@ public class SuperMario extends State{
 	public Sprite getSprite() {
 		//return this.sprite;
 		this.sprite = new Sprite("imagenes/modoUno/supermario.png");
+
 		return sprite;
 	}
 	
 	public void recibirDaño() {
 		this.getNormal().activar();
+		//en algun lugar se esta llamando erroneamente a jugador.getInfo().recibirDaño() y reinicia cuando no deberia
 	}
 	
 	public void actualizar() {
@@ -44,17 +45,20 @@ public class SuperMario extends State{
 	}
 	
 	@Override
-	public void aumentarASuperMario() {
+	public void recibirSuperChampiñon() {
+		jugador.getInfo().actualizarPuntaje(this.obtenerPuntosSChamp());
 	}
 	
-	public void aumentarAFuego() {
+	public void recibirFlorDeFuego() {
+		jugador.getInfo().actualizarPuntaje(this.obtenerPuntosFFuego());
 		this.getFuego().activar();
 	}
 	
-	public void aumentarAInvulnerable() {
-		//his.getInvulnerable().setAnterior(this);
-		//his.getInvulnerable().activar();
-		 jugador.setState(new Invulnerable(jugador));
+	public void recibirEstrella() {
+		jugador.getInfo().actualizarPuntaje(this.obtenerPuntosEstrella());
+		this.getInvulnerable().setAnterior(this);
+		this.getInvulnerable().activar();
+		
 	}
 	
 	public int obtenerPuntosEstrella() {

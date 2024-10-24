@@ -1,6 +1,5 @@
 package states;
 
-import elementos.PowerUp;
 import archivos.Sprite;
 import juego.Jugador;
 
@@ -18,27 +17,21 @@ public class Invulnerable extends State{
 	}
 	
 	public void activar() {
-		State anterior = jugador.getState();
 		jugador.setState(this);
         tiempoActivacion = System.currentTimeMillis();
-        if (anterior.esGrande()==true) {
-            this.sprite = new Sprite("imagenes/modoUno/invulnerable.png");
+        if (estadoAnterior.esGrande()) {
             jugador.getSprite().setSprite("imagenes/modoUno/invulnerable.png");
+            //jugador.actualizarPosicionHitbox(); //actualizar pos jugador, alto y ancho de hitbox en un metodo aparte
         } else {
-            this.sprite = new Sprite("imagenes/modoUno/invulnerablemini.png");
             jugador.getSprite().setSprite("imagenes/modoUno/invulnerablemini.png");
         }
 
     }
-		
-		//"imagenes/modoUno/invulnerablemini.png");
-		//
 			/*jugador.getSprite().setSprite("imagenes/modoUno/mariofuego.png");
 			//jugador.setPosY(jugador.getPosY()-30);
 			//jugador.actualizarPosicionHitbox();
 			//jugador.setHitbox(jugador.getHitbox().width, 72);
 			//la posicion esta ajustada pero no se por qué cae abajo del piso*/
-	
 	
 	public void setAnterior(State anterior) {
 		this.estadoAnterior = anterior;
@@ -47,19 +40,18 @@ public class Invulnerable extends State{
 	public Sprite getSprite() {
 		return this.getSprite();
 	}
+	
 	@Override
-	public void aumentarASuperMario() {
-		
+	public void recibirSuperChampiñon() {
+		jugador.getInfo().actualizarPuntaje(this.obtenerPuntosSChamp());
 	}
 	@Override
-	public void aumentarAFuego() {
-	
+	public void recibirFlorDeFuego() {
+		jugador.getInfo().actualizarPuntaje(this.obtenerPuntosFFuego());
 	}
 	
-	public void aumentarAInvulnerable() {
-		estadoAnterior = jugador.getState();
-		jugador.setState(this);
-		tiempoActivacion = System.currentTimeMillis(); 
+	public void recibirEstrella() {
+		jugador.getInfo().actualizarPuntaje(this.obtenerPuntosEstrella());
 	}
 	
 	public void actualizar() {
@@ -71,10 +63,11 @@ public class Invulnerable extends State{
 	
 	public void recibirDaño() {
 		estadoAnterior.activar();
+		//en algun lugar se esta llamando erroneamente a jugador.getInfo().recibirDaño() y reinicia cuando no deberia
 	}
 	
 	public int obtenerPuntosEstrella() {
-		return estadoAnterior.obtenerPuntosEstrella();
+		return 35;
 	}
 	
 	public int obtenerPuntosSChamp() {
@@ -88,9 +81,10 @@ public class Invulnerable extends State{
 	public void setJugador(Jugador jugador) {
         this.jugador = jugador;
     }
-	
-	public boolean esGrande() {
-		return true;
+
+	@Override
+	protected boolean esGrande() {
+		return false;
 	}
 
 }

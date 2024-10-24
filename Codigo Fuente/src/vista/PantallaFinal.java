@@ -10,11 +10,14 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
-import vista.ConstantesPantalla;
 
 
 public class PantallaFinal extends JPanel{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected JLabel imagenGameOver;
 	protected JLabel imagenTimeUp;
 	protected ControladorPantallas controlador;

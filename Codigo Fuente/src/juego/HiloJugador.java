@@ -16,17 +16,17 @@ public class HiloJugador extends Thread {
 	
 	 public void run(){
 	 	while(enEjecucion){
-	 		controlador.getNivelActual().getJugador().actualizar();
-	 		colisiones.detectarColision(); //luego de moverse chequea las colisiones
-	 		try {
-				Thread.sleep(16); //se aproxima a 60fps
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	 	
+	 		 synchronized (controlador.getNivelActual().getEnemigos()) { // Sincroniza el acceso a la lista de enemigos
+	             controlador.getNivelActual().getJugador().actualizar();              
+	             colisiones.detectarColision(); 
+	         }
+
+	         try {
+	             Thread.sleep(16); // Aproximadamente 60fps
+	         } catch (InterruptedException e) {
+	             e.printStackTrace();
+	         }
 	 	} 
-	 
 	 }
 	 
 	 public void detener() {

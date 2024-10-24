@@ -1,11 +1,15 @@
 package plataformas;
 
 import archivos.Sprite;
-import colisiones.Visitable;
-import colisiones.Visitor;
+import colisiones.VisitorPlataformas;
+import elementos.BolaDeFuego;
+import elementos.Elemento;
+import elementos.Enemigo;
 import elementos.Plataforma;
+import elementos.PowerUp;
+import juego.Jugador;
 
-public class LadrilloSolido extends Plataforma implements Visitable{
+public class LadrilloSolido extends Plataforma implements VisitorPlataformas{
 	
 	public LadrilloSolido(int x, int y, Sprite imagen) {
 		super(x, y, imagen);
@@ -14,9 +18,38 @@ public class LadrilloSolido extends Plataforma implements Visitable{
 	public void morir() {
 		//imagen.eliminar();
 	}
-	
-	public void aceptarVisita(Visitor visitor) {
-		//visitor.visitar(this);
+
+	@Override
+	public void visitar(Jugador jugador) {
+		//chequeo si la colision es de abajo (y en superMario) o no. En ambos casos el jugador choca contra el bloque, pero en uno se rompe
+		//romperse: animacion de romperse y morir
+		
 	}
 
+	@Override
+	public void visitar(Enemigo enemigo) {
+		//enemigo choca contra bloque
+		
+	}
+
+	@Override
+	public void visitar(PowerUp power) {
+		//powerUp choca contra bloque. Algunos caminan normal, otros rebotan (caso aparte?): estrella
+		
+		
+	}
+
+	@Override
+	public void visitar(BolaDeFuego bola) {
+		//la bola de fuego choca contra el bloque, va rebotando (no se si es algo que importe aca o es algo interno a bola de fuego)
+		//si lo choca de costado muere la bola
+		
+	}
+
+	@Override
+	public void visitar(Elemento elem) {
+		//dejarlo vacio
+		
+	}
+	
 }

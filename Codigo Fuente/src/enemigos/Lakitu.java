@@ -1,7 +1,10 @@
 package enemigos;
 
 import archivos.Sprite;
-import colisiones.Visitor;
+import colisiones.VisitorAJugador;
+import colisiones.VisitorBolaDeFuego;
+import colisiones.VisitorPlataformas;
+import elementos.Elemento;
 import elementos.Enemigo;
 import juego.ControladorPartida;
 import parseo.GameFactory;
@@ -47,13 +50,15 @@ public class Lakitu extends Enemigo{
 	}
 	
 	public void visitar (Jugador jugador) {
+		//Si es de arriba, muere. Sino, mata a jugador
 		int puntosDaño = this.puntosQueResta();
 		jugador.getInfo().actualizarPuntaje(-puntosDaño);
 		jugador.getState().recibirDaño();
 	}
 	
-	public void aceptarVisita (Visitor visitor) {
-		//visitor.visitar (this);
+	@Override
+	public void visitar(Elemento elem) {
+		// vacio		
 	}
 	
 	public int recibirDaño() {
@@ -90,5 +95,22 @@ public class Lakitu extends Enemigo{
 	public void setControlador(ControladorPartida partida) {
 		this.controladorPartida = partida;
 	}
+	
+	@Override
+	public void aceptarVisita(VisitorAJugador visitor) {
+		// entra a este metodo cuando el visitor es enemigo, powerUp o vacio. Solo sucede con vacio
+		visitor.visitar(this);
+	}
 
+	@Override
+	public void aceptarVisita(VisitorPlataformas visitor) {
+		// entra a este metodo cuando el visitor sea plataforma (sin incluir vacio)
+		visitor.visitar(this);
+	}
+
+	@Override
+	public void aceptarVisita(VisitorBolaDeFuego visitor) {
+		// entra a este metodo cuando el visitor sea una bola de fuego
+		visitor.visitar(this);
+	}
 }

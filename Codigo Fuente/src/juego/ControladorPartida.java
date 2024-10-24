@@ -39,8 +39,10 @@ public class ControladorPartida {
 		this.nivelActual = this.creadorNivel.getNivel();
 		nivelActual.setControladorPartida(this);
 		registrarObservers();
+		
 		colisiones = new ControladorColisiones(nivelActual);
-		hiloJugador = new HiloJugador(this,colisiones); /*agrege el parametro colisiones y por ende su atributo*/
+		
+		hiloJugador = new HiloJugador(this,colisiones); /*agregue el parametro colisiones y por ende su atributo*/
 		hiloJugador.start();
 		hiloEnemigo = new HiloEnemigo(this);
 		hiloEnemigo.start();
@@ -52,6 +54,7 @@ public class ControladorPartida {
 	
 	public void reiniciarNivel(){
 		hiloJugador.detener();
+		//hiloEnemigo.detener();
 		int monedas = this.nivelActual.getJugador().getMonedas();
 		int puntaje = this.nivelActual.getJugador().getPuntaje();
 		int vidas = this.nivelActual.getJugador().getVida();
@@ -92,7 +95,7 @@ public class ControladorPartida {
 	}
 	private void registrarObserversEnemigos(List<Enemigo> enem){
 		for(Enemigo elemento : enem) {
-			Observer observer = pantallas.registrarElemento(elemento);
+			Observer observer = pantallas.registrarElemento(elemento);	        
 			elemento.registrarObserver(observer);
 		}
 	}
@@ -117,6 +120,7 @@ public class ControladorPartida {
 	
 	public void gameOver(int puntajeFinal){
 		hiloJugador.detener();
+		hiloEnemigo.detener();
 		this.pantallas.mostrarPantallaGameOver();
 		//this.nivelActual = null;
 	}

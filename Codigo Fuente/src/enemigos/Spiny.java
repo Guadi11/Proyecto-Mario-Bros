@@ -1,7 +1,10 @@
 package enemigos;
 
 import archivos.Sprite;
-import colisiones.Visitor;
+import colisiones.VisitorAJugador;
+import colisiones.VisitorBolaDeFuego;
+import colisiones.VisitorPlataformas;
+import elementos.Elemento;
 import elementos.Enemigo;
 import juego.Jugador;
 
@@ -36,13 +39,15 @@ public class Spiny extends Enemigo{
 	}
 		
 	public void visitar (Jugador jugador) {
+		//siempre hace daño al jugador, no importa de donde sea la colision
 		int puntosDaño = this.puntosQueResta();
 		jugador.getInfo().actualizarPuntaje(-puntosDaño);
 		jugador.getState().recibirDaño();
 	}
 	
-	public void aceptarVisita (Visitor visitor) {
-		//visitor.visitar(this);
+	@Override
+	public void visitar(Elemento elem) {
+		// vacio
 	}
 	
 	public int recibirDaño() {
@@ -57,4 +62,23 @@ public class Spiny extends Enemigo{
 	public int puntosQueDa() {
 		return 0;
 	}
+	
+	@Override
+	public void aceptarVisita(VisitorAJugador visitor) {
+		// entra a este metodo cuando el visitor es enemigo, powerUp o vacio. Solo sucede con vacio
+		visitor.visitar(this);
+	}
+
+	@Override
+	public void aceptarVisita(VisitorPlataformas visitor) {
+		// entra a este metodo cuando el visitor sea plataforma (sin incluir vacio)
+		visitor.visitar(this);
+	}
+
+	@Override
+	public void aceptarVisita(VisitorBolaDeFuego visitor) {
+		// entra a este metodo cuando el visitor sea una bola de fuego
+		visitor.visitar(this);
+	}
+	
 }

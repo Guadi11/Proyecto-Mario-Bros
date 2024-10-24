@@ -1,5 +1,8 @@
 package colisiones;
 
 public interface Visitable {
-abstract void aceptarVisita(Visitor visitor);
+	
+	public void aceptarVisita(VisitorAJugador visitor);
+	public void aceptarVisita(VisitorPlataformas visitor);
+	public void aceptarVisita(VisitorBolaDeFuego visitor);
 }

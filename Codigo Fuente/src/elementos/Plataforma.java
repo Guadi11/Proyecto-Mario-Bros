@@ -3,12 +3,17 @@ package elementos;
 import archivos.Sprite;
 import juego.Nivel;
 
-public abstract class Plataforma extends Estatico {
+public abstract class Plataforma extends Estatico{
+	
 	protected Nivel nivel;
 
-	public Plataforma (int x, int y, Sprite im) {
-		super (x,y,im);
+	public Plataforma (int x, int y, Sprite imagen) {
+		super (x,y,imagen);
 	}
-	public void setNivel(Nivel n) {}
+	
+	public void setNivel(Nivel nivel) {
+		this.nivel = nivel;
+	}
+	
 	public void morir() {};
 }

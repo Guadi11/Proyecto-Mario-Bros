@@ -1,10 +1,6 @@
 package states;
 
 import archivos.Sprite;
-import elementos.PowerUp;
-import powerUps.SuperChampiñon;
-import powerUps.Estrella;
-import powerUps.FlorDeFuego;
 import juego.Jugador;
 
 
@@ -41,21 +37,25 @@ public class Normal extends State {
 		}
 	}*/
 	
-	public void aumentarASuperMario() {
+	public void recibirSuperChampiñon() {
+		jugador.getInfo().actualizarPuntaje(this.obtenerPuntosSChamp());
 		this.getSuperMario().activar();			
 	}
 	
-	public void aumentarAFuego() {
-		this.getFuego().activar();
+	public void recibirFlorDeFuego() {
+		jugador.getInfo().actualizarPuntaje(this.obtenerPuntosFFuego());
+		this.getSuperMario().activar();
 	}
 	
-	public void aumentarAInvulnerable() {
+	public void recibirEstrella() {
+		jugador.getInfo().actualizarPuntaje(this.obtenerPuntosEstrella());
+		this.getInvulnerable().setAnterior(this);
 		this.getInvulnerable().activar();
 	}
 	
 	public void recibirDaño() {
 		jugador.getInfo().restarVida();
-		//jugador.sonidoMuerte().reproducirSonido();
+		//jugador.sonidoMuerte().reproducirSonido(); //OJO yo diria que esto este dentro del restarVida()
 	}
 	
 	public int obtenerPuntosEstrella() {

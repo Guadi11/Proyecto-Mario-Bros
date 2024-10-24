@@ -1,9 +1,5 @@
 package archivos;
 
-import java.io.File;
-import java.net.URL;
-
-import javax.swing.ImageIcon;
 
 public class Sprite {
 
@@ -20,6 +16,7 @@ public class Sprite {
 	public void setSprite(String ruta) {
 		this.rutaImagen = ruta;
 	}
+	/*
 	private void cargarImagen() {
 		try {
             URL imageUrl = getClass().getClassLoader().getResource(rutaImagen);
@@ -31,5 +28,5 @@ public class Sprite {
             System.err.println("Error al intentar cargar la imagen: " + rutaImagen);
         }
     }
-
+	*/
 }

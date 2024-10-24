@@ -1,7 +1,10 @@
 package enemigos;
 
 import archivos.Sprite;
-import colisiones.Visitor;
+import colisiones.VisitorAJugador;
+import colisiones.VisitorBolaDeFuego;
+import colisiones.VisitorPlataformas;
+import elementos.Elemento;
 import elementos.Enemigo;
 import juego.Jugador;
 
@@ -14,11 +17,12 @@ public class Piranha extends Enemigo{
 	private long tiempoCambioEstado;
 	private final long duracionEspera = 2000;
 	
-	public Piranha(int x, int y, Sprite im) {
-		super(x, y, im);
+	public Piranha(int x, int y, Sprite imagen) {
+		super(x, y, imagen);
 		iniciarMovimientoPiranha();
-		tiempoCambioEstado=System.currentTimeMillis();
+		tiempoCambioEstado = System.currentTimeMillis();
 	}
+	
 	public void iniciarMovimientoPiranha() {
 		long ahora = System.currentTimeMillis();
 		switch (estadoPiranha) {
@@ -58,12 +62,15 @@ public class Piranha extends Enemigo{
 			//cambiar imagenes
 	}
 	public void visitar(Jugador jugador) {
+		//siempre hace daño al jugador, no importa de donde sea la colision
 		int restarPuntos = puntosQueResta();
 		jugador.getInfo().actualizarPuntaje(-restarPuntos);
 		jugador.getState().recibirDaño();
 	}
-	public void aceptarVisita(Visitor visitor) {
-		//visitor.visitar(this);
+	
+	@Override
+	public void visitar(Elemento elem) {
+		// vacio
 	}
 
 	public int recibirDaño() {
@@ -78,5 +85,24 @@ public class Piranha extends Enemigo{
 	public int puntosQueDa() {
 		return 30;
 	}
+	
+	@Override
+	public void aceptarVisita(VisitorAJugador visitor) {
+		// entra a este metodo cuando el visitor es enemigo, powerUp o vacio. Solo sucede con vacio
+		visitor.visitar(this);
+	}
+
+	@Override
+	public void aceptarVisita(VisitorPlataformas visitor) {
+		// entra a este metodo cuando el visitor sea plataforma (sin incluir vacio)
+		visitor.visitar(this);
+	}
+
+	@Override
+	public void aceptarVisita(VisitorBolaDeFuego visitor) {
+		// entra a este metodo cuando el visitor sea una bola de fuego
+		visitor.visitar(this);
+	}
+
 
 }

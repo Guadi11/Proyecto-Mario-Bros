@@ -1,12 +1,18 @@
 package plataformas;
 
 import archivos.Sprite;
+import colisiones.VisitorPlataformas;
+import elementos.BolaDeFuego;
+import elementos.Elemento;
+import elementos.Enemigo;
 import elementos.Plataforma;
+import elementos.PowerUp;
 import enemigos.Piranha;
 import juego.ControladorPartida;
+import juego.Jugador;
 import parseo.GameFactory;
 
-public class Tuberia extends Plataforma{
+public class Tuberia extends Plataforma implements VisitorPlataformas{
 	protected Piranha piranha;
     protected boolean poseePiranha;
     protected GameFactory fabrica;
@@ -23,11 +29,13 @@ public class Tuberia extends Plataforma{
     		crearPiranha();
     	}
     }
+    
 	public void crearPiranha() {
 		piranha = fabrica.crearPiranha(this.posicionX-1, this.posicionY); //editar, seria el bloque de arriba
 		this.nivel.agregarEnemigo(piranha);
 		controladorPartida.registrarObserverElementoIndividual(piranha);
 	}	
+	
 	//Set
     public void setFabrica(GameFactory factory) {
     	this.fabrica = factory;
@@ -36,4 +44,34 @@ public class Tuberia extends Plataforma{
     public void setControlador(ControladorPartida controlador) {
     	this.controladorPartida = controlador;
     }
+
+	@Override
+	public void visitar(Jugador jugador) {
+		//jugador choca contra tuberia (redefinir pos)
+		
+	}
+
+	@Override
+	public void visitar(Enemigo enemigo) {
+		//si choca al costado le cambia la direccion. Si es arriba solo funcion de piso
+		
+	}
+
+	@Override
+	public void visitar(PowerUp power) {
+		//si choca al costado le cambia la direccion. Si es arriba solo funcion de piso
+		
+	}
+
+	@Override
+	public void visitar(BolaDeFuego bola) {
+		//si choca al costado, bola de fuego muere. Si es arriba, sigue rebotando
+		
+	}
+
+	@Override
+	public void visitar(Elemento elem) {
+		//dejarlo vacio
+		
+	}
 }

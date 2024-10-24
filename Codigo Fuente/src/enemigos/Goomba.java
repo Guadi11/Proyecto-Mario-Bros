@@ -1,7 +1,10 @@
 package enemigos;
 
 import archivos.Sprite;
-import colisiones.Visitor;
+import colisiones.VisitorAJugador;
+import colisiones.VisitorBolaDeFuego;
+import colisiones.VisitorPlataformas;
+import elementos.Elemento;
 import elementos.Enemigo;
 import juego.Jugador;
 
@@ -12,6 +15,7 @@ public class Goomba extends Enemigo{
 	}
 	
 	public void visitar (Jugador jugador) {
+		//Si es de arriba, muere. Sino, mata a jugador
 		if (jugador.esColisionDesdeArriba(this)) { //aca gestionar que jugador elimino a goomba
 			System.out.println("Goomba recibio daño desde arriba.");
 		}
@@ -23,18 +27,7 @@ public class Goomba extends Enemigo{
 					jugador.getInfo().actualizarPuntaje(-puntosDaño);
 				}
 				else jugador.getInfo().actualizarPuntaje(-puntajeActual);
-	
 			}
-	}
-	
-	
-	public void aceptarVisita (Visitor visitor) {
-		//visitor.visitar(this);
-	}
-	
-	public int recibirDaño() {
-		this.morir();
-		return this.puntosQueDa();
 	}
 	
 	public int puntosQueResta() {
@@ -61,4 +54,28 @@ public class Goomba extends Enemigo{
 		setHitbox(0,0);
 		//this.nivel.removerElemento(this);
 	}
+
+	public void aceptarVisita(VisitorAJugador visitor) {
+		// entra a este metodo cuando el visitor es enemigo, powerUp o vacio. Solo sucede con vacio
+		visitor.visitar(this);
+		
+	}
+
+	public void aceptarVisita(VisitorPlataformas visitor) {
+		// entra a este metodo cuando el visitor sea plataforma (sin incluir vacio)
+		visitor.visitar(this);
+		
+	}
+
+	public void aceptarVisita(VisitorBolaDeFuego visitor) {
+		// entra a este metodo cuando el visitor sea una bola de fuego
+		visitor.visitar(this);
+		
+	}
+
+	@Override
+	public void visitar(Elemento elem) {
+		//vacio
+	}
+	
 }

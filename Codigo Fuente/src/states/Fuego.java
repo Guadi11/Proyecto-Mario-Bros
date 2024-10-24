@@ -1,65 +1,51 @@
 package states;
 
 import archivos.Sprite;
-import elementos.PowerUp;
-import powerUps.Estrella;
 import juego.Jugador;
 
 public class Fuego extends SuperMario{
 	
-	//protected List<BolaDeFuego> bolasDeFuego = new ArrayList<>();
 	protected Sprite sprite;
 	protected State estadoAnterior;
 	
 	
 	public Fuego(Jugador jugador) {
 		super(jugador);
-
 	}
 	
 	public void activar() {
-		estadoAnterior = jugador.getState();
 		jugador.setState(this);
-        //tiempoActivacion = System.currentTimeMillis();
-        //this.sprite=new Sprite(null);
-
-        // Usar el método esGrande() para determinar el sprite
-         if(estadoAnterior.esGrande()) {
-           // this.sprite = new Sprite("imagenes/modoUno/mariofuego.png");
-            jugador.getSprite().setSprite("imagenes/modoUno/mariofuego.png");
-         } else {
-           //this.sprite = new Sprite("imagenes/modoUno/invulnerablemini.png");
-           jugador.getSprite().setSprite("/imagenes/modoUno/supermario.png");}
-        }
-		
-	
+		jugador.getSprite().setSprite("imagenes/modoUno/mariofuego.png");
+		//jugador.actualizarPosicionHitbox(); //actualizar pos jugador, alto y ancho de hitbox en un metodo aparte
+	}	
 	
 	public Sprite getSprite() {
-		this.sprite = new Sprite("imagenes/modoUno/invulnerable.png");
+		this.sprite = new Sprite("imagenes/modoUno/invulnerable.png"); //?
 		return sprite;
 	}
-	
-	//esto va dentro de Jugador, no aca
+
 	/*
 	public void disparar() { 
         lanzarBolaDeFuego();
     }
 	
     public void lanzarBolaDeFuego() {
-        BolaDeFuego nuevaBola = new BolaDeFuego(jugador.getPosX(), jugador.getPosY(), null);
-        bolasDeFuego.add(nuevaBola);
+        BolaDeFuego nuevaBola = new BolaDeFuego(jugador.getPosX(), jugador.getPosY(), null); //Crearlo bien con la fabrica
     }
     */
+	
 	@Override
-	public void aumentarASuperMario() {
-		
-	}
-	@Override
-	public void aumentarAFuego() {
-		
+	public void recibirSuperChampiñon() {
+		jugador.getInfo().actualizarPuntaje(this.obtenerPuntosSChamp());
 	}
 	
-    public void aumentarAInvulnerable() {
+	@Override
+	public void recibirFlorDeFuego() {
+		jugador.getInfo().actualizarPuntaje(this.obtenerPuntosFFuego());
+	}
+	
+    public void recibirEstrella() {
+    	jugador.getInfo().actualizarPuntaje(this.obtenerPuntosEstrella());
     	this.getInvulnerable().setAnterior(this);
     	this.getInvulnerable().activar();
     }
@@ -73,8 +59,6 @@ public class Fuego extends SuperMario{
     }
     
     public boolean esGrande() {
-		return false;
+		return true;
 	}
-    //jugador.setState(this);
-	//jugador.getSprite().setSprite("imagenes/modoUno/mariofuego.png");
 }

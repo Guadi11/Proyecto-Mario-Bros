@@ -2,7 +2,6 @@ package elementos;
 
 import java.awt.Rectangle;
 import archivos.Sprite;
-import juego.Jugador;
 import observers.Observer;
 
 public abstract class Elemento implements ElementoLogico{
@@ -55,6 +54,7 @@ public abstract class Elemento implements ElementoLogico{
 	
 	public void registrarObserver(Observer observer) {
 		this.observer = observer;
+
 	}
 	
 	public void eliminarObserver() {
@@ -62,6 +62,7 @@ public abstract class Elemento implements ElementoLogico{
 	
 	public void notificar() {
 		this.observer.actualizar();
+		
 	}
 	public void morir() {
 		setHitbox(0,0);

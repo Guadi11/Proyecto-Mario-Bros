@@ -1,14 +1,17 @@
 package plataformas;
 
 import archivos.Sprite;
-import colisiones.Visitable;
-import colisiones.Visitor;
+import colisiones.VisitorPlataformas;
+import elementos.BolaDeFuego;
+import elementos.Elemento;
+import elementos.Enemigo;
 import elementos.Plataforma;
 import elementos.PowerUp;
 import juego.ControladorPartida;
+import juego.Jugador;
 import parseo.GameFactory;
 
-public class BloqueDePregunta extends Plataforma implements Visitable{
+public class BloqueDePregunta extends Plataforma implements VisitorPlataformas{
 
 	protected String powerUp;
 	protected GameFactory fabrica;
@@ -48,10 +51,7 @@ public class BloqueDePregunta extends Plataforma implements Visitable{
 			controladorPartida.registrarObserverElementoIndividual(creado);
 		}
 	}
-	
-	public void aceptarVisita (Visitor visitor) {
-		//visitor.visitar(this);
-	}
+
 	public void morir() {
 		//imagen.changeSprite("Bloque apagado")
 		this.generarPowerUp();
@@ -64,6 +64,7 @@ public class BloqueDePregunta extends Plataforma implements Visitable{
 	public int getPosX() {
 		return posicionX;
 	}
+	
 	public int getPosY() {
 		return posicionY;
 	}
@@ -80,4 +81,37 @@ public class BloqueDePregunta extends Plataforma implements Visitable{
 	public void setControlador(ControladorPartida partida) {
 		this.controladorPartida = partida;
 	}
+
+	@Override
+	public void visitar(Jugador jugador) {
+		//chequeo si la colision es de abajo o no. 
+		//En ambos casos el jugador choca contra el bloque, pero desde abajo genera powerUp y cambia imagen
+		
+	}
+
+	@Override
+	public void visitar(Enemigo enemigo) {
+		//enemigo choca contra bloque
+		
+	}
+
+	@Override
+	public void visitar(PowerUp power) {
+		//powerUp choca contra bloque. Algunos caminan normal, otros rebotan (caso aparte?): estrella
+		
+	}
+
+	@Override
+	public void visitar(BolaDeFuego bola) {
+		//la bola de fuego choca contra el bloque, va rebotando (no se si es algo que importe aca o es algo interno a bola de fuego)
+		
+	}
+
+	@Override
+	public void visitar(Elemento elem) {
+		//dejarlo vacio
+		
+	}
+
+
 }

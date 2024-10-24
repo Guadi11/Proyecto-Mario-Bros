@@ -3,3 +3,8 @@
 /Visitable.class
 /Visitor.class
 /ControladorColisiones.class
+/VisitorEnemigos.class
+/VisitorPowerUps.class
+/VisitorPlataformas.class
+/VisitorAJugador.class
+/VisitorBolaDeFuego.class

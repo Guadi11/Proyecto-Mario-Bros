@@ -13,8 +13,7 @@ public class ControladorColisiones {
 	public void detectarColision() {
 		for (Enemigo e:nivel.getEnemigos()) {
 			if (nivel.getJugador().getHitbox().intersects(e.getHitbox())) {
-				nivel.getJugador().aceptarVisita(e);
-				
+				nivel.getJugador().aceptarVisita(e);	
 			}	
 		}
 			for (PowerUp e:nivel.getPowerUps()) {

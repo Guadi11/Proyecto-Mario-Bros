@@ -1,11 +1,13 @@
-		package elementos;
+package elementos;
 
 import archivos.Sprite;
-import colisiones.Visitor;
+import colisiones.Visitable;
+import colisiones.VisitorAJugador;
+import colisiones.VisitorBolaDeFuego;
+import colisiones.VisitorPlataformas;
 import juego.InfoJugador;
-import juego.Jugador;
 
-public class BolaDeFuego extends Movible implements Visitor{
+public class BolaDeFuego extends Movible implements VisitorBolaDeFuego, Visitable{
 	protected InfoJugador jugador;
 	private int velocidadX;
     private int velocidadY;
@@ -52,17 +54,34 @@ public class BolaDeFuego extends Movible implements Visitor{
 		}
 	}
 	
-	public void visitar (Enemigo enemigo) {
+	public void visitar(Enemigo enemigo) {
+		//no importa de donde sea la colision, los mata de una a todos
 		int puntosPorMatar = enemigo.puntosQueDa();
 		enemigo.morir();
 		jugador.actualizarPuntaje(puntosPorMatar);
 	}
+	
+	@Override
+	public void visitar(Elemento elem) {
+		//vacio
+	}
 
 	@Override
-	public void visitar(Jugador jugador) {
-		// TODO Auto-generated method stub
-		
+	public void aceptarVisita(VisitorAJugador visitor) {
+		// entra a este metodo cuando el visitor es enemigo, powerUp o vacio. Solo sucede con vacio
+		visitor.visitar(this);
 	}
-       
+
+	@Override
+	public void aceptarVisita(VisitorPlataformas visitor) {
+		// entra a este metodo cuando el visitor sea plataforma (sin incluir vacio)
+		visitor.visitar(this);
+	}
+
+	@Override
+	public void aceptarVisita(VisitorBolaDeFuego visitor) {
+		// entra a este metodo cuando el visitor sea una bola de fuego. No entra nunca aca
+		visitor.visitar(this);
+	}
 
 }

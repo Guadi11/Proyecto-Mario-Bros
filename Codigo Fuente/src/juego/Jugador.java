@@ -3,25 +3,20 @@ package juego;
 import archivos.Sonido;
 import archivos.Sprite;
 import colisiones.Visitable;
-import colisiones.Visitor;
+import colisiones.VisitorAJugador;
+import colisiones.VisitorBolaDeFuego;
+import colisiones.VisitorPlataformas;
 import elementos.Elemento;
 import elementos.ElementoJugador;
-import elementos.Enemigo;
 import elementos.Movible;
-import elementos.Plataforma;
-import enemigos.Buzzy;
-import enemigos.Goomba;
-import enemigos.Koopa;
-import enemigos.Lakitu;
-import enemigos.Piranha;
 import states.State;
 import states.SuperMario;
 import states.Fuego;
 import states.Invulnerable;
 import states.Normal;
-import states.SuperMario;
 
-public class Jugador extends Movible implements Visitor, Visitable, ElementoJugador{
+
+public class Jugador extends Movible implements Visitable, ElementoJugador{
 	
 	protected State estado;
 	protected InfoJugador info;
@@ -36,8 +31,12 @@ public class Jugador extends Movible implements Visitor, Visitable, ElementoJuga
 		velY = 0;
 		isJumped = false;
 		info = new InfoJugador(this);
-		estado = new Normal(this);
 		
+		//genera problema no inicializar aca adentro el estado?
+		inicializarEstados();
+	}
+	
+	private void inicializarEstados() {
 		Normal normal = new Normal(this);
 		SuperMario superMario = new SuperMario(this);
 	    Fuego fuego = new Fuego(this);
@@ -60,8 +59,8 @@ public class Jugador extends Movible implements Visitor, Visitable, ElementoJuga
 	    invulnerable.setFuego(fuego);
 	    
 	    estado = normal;
-		
 	}
+	
 	public void setState(State estado) {
 		this.estado = estado;
 	}
@@ -105,11 +104,10 @@ public class Jugador extends Movible implements Visitor, Visitable, ElementoJuga
 	        posicionX = 0; 
 	    }else if (posicionX > limite_derecho) {
 	    	posicionX = limite_derecho;	
-	    	}
+	    }
+		
 		actualizarPosicionHitbox();
 		notificar();
-
-
     }
 	
 	public void moverse() {
@@ -122,17 +120,6 @@ public class Jugador extends Movible implements Visitor, Visitable, ElementoJuga
 	        isJumped = true;
 	        sonidoSalto().reproducirSonido();
 	    }	
-	}
-	public void aceptarVisita(Visitor visitor) {
-		visitor.visitar(this);
-	}
-	public void visitar(Enemigo enemigo) {
-		System.out.println("aver");
-		/*int puntosGanados=enemigo.recibirDaño();
-		info.actualizarPuntaje(puntosGanados);*/
-	}
-	public void visitar (Plataforma plataforma) {
-		plataforma.morir();
 	}
 		
 	//Get
@@ -163,19 +150,34 @@ public class Jugador extends Movible implements Visitor, Visitable, ElementoJuga
 		//return getHitbox().getMaxY() <= elementoAVisitar.getHitbox().getMinY();
 		/*return getHitbox().getMaxY() <= elementoAVisitar.getHitbox().getMinY() && 
 				getHitbox().getMaxY() >= elementoAVisitar.getHitbox().getMinY() - getHitbox().getHeight();*/
-		return hitbox.getMaxY()<=elementoAVisitar.getHitbox().getMinY();
+		return hitbox.getMaxY() <= elementoAVisitar.getHitbox().getMinY();
 	}
-	public void visitar(Jugador jugador) {
-		
-	}
+
 	public Sonido sonidoSalto() {
 		Sonido sonidoSalto = new Sonido("audio/jump.wav");
 		return sonidoSalto;
 	}
+	
 	public Sonido sonidoMuerte() {
 		Sonido sonidoMuerte = new Sonido("audio/marioDies.wav");
 		return sonidoMuerte;
 	}
-		
+
+	@Override
+	public void aceptarVisita(VisitorAJugador visitor) {
+		//entra en este metodo cuando el visitor sea enemigo, powerUp o vacio
+		visitor.visitar(this);
+	}
+
+	@Override
+	public void aceptarVisita(VisitorPlataformas visitor) {
+		// entra en este metodo cuando el visitor sea una plataforma (no vacio)
+		visitor.visitar(this);
+	}
+
+	@Override
+	public void aceptarVisita(VisitorBolaDeFuego visitor) {
+		// entra a este metodo cuando el visitor sea una bola de fuego, lo cual nunca sucede
+	}
 }
 
