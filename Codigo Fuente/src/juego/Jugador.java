@@ -1,5 +1,10 @@
 package juego;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+
 import archivos.Sonido;
 import archivos.Sprite;
 import colisiones.Visitable;
@@ -9,6 +14,7 @@ import colisiones.VisitorPlataformas;
 import elementos.Elemento;
 import elementos.ElementoJugador;
 import elementos.Movible;
+import observers.AdaptadorPosicionPixel;
 import states.State;
 import states.SuperMario;
 import states.Fuego;
@@ -83,8 +89,11 @@ public class Jugador extends Movible implements Visitable, ElementoJugador{
 	}
 	
 	public void actualizar() {
-		int altura_piso = 441;
-		int limite_derecho = 7471;
+		int altura_piso = AdaptadorPosicionPixel.transformarY(441); 
+		int limite_derecho =  AdaptadorPosicionPixel.transformarX(7471);
+		
+		//int altura_piso = 441;
+		//int limite_derecho = 7471;
 		
 		/*if(estado instanceof SuperMario)
 			altura_piso = 405;*/
@@ -92,8 +101,8 @@ public class Jugador extends Movible implements Visitable, ElementoJugador{
 		posicionX += velX;
 		posicionY += velY;
 		
-		if (posicionY < altura_piso) {
-		        velY += 1; 
+		if (posicionY > altura_piso) {
+		        velY -= 1; 
 		}else {
 		        posicionY = altura_piso;
 		        velY = 0; 
@@ -116,7 +125,7 @@ public class Jugador extends Movible implements Visitable, ElementoJugador{
 
 	public void saltar() {
 		if (!isJumped) { 
-	        velY = -19; 
+	        velY = 19; 
 	        isJumped = true;
 	        sonidoSalto().reproducirSonido();
 	    }	
@@ -147,10 +156,12 @@ public class Jugador extends Movible implements Visitable, ElementoJugador{
 		return this.velX;
 	}
 	public boolean esColisionDesdeArriba(Elemento elementoAVisitar) {
+		//boolean colision = AdaptadorPosicionPixel.transformarY((int) this.hitbox.getMinY()) >= AdaptadorPosicionPixel.transformarY((int) (elementoAVisitar.getHitbox().getHeight()/2));
+		boolean colision = (this.posicionY - this.hitbox.getHeight()) >= (elementoAVisitar.getPosY());
 		//return getHitbox().getMaxY() <= elementoAVisitar.getHitbox().getMinY();
 		/*return getHitbox().getMaxY() <= elementoAVisitar.getHitbox().getMinY() && 
 				getHitbox().getMaxY() >= elementoAVisitar.getHitbox().getMinY() - getHitbox().getHeight();*/
-		return hitbox.getMaxY() <= elementoAVisitar.getHitbox().getMinY();
+		return colision;
 	}
 
 	public Sonido sonidoSalto() {
@@ -179,5 +190,6 @@ public class Jugador extends Movible implements Visitable, ElementoJugador{
 	public void aceptarVisita(VisitorBolaDeFuego visitor) {
 		// entra a este metodo cuando el visitor sea una bola de fuego, lo cual nunca sucede
 	}
+		
 }
 

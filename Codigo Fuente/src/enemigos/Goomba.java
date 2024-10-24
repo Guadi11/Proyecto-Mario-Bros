@@ -16,10 +16,13 @@ public class Goomba extends Enemigo{
 	
 	public void visitar (Jugador jugador) {
 		//Si es de arriba, muere. Sino, mata a jugador
-		if (jugador.esColisionDesdeArriba(this)) { //aca gestionar que jugador elimino a goomba
+		if (this.fueColisionArriba()) { //aca gestionar que jugador elimino a goomba
 			System.out.println("Goomba recibio daño desde arriba.");
+			jugador.getInfo().actualizarPuntaje(this.puntosQueDa());
+			morir();
 		}
 			else {
+				System.out.println("colision por el costado");
 				int puntosDaño = this.puntosQueResta();
 				int puntajeActual = jugador.getInfo().getPuntaje();
 				jugador.getState().recibirDaño();

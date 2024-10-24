@@ -28,8 +28,11 @@ public abstract class ObserverGrafico extends JLabel implements Observer{
 	}
 	
 	protected void actualizarPosicionTamaño() {
-		int x = this.elemObservado.getPosX(); //falta adaptarlo
-		int y = this.elemObservado.getPosY(); //falta adaptarlo
+		int x = AdaptadorPosicionPixel.transformarX(this.elemObservado.getPosX());
+		int y = AdaptadorPosicionPixel.transformarY(this.elemObservado.getPosY());
+		
+		//int x = this.elemObservado.getPosX(); //falta adaptarlo
+		//int y = this.elemObservado.getPosY(); //falta adaptarlo
 		int ancho = this.getIcon().getIconWidth();
 		int alto = this.getIcon().getIconHeight();
 		this.setBounds(x, y, ancho, alto);

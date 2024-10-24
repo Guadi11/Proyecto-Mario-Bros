@@ -12,6 +12,7 @@ import plataformas.*;
 import enemigos.*;
 import powerUps.*;
 import juego.*;
+import observers.AdaptadorPosicionPixel;
 
 public class NivelBuilder {
 	protected GameFactory fabrica;
@@ -69,8 +70,11 @@ public class NivelBuilder {
 		    	for (int y = 0; y < alto; y++) {
 	
 		            int colorPixelActual = mapImage.getRGB(x, y);
-		            int xLocation = (int) (x*multiplicadorPixel);
-		            int yLocation = (int) (y*multiplicadorPixel);
+		            
+		            int xLocation = AdaptadorPosicionPixel.transformarX((int) (x*multiplicadorPixel));
+		            int yLocation = AdaptadorPosicionPixel.transformarY((int) (y*multiplicadorPixel));
+		            //int xLocation = (int) (x*multiplicadorPixel);
+		            //int yLocation = (int) (y*multiplicadorPixel);
 		
 		            if (colorPixelActual == jugador) {
 		            	Jugador jugadorCreado = fabrica.crearJugador(xLocation, yLocation);
@@ -89,7 +93,7 @@ public class NivelBuilder {
 	                	bloqueCreado.setPowerUp("Moneda");
 	                	nivelCreado.agregarPlataforma(bloqueCreado);
 	                }else if (colorPixelActual == tuberiaSinPiranha) {
-	                	Tuberia tuberiaCreada = fabrica.crearTuberias(xLocation, yLocation-36);
+	                	Tuberia tuberiaCreada = fabrica.crearTuberias(xLocation, yLocation + 36);
 	                	tuberiaCreada.poseePiranha(false);
 	                	nivelCreado.agregarPlataforma(tuberiaCreada);
 	                }		            
@@ -104,7 +108,7 @@ public class NivelBuilder {
 	                	nivelCreado.agregarPlataforma(bloqueCreado);
 	                }	                
 	                else if (colorPixelActual == vacio) {
-	                   Vacio vacioCreado = fabrica.crearVacio(xLocation, yLocation-3);
+	                   Vacio vacioCreado = fabrica.crearVacio(xLocation, yLocation + 3);
 	                   nivelCreado.agregarPlataforma(vacioCreado);
 	                }
 	                else if (colorPixelActual == preguntaFlorDeFuego) {
@@ -118,7 +122,7 @@ public class NivelBuilder {
 	                	nivelCreado.agregarPlataforma(bloqueCreado);
 	                }
 	                else if(colorPixelActual == koopa) {
-	                	Koopa koopaCreado = fabrica.crearKoopa(xLocation, yLocation -13);
+	                	Koopa koopaCreado = fabrica.crearKoopa(xLocation, yLocation + 13);
 	                	nivelCreado.agregarEnemigo(koopaCreado);
 	                }
 	                else if(colorPixelActual == bloqueTransparente) {

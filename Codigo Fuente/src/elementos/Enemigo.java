@@ -12,6 +12,7 @@ public abstract class Enemigo extends Movible implements VisitorAJugador, Visita
 	protected Nivel nivel;
 	protected long velocidadEnMill = 3000;
 	protected int velX, velY;
+	protected boolean colisionArriba = false;
 	
 	public Enemigo(int x, int y, Sprite imagen) {
 		super(x, y, imagen);
@@ -44,5 +45,11 @@ public abstract class Enemigo extends Movible implements VisitorAJugador, Visita
 		posicionX += velX;
 		actualizarPosicionHitbox();
 		notificar();
+	}
+	public void colisionDesdeArriba() {
+		colisionArriba = true;
+	}
+	public boolean fueColisionArriba() {
+		return colisionArriba;
 	}
 }
