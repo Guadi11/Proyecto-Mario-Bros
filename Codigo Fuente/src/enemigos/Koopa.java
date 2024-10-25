@@ -10,17 +10,45 @@ import juego.Jugador;
 
 public class Koopa extends Enemigo{
 		
+	protected boolean escondido = false;
+	
 	public Koopa (int x, int y, Sprite imagen) {
 			super (x,y,imagen);
 		}
+	
 		
 		public void visitar (Jugador jugador) {
 			//si es de arriba, cambia de imagen y deja de moverse (algun boolean). Segundo golpe (desde donde sea) se mueve y
 			//muere al chocar con plataforma. Usar el boolean. 
 			//sino, mata a jugador
-			int puntosDaño = this.puntosQueResta();
-			jugador.getInfo().actualizarPuntaje(-puntosDaño);
-			jugador.getState().recibirDaño();
+			
+			if (this.fueColisionArriba()) { 
+				System.out.println("Koopa recibio daño desde arriba.");
+				jugador.getInfo().actualizarPuntaje(this.puntosQueDa());
+				morir();
+			}else {
+				System.out.println("colision por el costado");
+				jugador.getInfo().actualizarPuntaje(-this.puntosQueResta());
+				jugador.getState().recibirDaño();
+			}
+			
+			/*
+			if (this.fueColisionArriba()) { 
+				if(!escondido) {
+					System.out.println("Koopa recibio daño desde arriba 1 vez.");
+					escondido = true;
+					//Cambiar imagen a koopa escondido
+				} else {
+					System.out.println("Koopa recibio daño desde arriba 1 vez.");
+					jugador.getInfo().actualizarPuntaje(this.puntosQueDa());
+					morir();
+				}
+			} else {
+					System.out.println("colision por el costado");
+					jugador.getInfo().actualizarPuntaje(this.puntosQueResta());
+					jugador.getState().recibirDaño();
+				
+			}  */
 		}
 		
 		@Override

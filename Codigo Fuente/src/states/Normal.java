@@ -1,6 +1,7 @@
 package states;
 
 import archivos.Sprite;
+import archivos.TipoSonidos;
 import juego.Jugador;
 
 
@@ -52,10 +53,11 @@ public class Normal extends State {
 		this.getInvulnerable().setAnterior(this);
 		this.getInvulnerable().activar();
 	}
-	
+	public void reproducirSonidoSalto() {
+		controladorSonidosAccion.reproducirSonido(TipoSonidos.saltaNormal);
+	}
 	public void recibirDaño() {
-		jugador.getInfo().restarVida();
-		//jugador.sonidoMuerte().reproducirSonido(); //OJO yo diria que esto este dentro del restarVida()
+		jugador.getInfo().restarVida(); 
 	}
 	
 	public int obtenerPuntosEstrella() {

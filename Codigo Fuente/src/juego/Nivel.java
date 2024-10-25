@@ -78,21 +78,10 @@ public class Nivel {
 			return this.controladorPartida;
 		}
 		
-		//Remover
-		//completar los remove
-		public void removerElemento(Plataforma plat){
-			this.plataformas.remove(plat);
+		public void removerElemento(Elemento elem){
+			this.controladorPartida.removerObserver((ObserverGrafico) elem.getObserver());
 		}
-		
-		public void removerElemento(Enemigo enem){
-			this.enemigos.remove(enem);
-		}
-		
-		public void removerElemento(PowerUp power){
-			this.controladorPartida.removerObserver((ObserverGrafico) power.getObserver());
-			this.powerUps.remove(power);
-		}
-		
+	
 		public void actualizarMovibles() {
 			
 		}

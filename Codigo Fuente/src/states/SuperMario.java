@@ -1,6 +1,7 @@
 package states;
 
 import archivos.Sprite;
+import archivos.TipoSonidos;
 import juego.Jugador;
 
 
@@ -44,7 +45,10 @@ public class SuperMario extends State{
         }
 	}
 	
-	@Override
+	public void reproducirSonidoSalto() {
+		controladorSonidosAccion.reproducirSonido(TipoSonidos.saltaSuperMario);
+	}
+	
 	public void recibirSuperChampiñon() {
 		jugador.getInfo().actualizarPuntaje(this.obtenerPuntosSChamp());
 	}

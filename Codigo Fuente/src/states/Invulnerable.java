@@ -1,6 +1,7 @@
 package states;
 
 import archivos.Sprite;
+import archivos.TipoSonidos;
 import juego.Jugador;
 
 
@@ -25,7 +26,7 @@ public class Invulnerable extends State{
         } else {
             jugador.getSprite().setSprite("imagenes/modoUno/invulnerablemini.png");
         }
-
+        //encontrar sonidoInvulnerable y activarlo, ademas de parar HiloSonido
     }
 			/*jugador.getSprite().setSprite("imagenes/modoUno/mariofuego.png");
 			//jugador.setPosY(jugador.getPosY()-30);
@@ -36,7 +37,9 @@ public class Invulnerable extends State{
 	public void setAnterior(State anterior) {
 		this.estadoAnterior = anterior;
 	}
-	
+	public void reproducirSonidoSalto() {
+		estadoAnterior.reproducirSonidoSalto();
+	}
 	public Sprite getSprite() {
 		return this.getSprite();
 	}

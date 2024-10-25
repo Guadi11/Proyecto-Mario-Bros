@@ -1,11 +1,5 @@
 package juego;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
-
-import archivos.Sonido;
 import archivos.Sprite;
 import colisiones.Visitable;
 import colisiones.VisitorAJugador;
@@ -15,11 +9,8 @@ import elementos.Elemento;
 import elementos.ElementoJugador;
 import elementos.Movible;
 import observers.AdaptadorPosicionPixel;
-import states.State;
-import states.SuperMario;
-import states.Fuego;
-import states.Invulnerable;
-import states.Normal;
+import states.*;
+
 
 
 public class Jugador extends Movible implements Visitable, ElementoJugador{
@@ -127,7 +118,7 @@ public class Jugador extends Movible implements Visitable, ElementoJugador{
 		if (!isJumped) { 
 	        velY = 19; 
 	        isJumped = true;
-	        sonidoSalto().reproducirSonido();
+	        estado.reproducirSonidoSalto();
 	    }	
 	}
 		
@@ -163,16 +154,7 @@ public class Jugador extends Movible implements Visitable, ElementoJugador{
 				getHitbox().getMaxY() >= elementoAVisitar.getHitbox().getMinY() - getHitbox().getHeight();*/
 		return colision;
 	}
-
-	public Sonido sonidoSalto() {
-		Sonido sonidoSalto = new Sonido("audio/jump.wav");
-		return sonidoSalto;
-	}
 	
-	public Sonido sonidoMuerte() {
-		Sonido sonidoMuerte = new Sonido("audio/marioDies.wav");
-		return sonidoMuerte;
-	}
 
 	@Override
 	public void aceptarVisita(VisitorAJugador visitor) {

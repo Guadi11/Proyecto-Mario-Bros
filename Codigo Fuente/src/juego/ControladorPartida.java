@@ -4,7 +4,9 @@ import java.awt.event.KeyEvent;
 import java.util.List;
 
 import parseo.*;
+import archivos.ControladorSonidos;
 import archivos.Ranking;
+import archivos.TipoSonidos;
 import colisiones.ControladorColisiones;
 import elementos.*;
 import observers.Observer;
@@ -25,6 +27,7 @@ public class ControladorPartida {
 	protected HiloJugador hiloJugador;
 	protected HiloEnemigo hiloEnemigo;
 	protected HiloSonido hiloSonido;
+	protected ControladorSonidos controladorSonido;
 	
 	
 	public ControladorPartida() {
@@ -48,12 +51,14 @@ public class ControladorPartida {
 		hiloEnemigo.start();
 		hiloSonido = new HiloSonido();
 		hiloSonido.start();
-		
+		controladorSonido= new ControladorSonidos();
 		
 	}
 	
 	public void reiniciarNivel(){
+		hiloSonido.detener();
 		hiloJugador.detener();
+		controladorSonido.reproducirSonidoAccion(TipoSonidos.muerteMario);
 		//hiloEnemigo.detener();
 		int monedas = this.nivelActual.getJugador().getMonedas();
 		int puntaje = this.nivelActual.getJugador().getPuntaje();
@@ -121,16 +126,20 @@ public class ControladorPartida {
 	public void gameOver(int puntajeFinal){
 		hiloJugador.detener();
 		hiloEnemigo.detener();
+		hiloSonido.detener();
+		controladorSonido.reproducirSonidoAccion(TipoSonidos.muerteMario);
 		this.pantallas.mostrarPantallaGameOver();
 		//this.nivelActual = null;
 	}
 	
 	public void victoria(int puntajeFinal) {
-		//TODO
+		controladorSonido.reproducirSonidoJuego(TipoSonidos.finNivel);
 	}
 	
 	public void timeOut() {
-		//TODO
+		hiloSonido.detener();
+		controladorSonido.reproducirSonidoAccion(TipoSonidos.muerteMario);
+		this.reiniciarNivel();
 	}
 	
 	public void notificarNuevoFrame() {

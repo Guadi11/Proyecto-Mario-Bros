@@ -1,5 +1,6 @@
 package states;
 
+import archivos.ControladorSonidosAcciones;
 import archivos.Sprite;
 import juego.Jugador;
 
@@ -8,7 +9,7 @@ public abstract class State {
 	
 	protected Jugador jugador;
 	protected Sprite sprite;
-
+	protected ControladorSonidosAcciones controladorSonidosAccion;
 	protected Normal normal;
 	protected SuperMario superMario;
 	protected Fuego fuego;
@@ -16,7 +17,8 @@ public abstract class State {
 	
 	
 	public State(Jugador jugador) {
-	        this.jugador = jugador;	 	
+	        this.jugador = jugador;	
+	        controladorSonidosAccion= new ControladorSonidosAcciones();
 	}
 
 	public Sprite getSprite() {
@@ -33,7 +35,7 @@ public abstract class State {
 	public abstract void recibirSuperChampiñon();
 	public abstract void recibirFlorDeFuego();
 	public abstract void recibirEstrella();
-	
+	public abstract void reproducirSonidoSalto();
 	public void setNormal(Normal normal) {
 		this.normal = normal;
 	}

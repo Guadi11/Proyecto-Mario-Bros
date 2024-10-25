@@ -3,6 +3,7 @@ package colisiones;
 import juego.Nivel;
 
 import java.awt.Rectangle;
+import java.util.Iterator;
 
 import elementos.*;
 
@@ -14,22 +15,30 @@ public class ControladorColisiones {
 	}
 	
 	public void detectarColision() {
-		for (Enemigo e:nivel.getEnemigos()) {
-			 Rectangle jugadorHitbox = nivel.getJugador().getHitbox(); 	
-			
+		Rectangle jugadorHitbox = nivel.getJugador().getHitbox(); 
+		
+		Iterator<Enemigo> iteratorE = nivel.getEnemigos().iterator();	 
+		while (iteratorE.hasNext()) {
+			Enemigo e = iteratorE.next();
+	  	            
 			if (jugadorHitbox.intersects(e.getHitbox())) {
 				if (jugadorHitbox.intersects(e.getBoundsTop())){
 					System.out.println("Colisión desde arriba detectada");
 					e.colisionDesdeArriba();
+					iteratorE.remove();
 				}
 				nivel.getJugador().aceptarVisita(e);
-			}	
+			}
 		}
 		
-		for (PowerUp e:nivel.getPowerUps()) {
-			if (nivel.getJugador().getHitbox().intersects(e.getHitbox())) {
-				nivel.getJugador().aceptarVisita(e);
-			}			
-		}
+		Iterator<PowerUp> iteratorPU = nivel.getPowerUps().iterator();    
+	    while (iteratorPU.hasNext()) {
+	    	PowerUp p = iteratorPU.next();
+	       
+	    	if (jugadorHitbox.intersects(p.getHitbox())) {
+				nivel.getJugador().aceptarVisita(p);
+				iteratorPU.remove();
+			}     
+	    }
 	}
 }

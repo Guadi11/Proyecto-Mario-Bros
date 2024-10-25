@@ -7,7 +7,6 @@ import javax.swing.ImageIcon;
 import archivos.Sprite;
 import elementos.BolaDeFuego;
 import elementos.Elemento;
-import elementos.Fondo;
 import enemigos.*;
 import powerUps.*;
 import plataformas.*;
@@ -26,6 +25,15 @@ public abstract class GameFactory {
 		this.controladorPartida = partida;
 	}
 	
+	public Jugador crearJugador(int x, int y) {
+		Sprite sprite = new Sprite(rutaCarpeta + "/mario.png");
+		Jugador jugador = new Jugador(x, y, sprite);
+		setearHitbox(jugador, sprite);
+		
+		return jugador;
+	}
+	
+	//Enemigos
 	public Lakitu crearLakitu(int x, int y) {
 		Sprite sprite = new Sprite(rutaCarpeta + "/lakitu1.png");
 		Lakitu lakitu = new Lakitu(x, y, sprite);
@@ -75,6 +83,7 @@ public abstract class GameFactory {
 		return buzzy;
 	}
 	
+	//Power Ups
 	public SuperChampiñon crearSuperChampiñon(int x, int y) {
 		Sprite sprite = new Sprite(rutaCarpeta + "/superChampiñon.png");
 		SuperChampiñon superChamp = new SuperChampiñon(x, y, sprite);
@@ -115,6 +124,7 @@ public abstract class GameFactory {
 		return moneda;
 	}
 	
+	//Bola de Fuego
 	public BolaDeFuego crearBolaDeFuego(int x, int y) {
 		Sprite sprite = new Sprite(rutaCarpeta + "/bolaDeFuego.png");
 		BolaDeFuego bolaFuego = new BolaDeFuego(x, y, sprite);
@@ -123,6 +133,7 @@ public abstract class GameFactory {
 		return bolaFuego;
 	}
 	
+	//Plataformas
 	public BloqueDePregunta crearBloqueDePregunta(int x, int y) {
 		Sprite sprite = new Sprite(rutaCarpeta + "/bloqueDePregunta.png");
 		BloqueDePregunta bloquePregunta = new BloqueDePregunta(x, y, sprite);
@@ -147,7 +158,7 @@ public abstract class GameFactory {
 		return vacio;
 	}
 	
-	public Tuberia crearTuberias(int x, int y) {
+	public Tuberia crearTuberia1(int x, int y) {
 		Sprite sprite = new Sprite(rutaCarpeta + "/tuberia.png");
 		Tuberia tuberia = new Tuberia(x, y, sprite);
 		tuberia.setFabrica(this);
@@ -156,8 +167,26 @@ public abstract class GameFactory {
 		
 		return tuberia;
 	}
+	public Tuberia crearTuberia2(int x, int y) {
+		Sprite sprite = new Sprite(rutaCarpeta + "/tuberia2.png");
+		Tuberia tuberia = new Tuberia(x, y, sprite);
+		tuberia.setFabrica(this);
+		tuberia.setControlador(controladorPartida);
+		setearHitbox(tuberia, sprite);
+		
+		return tuberia;
+	}
+	public Tuberia crearTuberia3(int x, int y) {
+		Sprite sprite = new Sprite(rutaCarpeta + "/tuberia3.png");
+		Tuberia tuberia = new Tuberia(x, y, sprite);
+		tuberia.setFabrica(this);
+		tuberia.setControlador(controladorPartida);
+		setearHitbox(tuberia, sprite);
+		
+		return tuberia;
+	}
 	
-	public BloqueSolido crearBloqueSolido(int x, int y) {
+	public BloqueSolido crearBloqueTransparente(int x, int y) {
 		Sprite sprite = new Sprite(rutaCarpeta + "/bloqueTransparente.png");
 		BloqueSolido bloqueSolido = new BloqueSolido(x, y, sprite);
 		setearHitbox(bloqueSolido, sprite);
@@ -165,12 +194,20 @@ public abstract class GameFactory {
 		return bloqueSolido;
 	}
 	
-	public Jugador crearJugador(int x, int y) {
-		Sprite sprite = new Sprite(rutaCarpeta + "/mario.png");
-		Jugador jugador = new Jugador(x, y, sprite);
-		setearHitbox(jugador, sprite);
+	public BloqueSolido crearBloqueSolido(int x, int y) {
+		Sprite sprite = new Sprite(rutaCarpeta + "/bloqueSolido.png");
+		BloqueSolido bloqueSolido = new BloqueSolido(x, y, sprite);
+		setearHitbox(bloqueSolido, sprite);
 		
-		return jugador;
+		return bloqueSolido;
+	}
+	
+	public Castillo crearCastillo(int x, int y) {
+		Sprite sprite = new Sprite(rutaCarpeta + "/bloqueTransparente.png");
+		Castillo castillo = new Castillo(x, y, sprite);
+		setearHitbox(castillo, sprite);
+		
+		return castillo;
 	}
 	
 	private void setearHitbox(Elemento elem, Sprite sprite) {

@@ -3,13 +3,11 @@ package elementos;
 import archivos.Sprite;
 import colisiones.Visitable;
 import colisiones.VisitorAJugador;
-import juego.Nivel;
 import observers.Observer;
 
 public abstract class Enemigo extends Movible implements VisitorAJugador, Visitable{
 	
 	protected Observer observer;
-	protected Nivel nivel;
 	protected long velocidadEnMill = 3000;
 	protected int velX, velY;
 	protected boolean colisionArriba = false;
@@ -22,15 +20,6 @@ public abstract class Enemigo extends Movible implements VisitorAJugador, Visita
 
 	public abstract int puntosQueResta();
 	public abstract int puntosQueDa();
-	
-	public void morir() {
-		//imagen.eliminar();
-		//puntosQueDa();
-	}
-	
-	public void setNivel(Nivel nivel) {
-		this.nivel = nivel;
-	}
 	
 	public void moverIzquierda() {
 		velX = -2;
