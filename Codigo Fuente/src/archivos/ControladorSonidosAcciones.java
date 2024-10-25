@@ -12,7 +12,7 @@ public class ControladorSonidosAcciones {
 	 sonidosAcciones.put(TipoSonidos.moneda, new Sonido ("audio/moneda.wav"));
 	 sonidosAcciones.put(TipoSonidos.muerteEnemigo, new Sonido ("audio/pisaEnemigo.wav"));
 	 sonidosAcciones.put(TipoSonidos.muerteMario, new Sonido ("audio/marioDies.wav"));
-	 sonidosAcciones.put(TipoSonidos.rompeBloque, new Sonido ("audio/sompeBloque.wav"));
+	 sonidosAcciones.put(TipoSonidos.rompeBloque, new Sonido ("audio/rompeBloque.wav"));
 	 sonidosAcciones.put(TipoSonidos.saltaNormal, new Sonido ("audio/saltoEstadoNormal.wav"));
 	 sonidosAcciones.put(TipoSonidos.saltaSuperMario, new Sonido ("audio/saltoEstadoSuperMario.wav"));
  }

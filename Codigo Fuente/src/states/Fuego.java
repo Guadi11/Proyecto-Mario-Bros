@@ -1,6 +1,7 @@
 package states;
 
 import archivos.Sprite;
+import archivos.TipoSonidos;
 import juego.Jugador;
 
 public class Fuego extends SuperMario{
