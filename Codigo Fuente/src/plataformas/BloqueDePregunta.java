@@ -49,6 +49,7 @@ public class BloqueDePregunta extends Plataforma implements VisitorPlataformas{
 		if(creado != null) {
 			this.nivel.agregarPowerUp(creado);
 			controladorPartida.registrarObserverElementoIndividual(creado);
+			creado.setNivel(this.nivel);
 		}
 	}
 

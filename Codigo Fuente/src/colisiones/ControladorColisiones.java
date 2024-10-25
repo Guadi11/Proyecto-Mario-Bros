@@ -37,6 +37,7 @@ public class ControladorColisiones {
 	       
 	    	if (jugadorHitbox.intersects(p.getHitbox())) {
 				nivel.getJugador().aceptarVisita(p);
+				iteratorPU.remove();
 			}     
 	    }
 	}

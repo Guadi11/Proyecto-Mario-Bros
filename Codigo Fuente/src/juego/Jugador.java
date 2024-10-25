@@ -1,11 +1,5 @@
 package juego;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
-
-import archivos.Sonido;
 import archivos.Sprite;
 import colisiones.Visitable;
 import colisiones.VisitorAJugador;
@@ -15,11 +9,8 @@ import elementos.Elemento;
 import elementos.ElementoJugador;
 import elementos.Movible;
 import observers.AdaptadorPosicionPixel;
-import states.State;
-import states.SuperMario;
-import states.Fuego;
-import states.Invulnerable;
-import states.Normal;
+import states.*;
+
 
 
 public class Jugador extends Movible implements Visitable, ElementoJugador{

@@ -2,6 +2,7 @@ package elementos;
 
 import java.awt.Rectangle;
 import archivos.Sprite;
+import juego.Nivel;
 import observers.Observer;
 
 public abstract class Elemento implements ElementoLogico{
@@ -10,6 +11,7 @@ public abstract class Elemento implements ElementoLogico{
 	protected Sprite imagen;
 	protected Observer observer;
 	protected int posicionX,posicionY;
+	protected Nivel nivel;
 	
 	public Elemento(int x, int y, Sprite imagen) {
 		posicionX = x;
@@ -65,11 +67,12 @@ public abstract class Elemento implements ElementoLogico{
 		
 	}
 	public void morir() {
-		setHitbox(0,0);
-		//imagen.eliminar()
+		this.nivel.removerElemento(this);
+	}
+	public void setNivel(Nivel nivel) {
+		this.nivel = nivel;
 	}
 	
-	//que estos despues esten en otra clase mas abstracta
 		public Rectangle getBoundsBottom() {
 			return new Rectangle(
 					 (int) (this.getHitbox().getX() + this.getHitbox().getWidth()/2 - this.getHitbox().getWidth()/4),  
