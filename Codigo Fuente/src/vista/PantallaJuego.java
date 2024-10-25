@@ -5,7 +5,14 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
+import java.awt.FontFormatException;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.awt.Graphics;
 
+
+import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -92,11 +99,29 @@ public class PantallaJuego extends JPanel implements KeyListener{
 	}
 	 
 	private void agregarPanelInformacion() {
-		panelInformacion = new JPanel();
+		panelInformacion = new JPanel(){
+			private Image imagenFondo;
+	        {
+	            ImageIcon iconoImagen = new ImageIcon(this.getClass().getResource("/imagenes/modoUno/vacio.png")); 
+	            imagenFondo = iconoImagen.getImage();
+	        }
+
+	        @Override
+	        protected void paintComponent(Graphics g) {
+	            super.paintComponent(g);
+	            if (imagenFondo != null) {
+	                // Dibuja la imagen de fondo
+	                g.drawImage(imagenFondo, 0, 0, getWidth(), getHeight(), this);
+	            }
+	        }
+	    };
+
+
 		panelInformacion.setLayout(null);
+		panelInformacion.setBorder(null);
 		panelInformacion.setPreferredSize(new Dimension(ConstantesPantalla.panelAncho, ConstantesPantalla.panelInformacionAlto));
-		panelInformacion.setBackground(Color.BLACK);
-		panelInformacion.setOpaque(true);
+		//panelInformacion.setBackground(Color.BLACK);
+		panelInformacion.setOpaque(false);
 		
 		agregarLabelsInfo();
 		this.add(panelInformacion, BorderLayout.NORTH);
@@ -104,41 +129,67 @@ public class PantallaJuego extends JPanel implements KeyListener{
 	}
 
 	private void agregarLabelsInfo() {
-		labelPuntaje = new JLabel("000000");
-		labelMonedas = new JLabel("00");
-		labelTiempo = new JLabel("400");
-		labelVidas = new JLabel("3");
-		labelNivelActual = new JLabel("1");
-		
-		decorarLabelsInfo();
-		
-		panelInformacion.add(labelPuntaje);
-		panelInformacion.add(labelMonedas);
-		panelInformacion.add(labelTiempo);
-		panelInformacion.add(labelVidas);
-		panelInformacion.add(labelNivelActual);
-		
+		    JLabel labelTituloPuntaje = new JLabel("SCORE");
+		    labelPuntaje = new JLabel("000000");
+
+		    JLabel labelTituloMonedas = new JLabel("COINS");
+		    labelMonedas = new JLabel("00");
+
+		    JLabel labelTituloTiempo = new JLabel("TIME");
+		    labelTiempo = new JLabel("400");
+
+		    JLabel labelTituloVidas = new JLabel("LIVES");
+		    labelVidas = new JLabel("3");
+
+		    JLabel labelTituloNivel = new JLabel("LEVEL");
+		    labelNivelActual = new JLabel("1");
+
+		    // Decorar etiquetas
+		    decorarLabelsInfo(labelTituloPuntaje, labelPuntaje);
+		    decorarLabelsInfo(labelTituloMonedas, labelMonedas);
+		    decorarLabelsInfo(labelTituloTiempo, labelTiempo);
+		    decorarLabelsInfo(labelTituloVidas, labelVidas);
+		    decorarLabelsInfo(labelTituloNivel, labelNivelActual);
+
+		    // Colocar etiquetas en el panel
+		    colocarLabelsInfo(labelTituloPuntaje, labelPuntaje, 5);
+		    colocarLabelsInfo(labelTituloMonedas, labelMonedas, 205);
+		    colocarLabelsInfo(labelTituloTiempo, labelTiempo, 335);
+		    colocarLabelsInfo(labelTituloVidas, labelVidas, 495);
+		    colocarLabelsInfo(labelTituloNivel, labelNivelActual, 655);
+
+		    panelInformacion.revalidate();
+		    panelInformacion.repaint();
+			
 	}
 
-	private void decorarLabelsInfo() {
-		labelPuntaje.setBounds(5, 10, 150, 40);
-		labelMonedas.setBounds(165, 10, 150, 40);
-		labelTiempo.setBounds(325, 10, 150, 40);
-		labelVidas.setBounds(485, 10, 150, 40);
-		labelNivelActual.setBounds(645, 10, 150, 40);
-		
-		labelPuntaje.setForeground(Color.WHITE);
-		labelMonedas.setForeground(Color.WHITE);
-		labelTiempo.setForeground(Color.WHITE);
-		labelVidas.setForeground(Color.WHITE);
-		labelNivelActual.setForeground(Color.WHITE);
-		
-		labelPuntaje.setFont(new Font(labelPuntaje.getFont().getName(), Font.BOLD, 24));
-		labelMonedas.setFont(new Font(labelMonedas.getFont().getName(), Font.BOLD, 24));
-		labelTiempo.setFont(new Font(labelTiempo.getFont().getName(), Font.BOLD, 24));
-		labelVidas.setFont(new Font(labelVidas.getFont().getName(), Font.BOLD, 24));
-		labelNivelActual.setFont(new Font(labelNivelActual.getFont().getName(), Font.BOLD, 24));
+	private void decorarLabelsInfo(JLabel labelTitulo, JLabel labelValor) {
+		Font marioFont = null;
+		try {
+			InputStream is = getClass().getResourceAsStream("/archivos/mario-font.ttf");
+			marioFont = Font.createFont(Font.TRUETYPE_FONT, is).deriveFont(20f);
+		} catch (FontFormatException | IOException e) {
+			e.printStackTrace();
+		// por si la fuente personalizada no se puede cargar
+			marioFont = new Font("Arial", Font.BOLD, 20);
+		}
+
+		    labelTitulo.setFont(marioFont);
+		    labelValor.setFont(marioFont);
+
+		    labelTitulo.setForeground(Color.WHITE);
+		    labelValor.setForeground(Color.WHITE);
+		}
+
+	
+	private void colocarLabelsInfo(JLabel labelTitulo, JLabel labelValor, int posicionX) {
+	    labelTitulo.setBounds(posicionX, 5, 150, 20);  
+	    labelValor.setBounds(posicionX, 25, 150, 20);  
+
+	    panelInformacion.add(labelTitulo);
+	    panelInformacion.add(labelValor);
 	}
+
 	
 	public Observer incorporarElemento(ElementoLogico elem) {
 		ObserverElementos observerElemento = new ObserverElementos(elem);
