@@ -7,7 +7,6 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import elementos.Fondo;
 import plataformas.*;
 import enemigos.*;
 import powerUps.*;
@@ -36,7 +35,8 @@ public class NivelBuilder {
 	        int alto = mapImage.getHeight();
 			
 			int jugador = new Color(255, 0, 0).getRGB();
-		  
+			
+			int castillo = new Color(140,150,145).getRGB();
 			int bloqueTransparente = new Color(30, 110, 110).getRGB();
 			int bloqueSolido = new Color(30,110,70).getRGB();
 			int ladrilloSolido = new Color(0, 0, 255).getRGB();
@@ -56,9 +56,10 @@ public class NivelBuilder {
 			int buzzy = new Color(255, 125, 125).getRGB();
 			int spiny = new Color(255,200,125).getRGB();
 			
-			/* int bloqueSolido = new Color(255, 0, 0).getRGB();
+			/*
 			int tuberiaPiranha = new Color(250, 50, 100).getRGB();	
 			*/
+			
 			//Colores provisorios, testeo de power ups
 			int moneda = new Color(255, 180, 0).getRGB();
 			int superChamp = new Color(24, 16, 112).getRGB();
@@ -175,6 +176,11 @@ public class NivelBuilder {
 	                	Tuberia tuberia3Creada = fabrica.crearTuberia3(xLocation, yLocation +36);
 	                	nivelCreado.agregarPlataforma(tuberia3Creada);
 	                }
+	                else if(colorPixelActual == castillo) {
+	                	Castillo castilloCreado = fabrica.crearCastillo(xLocation, yLocation);
+	                	nivelCreado.agregarPlataforma(castilloCreado);
+	                }
+		            
 	            }
 	        }
 		}  catch (IOException e) {
