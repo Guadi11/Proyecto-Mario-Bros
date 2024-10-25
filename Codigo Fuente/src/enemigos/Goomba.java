@@ -19,18 +19,11 @@ public class Goomba extends Enemigo{
 			System.out.println("Goomba recibio daño desde arriba.");
 			jugador.getInfo().actualizarPuntaje(this.puntosQueDa());
 			morir();
+		}else {
+			System.out.println("colision por el costado");
+			jugador.getInfo().actualizarPuntaje(-this.puntosQueResta());
+			jugador.getState().recibirDaño();
 		}
-			else {
-				System.out.println("colision por el costado");
-				int puntosDaño = this.puntosQueResta();
-				int puntajeActual = jugador.getInfo().getPuntaje();
-				jugador.getState().recibirDaño();
-				if (puntajeActual-puntosDaño>=0) {
-					jugador.getInfo().actualizarPuntaje(-puntosDaño);
-				}
-				else jugador.getInfo().actualizarPuntaje(-puntajeActual);
-			}
-		
 	}
 	
 	public int puntosQueResta() {

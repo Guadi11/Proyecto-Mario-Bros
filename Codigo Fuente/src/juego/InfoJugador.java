@@ -34,7 +34,12 @@ public class InfoJugador {
 	
 	//Set
 	public void actualizarPuntaje(int puntos) {
-		this.puntaje += puntos; 
+		int resultado = puntaje + puntos; 
+		if(resultado < 0) {
+			puntaje = 0;
+		}else {
+			puntaje = resultado; 
+		}
 	}
 	
 	public void aumentarMoneda() {

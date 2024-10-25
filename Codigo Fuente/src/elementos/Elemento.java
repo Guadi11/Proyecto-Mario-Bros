@@ -75,21 +75,25 @@ public abstract class Elemento implements ElementoLogico{
 	
 		public Rectangle getBoundsBottom() {
 			return new Rectangle(
-					 (int) (this.getHitbox().getX() + this.getHitbox().getWidth()/2 - this.getHitbox().getWidth()/4),  
+					 (int) (this.getHitbox().getX()),  
 				     (int) (this.getHitbox().getY() - this.getHitbox().getHeight() + 5), //chequear
-				     (int) this.getHitbox().getWidth()/2,  
+				     (int) this.getHitbox().getWidth(),  
 				     (int) this.getHitbox().getHeight()/2);  
 				    
+			
+			//(int) (this.getHitbox().getX() + this.getHitbox().getWidth()/2 - this.getHitbox().getWidth()/4) el X
+			//(int) this.getHitbox().getWidth()/2 el ancho
 		}
 		
 		public Rectangle getBoundsTop() {
 			//System.out.println("Entro a getboundsTop");
 			 return new Rectangle(
-				        (int) (this.getHitbox().getX() + this.getHitbox().getWidth()/2 - this.getHitbox().getWidth()/4), 
+				        (int) (this.getHitbox().getX()), 
 				        (int) (this.getHitbox().getY() + this.getHitbox().getHeight()/2),  // Parte superior del enemigo
-				        (int) this.getHitbox().getWidth()/2, // Ancho total del enemigo
+				        (int) this.getHitbox().getWidth(), // Ancho total del enemigo
 				        (int) this.getHitbox().getHeight()/2);// Solo una pequeña franja en la parte superior
 		}
+		
 		/*	//no borrarlos!!!
 		public Rectangle getBoundsRight() {
 			

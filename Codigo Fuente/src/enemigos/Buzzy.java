@@ -18,9 +18,16 @@ public class Buzzy extends Enemigo{
 		//misma muerte que Koopa
 		//si es de arriba, cambia de imagen y deja de moverse (algun boolean). Segundo golpe igual que Koopa (desde donde sea)
 		//sino, mata a jugador
-		int puntosDaño = this.puntosQueResta();
-		jugador.getInfo().actualizarPuntaje(-puntosDaño);
-		jugador.getState().recibirDaño();
+		
+		if (this.fueColisionArriba()) { 
+			System.out.println("Buzzy recibio daño desde arriba.");
+			jugador.getInfo().actualizarPuntaje(this.puntosQueDa());
+			morir();
+		}else {
+			System.out.println("colision por el costado");
+			jugador.getInfo().actualizarPuntaje(-this.puntosQueResta());
+			jugador.getState().recibirDaño();
+		}
 	}
 
 	@Override
