@@ -147,8 +147,26 @@ public abstract class GameFactory {
 		return vacio;
 	}
 	
-	public Tuberia crearTuberias(int x, int y) {
+	public Tuberia crearTuberia1(int x, int y) {
 		Sprite sprite = new Sprite(rutaCarpeta + "/tuberia.png");
+		Tuberia tuberia = new Tuberia(x, y, sprite);
+		tuberia.setFabrica(this);
+		tuberia.setControlador(controladorPartida);
+		setearHitbox(tuberia, sprite);
+		
+		return tuberia;
+	}
+	public Tuberia crearTuberia2(int x, int y) {
+		Sprite sprite = new Sprite(rutaCarpeta + "/tuberia2.png");
+		Tuberia tuberia = new Tuberia(x, y, sprite);
+		tuberia.setFabrica(this);
+		tuberia.setControlador(controladorPartida);
+		setearHitbox(tuberia, sprite);
+		
+		return tuberia;
+	}
+	public Tuberia crearTuberia3(int x, int y) {
+		Sprite sprite = new Sprite(rutaCarpeta + "/tuberia3.png");
 		Tuberia tuberia = new Tuberia(x, y, sprite);
 		tuberia.setFabrica(this);
 		tuberia.setControlador(controladorPartida);
