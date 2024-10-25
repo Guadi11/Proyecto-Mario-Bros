@@ -175,8 +175,16 @@ public abstract class GameFactory {
 		return tuberia;
 	}
 	
-	public BloqueSolido crearBloqueSolido(int x, int y) {
+	public BloqueSolido crearBloqueTransparente(int x, int y) {
 		Sprite sprite = new Sprite(rutaCarpeta + "/bloqueTransparente.png");
+		BloqueSolido bloqueSolido = new BloqueSolido(x, y, sprite);
+		setearHitbox(bloqueSolido, sprite);
+		
+		return bloqueSolido;
+	}
+	
+	public BloqueSolido crearBloqueSolido(int x, int y) {
+		Sprite sprite = new Sprite(rutaCarpeta + "/bloqueSolido.png");
 		BloqueSolido bloqueSolido = new BloqueSolido(x, y, sprite);
 		setearHitbox(bloqueSolido, sprite);
 		

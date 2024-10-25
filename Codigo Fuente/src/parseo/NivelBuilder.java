@@ -38,6 +38,7 @@ public class NivelBuilder {
 			int jugador = new Color(255, 0, 0).getRGB();
 		  
 			int bloqueTransparente = new Color(30, 110, 110).getRGB();
+			int bloqueSolido = new Color(30,110,70).getRGB();
 			int ladrilloSolido = new Color(0, 0, 255).getRGB();
 			int vacio = new Color(110,60,0).getRGB();
 			int preguntaMoneda = new Color(0, 255, 0).getRGB();
@@ -126,8 +127,12 @@ public class NivelBuilder {
 	                	Koopa koopaCreado = fabrica.crearKoopa(xLocation, yLocation + 13);
 	                	nivelCreado.agregarEnemigo(koopaCreado);
 	                }
+	                else if(colorPixelActual == bloqueSolido) {
+	                	BloqueSolido bloqueSolidoCreado = fabrica.crearBloqueSolido(xLocation, yLocation);
+	                	nivelCreado.agregarPlataforma(bloqueSolidoCreado);
+	                }
 	                else if(colorPixelActual == bloqueTransparente) {
-	                	BloqueSolido bloqueCreado = fabrica.crearBloqueSolido(xLocation, yLocation);
+	                	BloqueSolido bloqueCreado = fabrica.crearBloqueTransparente(xLocation, yLocation);
 	                	nivelCreado.agregarPlataforma(bloqueCreado);
 	                }/*
 	                else if(colorPixelActual == lakitu) {
