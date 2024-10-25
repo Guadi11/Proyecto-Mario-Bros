@@ -91,6 +91,7 @@ public class NivelBuilder {
 	                }else if (colorPixelActual == goomba) {
 	                    Goomba goombaCreado = fabrica.crearGoomba(xLocation, yLocation);
 	                    nivelCreado.agregarEnemigo(goombaCreado);
+	                    goombaCreado.setNivel(nivelCreado);
 	                }else if (colorPixelActual == preguntaMoneda) {
 	                	BloqueDePregunta bloqueCreado = fabrica.crearBloqueDePregunta(xLocation, yLocation);
 	                	bloqueCreado.setPowerUp("Moneda");

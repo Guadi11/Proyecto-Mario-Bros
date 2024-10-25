@@ -15,8 +15,7 @@ public class Goomba extends Enemigo{
 	}
 	
 	public void visitar (Jugador jugador) {
-		//Si es de arriba, muere. Sino, mata a jugador
-		if (this.fueColisionArriba()) { //aca gestionar que jugador elimino a goomba
+		if (this.fueColisionArriba()) { 
 			System.out.println("Goomba recibio daño desde arriba.");
 			jugador.getInfo().actualizarPuntaje(this.puntosQueDa());
 			morir();
@@ -31,6 +30,7 @@ public class Goomba extends Enemigo{
 				}
 				else jugador.getInfo().actualizarPuntaje(-puntajeActual);
 			}
+		
 	}
 	
 	public int puntosQueResta() {
@@ -53,10 +53,7 @@ public class Goomba extends Enemigo{
 		//imagen.actualizarPosicion(posicionX, posicionY);*/
 	}
 	
-	public void morir() {
-		setHitbox(0,0);
-		//this.nivel.removerElemento(this);
-	}
+	
 
 	public void aceptarVisita(VisitorAJugador visitor) {
 		// entra a este metodo cuando el visitor es enemigo, powerUp o vacio. Solo sucede con vacio
