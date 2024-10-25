@@ -1,0 +1,20 @@
+package archivos;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class ControladorSonidosJuego {
+	protected Map<TipoSonidos, Sonido> sonidosJuego= new HashMap<>();
+	
+	public ControladorSonidosJuego () {
+		sonidosJuego.put(TipoSonidos.advertenciaTiempo, new Sonido ("audio/advertenciaTiempo.wav"));
+		sonidosJuego.put(TipoSonidos.aparecePowerUp, new Sonido ("audio/aparecePowerUp.wav"));
+		sonidosJuego.put(TipoSonidos.bajaBandera, new Sonido ("audio/bajaBandera.wav"));
+		sonidosJuego.put(TipoSonidos.finNivel, new Sonido ("audio/sonidoFinalNnivel.wav"));
+		sonidosJuego.put(TipoSonidos.bajaCañeria, new Sonido ("audio/cañeria.wav"));
+	}
+	
+	public void reproducirSonido (TipoSonidos tipo) {
+		 sonidosJuego.get(tipo).reproducirSonido();
+	 }
+}
