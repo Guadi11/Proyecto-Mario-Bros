@@ -9,7 +9,7 @@ public class ConstantesPantalla {
 	public static final int panelAncho = 800;
 	
 	public static final int panelJuegoAlto = 550;
-	public static final int panelInformacionAlto = 70;
+	public static final int panelInformacionAlto = 50;
 	
 	
 }
