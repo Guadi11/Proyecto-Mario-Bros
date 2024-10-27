@@ -10,7 +10,7 @@ public class ControladorSonidosJuego {
 		sonidosJuego.put(TipoSonidos.advertenciaTiempo, new Sonido ("audio/advertenciaTiempo.wav"));
 		sonidosJuego.put(TipoSonidos.aparecePowerUp, new Sonido ("audio/aparecePowerUp.wav"));
 		sonidosJuego.put(TipoSonidos.bajaBandera, new Sonido ("audio/bajaBandera.wav"));
-		sonidosJuego.put(TipoSonidos.finNivel, new Sonido ("audio/sonidoFinalNnivel.wav"));
+		sonidosJuego.put(TipoSonidos.finNivel, new Sonido ("audio/sonidoFinalNivel.wav"));
 		sonidosJuego.put(TipoSonidos.bajaCañeria, new Sonido ("audio/cañeria.wav"));
 	}
 	

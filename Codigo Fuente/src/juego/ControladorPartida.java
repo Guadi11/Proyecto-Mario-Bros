@@ -58,8 +58,8 @@ public class ControladorPartida {
 	public void reiniciarNivel(){
 		hiloSonido.detener();
 		hiloJugador.detener();
+		hiloEnemigo.detener();
 		controladorSonido.reproducirSonidoAccion(TipoSonidos.muerteMario);
-		//hiloEnemigo.detener();
 		int monedas = this.nivelActual.getJugador().getMonedas();
 		int puntaje = this.nivelActual.getJugador().getPuntaje();
 		int vidas = this.nivelActual.getJugador().getVida();
