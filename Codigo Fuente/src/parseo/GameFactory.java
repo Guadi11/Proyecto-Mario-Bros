@@ -118,7 +118,7 @@ public abstract class GameFactory {
 	
 	public Moneda crearMoneda(int x, int y) {
 		Sprite sprite = new Sprite(rutaCarpeta + "/moneda.png");
-		Moneda moneda = new Moneda(x, y, sprite);
+		Moneda moneda = new Moneda(x, y + 5, sprite); //+ 5 asi flota 
 		setearHitbox(moneda, sprite);
 		
 		return moneda;
@@ -138,6 +138,8 @@ public abstract class GameFactory {
 		Sprite sprite = new Sprite(rutaCarpeta + "/bloqueDePregunta.png");
 		BloqueDePregunta bloquePregunta = new BloqueDePregunta(x, y, sprite);
 		setearHitbox(bloquePregunta, sprite);
+		bloquePregunta.setFabrica(this);
+		bloquePregunta.setControlador(controladorPartida);
 		
 		return bloquePregunta;
 	}

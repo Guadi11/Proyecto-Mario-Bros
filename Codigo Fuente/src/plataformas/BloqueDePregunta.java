@@ -23,26 +23,28 @@ public class BloqueDePregunta extends Plataforma implements VisitorPlataformas{
 
 	public void generarPowerUp() {
 		PowerUp creado = null;
-		int posicionYCreado = this.posicionY-30; //ir probando ubicacion, seria el bloque de arriba
+		int posicionXCreado = this.posicionX;
+		int posicionYCreado = this.posicionY + 36; //Bloque de arriba.
 		switch(powerUp) {
 			case "Moneda":
-				creado = fabrica.crearMoneda(posicionX, posicionYCreado);
+				posicionXCreado = this.posicionX + 5; //Se centra arriba del bloque.
+				creado = fabrica.crearMoneda(posicionXCreado, posicionYCreado);
 				break;
 			
 			case "SuperChampiñon":
-				creado = fabrica.crearSuperChampiñon(posicionX, posicionYCreado);
+				creado = fabrica.crearSuperChampiñon(posicionXCreado, posicionYCreado);
 				break;
 			
 			case "FlorDeFuego":
-				creado = fabrica.crearFlorDeFuego(posicionX, posicionYCreado);
+				creado = fabrica.crearFlorDeFuego(posicionXCreado, posicionYCreado);
 				break;
 			
 			case "Estrella":
-				creado = fabrica.crearEstrella(posicionX, posicionYCreado);
+				creado = fabrica.crearEstrella(posicionXCreado, posicionYCreado);
 				break;
 			
 			case "ChampiñonVerde":
-				creado = fabrica.crearChampiñonVerde(posicionX, posicionYCreado);
+				creado = fabrica.crearChampiñonVerde(posicionXCreado, posicionYCreado);
 				break;
 		}
 		
@@ -101,8 +103,10 @@ public class BloqueDePregunta extends Plataforma implements VisitorPlataformas{
 			jugador.setPosX((int) (this.getPosX() - jugador.getHitbox().getWidth()));
 		} 
 		else if(jugador.getBoundsTop().intersects(this.getBoundsBottom())){
+			System.out.println("golpeo desde abajo");
 			jugador.setPosY((int) (this.getPosY() - this.getHitbox().getHeight()));
 			jugador.setVelY(0);
+			generarPowerUp();
 		}
 		
 	}
