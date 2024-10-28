@@ -29,7 +29,7 @@ public abstract class GameFactory {
 		Sprite sprite = new Sprite(rutaCarpeta + "/mario.png");
 		Jugador jugador = new Jugador(x, y, sprite);
 		setearHitbox(jugador, sprite);
-		
+		System.out.println("Jugador, x: "+ jugador.getHitbox().getX() + ". posY: " +  jugador.getHitbox().getY() + ". Ancho: " + jugador.getHitbox().getWidth() + ". Alto: " + jugador.getHitbox().getHeight());
 		return jugador;
 	}
 	
@@ -166,6 +166,7 @@ public abstract class GameFactory {
 		tuberia.setFabrica(this);
 		tuberia.setControlador(controladorPartida);
 		setearHitbox(tuberia, sprite);
+		System.out.println("Tuberia 1, x: "+ tuberia.getHitbox().getX() + ". posY: " +  tuberia.getHitbox().getY() + ". Ancho: " + tuberia.getHitbox().getWidth() + ". Alto: " + tuberia.getHitbox().getHeight());
 		
 		return tuberia;
 	}
@@ -175,6 +176,7 @@ public abstract class GameFactory {
 		tuberia.setFabrica(this);
 		tuberia.setControlador(controladorPartida);
 		setearHitbox(tuberia, sprite);
+		System.out.println("Tuberia 2, x: "+ tuberia.getHitbox().getX() + ". posY: " +  tuberia.getHitbox().getY() + ". Ancho: " + tuberia.getHitbox().getWidth() + ". Alto: " + tuberia.getHitbox().getHeight());
 		
 		return tuberia;
 	}
@@ -184,6 +186,7 @@ public abstract class GameFactory {
 		tuberia.setFabrica(this);
 		tuberia.setControlador(controladorPartida);
 		setearHitbox(tuberia, sprite);
+		System.out.println("Tuberia 3, x: "+ tuberia.getHitbox().getX() + ". posY: " + tuberia.getHitbox().getY() + ". Ancho: " + tuberia.getHitbox().getWidth() + ". Alto: " + tuberia.getHitbox().getHeight());
 		
 		return tuberia;
 	}
@@ -214,9 +217,9 @@ public abstract class GameFactory {
 	
 	private void setearHitbox(Elemento elem, Sprite sprite) {
 		ImageIcon iconoImagen = new ImageIcon(sprite.getRutaImagen());
-		Image imagenOriginal = iconoImagen.getImage();
-		int ancho = imagenOriginal.getWidth(null);
-		int alto = imagenOriginal.getHeight(null);
+		Image imagen = iconoImagen.getImage();
+		int ancho = imagen.getWidth(null);
+		int alto = imagen.getHeight(null);
 		elem.setHitbox(ancho, alto);
 	}
 

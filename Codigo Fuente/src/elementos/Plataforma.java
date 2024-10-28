@@ -12,9 +12,11 @@ public abstract class Plataforma extends Estatico implements VisitorPlataformas{
 		super (x,y,imagen);
 	}
 	
+	public void morir() {
+		this.nivel.removerElemento(this);
+	}
+	
 	public void setNivel(Nivel nivel) {
 		this.nivel = nivel;
 	}
-	
-	public void morir() {};
 }

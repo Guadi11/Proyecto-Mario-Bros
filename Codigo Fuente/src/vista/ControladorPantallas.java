@@ -79,7 +79,7 @@ public class ControladorPantallas implements ControladorDePantallas, Controlador
 	        ventana.addWindowListener(new WindowAdapter() {
 	            @Override
 	            public void windowClosing(WindowEvent evento){
-	                System.out.println("Se cerró la ventana");
+	                
 	            }
 	        });
 	}

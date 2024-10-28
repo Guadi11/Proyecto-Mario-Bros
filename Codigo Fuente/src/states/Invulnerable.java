@@ -107,7 +107,7 @@ public class Invulnerable extends State{
     }
 
 	@Override
-	protected boolean esGrande() {
+	public boolean esGrande() {
 		return false;
 	}
 

@@ -1,5 +1,13 @@
 package plataformas;
 
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.Rectangle;
+
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+
 import archivos.Sprite;
 import colisiones.VisitorPlataformas;
 import elementos.BolaDeFuego;
@@ -53,22 +61,62 @@ public class Tuberia extends Plataforma implements VisitorPlataformas{
 			System.out.println("toco al bloque arriba");
 			jugador.setPosY((int) (this.getPosY() + jugador.getHitbox().getHeight()));
 			jugador.setVelY(0);
-			jugador.setJumped(false);
+			//jugador.setJumped(false);
 	
 		} 
-		else if(jugador.getBoundsLeft().intersects(this.getBoundsRight())) {
-			jugador.setPosX((int) (this.getPosX() + jugador.getHitbox().getWidth()));
-		} 
-		else if(jugador.getBoundsRight().intersects(this.getBoundsLeft())) {
+		else if(jugador.getBoundsRight().intersects(this.getBoundsLeft())) { //this.getBoundsLeft()
+			System.out.println("toco a la tuberia por la izquierda");
 			jugador.setPosX((int) (this.getPosX() - jugador.getHitbox().getWidth()));
-		} 
+		}
+		else if(jugador.getBoundsLeft().intersects(this.getBoundsRight())) {
+			System.out.println("toco a la tuberia por la derecha");
+			jugador.setPosX((int) (this.getPosX() + jugador.getHitbox().getWidth()));
+		}  
 		else if(jugador.getBoundsTop().intersects(this.getBoundsBottom())){
-			System.out.println("toco al bloque desde abajo");
+			System.out.println("toco a la tuberia por abajo");
 			jugador.setPosY((int) (this.getPosY() - this.getHitbox().getHeight()));
 			jugador.setVelY(0);
 		}
 		
 	}
+	
+	public Rectangle getBoundsBottom() {
+		return new Rectangle(
+				 (int) (this.getHitbox().getX()) +6,  // (this.getHitbox().getX() + this.getHitbox().getWidth()/2 - this.getHitbox().getWidth()/4)
+			     (int) (this.getHitbox().getY() - this.getHitbox().getHeight()/2), //chequear +5
+			     (int) this.getHitbox().getWidth() -12,  // /2 o rstarle un numero fijo tipo 5, 10
+			     (int) this.getHitbox().getHeight()/2); 
+	}
+	
+	public Rectangle getBoundsTop() {
+		
+		 return new Rectangle(
+				// (int) (this.getHitbox().getX() + this.getHitbox().getWidth()/2 - this.getHitbox().getWidth()/4), x
+				 // (int) this.getHitbox().getWidth()/2,  ancho
+				    (int) (this.getHitbox().getX() + this.getHitbox().getWidth()/2 - this.getHitbox().getWidth()/4), //+5
+			        (int) this.getHitbox().getY()+1,  //(this.getHitbox().getY() + this.getHitbox().getHeight()/2)
+			        (int)  this.getHitbox().getWidth()/2, 
+			        (int) this.getHitbox().getHeight()/2);
+	}
+	
+	public Rectangle getBoundsRight() {
+		Rectangle toReturn = new Rectangle(
+		        (int) (this.getPosX() + this.getHitbox().getWidth() - 5),
+		        (int) this.getPosY() - 5, 
+		        5, 
+		        (int) this.getHitbox().getHeight() - 10);		
+		
+		return toReturn;
+	} 
+	
+	public Rectangle getBoundsLeft() {
+		 return new Rectangle(
+			        (int) this.getPosX(),
+			        (int) this.getPosY() - 5,  
+			        5, 
+			        (int) this.getHitbox().getHeight() - 10);
+	} 
+	
 
 	@Override
 	public void visitar(Enemigo enemigo) {

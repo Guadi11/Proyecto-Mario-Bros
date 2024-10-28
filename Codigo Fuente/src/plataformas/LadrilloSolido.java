@@ -14,10 +14,6 @@ public class LadrilloSolido extends Plataforma implements VisitorPlataformas{
 	public LadrilloSolido(int x, int y, Sprite imagen) {
 		super(x, y, imagen);
 	}
-	
-	public void morir() {
-		//imagen.eliminar();
-	}
 
 	@Override
 	public void visitar(Jugador jugador) {
@@ -26,7 +22,7 @@ public class LadrilloSolido extends Plataforma implements VisitorPlataformas{
 		if(jugador.getBoundsBottom().intersects(this.getBoundsTop())) {
 			jugador.setPosY((int) (this.getPosY() + jugador.getHitbox().getHeight()));
 			jugador.setVelY(0);
-			jugador.setJumped(false);
+			//jugador.setJumped(false);
 	
 		} 
 		else if(jugador.getBoundsLeft().intersects(this.getBoundsRight())) {
@@ -36,8 +32,15 @@ public class LadrilloSolido extends Plataforma implements VisitorPlataformas{
 			jugador.setPosX((int) (this.getPosX() - jugador.getHitbox().getWidth()));
 		} 
 		else if(jugador.getBoundsTop().intersects(this.getBoundsBottom())){
+			System.out.println("golpeo desde abajo");
+			System.out.println("Estoy grande: " + jugador.getState().esGrande());
 			jugador.setPosY((int) (this.getPosY() - this.getHitbox().getHeight()));
 			jugador.setVelY(0);
+			if(jugador.getState().esGrande()) {
+				System.out.println("entra a es grande");
+				morir();
+				estoyMuerto = true;
+			}
 		}
 	}
 

@@ -68,6 +68,6 @@ public abstract class State {
 		return invulnerable;
 	}
 
-	protected abstract boolean esGrande();
+	public abstract boolean esGrande();
 
 }

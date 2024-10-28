@@ -16,9 +16,11 @@ public class BloqueDePregunta extends Plataforma implements VisitorPlataformas{
 	protected String powerUp;
 	protected GameFactory fabrica;
 	protected ControladorPartida controladorPartida;
+	protected boolean activado; //Cuando el powerUp aun no fue generado
 	
 	public BloqueDePregunta(int x, int y, Sprite imagen) {
 		super(x, y, imagen);
+		activado = true;
 	}
 
 	public void generarPowerUp() {
@@ -55,10 +57,6 @@ public class BloqueDePregunta extends Plataforma implements VisitorPlataformas{
 		}
 	}
 
-	public void morir() {
-		//imagen.changeSprite("Bloque apagado")
-		this.generarPowerUp();
-	}
 	//Get
 	public Sprite getSprite() {
 		return imagen;
@@ -93,7 +91,7 @@ public class BloqueDePregunta extends Plataforma implements VisitorPlataformas{
 		if(jugador.getBoundsBottom().intersects(this.getBoundsTop())) {
 			jugador.setPosY((int) (this.getPosY() + jugador.getHitbox().getHeight()));
 			jugador.setVelY(0);
-			jugador.setJumped(false);
+			//jugador.setJumped(false);
 	
 		} 
 		else if(jugador.getBoundsLeft().intersects(this.getBoundsRight())) {
@@ -103,10 +101,13 @@ public class BloqueDePregunta extends Plataforma implements VisitorPlataformas{
 			jugador.setPosX((int) (this.getPosX() - jugador.getHitbox().getWidth()));
 		} 
 		else if(jugador.getBoundsTop().intersects(this.getBoundsBottom())){
-			System.out.println("golpeo desde abajo");
 			jugador.setPosY((int) (this.getPosY() - this.getHitbox().getHeight()));
 			jugador.setVelY(0);
-			generarPowerUp();
+			if(activado) {
+				generarPowerUp();
+				activado = false;
+				//cambiar imagen a bloque desactivado
+			}
 		}
 		
 	}

@@ -12,6 +12,7 @@ public abstract class Elemento implements ElementoLogico{
 	protected Observer observer;
 	protected int posicionX,posicionY;
 	protected Nivel nivel;
+	protected boolean estoyMuerto;
 	
 	public Elemento(int x, int y, Sprite imagen) {
 		posicionX = x;
@@ -19,6 +20,7 @@ public abstract class Elemento implements ElementoLogico{
 		hitbox = new Rectangle ();
 		hitbox.setLocation(posicionX,posicionY);
 		this.imagen=imagen;
+		estoyMuerto = false;
 	}
 	
 	public Sprite getSprite() {
@@ -53,10 +55,12 @@ public abstract class Elemento implements ElementoLogico{
 	public Observer getObserver() {
 		return this.observer;
 	}
+	public boolean estaMuerto() {
+		return estoyMuerto;
+	}
 	
 	public void registrarObserver(Observer observer) {
 		this.observer = observer;
-
 	}
 	
 	public void eliminarObserver() {
@@ -75,9 +79,9 @@ public abstract class Elemento implements ElementoLogico{
 	
 		public Rectangle getBoundsBottom() {
 			return new Rectangle(
-					 (int) (this.getHitbox().getX()),  // (this.getHitbox().getX() + this.getHitbox().getWidth()/2 - this.getHitbox().getWidth()/4)
+					 (int) (this.getHitbox().getX()) +6,  // (this.getHitbox().getX() + this.getHitbox().getWidth()/2 - this.getHitbox().getWidth()/4)
 				     (int) (this.getHitbox().getY() - this.getHitbox().getHeight()/2), //chequear +5
-				     (int) this.getHitbox().getWidth(),  // /2 o rstarle un numero fijo tipo 5, 10
+				     (int) this.getHitbox().getWidth() -12,  // /2 o rstarle un numero fijo tipo 5, 10
 				     (int) this.getHitbox().getHeight()/2); 
 		}
 		
@@ -87,7 +91,7 @@ public abstract class Elemento implements ElementoLogico{
 					// (int) (this.getHitbox().getX() + this.getHitbox().getWidth()/2 - this.getHitbox().getWidth()/4), x
 					 // (int) this.getHitbox().getWidth()/2,  ancho
 					    (int) (this.getHitbox().getX() + this.getHitbox().getWidth()/2 - this.getHitbox().getWidth()/4), //+5
-				        (int) this.getHitbox().getY() +5,  //(this.getHitbox().getY() + this.getHitbox().getHeight()/2)
+				        (int) this.getHitbox().getY()+1,   //(this.getHitbox().getY() + this.getHitbox().getHeight()/2)
 				        (int)  this.getHitbox().getWidth()/2, 
 				        (int) this.getHitbox().getHeight()/2);
 		}
