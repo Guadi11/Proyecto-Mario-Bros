@@ -18,6 +18,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.Timer;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import elementos.ElementoJugador;
 import elementos.ElementoLogico;
 import observers.*;
@@ -41,7 +45,8 @@ public class PantallaJuego extends JPanel implements KeyListener{
 	protected JLabel labelVidas;
 	protected JLabel labelNivelActual;
 	protected ControladorPantallas controladorPantalla;
-	protected float timerNivel; //???
+	protected Timer timerNivel;
+	protected int tiempoRestante=400;
 	
 	public PantallaJuego(ControladorPantallas controladorPantalla) {
 		this.controladorPantalla = controladorPantalla;
@@ -79,6 +84,7 @@ public class PantallaJuego extends JPanel implements KeyListener{
 		panelScroll.setBounds(0, 0, ConstantesPantalla.panelAncho, ConstantesPantalla.panelJuegoAlto);
 		
 		this.add(panelScroll, BorderLayout.CENTER);
+		this.iniciarTimer();
 	}
 	
 	private void agregarImagenFondo() {
@@ -257,11 +263,23 @@ public class PantallaJuego extends JPanel implements KeyListener{
 	}
 
 	public void iniciarTimer() {
-		//TODO
+		timerNivel = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                actualizarTimer();
+            }
+        });
+        timerNivel.start();
 	}
 	
 	public void actualizarTimer() {
-		//TODO
+		if (tiempoRestante > 0) {
+            tiempoRestante--; 
+            labelTiempo.setText(textoConDigitos(tiempoRestante, 3)); 
+        } else {
+            timerNivel.stop();
+            this.controladorPantalla.partida.timeOut();
+        }
 	}
 	
 	public void actualizarLabelsNivel() {

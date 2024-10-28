@@ -20,7 +20,6 @@ public class ControladorPartida {
 	protected GameFactory fabrica;
 	protected Ranking ranking;
 	protected Nivel nivelActual;
-	protected float timerNivel; 
 	protected String nombreJugador;
 	protected int numNivelActual;
 	protected ControladorColisiones colisiones;
