@@ -31,7 +31,7 @@ public abstract class Enemigo extends Movible implements VisitorAJugador, Visita
 	
 	public void actualizar() {
 		moverIzquierda();
-		posicionX += velX;
+		this.setPosX(posicionX + velX); 
 		actualizarPosicionHitbox();
 		notificar();
 	}

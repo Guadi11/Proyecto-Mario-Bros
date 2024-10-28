@@ -49,6 +49,25 @@ public class Tuberia extends Plataforma implements VisitorPlataformas{
 	public void visitar(Jugador jugador) {
 		//jugador choca contra tuberia (redefinir pos)
 		
+		if(jugador.getBoundsBottom().intersects(this.getBoundsTop())) {
+			System.out.println("toco al bloque arriba");
+			jugador.setPosY((int) (this.getPosY() + jugador.getHitbox().getHeight()));
+			jugador.setVelY(0);
+			jugador.setJumped(false);
+	
+		} 
+		else if(jugador.getBoundsLeft().intersects(this.getBoundsRight())) {
+			jugador.setPosX((int) (this.getPosX() + jugador.getHitbox().getWidth()));
+		} 
+		else if(jugador.getBoundsRight().intersects(this.getBoundsLeft())) {
+			jugador.setPosX((int) (this.getPosX() - jugador.getHitbox().getWidth()));
+		} 
+		else if(jugador.getBoundsTop().intersects(this.getBoundsBottom())){
+			System.out.println("toco al bloque desde abajo");
+			jugador.setPosY((int) (this.getPosY() - this.getHitbox().getHeight()));
+			jugador.setVelY(0);
+		}
+		
 	}
 
 	@Override

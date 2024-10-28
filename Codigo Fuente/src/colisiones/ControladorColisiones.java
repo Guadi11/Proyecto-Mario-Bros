@@ -40,5 +40,15 @@ public class ControladorColisiones {
 				iteratorPU.remove();
 			}     
 	    }
+	    
+	    Iterator<Plataforma> iteratorPlat = nivel.getPlataformas().iterator();    
+	    while (iteratorPlat.hasNext()) {
+	    	Plataforma p = iteratorPlat.next();
+	       
+	    	if (jugadorHitbox.intersects(p.getHitbox())) {
+				nivel.getJugador().aceptarVisita(p);
+			}     
+	    }
+	    
 	}
 }

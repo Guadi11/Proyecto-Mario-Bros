@@ -5,7 +5,6 @@ import colisiones.Visitable;
 import colisiones.VisitorAJugador;
 import colisiones.VisitorBolaDeFuego;
 import colisiones.VisitorPlataformas;
-import elementos.Elemento;
 import elementos.ElementoJugador;
 import elementos.Movible;
 import observers.AdaptadorPosicionPixel;
@@ -20,6 +19,7 @@ public class Jugador extends Movible implements Visitable, ElementoJugador{
 	protected int velX, velY;
 	protected boolean isJumped;
 	protected Nivel nivel;
+	protected boolean colisionConBloque;
 	
 	
 	public Jugador(int x, int y, Sprite imagen) {
@@ -28,8 +28,9 @@ public class Jugador extends Movible implements Visitable, ElementoJugador{
 		velY = 0;
 		isJumped = false;
 		info = new InfoJugador(this);
-		
-		//genera problema no inicializar aca adentro el estado?
+
+		colisionConBloque = false;
+
 		inicializarEstados();
 	}
 	
@@ -66,7 +67,13 @@ public class Jugador extends Movible implements Visitable, ElementoJugador{
 		this.nivel = nivel;
 		this.info.setNivel(nivel);
 	}
+	public void setVelX(int v) {
+		this.velX = v;
+	}
 
+	public void setVelY(int v) {
+		this.velY = v;
+	}
 	public void moverDerecha() {
 		velX = 5;
 	}
@@ -80,32 +87,26 @@ public class Jugador extends Movible implements Visitable, ElementoJugador{
 	}
 	
 	public void actualizar() {
-		int altura_piso = AdaptadorPosicionPixel.transformarY(441); 
-		int limite_derecho =  AdaptadorPosicionPixel.transformarX(7471);
+		int alturaPiso = AdaptadorPosicionPixel.transformarY(441); 
+		int limiteDerecho =  AdaptadorPosicionPixel.transformarX(7471);
 		
-		//int altura_piso = 441;
-		//int limite_derecho = 7471;
-		
-		/*if(estado instanceof SuperMario)
-			altura_piso = 405;*/
 		
 		posicionX += velX;
 		posicionY += velY;
 		
-		if (posicionY > altura_piso) {
+		if (posicionY > alturaPiso) {
 		        velY -= 1; 
 		}else {
-		        posicionY = altura_piso;
+		        posicionY = alturaPiso;
 		        velY = 0; 
 		        isJumped = false;
 		}
 		
 		if (posicionX < 0) {
 	        posicionX = 0; 
-	    }else if (posicionX > limite_derecho) {
-	    	posicionX = limite_derecho;	
-	    }
-		
+	    }else if (posicionX > limiteDerecho) {
+	    	posicionX = limiteDerecho;	
+	    } 
 		actualizarPosicionHitbox();
 		notificar();
     }
@@ -120,6 +121,10 @@ public class Jugador extends Movible implements Visitable, ElementoJugador{
 	        isJumped = true;
 	        estado.reproducirSonidoSalto();
 	    }	
+	}
+	
+	public void setJumped(boolean valor) {
+		this.isJumped = valor;
 	}
 		
 	//Get
@@ -145,14 +150,6 @@ public class Jugador extends Movible implements Visitable, ElementoJugador{
 
 	public int getVelocidad() {
 		return this.velX;
-	}
-	public boolean esColisionDesdeArriba(Elemento elementoAVisitar) {
-		//boolean colision = AdaptadorPosicionPixel.transformarY((int) this.hitbox.getMinY()) >= AdaptadorPosicionPixel.transformarY((int) (elementoAVisitar.getHitbox().getHeight()/2));
-		boolean colision = (this.posicionY - this.hitbox.getHeight()) >= (elementoAVisitar.getPosY());
-		//return getHitbox().getMaxY() <= elementoAVisitar.getHitbox().getMinY();
-		/*return getHitbox().getMaxY() <= elementoAVisitar.getHitbox().getMinY() && 
-				getHitbox().getMaxY() >= elementoAVisitar.getHitbox().getMinY() - getHitbox().getHeight();*/
-		return colision;
 	}
 	
 

@@ -1,9 +1,10 @@
 package elementos;
 
 import archivos.Sprite;
+import colisiones.VisitorPlataformas;
 import juego.Nivel;
 
-public abstract class Plataforma extends Estatico{
+public abstract class Plataforma extends Estatico implements VisitorPlataformas{
 	
 	protected Nivel nivel;
 

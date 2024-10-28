@@ -75,54 +75,38 @@ public abstract class Elemento implements ElementoLogico{
 	
 		public Rectangle getBoundsBottom() {
 			return new Rectangle(
-					 (int) (this.getHitbox().getX()),  
-				     (int) (this.getHitbox().getY() - this.getHitbox().getHeight() + 5), //chequear
-				     (int) this.getHitbox().getWidth(),  
-				     (int) this.getHitbox().getHeight()/2);  
-				    
-			
-			//(int) (this.getHitbox().getX() + this.getHitbox().getWidth()/2 - this.getHitbox().getWidth()/4) el X
-			//(int) this.getHitbox().getWidth()/2 el ancho
+					 (int) (this.getHitbox().getX() + this.getHitbox().getWidth()/2 - this.getHitbox().getWidth()/4),  
+				     (int) (this.getHitbox().getY() - this.getHitbox().getHeight()/2), //chequear +5
+				     (int) this.getHitbox().getWidth(),  // /2 o rstarle un numero fijo tipo 5, 10
+				     (int) this.getHitbox().getHeight()/2); 
 		}
 		
 		public Rectangle getBoundsTop() {
-			//System.out.println("Entro a getboundsTop");
+			
 			 return new Rectangle(
-				        (int) (this.getHitbox().getX()), 
-				        (int) (this.getHitbox().getY() + this.getHitbox().getHeight()/2),  // Parte superior del enemigo
-				        (int) this.getHitbox().getWidth(), // Ancho total del enemigo
-				        (int) this.getHitbox().getHeight()/2);// Solo una pequeña franja en la parte superior
+					// (int) (this.getHitbox().getX() + this.getHitbox().getWidth()/2 - this.getHitbox().getWidth()/4), x
+					 // (int) this.getHitbox().getWidth()/2,  ancho
+					    (int) (this.getHitbox().getX() + this.getHitbox().getWidth()/2 - this.getHitbox().getWidth()/4), //+5
+				        (int) this.getHitbox().getY() +5,  //(this.getHitbox().getY() + this.getHitbox().getHeight()/2)
+				        (int)  this.getHitbox().getWidth()/2, 
+				        (int) this.getHitbox().getHeight()/2);
 		}
 		
-		/*	//no borrarlos!!!
 		public Rectangle getBoundsRight() {
 			
 			return new Rectangle(
-			        (int) (this.getPosX() + this.getHitbox().getWidth() - 5), // Solo 5px del borde derecho
-			        (int) this.getPosY() - 5,  // Excluye un poco de la parte superior e inferior
-			        5, // Un rectángulo muy estrecho en el lado derecho
-			        (int) this.getHitbox().getHeight() - 10 // Excluye los primeros y últimos 5px verticales
-			    );
-			
-			return new Rectangle( (int) (this.getHitbox().getX() + this.getHitbox().getWidth() - 5), //este 5 puedo ir cambiandolo, ancho del rect
-					(int) (this.getHitbox().getY() - 5), //aca probablemente sea restarle 5 no sumarle
-					5,//este 5 puedo ir cambiandolo, ancho del rect
-					(int) this.getHitbox().getHeight() - 10); //5 arriba y 5 abajo  
+			        (int) (this.getPosX() + this.getHitbox().getWidth() - 5),
+			        (int) this.getPosY() - 5, 
+			        5, 
+			        (int) this.getHitbox().getHeight() - 10);
 		} 
 		
 		public Rectangle getBoundsLeft() {
 			 return new Rectangle(
-				        (int) this.getPosX(), // Límite izquierdo
-				        (int) this.getPosY() - 5,  // Excluye la parte superior e inferior
-				        5,  // Solo 5px del borde izquierdo
-				        (int) this.getHitbox().getHeight() - 10  // Excluye los primeros y últimos 5px verticales
-				    );
-		
-			
-			return new Rectangle( (int) this.getHitbox().getX(),
-					(int) (this.getHitbox().getY() - 5), //aca probablemente sea restarle 5 no sumarle
-					5,//este 5 puedo ir cambiandolo, ancho del rect
-					(int) (this.getHitbox().getHeight() - 10)); //5 arriba y 5 abajo;  
-		} */
+				        (int) this.getPosX(),
+				        (int) this.getPosY() - 5,  
+				        5, 
+				        (int) this.getHitbox().getHeight() - 10);
+		} 
 		
 }
