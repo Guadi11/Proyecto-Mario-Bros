@@ -22,6 +22,7 @@ public class Castillo extends Plataforma implements VisitorAJugador{
 
 	@Override
 	public void visitar(Jugador jugador) {
+		this.nivel.getControladorPartida().reiniciarNivel();
 		//gestiona el ganar nivel
 		//this.nivel.getControladorPartida().victoria(jugador.getInfo().getPuntaje());
 	}

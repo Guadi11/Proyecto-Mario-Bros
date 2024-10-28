@@ -22,7 +22,7 @@ public class LadrilloSolido extends Plataforma implements VisitorPlataformas{
 		if(jugador.getBoundsBottom().intersects(this.getBoundsTop())) {
 			jugador.setPosY((int) (this.getPosY() + jugador.getHitbox().getHeight()));
 			jugador.setVelY(0);
-			//jugador.setJumped(false);
+			jugador.setJumped(false);
 	
 		} 
 		else if(jugador.getBoundsLeft().intersects(this.getBoundsRight())) {
