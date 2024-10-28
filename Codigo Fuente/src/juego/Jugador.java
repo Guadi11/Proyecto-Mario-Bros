@@ -122,6 +122,13 @@ public class Jugador extends Movible implements Visitable, ElementoJugador{
 	        estado.reproducirSonidoSalto();
 	    }	
 	}
+	public void saltarAlMatar() {
+		if (!isJumped) { 
+	        velY = 10; 
+	        isJumped = true;
+	        //estado.reproducirSonidoSalto();
+	    }	
+	}
 	
 	public void setJumped(boolean valor) {
 		this.isJumped = valor;

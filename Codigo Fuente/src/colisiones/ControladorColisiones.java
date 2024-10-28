@@ -20,14 +20,11 @@ public class ControladorColisiones {
 		Iterator<Enemigo> iteratorE = nivel.getEnemigos().iterator();	 
 		while (iteratorE.hasNext()) {
 			Enemigo e = iteratorE.next();
-	  	            
 			if (jugadorHitbox.intersects(e.getHitbox())) {
-				if (jugadorHitbox.intersects(e.getBoundsTop())){
-					System.out.println("Colisión desde arriba detectada");
-					e.colisionDesdeArriba();
+				nivel.getJugador().aceptarVisita(e);
+				if(e.estaMuerto()) {
 					iteratorE.remove();
 				}
-				nivel.getJugador().aceptarVisita(e);
 			}
 		}
 		

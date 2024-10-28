@@ -15,12 +15,16 @@ public class Goomba extends Enemigo{
 	}
 	
 	public void visitar (Jugador jugador) {
-		if (this.fueColisionArriba()) { 
-			System.out.println("Goomba recibio daño desde arriba.");
+		if(jugador.getBoundsBottom().intersects(this.getBoundsTop())) {
+			jugador.setPosY((int) (this.getPosY() + jugador.getHitbox().getHeight()));
+			jugador.setVelY(0);
+			jugador.setJumped(false);
 			jugador.getInfo().actualizarPuntaje(this.puntosQueDa());
 			morir();
-		}else {
-			System.out.println("colision por el costado");
+			this.estoyMuerto = true;
+			jugador.saltarAlMatar();
+	
+		} else {
 			jugador.getInfo().actualizarPuntaje(-this.puntosQueResta());
 			jugador.getState().recibirDaño();
 		}

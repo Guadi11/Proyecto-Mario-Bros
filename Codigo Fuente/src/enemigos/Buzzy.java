@@ -9,22 +9,36 @@ import elementos.Enemigo;
 import juego.Jugador;
 
 public class Buzzy extends Enemigo{
+	protected boolean escondido;
 
 	public Buzzy(int x, int y, Sprite imagen) {
 		super(x, y, imagen);
+		escondido = false;
 	}
 
 	public void visitar(Jugador jugador) {
 		//misma muerte que Koopa
 		//si es de arriba, cambia de imagen y deja de moverse (algun boolean). Segundo golpe igual que Koopa (desde donde sea)
 		//sino, mata a jugador
-		
-		if (this.fueColisionArriba()) { 
-			System.out.println("Buzzy recibio daño desde arriba.");
-			jugador.getInfo().actualizarPuntaje(this.puntosQueDa());
-			morir();
-		}else {
-			System.out.println("colision por el costado");
+
+		if(jugador.getBoundsBottom().intersects(this.getBoundsTop())) {
+			jugador.setPosY((int) (this.getPosY() + jugador.getHitbox().getHeight()));
+			jugador.setVelY(0);
+			jugador.setJumped(false);
+			jugador.saltarAlMatar();
+			if(escondido) {
+				jugador.getInfo().actualizarPuntaje(this.puntosQueDa());
+				System.out.println("entro a escondido");
+				morir();
+				this.estoyMuerto = true;				
+			} else {
+				System.out.println("entro a NO escondido");
+				escondido = true;
+				System.out.println("Se esconde");
+			}
+			//sigue bien la secuencia pero la colision se detecta tan rapido que se ve como si golpeara una vez sola
+		} else {
+			System.out.println("colision desde el costado");
 			jugador.getInfo().actualizarPuntaje(-this.puntosQueResta());
 			jugador.getState().recibirDaño();
 		}

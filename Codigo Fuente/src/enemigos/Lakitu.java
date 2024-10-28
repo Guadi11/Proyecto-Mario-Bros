@@ -51,9 +51,18 @@ public class Lakitu extends Enemigo{
 	
 	public void visitar (Jugador jugador) {
 		//Si es de arriba, muere. Sino, mata a jugador
-		int puntosDaño = this.puntosQueResta();
-		jugador.getInfo().actualizarPuntaje(-puntosDaño);
-		jugador.getState().recibirDaño();
+		if(jugador.getBoundsBottom().intersects(this.getBoundsTop())) {
+			jugador.setPosY((int) (this.getPosY() + jugador.getHitbox().getHeight()));
+			jugador.setVelY(0);
+			jugador.setJumped(false);
+			jugador.saltarAlMatar();
+			jugador.getInfo().actualizarPuntaje(this.puntosQueDa());
+			morir();
+			this.estoyMuerto = true;
+		} else {
+			jugador.getInfo().actualizarPuntaje(-this.puntosQueResta());
+			jugador.getState().recibirDaño();
+		}
 	}
 	
 	@Override

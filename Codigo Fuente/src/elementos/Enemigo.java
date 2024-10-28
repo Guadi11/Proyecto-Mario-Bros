@@ -10,12 +10,14 @@ public abstract class Enemigo extends Movible implements VisitorAJugador, Visita
 	protected Observer observer;
 	protected long velocidadEnMill = 3000;
 	protected int velX, velY;
-	protected boolean colisionArriba = false;
+	protected boolean estoyMuerto;
+	
 	
 	public Enemigo(int x, int y, Sprite imagen) {
 		super(x, y, imagen);
 		velX = 0;
 		velY = 0;
+		estoyMuerto = false;
 	}
 
 	public abstract int puntosQueResta();
@@ -35,10 +37,8 @@ public abstract class Enemigo extends Movible implements VisitorAJugador, Visita
 		actualizarPosicionHitbox();
 		notificar();
 	}
-	public void colisionDesdeArriba() {
-		colisionArriba = true;
-	}
-	public boolean fueColisionArriba() {
-		return colisionArriba;
+	
+	public boolean estaMuerto() {
+		return estoyMuerto;
 	}
 }

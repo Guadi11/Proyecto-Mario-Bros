@@ -10,10 +10,12 @@ import juego.Jugador;
 
 public class Koopa extends Enemigo{
 		
-	protected boolean escondido = false;
+	protected boolean escondido;
 	
 	public Koopa (int x, int y, Sprite imagen) {
 			super (x,y,imagen);
+			escondido = false;
+			
 		}
 	
 		
@@ -22,6 +24,30 @@ public class Koopa extends Enemigo{
 			//muere al chocar con plataforma. Usar el boolean. 
 			//sino, mata a jugador
 			
+			if(jugador.getBoundsBottom().intersects(this.getBoundsTop())) {
+				if(escondido) {
+					System.out.println("entro a escondido");
+					jugador.getInfo().actualizarPuntaje(this.puntosQueDa());
+					morir();
+					this.estoyMuerto = true;	
+				} else {
+					System.out.println("entro a NO escondido");
+					escondido = true;
+					System.out.println("Se esconde");
+				}
+				jugador.setPosY((int) (this.getPosY() + jugador.getHitbox().getHeight()));
+				jugador.setVelY(0);
+				jugador.setJumped(false);
+				jugador.saltarAlMatar();
+			
+				//sigue bien la secuencia pero la colision se detecta tan rapido que se ve como si golpeara una vez sola
+			} else {
+				System.out.println("colision desde el costado");
+				jugador.getInfo().actualizarPuntaje(-this.puntosQueResta());
+				jugador.getState().recibirDaño();
+			}
+			
+			/*
 			if (this.fueColisionArriba()) { 
 				System.out.println("Koopa recibio daño desde arriba.");
 				jugador.getInfo().actualizarPuntaje(this.puntosQueDa());
@@ -30,7 +56,7 @@ public class Koopa extends Enemigo{
 				System.out.println("colision por el costado");
 				jugador.getInfo().actualizarPuntaje(-this.puntosQueResta());
 				jugador.getState().recibirDaño();
-			}
+			} */
 			
 			/*
 			if (this.fueColisionArriba()) { 
