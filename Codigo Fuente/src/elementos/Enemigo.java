@@ -10,27 +10,39 @@ public abstract class Enemigo extends Movible implements VisitorAJugador, Visita
 	protected Observer observer;
 	protected long velocidadEnMill = 3000;
 	protected int velX, velY;
+	protected boolean aIzquierda;
 	
 	
 	public Enemigo(int x, int y, Sprite imagen) {
 		super(x, y, imagen);
 		velX = 0;
 		velY = 0;
+		aIzquierda = true;
 	}
 
 	public abstract int puntosQueResta();
 	public abstract int puntosQueDa();
 	
 	public void moverIzquierda() {
-		velX = -2;
+		aIzquierda = true;
+		//velX = -2;
 	}
 	
 	public void moverDerecha() {
-		velX = 4;
+		aIzquierda = false;
+		//velX = 4;
+	}
+	public void moverEnDireccion() {
+		if(aIzquierda) {
+			velX = -2;
+		}else {
+			velX = 2;
+		}
 	}
 	
 	public void actualizar() {
-		moverIzquierda();
+		moverEnDireccion();
+		//moverIzquierda();
 		this.setPosX(posicionX + velX); 
 		actualizarPosicionHitbox();
 		notificar();

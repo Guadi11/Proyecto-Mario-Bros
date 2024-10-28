@@ -18,7 +18,7 @@ public class HiloJugador extends Thread {
 	 	while(enEjecucion){
 	 		 synchronized (controlador.getNivelActual().getEnemigos()) { // Sincroniza el acceso a la lista de enemigos
 	             controlador.getNivelActual().getJugador().actualizar();              
-	             colisiones.detectarColision(); 
+	             colisiones.detectarColisionJugador(); 
 	         }
 
 	         try {

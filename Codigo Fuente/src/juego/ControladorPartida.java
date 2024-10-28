@@ -46,7 +46,7 @@ public class ControladorPartida {
 		
 		hiloJugador = new HiloJugador(this,colisiones); /*agregue el parametro colisiones y por ende su atributo*/
 		hiloJugador.start();
-		hiloEnemigo = new HiloEnemigo(this);
+		hiloEnemigo = new HiloEnemigo(this, colisiones);
 		hiloEnemigo.start();
 		hiloSonido = new HiloSonido();
 		hiloSonido.start();

@@ -14,7 +14,7 @@ public class ControladorColisiones {
 		nivel = n;
 	}
 	
-	public void detectarColision() {
+	public void detectarColisionJugador() {
 		Rectangle jugadorHitbox = nivel.getJugador().getHitbox(); 
 		
 		Iterator<Enemigo> iteratorE = nivel.getEnemigos().iterator();	 
@@ -49,5 +49,20 @@ public class ControladorColisiones {
 				}
 			}     
 	    }
+	}
+	
+	
+	public void detectarColisionEnemigos(Enemigo e) { //o elemento
+		Rectangle enemigoHitbox = e.getHitbox();
+		Iterator<Plataforma> iteratorPlat = nivel.getPlataformas().iterator();    
+	    while (iteratorPlat.hasNext()) {
+	    	Plataforma p = iteratorPlat.next();
+	       
+	    	if (enemigoHitbox.intersects(p.getHitbox())) {
+	    		e.aceptarVisita(p);
+			}     
+	    }
+		
+		
 	}
 }

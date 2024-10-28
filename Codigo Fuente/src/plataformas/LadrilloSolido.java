@@ -47,7 +47,23 @@ public class LadrilloSolido extends Plataforma implements VisitorPlataformas{
 	@Override
 	public void visitar(Enemigo enemigo) {
 		//enemigo choca contra bloque
-		
+		if(enemigo.getBoundsBottom().intersects(this.getBoundsTop())) {
+			enemigo.setPosY((int) (this.getPosY() + enemigo.getHitbox().getHeight()));
+			//enemigo.setVelY(0);	
+		} 
+		else if(enemigo.getBoundsLeft().intersects(this.getBoundsRight())) {
+			enemigo.setPosX((int) (this.getPosX() + enemigo.getHitbox().getWidth()));
+			enemigo.moverDerecha();
+		}
+		else if(enemigo.getBoundsRight().intersects(this.getBoundsLeft())) {
+			enemigo.setPosX((int) (this.getPosX() - enemigo.getHitbox().getWidth()));
+			enemigo.moverIzquierda();
+		} 
+		else if(enemigo.getBoundsTop().intersects(this.getBoundsBottom())){
+			System.out.println("golpeo desde abajo");
+			enemigo.setPosY((int) (this.getPosY() - this.getHitbox().getHeight()));
+			//enemigo.setVelY(0);
+		}
 	}
 
 	@Override
