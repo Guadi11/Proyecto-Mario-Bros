@@ -27,7 +27,6 @@ protected Sonido backGround;
 	 }
 	 
 	 public void detener() {
-		 enEjecucion = false;
 		 backGround.detener();
 	 }
 	 

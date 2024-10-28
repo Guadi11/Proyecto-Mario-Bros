@@ -16,8 +16,8 @@ public class Vacio extends Plataforma implements VisitorAJugador{
 	}
 	
 	public void visitar (Jugador jugador) {
-		//tiene que reiniciar nivel si o si
-		jugador.getInfo().restarVida();
+		jugador.setVelY(-10);
+			
 	}
 	
 	@Override
@@ -28,7 +28,9 @@ public class Vacio extends Plataforma implements VisitorAJugador{
 
 	@Override
 	public void visitar(Enemigo enemigo) {
-		// TODO Auto-generated method stub
+		enemigo.ColisionaConBloque(false);
+		enemigo.setVelY(-10);
+		System.out.println("Entro loco.");
 		
 	}
 

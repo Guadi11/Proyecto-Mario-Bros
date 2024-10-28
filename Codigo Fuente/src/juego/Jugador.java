@@ -67,12 +67,12 @@ public class Jugador extends Movible implements Visitable, ElementoJugador{
 		this.nivel = nivel;
 		this.info.setNivel(nivel);
 	}
-	public void setVelX(int v) {
-		this.velX = v;
+	public void setVelX(int direc) {
+		this.velX = direc;
 	}
 
-	public void setVelY(int v) {
-		this.velY = v;
+	public void setVelY(int direc) {
+		this.velY = direc;
 	}
 	public void moverDerecha() {
 		velX = 5;
@@ -89,26 +89,32 @@ public class Jugador extends Movible implements Visitable, ElementoJugador{
 	public void actualizar() {
 		int alturaPiso = AdaptadorPosicionPixel.transformarY(441); 
 		int limiteDerecho =  AdaptadorPosicionPixel.transformarX(7471);
-		
+		int limiteY_ventana = 0;
 		
 		posicionX += velX;
 		posicionY += velY;
 		
-		if (posicionY > alturaPiso) {
-		        velY -= 1; 
-		}else {
-		        posicionY = alturaPiso;
-		        velY = 0; 
-		        isJumped = false;
+		if (posicionY > alturaPiso || posicionY<alturaPiso) {
+		    velY -= 1;
 		}
+			else {
+				velY = 0; 
+			    isJumped = false;
+					}
 		
 		if (posicionX < 0) {
 	        posicionX = 0; 
 	    }else if (posicionX > limiteDerecho) {
 	    	posicionX = limiteDerecho;	
-	    } 
+	    }
+		if (posicionY<limiteY_ventana)
+			this.getInfo().restarVida();
+		
 		actualizarPosicionHitbox();
 		notificar();
+
+		
+		
     }
 	
 	public void moverse() {

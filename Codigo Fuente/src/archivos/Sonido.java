@@ -28,10 +28,12 @@ import java.io.IOException;
 	    public void reproducirSonido() {
 	    	clip.setFramePosition(0); // Reinicia el clip
         	clip.start();
+        	audioOn = true;
 	    }
 
 	    public void detener() {
 	        clip.stop(); // Detiene el clip
+	        audioOn = true;
 	    }
 
 	    public void cerrar() {

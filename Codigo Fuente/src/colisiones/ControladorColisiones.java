@@ -59,6 +59,7 @@ public class ControladorColisiones {
 	    	Plataforma p = iteratorPlat.next();
 	       
 	    	if (enemigoHitbox.intersects(p.getHitbox())) {
+	    		e.ColisionaConBloque(true);
 	    		e.aceptarVisita(p);
 			}     
 	    }
