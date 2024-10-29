@@ -1,8 +1,10 @@
 package states;
 
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.Timer;
 
 import archivos.Sprite;
@@ -31,14 +33,23 @@ public class Invulnerable extends State{
         
         if (estadoAnterior.esGrande()) {
             jugador.getSprite().setSprite("imagenes/modoUno/invulnerable.png");
-            //jugador.actualizarPosicionHitbox(); //actualizar pos jugador, alto y ancho de hitbox en un metodo aparte
         } else {
             jugador.getSprite().setSprite("imagenes/modoUno/invulnerablemini.png");
         }
         iniciarTemporizador();
         //encontrar sonidoInvulnerable y activarlo, ademas de parar HiloSonido
+        //actualizarMedidas();
     }
-		//la posicion esta ajustada pero no se por qué cae abajo del piso*/
+	private void actualizarMedidas() {
+		ImageIcon iconoImagen = new ImageIcon("imagenes/modoUno/mariofuego.png");
+		Image imagen = iconoImagen.getImage();
+		int ancho = imagen.getWidth(null);
+		int alto = imagen.getHeight(null);
+		int posY = (int) (jugador.getPosY() + (alto - jugador.getHitbox().getHeight()));
+		
+		this.jugador.setPosY(posY);
+		this.jugador.getHitbox().setBounds(jugador.getPosX(), posY, ancho, alto);
+	}
 	
 	public void setAnterior(State anterior) {
 		this.estadoAnterior = anterior;

@@ -29,7 +29,7 @@ public abstract class GameFactory {
 		Sprite sprite = new Sprite(rutaCarpeta + "/mario.png");
 		Jugador jugador = new Jugador(x, y, sprite);
 		setearHitbox(jugador, sprite);
-		System.out.println("Jugador, x: "+ jugador.getHitbox().getX() + ". posY: " +  jugador.getHitbox().getY() + ". Ancho: " + jugador.getHitbox().getWidth() + ". Alto: " + jugador.getHitbox().getHeight());
+		//System.out.println("Jugador, x: "+ jugador.getHitbox().getX() + ". posY: " +  jugador.getHitbox().getY() + ". Ancho: " + jugador.getHitbox().getWidth() + ". Alto: " + jugador.getHitbox().getHeight());
 		return jugador;
 	}
 	
@@ -56,6 +56,7 @@ public abstract class GameFactory {
 		Sprite sprite = new Sprite(rutaCarpeta + "/goomba1.png");
 		Goomba goomba = new Goomba(x, y, sprite);
 		setearHitbox(goomba, sprite);
+		
 		return goomba;
 	}
 	
@@ -166,7 +167,7 @@ public abstract class GameFactory {
 		tuberia.setFabrica(this);
 		tuberia.setControlador(controladorPartida);
 		setearHitbox(tuberia, sprite);
-		System.out.println("Tuberia 1, x: "+ tuberia.getHitbox().getX() + ". posY: " +  tuberia.getHitbox().getY() + ". Ancho: " + tuberia.getHitbox().getWidth() + ". Alto: " + tuberia.getHitbox().getHeight());
+		//System.out.println("Tuberia 1, x: "+ tuberia.getHitbox().getX() + ". posY: " +  tuberia.getHitbox().getY() + ". Ancho: " + tuberia.getHitbox().getWidth() + ". Alto: " + tuberia.getHitbox().getHeight());
 		
 		return tuberia;
 	}
@@ -176,7 +177,7 @@ public abstract class GameFactory {
 		tuberia.setFabrica(this);
 		tuberia.setControlador(controladorPartida);
 		setearHitbox(tuberia, sprite);
-		System.out.println("Tuberia 2, x: "+ tuberia.getHitbox().getX() + ". posY: " +  tuberia.getHitbox().getY() + ". Ancho: " + tuberia.getHitbox().getWidth() + ". Alto: " + tuberia.getHitbox().getHeight());
+		//System.out.println("Tuberia 2, x: "+ tuberia.getHitbox().getX() + ". posY: " +  tuberia.getHitbox().getY() + ". Ancho: " + tuberia.getHitbox().getWidth() + ". Alto: " + tuberia.getHitbox().getHeight());
 		
 		return tuberia;
 	}
@@ -186,7 +187,7 @@ public abstract class GameFactory {
 		tuberia.setFabrica(this);
 		tuberia.setControlador(controladorPartida);
 		setearHitbox(tuberia, sprite);
-		System.out.println("Tuberia 3, x: "+ tuberia.getHitbox().getX() + ". posY: " + tuberia.getHitbox().getY() + ". Ancho: " + tuberia.getHitbox().getWidth() + ". Alto: " + tuberia.getHitbox().getHeight());
+		//System.out.println("Tuberia 3, x: "+ tuberia.getHitbox().getX() + ". posY: " + tuberia.getHitbox().getY() + ". Ancho: " + tuberia.getHitbox().getWidth() + ". Alto: " + tuberia.getHitbox().getHeight());
 		
 		return tuberia;
 	}

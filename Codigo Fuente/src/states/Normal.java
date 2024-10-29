@@ -1,5 +1,9 @@
 package states;
 
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
+
 import archivos.Sprite;
 import archivos.TipoSonidos;
 import juego.Jugador;
@@ -16,6 +20,17 @@ public class Normal extends State {
 	public void activar() {
 		jugador.setState(this);
 		jugador.getSprite().setSprite("imagenes/modoUno/mario.png");
+		//actualizarMedidas();
+	}
+	private void actualizarMedidas() {
+		ImageIcon iconoImagen = new ImageIcon("imagenes/modoUno/mario.png");
+		Image imagen = iconoImagen.getImage();
+		int ancho = imagen.getWidth(null);
+		int alto = imagen.getHeight(null);
+		int posY = (int) (jugador.getPosY() + (alto - jugador.getHitbox().getHeight()));
+		
+		this.jugador.setPosY(posY);
+		this.jugador.getHitbox().setBounds(jugador.getPosX(), posY, ancho, alto);
 	}
 	
 	public Sprite getSprite() {

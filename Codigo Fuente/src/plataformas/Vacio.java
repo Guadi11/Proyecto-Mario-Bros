@@ -17,6 +17,7 @@ public class Vacio extends Plataforma implements VisitorAJugador{
 	
 	public void visitar (Jugador jugador) {
 		jugador.setVelY(-10);
+		jugador.getInfo().actualizarPuntaje(-15);
 			
 	}
 	
@@ -30,7 +31,7 @@ public class Vacio extends Plataforma implements VisitorAJugador{
 	public void visitar(Enemigo enemigo) {
 		enemigo.ColisionaConBloque(false);
 		enemigo.setVelY(-10);
-		System.out.println("Entro loco.");
+		//System.out.println("Entro loco.");
 		
 	}
 

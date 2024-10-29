@@ -27,12 +27,10 @@ public abstract class Enemigo extends Movible implements VisitorAJugador, Visita
 	
 	public void moverIzquierda() {
 		aIzquierda = true;
-		//velX = -2;
 	}
 	
 	public void moverDerecha() {
 		aIzquierda = false;
-		//velX = 4;
 	}
 	public void moverEnDireccion() {
 		if(aIzquierda) {
