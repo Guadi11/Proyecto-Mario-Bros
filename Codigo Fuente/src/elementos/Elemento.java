@@ -78,11 +78,11 @@ public abstract class Elemento implements ElementoLogico{
 	}
 	
 		public Rectangle getBoundsBottom() {
-			return new Rectangle(
+			return new Rectangle( //
 					 (int) (this.getHitbox().getX()) +6,  // (this.getHitbox().getX() + this.getHitbox().getWidth()/2 - this.getHitbox().getWidth()/4)
 				     (int) (this.getHitbox().getY() - this.getHitbox().getHeight()/2), //chequear +5
 				     (int) this.getHitbox().getWidth() -12,  // /2 o rstarle un numero fijo tipo 5, 10
-				     (int) this.getHitbox().getHeight()/2); 
+				     (int) (this.getHitbox().getHeight()/2)); 
 		}
 		
 		public Rectangle getBoundsTop() {
@@ -93,7 +93,7 @@ public abstract class Elemento implements ElementoLogico{
 					    (int) (this.getHitbox().getX() + this.getHitbox().getWidth()/2 - this.getHitbox().getWidth()/4), //+5
 				        (int) this.getHitbox().getY()+1,   //(this.getHitbox().getY() + this.getHitbox().getHeight()/2)
 				        (int)  this.getHitbox().getWidth()/2, 
-				        (int) this.getHitbox().getHeight()/2);
+				        (int) (this.getHitbox().getHeight()/2));
 		}
 		
 		public Rectangle getBoundsRight() {

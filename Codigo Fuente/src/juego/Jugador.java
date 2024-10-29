@@ -7,6 +7,7 @@ import colisiones.VisitorBolaDeFuego;
 import colisiones.VisitorPlataformas;
 import elementos.ElementoJugador;
 import elementos.Movible;
+import elementos.Plataforma;
 import observers.AdaptadorPosicionPixel;
 import states.*;
 
@@ -19,7 +20,8 @@ public class Jugador extends Movible implements Visitable, ElementoJugador{
 	protected int velX, velY;
 	protected boolean isJumped;
 	protected Nivel nivel;
-	protected boolean colisionConBloque;
+	protected boolean arribaDeBloque;
+	protected Plataforma ultimoBloque;
 	
 	
 	public Jugador(int x, int y, Sprite imagen) {
@@ -28,8 +30,8 @@ public class Jugador extends Movible implements Visitable, ElementoJugador{
 		velY = 0;
 		isJumped = false;
 		info = new InfoJugador(this);
-
-		colisionConBloque = false;
+		arribaDeBloque = false;
+		ultimoBloque = null;
 
 		inicializarEstados();
 	}
@@ -86,21 +88,23 @@ public class Jugador extends Movible implements Visitable, ElementoJugador{
 		velX = 0;
 	}
 	
-	public void actualizar() {
-		int alturaPiso = AdaptadorPosicionPixel.transformarY(441); 
+	public void actualizar() { 
 		int limiteDerecho =  AdaptadorPosicionPixel.transformarX(7471);
 		int limiteY_ventana = 0;
-		
+		System.out.println("esta arriba de bloque?: "+arribaDeBloque);
 		posicionX += velX;
 		posicionY += velY;
-		
-		if (posicionY > alturaPiso || posicionY<alturaPiso) {
-		    velY -= 1;
+		estaEnLaHitboxDelBloque();
+		System.out.println("Altura hitbox: "+this.getHitbox().getMaxY());
+		if (!arribaDeBloque) {
+			if ( posicionY > minAlturaMario() || posicionY<minAlturaMario() ) {
+			    velY -= 1;
+			}
+				else {
+					velY = 0; 
+				    isJumped = false;
+						}
 		}
-			else {
-				velY = 0; 
-			    isJumped = false;
-					}
 		
 		if (posicionX < 0) {
 	        posicionX = 0; 
@@ -182,6 +186,23 @@ public class Jugador extends Movible implements Visitable, ElementoJugador{
 	public void aceptarVisita(VisitorBolaDeFuego visitor) {
 		// entra a este metodo cuando el visitor sea una bola de fuego, lo cual nunca sucede
 	}
-		
+	public int minAlturaMario() {
+		int minAlturaMario = AdaptadorPosicionPixel.transformarY(441); //la minima altura de mario en estado normal.
+		if (estado.esGrande()) 
+			minAlturaMario = 144;
+		return minAlturaMario;
+	}
+	public boolean estaArribaDeBloque() {
+		return arribaDeBloque;
+	}
+	public void ultimoBloqueColision(Plataforma l) {
+		ultimoBloque = l;
+	}
+	public void estaEnLaHitboxDelBloque(){
+		if(ultimoBloque!=null)
+			if (this.getHitbox().intersects(ultimoBloque.getHitbox())) {
+				arribaDeBloque = true;
+			}else arribaDeBloque = false;
+	}
 }
 

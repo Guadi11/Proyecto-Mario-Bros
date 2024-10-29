@@ -22,7 +22,7 @@ public class SuperMario extends State{
 	public void activar() {
 		jugador.setState(this);
 		jugador.getSprite().setSprite("imagenes/modoUno/supermario.png");
-		//actualizarMedidas();
+		actualizarMedidas();
 	}
 	
 	private void actualizarMedidas() {
@@ -32,8 +32,8 @@ public class SuperMario extends State{
 		int alto = imagen.getHeight(null);
 		int posY = (int) (jugador.getPosY() + (alto - jugador.getHitbox().getHeight()));
 		
-		this.jugador.setPosY(posY);
-		this.jugador.getHitbox().setBounds(jugador.getPosX(), posY, ancho, alto);
+		//this.jugador.setPosY(posY);
+		this.jugador.getHitbox().setBounds(jugador.getPosX(), posY-30, ancho, alto);
 	}
 
 	public Sprite getSprite() {
@@ -94,5 +94,4 @@ public class SuperMario extends State{
 	public boolean esGrande() {
 		return true;
 	}
-
 }

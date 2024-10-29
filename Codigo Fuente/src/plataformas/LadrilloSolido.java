@@ -17,10 +17,13 @@ public class LadrilloSolido extends Plataforma implements VisitorPlataformas{
 
 	@Override
 	public void visitar(Jugador jugador) {
+		System.out.println("ladrillo solido: "+this.getHitbox().toString());
+		System.out.println("Jugador: "+jugador.getHitbox().toString());
+		jugador.ultimoBloqueColision(this);
 		//chequeo si la colision es de abajo (y en superMario) o no. En ambos casos el jugador choca contra el bloque, pero en uno se rompe
 		//romperse: animacion de romperse y morir
 		if(jugador.getBoundsBottom().intersects(this.getBoundsTop())) {
-			jugador.setPosY((int) (this.getPosY() + jugador.getHitbox().getHeight()));
+			jugador.setPosY((int) (this.getPosY() + jugador.getHitbox().getHeight()));// esto hace que mario se bugee 
 			jugador.setVelY(0);
 			jugador.setJumped(false);
 	

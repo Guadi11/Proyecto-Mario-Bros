@@ -38,7 +38,7 @@ public class Invulnerable extends State{
         }
         iniciarTemporizador();
         //encontrar sonidoInvulnerable y activarlo, ademas de parar HiloSonido
-        //actualizarMedidas();
+        actualizarMedidas();
     }
 	private void actualizarMedidas() {
 		ImageIcon iconoImagen = new ImageIcon("imagenes/modoUno/mariofuego.png");
@@ -47,7 +47,7 @@ public class Invulnerable extends State{
 		int alto = imagen.getHeight(null);
 		int posY = (int) (jugador.getPosY() + (alto - jugador.getHitbox().getHeight()));
 		
-		this.jugador.setPosY(posY);
+		//this.jugador.setPosY(posY);
 		this.jugador.getHitbox().setBounds(jugador.getPosX(), posY, ancho, alto);
 	}
 	
