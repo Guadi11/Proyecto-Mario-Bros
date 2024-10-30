@@ -60,6 +60,7 @@ public class PantallaInicio extends JPanel{
             botonRanking.setBorderPainted(false); // Elimina el borde
             botonRanking.setFocusPainted(false); // Elimina el borde cuando el botón está enfocado
             botonRanking.setOpaque(false);
+            botonRanking.addActionListener(e -> controlador.mostrarPantallaRanking());
             
             add(botonRanking);
             imagenFondo.add(botonRanking);

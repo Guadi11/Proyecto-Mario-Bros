@@ -22,6 +22,7 @@ public class Jugador extends Movible implements Visitable, ElementoJugador{
 	protected Nivel nivel;
 	protected boolean arribaDeBloque;
 	protected Plataforma ultimoBloque;
+	protected String nombre;
 	
 	
 	public Jugador(int x, int y, Sprite imagen) {
@@ -203,6 +204,15 @@ public class Jugador extends Movible implements Visitable, ElementoJugador{
 			if (this.getHitbox().intersects(ultimoBloque.getHitbox())) {
 				arribaDeBloque = true;
 			}else arribaDeBloque = false;
+	}
+
+	public String getName() {
+		// TODO Auto-generated method stub
+		return nombre;
+	}
+	
+	public void setName(String nombre) {
+		this.nombre=nombre;
 	}
 }
 
