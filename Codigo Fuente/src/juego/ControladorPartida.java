@@ -137,6 +137,7 @@ public class ControladorPartida {
 	
 	public void timeOut() {
 		hiloSonido.detener();
+		controladorSonido.detenerSonidoJuego(TipoSonidos.advertenciaTiempo);
 		controladorSonido.reproducirSonidoAccion(TipoSonidos.muerteMario);
 		this.reiniciarNivel();
 	}
@@ -190,5 +191,8 @@ public class ControladorPartida {
 	}
 	public ControladorSonidos getControladorSonidos() {
 		return controladorSonido;
+	}
+	public HiloSonido getHiloSonido() {
+		return hiloSonido;
 	}
 }

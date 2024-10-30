@@ -20,4 +20,8 @@ public class ControladorSonidosAcciones {
  public void reproducirSonido (TipoSonidos tipo) {
 	 sonidosAcciones.get(tipo).reproducirSonido();
  }
+
+public void detenerSonido(TipoSonidos tipo) {
+	sonidosAcciones.get(tipo).detener();
+}
 }

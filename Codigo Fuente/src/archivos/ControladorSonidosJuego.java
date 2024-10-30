@@ -12,9 +12,13 @@ public class ControladorSonidosJuego {
 		sonidosJuego.put(TipoSonidos.bajaBandera, new Sonido ("audio/bajaBandera.wav"));
 		sonidosJuego.put(TipoSonidos.finNivel, new Sonido ("audio/sonidoFinalNivel.wav"));
 		sonidosJuego.put(TipoSonidos.bajaCañeria, new Sonido ("audio/cañeria.wav"));
+		sonidosJuego.put(TipoSonidos.speedBackground, new Sonido ("audio/speedBackground.wav"));
 	}
 	
 	public void reproducirSonido (TipoSonidos tipo) {
 		 sonidosJuego.get(tipo).reproducirSonido();
 	 }
+	public void detenerSonido (TipoSonidos tipo) {
+		sonidosJuego.get(tipo).detener();
+	}
 }
