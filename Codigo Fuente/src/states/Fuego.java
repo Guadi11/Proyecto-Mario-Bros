@@ -16,15 +16,16 @@ public class Fuego extends SuperMario{
 	
 	public Fuego(Jugador jugador) {
 		super(jugador);
+		this.sprite = new Sprite("imagenes/modoUno/mariofuego.png");
 	}
 	
 	public void activar() {
 		jugador.setState(this);
-		jugador.getSprite().setSprite("imagenes/modoUno/mariofuego.png");
-		//actualizarMedidas();
+		jugador.getSprite().setSprite(this.sprite.getRutaImagen());
+		actualizarMedidas();
 	}	
 	private void actualizarMedidas() {
-		ImageIcon iconoImagen = new ImageIcon("imagenes/modoUno/mariofuego.png");
+		ImageIcon iconoImagen = new ImageIcon(this.sprite.getRutaImagen());
 		Image imagen = iconoImagen.getImage();
 		int ancho = imagen.getWidth(null);
 		int alto = imagen.getHeight(null);
@@ -34,8 +35,7 @@ public class Fuego extends SuperMario{
 		this.jugador.getHitbox().setBounds(jugador.getPosX(), posY, ancho, alto);
 	}
 	
-	public Sprite getSprite() {
-		this.sprite = new Sprite("imagenes/modoUno/invulnerable.png"); //?
+	public Sprite getSprite() {//este getSprite creo que no es llamado nunca
 		return sprite;
 	}
 

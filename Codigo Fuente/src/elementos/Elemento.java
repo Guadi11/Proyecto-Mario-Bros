@@ -79,8 +79,8 @@ public abstract class Elemento implements ElementoLogico{
 	
 		public Rectangle getBoundsBottom() {
 			return new Rectangle(
-					 (int) (this.getHitbox().getX()) +6,  // (this.getHitbox().getX() + this.getHitbox().getWidth()/2 - this.getHitbox().getWidth()/4)
-				     (int) (this.getHitbox().getY() - this.getHitbox().getHeight()/2), //chequear +5
+					 (int) (this.getHitbox().getX()) +6, 
+					 (int) (this.getHitbox().getY() - this.getHitbox().getHeight()/2), //chequear +5
 				     (int) this.getHitbox().getWidth() -12,  // /2 o rstarle un numero fijo tipo 5, 10
 				     (int) this.getHitbox().getHeight()/2); 
 		}
@@ -88,29 +88,32 @@ public abstract class Elemento implements ElementoLogico{
 		public Rectangle getBoundsTop() {
 			
 			 return new Rectangle(
-					// (int) (this.getHitbox().getX() + this.getHitbox().getWidth()/2 - this.getHitbox().getWidth()/4), x
-					 // (int) this.getHitbox().getWidth()/2,  ancho
-					    (int) (this.getHitbox().getX() + this.getHitbox().getWidth()/2 - this.getHitbox().getWidth()/4), //+5
-				        (int) this.getHitbox().getY()+1,   //(this.getHitbox().getY() + this.getHitbox().getHeight()/2)
-				        (int)  this.getHitbox().getWidth()/2, 
+					    (int) (this.getHitbox().getX() + this.getHitbox().getWidth()/2 - this.getHitbox().getWidth()/4), 
+				        (int) this.getHitbox().getY(),  
+				        (int) this.getHitbox().getWidth()/2, 
 				        (int) this.getHitbox().getHeight()/2);
 		}
 		
 		public Rectangle getBoundsRight() {
 			
 			return new Rectangle(
-			        (int) (this.getPosX() + this.getHitbox().getWidth() - 5),
-			        (int) this.getPosY() - 5, 
+			        (int) (this.getHitbox().getX() + this.getHitbox().getWidth() - 5),
+			        (int) this.getHitbox().getY() - 2, 
 			        5, 
-			        (int) this.getHitbox().getHeight() - 10);
+			        (int) this.getHitbox().getHeight() - 4);
 		} 
 		
 		public Rectangle getBoundsLeft() {
 			 return new Rectangle(
-				        (int) this.getPosX(),
-				        (int) this.getPosY() - 5,  
+				        (int) this.getHitbox().getX(),
+				        (int) this.getHitbox().getY()-2, 
 				        5, 
-				        (int) this.getHitbox().getHeight() - 10);
+				        (int) this.getHitbox().getHeight() - 4);
 		} 
-		
+		/*
+		 * Anotaciones sobre cada hitbox:
+		 * Si pongo el boundTop a la misma altura que Left y Right los elementos quedan trabados sin poder moverse. Por eso Left y Right -2 en Y
+		 * 
+		 * 
+		 */
 }

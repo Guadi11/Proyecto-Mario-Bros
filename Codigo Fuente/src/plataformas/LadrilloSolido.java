@@ -19,14 +19,15 @@ public class LadrilloSolido extends Plataforma implements VisitorPlataformas{
 	public void visitar(Jugador jugador) {
 		//chequeo si la colision es de abajo (y en superMario) o no. En ambos casos el jugador choca contra el bloque, pero en uno se rompe
 		//romperse: animacion de romperse y morir
+		
+		
 		if(jugador.getBoundsBottom().intersects(this.getBoundsTop())) {
 			jugador.setPosY((int) (this.getPosY() + jugador.getHitbox().getHeight()));
 			jugador.setVelY(0);
 			jugador.setJumped(false);
-	
 		} 
 		else if(jugador.getBoundsLeft().intersects(this.getBoundsRight())) {
-			jugador.setPosX((int) (this.getPosX() + jugador.getHitbox().getWidth()));
+			jugador.setPosX((int) (this.getPosX() + this.hitbox.getWidth()));
 		}
 		else if(jugador.getBoundsRight().intersects(this.getBoundsLeft())) {
 			jugador.setPosX((int) (this.getPosX() - jugador.getHitbox().getWidth()));
@@ -52,7 +53,7 @@ public class LadrilloSolido extends Plataforma implements VisitorPlataformas{
 			//enemigo.setVelY(0);	
 		} 
 		else if(enemigo.getBoundsLeft().intersects(this.getBoundsRight())) {
-			enemigo.setPosX((int) (this.getPosX() + enemigo.getHitbox().getWidth()));
+			enemigo.setPosX((int) (this.getPosX() + this.hitbox.getWidth()));
 			enemigo.moverDerecha();
 		}
 		else if(enemigo.getBoundsRight().intersects(this.getBoundsLeft())) {
