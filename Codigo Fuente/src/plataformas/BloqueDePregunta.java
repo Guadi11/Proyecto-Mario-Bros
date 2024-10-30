@@ -1,6 +1,7 @@
 package plataformas;
 
 import archivos.Sprite;
+import archivos.TipoSonidos;
 import colisiones.VisitorPlataformas;
 import elementos.BolaDeFuego;
 import elementos.Elemento;
@@ -106,13 +107,17 @@ public class BloqueDePregunta extends Plataforma implements VisitorPlataformas{
 			if(activado) {
 				generarPowerUp();
 				activado = false;
+				sonido();
 				//cambiar imagen a bloque desactivado
 			}
 		}
 		
 	}
-
-	@Override
+	
+	public void sonido() {
+		this.nivel.getControladorPartida().getControladorSonidos().reproducirSonidoJuego(TipoSonidos.aparecePowerUp);
+	}
+	
 	public void visitar(Enemigo enemigo) {
 		//enemigo choca contra bloque
 		if(enemigo.getBoundsBottom().intersects(this.getBoundsTop())) {

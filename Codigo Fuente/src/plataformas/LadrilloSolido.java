@@ -1,6 +1,7 @@
 package plataformas;
 
 import archivos.Sprite;
+import archivos.TipoSonidos;
 import colisiones.VisitorPlataformas;
 import elementos.BolaDeFuego;
 import elementos.Elemento;
@@ -45,6 +46,10 @@ public class LadrilloSolido extends Plataforma implements VisitorPlataformas{
 				estoyMuerto = true;
 			}
 		}
+	}
+	public void morir() {
+		this.nivel.removerElemento(this);
+		this.nivel.getControladorPartida().getControladorSonidos().reproducirSonidoAccion(TipoSonidos.rompeBloque);
 	}
 
 	@Override

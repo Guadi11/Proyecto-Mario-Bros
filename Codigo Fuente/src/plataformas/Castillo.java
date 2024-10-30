@@ -1,6 +1,7 @@
 package plataformas;
 
 import archivos.Sprite;
+import archivos.TipoSonidos;
 import colisiones.VisitorAJugador;
 import elementos.BolaDeFuego;
 import elementos.Elemento;
@@ -23,11 +24,14 @@ public class Castillo extends Plataforma implements VisitorAJugador{
 	@Override
 	public void visitar(Jugador jugador) {
 		this.nivel.getControladorPartida().reiniciarNivel();
+		sonido();
 		//gestiona el ganar nivel
 		//this.nivel.getControladorPartida().victoria(jugador.getInfo().getPuntaje());
 	}
-
-	@Override
+	public void sonido() {
+		this.nivel.getControladorPartida().getControladorSonidos().reproducirSonidoJuego(TipoSonidos.finNivel);
+	}
+	
 	public void visitar(Enemigo enemigo) {
 		// TODO Auto-generated method stub
 		
