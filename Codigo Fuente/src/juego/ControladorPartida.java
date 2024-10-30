@@ -188,4 +188,7 @@ public class ControladorPartida {
 	public Nivel getNivelActual() {
 		return nivelActual;
 	}
+	public ControladorSonidos getControladorSonidos() {
+		return controladorSonido;
+	}
 }

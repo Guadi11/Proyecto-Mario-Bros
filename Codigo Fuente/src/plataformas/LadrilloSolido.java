@@ -1,6 +1,7 @@
 package plataformas;
 
 import archivos.Sprite;
+import archivos.TipoSonidos;
 import colisiones.VisitorPlataformas;
 import elementos.BolaDeFuego;
 import elementos.Elemento;
@@ -17,9 +18,9 @@ public class LadrilloSolido extends Plataforma implements VisitorPlataformas{
 
 	@Override
 	public void visitar(Jugador jugador) {
-		//chequeo si la colision es de abajo (y en superMario) o no. En ambos casos el jugador choca contra el bloque, pero en uno se rompe
-		//romperse: animacion de romperse y morir
-		
+		System.out.println("ladrillo solido: "+this.getHitbox().toString());
+		System.out.println("Jugador: "+jugador.getHitbox().toString());
+		jugador.ultimoBloqueColision(this);
 		
 		if(jugador.getBoundsBottom().intersects(this.getBoundsTop())) {
 			jugador.setPosY((int) (this.getPosY() + jugador.getHitbox().getHeight()));
@@ -33,16 +34,17 @@ public class LadrilloSolido extends Plataforma implements VisitorPlataformas{
 			jugador.setPosX((int) (this.getPosX() - jugador.getHitbox().getWidth()));
 		} 
 		else if(jugador.getBoundsTop().intersects(this.getBoundsBottom())){
-			System.out.println("golpeo desde abajo");
-			System.out.println("Estoy grande: " + jugador.getState().esGrande());
 			jugador.setPosY((int) (this.getPosY() - this.getHitbox().getHeight()));
 			jugador.setVelY(0);
 			if(jugador.getState().esGrande()) {
-				System.out.println("entra a es grande");
 				morir();
 				estoyMuerto = true;
 			}
 		}
+	}
+	public void morir() {
+		this.nivel.removerElemento(this);
+		this.nivel.getControladorPartida().getControladorSonidos().reproducirSonidoAccion(TipoSonidos.rompeBloque);
 	}
 
 	@Override

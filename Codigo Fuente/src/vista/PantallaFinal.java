@@ -38,7 +38,7 @@ public class PantallaFinal extends JPanel{
 	}
 	
 	protected void agregarImagenGameOver() {
-		ImageIcon icon1 = new ImageIcon(getClass().getResource("/imagenes/imagengameover.png"));
+		ImageIcon icon1 = new ImageIcon(getClass().getResource("/imagenes/imagenfondogameover.png"));
 		Image imagen1 = icon1.getImage().getScaledInstance(ConstantesPantalla.panelAncho, ConstantesPantalla.panelAlto, Image.SCALE_SMOOTH);
         imagenGameOver = new JLabel(new ImageIcon(imagen1));
         imagenGameOver.setBounds(0, -40, ConstantesPantalla.panelAncho, ConstantesPantalla.panelAlto);

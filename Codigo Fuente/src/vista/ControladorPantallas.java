@@ -30,7 +30,7 @@ public class ControladorPantallas implements ControladorDePantallas, Controlador
 		this.partida = controladorPartida;
 		panelInicio = new PantallaInicio(this);
 		panelSeleccion = new PantallaSeleccionModo(this);
-		panelRanking = new PantallaRanking();
+		panelRanking = new PantallaRanking(this, null);
 		panelJuego = new PantallaJuego(this);
 		panelFinal = new PantallaFinal(this);
 		
@@ -66,6 +66,11 @@ public class ControladorPantallas implements ControladorDePantallas, Controlador
 		ventana.setContentPane(panelJuego);
 		GameFactory modoUno = new ModoUnoFactory(); //Editar luego cuando tengamos los dos modos funcionando
 		accionarInicioJuego(modoUno);
+		refrescar();
+	}
+	
+	public void mostrarPantallaRanking() {
+		ventana.setContentPane(panelRanking);
 		refrescar();
 	}
 

@@ -7,6 +7,7 @@ import colisiones.VisitorBolaDeFuego;
 import colisiones.VisitorPlataformas;
 import elementos.ElementoJugador;
 import elementos.Movible;
+import elementos.Plataforma;
 import observers.AdaptadorPosicionPixel;
 import states.*;
 
@@ -19,7 +20,9 @@ public class Jugador extends Movible implements Visitable, ElementoJugador{
 	protected int velX, velY;
 	protected boolean isJumped;
 	protected Nivel nivel;
-	protected boolean colisionConBloque;
+	protected boolean arribaDeBloque;
+	protected Plataforma ultimoBloque;
+	protected String nombre;
 	
 	
 	public Jugador(int x, int y, Sprite imagen) {
@@ -28,8 +31,8 @@ public class Jugador extends Movible implements Visitable, ElementoJugador{
 		velY = 0;
 		isJumped = false;
 		info = new InfoJugador(this);
-
-		colisionConBloque = false;
+		arribaDeBloque = false;
+		ultimoBloque = null;
 
 		inicializarEstados();
 	}
@@ -86,21 +89,27 @@ public class Jugador extends Movible implements Visitable, ElementoJugador{
 		velX = 0;
 	}
 	
-	public void actualizar() {
-		int alturaPiso = AdaptadorPosicionPixel.transformarY(441); 
+	public void actualizar() { 
+		int alturaPiso = 72;
+		int alturaMario = (int) (alturaPiso + this.getHitbox().getHeight());
+		
 		int limiteDerecho =  AdaptadorPosicionPixel.transformarX(7471);
 		int limiteY_ventana = 0;
-		
+		System.out.println("esta arriba de bloque?: "+arribaDeBloque);
 		posicionX += velX;
 		posicionY += velY;
+		estaEnLaHitboxDelBloque();
+		System.out.println("Altura hitbox: "+this.getHitbox().getMaxY());
 		
-		if (posicionY > alturaPiso || posicionY<alturaPiso) {
-		    velY -= 1;
+		if (!arribaDeBloque) { //ojo que este arriba del bloque solo lo estas activando cuando se sube a ladrillo solido, falta el resto
+			if ( posicionY > alturaMario || posicionY < alturaMario ) {
+			    velY -= 1;
+			}
+				else {
+					velY = 0; 
+				    isJumped = false;
+						}
 		}
-			else {
-				velY = 0; 
-			    isJumped = false;
-					}
 		
 		if (posicionX < 0) {
 	        posicionX = 0; 
@@ -112,9 +121,6 @@ public class Jugador extends Movible implements Visitable, ElementoJugador{
 		
 		actualizarPosicionHitbox();
 		notificar();
-
-		
-		
     }
 	
 	public void moverse() {
@@ -182,6 +188,28 @@ public class Jugador extends Movible implements Visitable, ElementoJugador{
 	public void aceptarVisita(VisitorBolaDeFuego visitor) {
 		// entra a este metodo cuando el visitor sea una bola de fuego, lo cual nunca sucede
 	}
-		
+	
+	public boolean estaArribaDeBloque() {
+		return arribaDeBloque;
+	}
+	
+	public void ultimoBloqueColision(Plataforma l) {
+		ultimoBloque = l;
+	}
+	public void estaEnLaHitboxDelBloque(){
+		if(ultimoBloque!=null)
+			if (this.getHitbox().intersects(ultimoBloque.getHitbox())) {
+				arribaDeBloque = true;
+			}else arribaDeBloque = false;
+	}
+
+	public String getName() {
+		// TODO Auto-generated method stub
+		return nombre;
+	}
+	
+	public void setName(String nombre) {
+		this.nombre=nombre;
+	}
 }
 

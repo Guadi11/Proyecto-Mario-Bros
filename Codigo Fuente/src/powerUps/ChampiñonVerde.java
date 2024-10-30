@@ -1,6 +1,7 @@
 package powerUps;
 
 import archivos.Sprite;
+import archivos.TipoSonidos;
 import elementos.Elemento;
 import elementos.PowerUp;
 import juego.Jugador;
@@ -18,7 +19,11 @@ public class ChampiñonVerde extends PowerUp{
 		morir();
 	}
 	
-	@Override
+	public void morir() {
+		this.nivel.removerElemento(this);
+		this.nivel.getControladorPartida().getControladorSonidos().reproducirSonidoAccion(TipoSonidos.champiñonVerde);
+	}
+	
 	public void visitar(Elemento elem) {
 		// vacio
 	}

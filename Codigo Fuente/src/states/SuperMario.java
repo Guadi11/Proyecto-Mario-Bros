@@ -42,7 +42,7 @@ public class SuperMario extends State{
 		int posY = (int) (jugador.getPosY() + (alto - jugador.getHitbox().getHeight()));
 		
 		this.jugador.setPosY(posY);
-		this.jugador.getHitbox().setBounds(jugador.getPosX(), posY, ancho, alto);
+		this.jugador.getHitbox().setBounds(jugador.getPosX(), posY-30, ancho, alto);
 	}
 
 	public Sprite getSprite() {//este getSprite creo que no es llamado nunca
@@ -100,5 +100,4 @@ public class SuperMario extends State{
 	public boolean esGrande() {
 		return true;
 	}
-
 }
