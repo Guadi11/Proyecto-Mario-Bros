@@ -45,7 +45,7 @@ public class PantallaInicio extends JPanel{
             botonStart.setBorderPainted(false); 
             botonStart.setFocusPainted(false); 
             botonStart.setOpaque(false);
-            botonStart.addActionListener(e -> controlador.mostrarPantallaSeleccion());
+            botonStart.addActionListener(e -> controlador.mostrarPantallaNombre());
 		
             add(botonStart);
             imagenFondo.add(botonStart);

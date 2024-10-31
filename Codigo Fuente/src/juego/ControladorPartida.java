@@ -188,4 +188,13 @@ public class ControladorPartida {
 	public Nivel getNivelActual() {
 		return nivelActual;
 	}
+	
+	public String getNombreJugador() {
+		return nombreJugador;
+	}
+	
+	public void guardarNombreJugador(String nombre) {
+		this.nombreJugador = nombre;
+		System.out.println("Nombre guardado : " + nombreJugador);
+	}
 }

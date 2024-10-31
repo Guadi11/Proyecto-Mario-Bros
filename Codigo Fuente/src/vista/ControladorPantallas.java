@@ -23,16 +23,19 @@ public class ControladorPantallas implements ControladorDePantallas, Controlador
 	protected PantallaRanking panelRanking;
 	protected PantallaJuego panelJuego;
 	protected PantallaFinal panelFinal;
+	protected PantallaNombre panelNombre;
 	protected ControladorPartida partida;
 
 	
 	public ControladorPantallas(ControladorPartida controladorPartida) {
 		this.partida = controladorPartida;
+		ConfigurarFuente.cargarFuente();
 		panelInicio = new PantallaInicio(this);
 		panelSeleccion = new PantallaSeleccionModo(this);
 		panelRanking = new PantallaRanking(this, null);
 		panelJuego = new PantallaJuego(this);
 		panelFinal = new PantallaFinal(this);
+		panelNombre = new PantallaNombre(this,partida);
 		
 		configurarVentana();
 		registrarOyenteVentana();
@@ -71,6 +74,11 @@ public class ControladorPantallas implements ControladorDePantallas, Controlador
 	
 	public void mostrarPantallaRanking() {
 		ventana.setContentPane(panelRanking);
+		refrescar();
+	}
+	
+	public void mostrarPantallaNombre() {
+		ventana.setContentPane(panelNombre);
 		refrescar();
 	}
 
