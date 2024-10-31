@@ -195,4 +195,10 @@ public class ControladorPartida {
 	public HiloSonido getHiloSonido() {
 		return hiloSonido;
 	}
+
+	/*public void musicaEstrella() {
+		hiloSonido.detener();
+		this.
+		controladorSonido.reproducirSonidoAccion(TipoSonidos.agarroEstrella);
+	}*/
 }

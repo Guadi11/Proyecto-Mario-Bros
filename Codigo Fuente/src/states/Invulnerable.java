@@ -32,7 +32,7 @@ public class Invulnerable extends State{
 	public void activar() {
 		jugador.setState(this);
         tiempoActivacion = System.currentTimeMillis();
-        
+        //musicaEstrella();
         if (estadoAnterior.esGrande()) {
         	spriteActual = spriteGrande;
         } else {

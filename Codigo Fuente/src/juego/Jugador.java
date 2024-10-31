@@ -1,6 +1,7 @@
 package juego;
 
 import archivos.Sprite;
+import archivos.TipoSonidos;
 import colisiones.Visitable;
 import colisiones.VisitorAJugador;
 import colisiones.VisitorBolaDeFuego;
@@ -138,6 +139,7 @@ public class Jugador extends Movible implements Visitable, ElementoJugador{
 		if (!isJumped) { 
 	        velY = 10; 
 	        isJumped = true;
+	        this.nivel.controladorPartida.controladorSonido.reproducirSonidoAccion(TipoSonidos.muerteEnemigo);
 	        //estado.reproducirSonidoSalto();
 	    }	
 	}
