@@ -10,6 +10,7 @@ protected Sonido backGround;
 	public HiloSonido() {
         enEjecucion = true;
         backGround = new Sonido ("audio/background.wav");
+        backGround.configurarLoop();
     }
 	
 	 public void run(){
@@ -25,6 +26,9 @@ protected Sonido backGround;
 	 	} 
 	 
 	 }
+	 public void pararLoop() {
+			backGround.stopLoop();
+	}
 	 
 	 public void detener() {
 		 backGround.detener();

@@ -29,7 +29,8 @@ public abstract class GameFactory {
 		Sprite sprite = new Sprite(rutaCarpeta + "/mario.png");
 		Jugador jugador = new Jugador(x, y, sprite);
 		setearHitbox(jugador, sprite);
-		//System.out.println("Jugador, x: "+ jugador.getHitbox().getX() + ". posY: " +  jugador.getHitbox().getY() + ". Ancho: " + jugador.getHitbox().getWidth() + ". Alto: " + jugador.getHitbox().getHeight());
+		
+		//System.out.println("Jugador hitbox right posYsuperior: " +  jugador.getBoundsRight().y + ". hitbox right extremo inferior: " + (jugador.getBoundsRight().y - jugador.getBoundsRight().height));
 		return jugador;
 	}
 	
@@ -167,6 +168,18 @@ public abstract class GameFactory {
 		tuberia.setFabrica(this);
 		tuberia.setControlador(controladorPartida);
 		setearHitbox(tuberia, sprite);
+		/*
+		System.out.println("extremosuperior hitbox izquierdo tuberia: " + tuberia.getBoundsLeft().y);
+		System.out.println("extremo inferior hitbox izquierdo tuberia: " + (tuberia.getBoundsLeft().y - tuberia.getBoundsLeft().height));
+		
+		System.out.println("alto hitbox izquierdo tuberia: " + tuberia.getBoundsLeft().height);
+		System.out.println("ancho hitbox izquierdo tuberia: " + tuberia.getBoundsLeft().width);
+		System.out.println("alto hitbox derecho tuberia: " + tuberia.getBoundsRight().height);
+		System.out.println("ancho hitbox tuberia: " + tuberia.getBoundsRight().width);
+		System.out.println("alto hitbox top tuberia: " + tuberia.getBoundsTop().height);
+		System.out.println("ancho hitbox top tuberia: " + tuberia.getBoundsTop().width);
+		System.out.println("alto hitbox bot tuberia: " + tuberia.getBoundsBottom().height);
+		System.out.println("ancho hitbox bot tuberia: " + tuberia.getBoundsBottom().width); */
 		//System.out.println("Tuberia 1, x: "+ tuberia.getHitbox().getX() + ". posY: " +  tuberia.getHitbox().getY() + ". Ancho: " + tuberia.getHitbox().getWidth() + ". Alto: " + tuberia.getHitbox().getHeight());
 		
 		return tuberia;

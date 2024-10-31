@@ -29,7 +29,7 @@ public class NivelBuilder {
 	private void crearNivel() {
 		
 		try {
-			 BufferedImage mapImage = ImageIO.read(new File("imagenes/mapaRGBtest.png"));
+			 BufferedImage mapImage = ImageIO.read(new File("imagenes/mapaRGBtestT.png"));
 	        // Obtengo las dimensiones de la imagen
 	        int ancho = mapImage.getWidth();
 	        int alto = mapImage.getHeight();
@@ -68,7 +68,7 @@ public class NivelBuilder {
 			int champVerde = new Color(25, 135, 50).getRGB();
 			
 			
-			double multiplicadorPixel = 36.8;
+			double multiplicadorPixel = 36.8; 
 		    for (int x = 0; x < ancho; x++) {
 		    	for (int y = 0; y < alto; y++) {
 	
@@ -101,7 +101,7 @@ public class NivelBuilder {
 	                	bloqueCreado.setNivel(nivelCreado);
 	                	
 	                }else if (colorPixelActual == tuberiaSinPiranha) {
-	                	Tuberia tuberiaCreada = fabrica.crearTuberia1(xLocation, yLocation + 35);
+	                	Tuberia tuberiaCreada = fabrica.crearTuberia1(xLocation, yLocation);//+35
 	                	tuberiaCreada.poseePiranha(false);
 	                	nivelCreado.agregarPlataforma(tuberiaCreada);  
 	                	tuberiaCreada.setNivel(nivelCreado);
@@ -201,13 +201,13 @@ public class NivelBuilder {
 	                	
 	                }
 	                else if(colorPixelActual == tuberia2) {
-	                	Tuberia tuberia2Creada = fabrica.crearTuberia2(xLocation, yLocation +35);
+	                	Tuberia tuberia2Creada = fabrica.crearTuberia2(xLocation, yLocation);
 	                	nivelCreado.agregarPlataforma(tuberia2Creada);
 	                	tuberia2Creada.setNivel(nivelCreado);
 	                	
 	                }
 	                else if(colorPixelActual == tuberia3) {
-	                	Tuberia tuberia3Creada = fabrica.crearTuberia3(xLocation, yLocation +35);
+	                	Tuberia tuberia3Creada = fabrica.crearTuberia3(xLocation, yLocation);
 	                	nivelCreado.agregarPlataforma(tuberia3Creada);
 	                	tuberia3Creada.setNivel(nivelCreado);
 	                	
@@ -217,8 +217,7 @@ public class NivelBuilder {
 	                	nivelCreado.agregarPlataforma(castilloCreado);
 	                	castilloCreado.setNivel(nivelCreado);
 	                	
-	                }
-		            
+	                }  
 	            }
 	        }
 		}  catch (IOException e) {

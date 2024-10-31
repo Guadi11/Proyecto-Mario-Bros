@@ -1,6 +1,7 @@
 package juego;
 
 import archivos.Sprite;
+import archivos.TipoSonidos;
 import colisiones.Visitable;
 import colisiones.VisitorAJugador;
 import colisiones.VisitorBolaDeFuego;
@@ -90,6 +91,9 @@ public class Jugador extends Movible implements Visitable, ElementoJugador{
 	}
 	
 	public void actualizar() { 
+		int alturaPiso = 72;
+		int alturaMario = (int) (alturaPiso + this.getHitbox().getHeight());
+		
 		int limiteDerecho =  AdaptadorPosicionPixel.transformarX(7471);
 		int limiteY_ventana = 0;
 		System.out.println("esta arriba de bloque?: "+arribaDeBloque);
@@ -97,8 +101,9 @@ public class Jugador extends Movible implements Visitable, ElementoJugador{
 		posicionY += velY;
 		estaEnLaHitboxDelBloque();
 		System.out.println("Altura hitbox: "+this.getHitbox().getMaxY());
-		if (!arribaDeBloque) {
-			if ( posicionY > minAlturaMario() || posicionY<minAlturaMario() ) {
+		
+		if (!arribaDeBloque) { //ojo que este arriba del bloque solo lo estas activando cuando se sube a ladrillo solido, falta el resto
+			if ( posicionY > alturaMario || posicionY < alturaMario ) {
 			    velY -= 1;
 			}
 				else {
@@ -117,9 +122,6 @@ public class Jugador extends Movible implements Visitable, ElementoJugador{
 		
 		actualizarPosicionHitbox();
 		notificar();
-
-		
-		
     }
 	
 	public void moverse() {
@@ -137,6 +139,7 @@ public class Jugador extends Movible implements Visitable, ElementoJugador{
 		if (!isJumped) { 
 	        velY = 10; 
 	        isJumped = true;
+	        this.nivel.controladorPartida.controladorSonido.reproducirSonidoAccion(TipoSonidos.muerteEnemigo);
 	        //estado.reproducirSonidoSalto();
 	    }	
 	}
@@ -187,15 +190,11 @@ public class Jugador extends Movible implements Visitable, ElementoJugador{
 	public void aceptarVisita(VisitorBolaDeFuego visitor) {
 		// entra a este metodo cuando el visitor sea una bola de fuego, lo cual nunca sucede
 	}
-	public int minAlturaMario() {
-		int minAlturaMario = AdaptadorPosicionPixel.transformarY(441); //la minima altura de mario en estado normal.
-		if (estado.esGrande()) 
-			minAlturaMario = 144;
-		return minAlturaMario;
-	}
+	
 	public boolean estaArribaDeBloque() {
 		return arribaDeBloque;
 	}
+	
 	public void ultimoBloqueColision(Plataforma l) {
 		ultimoBloque = l;
 	}

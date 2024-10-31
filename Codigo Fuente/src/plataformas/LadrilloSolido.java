@@ -1,6 +1,7 @@
 package plataformas;
 
 import archivos.Sprite;
+import archivos.TipoSonidos;
 import colisiones.VisitorPlataformas;
 import elementos.BolaDeFuego;
 import elementos.Elemento;
@@ -20,31 +21,30 @@ public class LadrilloSolido extends Plataforma implements VisitorPlataformas{
 		System.out.println("ladrillo solido: "+this.getHitbox().toString());
 		System.out.println("Jugador: "+jugador.getHitbox().toString());
 		jugador.ultimoBloqueColision(this);
-		//chequeo si la colision es de abajo (y en superMario) o no. En ambos casos el jugador choca contra el bloque, pero en uno se rompe
-		//romperse: animacion de romperse y morir
+		
 		if(jugador.getBoundsBottom().intersects(this.getBoundsTop())) {
-			jugador.setPosY((int) (this.getPosY() + jugador.getHitbox().getHeight()));// esto hace que mario se bugee 
+			jugador.setPosY((int) (this.getPosY() + jugador.getHitbox().getHeight()));
 			jugador.setVelY(0);
 			jugador.setJumped(false);
-	
 		} 
 		else if(jugador.getBoundsLeft().intersects(this.getBoundsRight())) {
-			jugador.setPosX((int) (this.getPosX() + jugador.getHitbox().getWidth()));
+			jugador.setPosX((int) (this.getPosX() + this.hitbox.getWidth()));
 		}
 		else if(jugador.getBoundsRight().intersects(this.getBoundsLeft())) {
 			jugador.setPosX((int) (this.getPosX() - jugador.getHitbox().getWidth()));
 		} 
 		else if(jugador.getBoundsTop().intersects(this.getBoundsBottom())){
-			System.out.println("golpeo desde abajo");
-			System.out.println("Estoy grande: " + jugador.getState().esGrande());
 			jugador.setPosY((int) (this.getPosY() - this.getHitbox().getHeight()));
 			jugador.setVelY(0);
 			if(jugador.getState().esGrande()) {
-				System.out.println("entra a es grande");
 				morir();
 				estoyMuerto = true;
 			}
 		}
+	}
+	public void morir() {
+		this.nivel.removerElemento(this);
+		this.nivel.getControladorPartida().getControladorSonidos().reproducirSonidoAccion(TipoSonidos.rompeBloque);
 	}
 
 	@Override
@@ -55,7 +55,7 @@ public class LadrilloSolido extends Plataforma implements VisitorPlataformas{
 			//enemigo.setVelY(0);	
 		} 
 		else if(enemigo.getBoundsLeft().intersects(this.getBoundsRight())) {
-			enemigo.setPosX((int) (this.getPosX() + enemigo.getHitbox().getWidth()));
+			enemigo.setPosX((int) (this.getPosX() + this.hitbox.getWidth()));
 			enemigo.moverDerecha();
 		}
 		else if(enemigo.getBoundsRight().intersects(this.getBoundsLeft())) {

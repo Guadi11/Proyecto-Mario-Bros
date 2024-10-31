@@ -15,15 +15,25 @@ public class Normal extends State {
 	
 	public Normal(Jugador jugador) {
 		super(jugador);
+		this.sprite = new Sprite("imagenes/modoUno/mario.png");
 	}
 	
 	public void activar() {
 		jugador.setState(this);
-		jugador.getSprite().setSprite("imagenes/modoUno/mario.png");
-		//actualizarMedidas();
+		jugador.getSprite().setSprite(this.sprite.getRutaImagen());
+		//jugador.getSprite().setSprite("imagenes/modoUno/mario.png");
+		actualizarMedidas();  /*
+		System.out.println("altura hitbox izq normal: " + jugador.getBoundsLeft().height);
+		System.out.println("ancho hitbox izq normal: " + jugador.getBoundsLeft().width);
+		System.out.println("altura hitbox der normal: " + jugador.getBoundsRight().height);
+		System.out.println("ancho hitbox der normal: " + jugador.getBoundsRight().width);
+		System.out.println("altura hitbox top normal: " + jugador.getBoundsTop().height);
+		System.out.println("ancho hitbox top normal: " + jugador.getBoundsTop().width);
+		System.out.println("altura hitbox bot normal: " + jugador.getBoundsBottom().height);
+		System.out.println("ancho hitbox bot normal: " + jugador.getBoundsBottom().width);  */
 	}
 	private void actualizarMedidas() {
-		ImageIcon iconoImagen = new ImageIcon("imagenes/modoUno/mario.png");
+		ImageIcon iconoImagen = new ImageIcon(this.sprite.getRutaImagen());
 		Image imagen = iconoImagen.getImage();
 		int ancho = imagen.getWidth(null);
 		int alto = imagen.getHeight(null);
@@ -33,7 +43,7 @@ public class Normal extends State {
 		this.jugador.getHitbox().setBounds(jugador.getPosX(), posY, ancho, alto);
 	}
 	
-	public Sprite getSprite() {
+	public Sprite getSprite() { //este getSprite creo que no es llamado nunca
 		return this.sprite;
 		
 	}

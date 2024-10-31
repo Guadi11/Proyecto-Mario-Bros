@@ -1,6 +1,7 @@
 package powerUps;
 
 import archivos.Sprite;
+import archivos.TipoSonidos;
 import elementos.Elemento;
 import elementos.PowerUp;
 import juego.Jugador;
@@ -19,7 +20,11 @@ public class SuperChampiñon extends PowerUp{
 		estadoMario.recibirSuperChampiñon();
 		morir();
 	}
-	
+	public void morir() {
+		this.nivel.removerElemento(this);
+		this.nivel.getControladorPartida().getControladorSonidos().reproducirSonidoAccion(TipoSonidos.powerUp);
+		}
+
 	@Override
 	public void visitar(Elemento elem) {
 		// vacio

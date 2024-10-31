@@ -18,15 +18,15 @@ public class BloqueSolido extends Plataforma implements VisitorPlataformas{
 	@Override
 	public void visitar(Jugador jugador) {
 		//jugador choca contra bloque. Nunca se rompe
-		
 		if(jugador.getBoundsBottom().intersects(this.getBoundsTop())) {
+			//System.out.println("colisionando arriba del bloque solido");
 			jugador.setPosY((int) (this.getPosY() + jugador.getHitbox().getHeight()));
 			jugador.setVelY(0);
 			jugador.setJumped(false);
 	
 		} 
 		else if(jugador.getBoundsLeft().intersects(this.getBoundsRight())) {
-			jugador.setPosX((int) (this.getPosX() + jugador.getHitbox().getWidth()));
+			jugador.setPosX((int) (this.getPosX() + this.hitbox.getWidth()));
 		} 
 		else if(jugador.getBoundsRight().intersects(this.getBoundsLeft())) {
 			jugador.setPosX((int) (this.getPosX() - jugador.getHitbox().getWidth()));
@@ -45,7 +45,7 @@ public class BloqueSolido extends Plataforma implements VisitorPlataformas{
 					enemigo.setPosY((int) (this.getPosY() + enemigo.getHitbox().getHeight()));	
 				} 
 				else if(enemigo.getBoundsLeft().intersects(this.getBoundsRight())) {
-					enemigo.setPosX((int) (this.getPosX() + enemigo.getHitbox().getWidth()));
+					enemigo.setPosX((int) (this.getPosX() + this.hitbox.getWidth()));
 					enemigo.moverDerecha();
 				}
 				else if(enemigo.getBoundsRight().intersects(this.getBoundsLeft())) {

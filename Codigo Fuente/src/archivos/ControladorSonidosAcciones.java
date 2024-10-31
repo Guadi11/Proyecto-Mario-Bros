@@ -15,9 +15,15 @@ public class ControladorSonidosAcciones {
 	 sonidosAcciones.put(TipoSonidos.rompeBloque, new Sonido ("audio/rompeBloque.wav"));
 	 sonidosAcciones.put(TipoSonidos.saltaNormal, new Sonido ("audio/saltoEstadoNormal.wav"));
 	 sonidosAcciones.put(TipoSonidos.saltaSuperMario, new Sonido ("audio/saltoEstadoSuperMario.wav"));
+	 sonidosAcciones.put(TipoSonidos.powerUp, new Sonido ("audio/powerUp.wav"));
+	 sonidosAcciones.put(TipoSonidos.agarroEstrella, new Sonido ("audio/agarroEstrella.wav"));
  }
  
  public void reproducirSonido (TipoSonidos tipo) {
 	 sonidosAcciones.get(tipo).reproducirSonido();
  }
+
+public void detenerSonido(TipoSonidos tipo) {
+	sonidosAcciones.get(tipo).detener();
+}
 }

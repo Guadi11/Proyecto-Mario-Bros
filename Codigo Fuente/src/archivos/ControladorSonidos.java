@@ -14,4 +14,10 @@ public class ControladorSonidos {
 		public void reproducirSonidoJuego (TipoSonidos tipo) {
 			controladorSonidosJuego.reproducirSonido (tipo);
 		}
+	public void detenerSonidoAccion(TipoSonidos tipo) {
+		this.controladorSonidosAcciones.detenerSonido(tipo);
+	}
+	public void detenerSonidoJuego (TipoSonidos tipo) {
+		controladorSonidosJuego.detenerSonido(tipo);
+	}
 }

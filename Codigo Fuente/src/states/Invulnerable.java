@@ -17,31 +17,35 @@ public class Invulnerable extends State{
 	protected long tiempoActivacion;
 	protected final long duracion = 6500;
 	protected State estadoAnterior;
-	protected Sprite sprite;
+	protected Sprite spriteGrande, spriteNormal, spriteActual;
 	protected Timer timer;
 	
 	
 	public Invulnerable(Jugador jugador) {
 		super(jugador);
 		this.estadoAnterior = jugador.getState();
+		this.spriteGrande = new Sprite("imagenes/modoUno/invulnerable.png"); //esta imagen esta mal, es chiquita
+		this.spriteNormal = new Sprite("imagenes/modoUno/invulnerablemini.png");
+		spriteActual = spriteGrande;
 	}
 	
 	public void activar() {
-		//this.estadoAnterior = jugador.getState();
 		jugador.setState(this);
         tiempoActivacion = System.currentTimeMillis();
-        
+        //musicaEstrella();
         if (estadoAnterior.esGrande()) {
-            jugador.getSprite().setSprite("imagenes/modoUno/invulnerable.png");
+        	spriteActual = spriteGrande;
         } else {
-            jugador.getSprite().setSprite("imagenes/modoUno/invulnerablemini.png");
+        	spriteActual = spriteNormal;
         }
+        jugador.getSprite().setSprite(spriteActual.getRutaImagen());
         iniciarTemporizador();
         //encontrar sonidoInvulnerable y activarlo, ademas de parar HiloSonido
         actualizarMedidas();
     }
+	
 	private void actualizarMedidas() {
-		ImageIcon iconoImagen = new ImageIcon("imagenes/modoUno/mariofuego.png");
+		ImageIcon iconoImagen = new ImageIcon(spriteActual.getRutaImagen());
 		Image imagen = iconoImagen.getImage();
 		int ancho = imagen.getWidth(null);
 		int alto = imagen.getHeight(null);
@@ -59,7 +63,7 @@ public class Invulnerable extends State{
 		estadoAnterior.reproducirSonidoSalto();
 	}
 	
-	public Sprite getSprite() {
+	public Sprite getSprite() {//este getSprite creo que no es llamado nunca
 		return this.getSprite();
 	}
 	

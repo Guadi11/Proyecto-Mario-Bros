@@ -137,6 +137,7 @@ public class ControladorPartida {
 	
 	public void timeOut() {
 		hiloSonido.detener();
+		controladorSonido.detenerSonidoJuego(TipoSonidos.advertenciaTiempo);
 		controladorSonido.reproducirSonidoAccion(TipoSonidos.muerteMario);
 		this.reiniciarNivel();
 	}
@@ -188,6 +189,7 @@ public class ControladorPartida {
 	public Nivel getNivelActual() {
 		return nivelActual;
 	}
+
 	
 	public String getNombreJugador() {
 		return nombreJugador;
@@ -197,4 +199,18 @@ public class ControladorPartida {
 		this.nombreJugador = nombre;
 		System.out.println("Nombre guardado : " + nombreJugador);
 	}
+
+	public ControladorSonidos getControladorSonidos() {
+		return controladorSonido;
+	}
+	public HiloSonido getHiloSonido() {
+		return hiloSonido;
+	}
+
+	/*public void musicaEstrella() {
+		hiloSonido.detener();
+		this.
+		controladorSonido.reproducirSonidoAccion(TipoSonidos.agarroEstrella);
+	}*/
+
 }

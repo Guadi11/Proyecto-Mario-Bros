@@ -1,6 +1,7 @@
 package plataformas;
 
 import archivos.Sprite;
+import archivos.TipoSonidos;
 import colisiones.VisitorPlataformas;
 import elementos.BolaDeFuego;
 import elementos.Elemento;
@@ -95,7 +96,8 @@ public class BloqueDePregunta extends Plataforma implements VisitorPlataformas{
 	
 		} 
 		else if(jugador.getBoundsLeft().intersects(this.getBoundsRight())) {
-			jugador.setPosX((int) (this.getPosX() + jugador.getHitbox().getWidth()));
+			jugador.setPosX((int) (this.getPosX() + this.hitbox.getWidth()));
+
 		}
 		else if(jugador.getBoundsRight().intersects(this.getBoundsLeft())) {
 			jugador.setPosX((int) (this.getPosX() - jugador.getHitbox().getWidth()));
@@ -106,13 +108,17 @@ public class BloqueDePregunta extends Plataforma implements VisitorPlataformas{
 			if(activado) {
 				generarPowerUp();
 				activado = false;
+				sonido();
 				//cambiar imagen a bloque desactivado
 			}
 		}
 		
 	}
-
-	@Override
+	
+	public void sonido() {
+		this.nivel.getControladorPartida().getControladorSonidos().reproducirSonidoJuego(TipoSonidos.aparecePowerUp);
+	}
+	
 	public void visitar(Enemigo enemigo) {
 		//enemigo choca contra bloque
 		if(enemigo.getBoundsBottom().intersects(this.getBoundsTop())) {
@@ -120,7 +126,7 @@ public class BloqueDePregunta extends Plataforma implements VisitorPlataformas{
 			//enemigo.setVelY(0);	
 		} 
 		else if(enemigo.getBoundsLeft().intersects(this.getBoundsRight())) {
-			enemigo.setPosX((int) (this.getPosX() + enemigo.getHitbox().getWidth()));
+			enemigo.setPosX((int) (this.getPosX() + this.hitbox.getWidth()));
 			enemigo.moverDerecha();
 		}
 		else if(enemigo.getBoundsRight().intersects(this.getBoundsLeft())) {

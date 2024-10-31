@@ -30,6 +30,16 @@ import java.io.IOException;
         	clip.start();
         	audioOn = true;
 	    }
+	    public void configurarLoop() {
+		    clip.setLoopPoints(0, -1); // Desde el inicio hasta el final del archivo
+	            clip.loop(Clip.LOOP_CONTINUOUSLY);
+		    }
+	    public void stopLoop() {
+		    if (clip != null && clip.isRunning()) {
+		           clip.stop();
+		           clip.close();
+		        }
+		    }
 
 	    public void detener() {
 	        clip.stop(); // Detiene el clip

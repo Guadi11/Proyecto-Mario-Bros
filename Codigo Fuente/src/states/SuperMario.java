@@ -17,29 +17,35 @@ public class SuperMario extends State{
 	
 	public SuperMario(Jugador jugador) {
 		super(jugador);
+		this.sprite = new Sprite("imagenes/modoUno/supermario.png");
 	}
 	
 	public void activar() {
 		jugador.setState(this);
-		jugador.getSprite().setSprite("imagenes/modoUno/supermario.png");
-		actualizarMedidas();
+		jugador.getSprite().setSprite(this.sprite.getRutaImagen());
+		actualizarMedidas(); /*
+		System.out.println("altura hitbox izquierdo grande: " + jugador.getBoundsLeft().height);
+		System.out.println("ancho hitbox izquierdo grande: " + jugador.getBoundsLeft().width);
+		System.out.println("altura hitbox derecho grande: " + jugador.getBoundsRight().height);
+		System.out.println("ancho hitbox derecho: " + jugador.getBoundsRight().width);
+		System.out.println("altura hitbox top grande: " + jugador.getBoundsTop().height);
+		System.out.println("ancho hitbox top grande: " + jugador.getBoundsTop().width);
+		System.out.println("altura hitbox bot grande: " + jugador.getBoundsBottom().height);
+		System.out.println("ancho hitbox bot grande: " + jugador.getBoundsBottom().width);  */
 	}
 	
 	private void actualizarMedidas() {
-		ImageIcon iconoImagen = new ImageIcon("imagenes/modoUno/supermario.png");
+		ImageIcon iconoImagen = new ImageIcon(this.sprite.getRutaImagen());
 		Image imagen = iconoImagen.getImage();
 		int ancho = imagen.getWidth(null);
 		int alto = imagen.getHeight(null);
 		int posY = (int) (jugador.getPosY() + (alto - jugador.getHitbox().getHeight()));
 		
-		//this.jugador.setPosY(posY);
+		this.jugador.setPosY(posY);
 		this.jugador.getHitbox().setBounds(jugador.getPosX(), posY-30, ancho, alto);
 	}
 
-	public Sprite getSprite() {
-		//return this.sprite;
-		this.sprite = new Sprite("imagenes/modoUno/supermario.png");
-
+	public Sprite getSprite() {//este getSprite creo que no es llamado nunca
 		return sprite;
 	}
 	

@@ -19,6 +19,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.Timer;
+
+import archivos.TipoSonidos;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -273,15 +276,32 @@ public class PantallaJuego extends JPanel implements KeyListener{
 	}
 	
 	public void actualizarTimer() {
-		if (tiempoRestante > 0) {
+		if (tiempoRestante > 61 || tiempoRestante<61 & tiempoRestante>4 || tiempoRestante<=3 && tiempoRestante>0) {
             tiempoRestante--; 
             labelTiempo.setText(textoConDigitos(tiempoRestante, 3)); 
-        } else {
+        } else if (tiempoRestante==0){
             timerNivel.stop();
             this.controladorPantalla.partida.timeOut();
+        }else
+        if (tiempoRestante==61) {
+			sonidoSpeedBackground();
+			tiempoRestante--; 
+            labelTiempo.setText(textoConDigitos(tiempoRestante, 3));
+		}else
+		if (tiempoRestante==4) {
+        	sonidoPocoTiempo();
+        	tiempoRestante--; 
+            labelTiempo.setText(textoConDigitos(tiempoRestante, 3));
         }
 	}
-	
+	public void sonidoPocoTiempo() {
+		this.controladorPantalla.partida.getControladorSonidos().detenerSonidoJuego(TipoSonidos.speedBackground);
+		this.controladorPantalla.partida.getControladorSonidos().reproducirSonidoJuego(TipoSonidos.advertenciaTiempo);
+	}
+	public void sonidoSpeedBackground() {
+		this.controladorPantalla.partida.getHiloSonido().pararLoop();
+		this.controladorPantalla.partida.getControladorSonidos().reproducirSonidoJuego(TipoSonidos.speedBackground);
+	}
 	public void actualizarLabelsNivel() {
 		//TODO
 		

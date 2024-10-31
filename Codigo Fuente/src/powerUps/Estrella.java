@@ -21,7 +21,10 @@ public class Estrella extends PowerUp{
 		estadoMario.recibirEstrella();
 		morir();
 	}
-
+	/*public void morir() {
+		this.nivel.removerElemento(this);
+		this.nivel.getControladorPartida().musicaEstrella();
+	}*/
 	@Override
 	public void visitar(Elemento elem) {
 		// vacio
