@@ -36,10 +36,10 @@ public class ControladorPartida {
 		this.numNivelActual = 1;
 	}
 	
-	public void iniciarPartida(GameFactory factory){
+	public void iniciarPartida(GameFactory factory, int numeroNivel){
 		this.fabrica = factory;
 		fabrica.setControladorPartida(this);
-		this.creadorNivel = new NivelBuilder(fabrica, numNivelActual);
+		this.creadorNivel = new NivelBuilder(fabrica, numeroNivel);
 		this.nivelActual = this.creadorNivel.getNivel();
 		nivelActual.setControladorPartida(this);
 		registrarObservers();
@@ -71,7 +71,7 @@ public class ControladorPartida {
 		int vidas = this.nivelActual.getJugador().getVida();
 		
 		pantallas.reiniciarNivel();
-		iniciarPartida(this.fabrica);
+		iniciarPartida(this.fabrica, numNivelActual);
 		
 		this.nivelActual.getJugador().getInfo().setMonedas(monedas);
 		this.nivelActual.getJugador().getInfo().actualizarPuntaje(puntaje);
@@ -127,7 +127,42 @@ public class ControladorPartida {
 	}
 	
 	public void siguienteNivel(){
-		//TODO
+		if(numNivelActual < 3) {
+			numNivelActual++;
+			hiloSonido.detener();
+			hiloJugador.detener();
+			hiloEnemigo.detener();
+			controladorSonido.reproducirSonidoAccion(TipoSonidos.muerteMario); 
+			
+			if (pantallas.getTimerNivel()!=null) {
+				pantallas.getTimerNivel().stop();
+			}
+			Timer delayTimer = new Timer(2000, e -> {
+			int monedas = this.nivelActual.getJugador().getMonedas();
+			int puntaje = this.nivelActual.getJugador().getPuntaje();
+			int vidas = this.nivelActual.getJugador().getVida();
+			
+			pantallas.reiniciarNivel();
+			iniciarPartida(this.fabrica, numNivelActual);
+			
+			this.nivelActual.getJugador().getInfo().setMonedas(monedas);
+			this.nivelActual.getJugador().getInfo().actualizarPuntaje(puntaje);
+			this.nivelActual.getJugador().getInfo().setVidas(vidas);	
+		});
+			delayTimer.setRepeats(false); // Para que el temporizador solo ejecute una vez
+		    delayTimer.start();
+			
+		}else {
+			//victoria();
+		}
+		/* reproducir sonido de victoria()
+		if(numNivelActual < 3) {
+			numNivelActual++;
+			reiniciarNivel();
+		}else {
+			victoria();
+		} */
+		
 	}
 	
 	public void gameOver(int puntajeFinal){

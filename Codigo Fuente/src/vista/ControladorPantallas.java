@@ -127,7 +127,7 @@ public class ControladorPantallas implements ControladorDePantallas, Controlador
 
 	@Override
 	public void accionarInicioJuego(GameFactory fabrica) {
-		this.partida.iniciarPartida(fabrica);
+		this.partida.iniciarPartida(fabrica, 1);
 	}
 
 	@Override
