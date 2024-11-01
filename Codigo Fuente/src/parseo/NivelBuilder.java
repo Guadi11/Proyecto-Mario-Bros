@@ -17,22 +17,38 @@ public class NivelBuilder {
 	protected GameFactory fabrica;
 	protected Nivel nivelCreado;
 	protected int numNivel;
+	protected BufferedImage mapa;
 	
 	public NivelBuilder(GameFactory factory, int nivelACrear) {
 		this.fabrica = factory;
 		this.numNivel = nivelACrear;
 		this.nivelCreado = new Nivel(); 
-		crearNivel();
 		
+		try {
+			switch (nivelACrear) {
+			case 1:
+				mapa = ImageIO.read(new File("imagenes/mapaRGBtestT.png"));
+			 break;
+			
+			case 2:
+				mapa = ImageIO.read(new File("imagenes/mapaRGB2.png"));
+			 break;
+			case 3:
+				mapa = ImageIO.read(new File("imagenes/mapaRGB2.png"));
+			 break;
+			default:
+				
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		crearNivel();	
 	}
 	
 	private void crearNivel() {
-		
-		try {
-			 BufferedImage mapImage = ImageIO.read(new File("imagenes/mapaRGBtestT.png"));
 	        // Obtengo las dimensiones de la imagen
-	        int ancho = mapImage.getWidth();
-	        int alto = mapImage.getHeight();
+	        int ancho = mapa.getWidth();
+	        int alto = mapa.getHeight();
 			
 			int jugador = new Color(255, 0, 0).getRGB();
 			
@@ -52,7 +68,7 @@ public class NivelBuilder {
 			
 			int goomba = new Color(255, 0, 255).getRGB();
 			int koopa = new Color(255, 255, 255).getRGB();
-			//int lakitu = new Color(60, 255, 150).getRGB();
+			int lakitu = new Color(60, 255, 150).getRGB();
 			int buzzy = new Color(255, 125, 125).getRGB();
 			int spiny = new Color(255,200,125).getRGB();
 			
@@ -72,7 +88,7 @@ public class NivelBuilder {
 		    for (int x = 0; x < ancho; x++) {
 		    	for (int y = 0; y < alto; y++) {
 	
-		            int colorPixelActual = mapImage.getRGB(x, y);
+		            int colorPixelActual = mapa.getRGB(x, y);
 		            
 		            int xLocation = AdaptadorPosicionPixel.transformarX((int) (x*multiplicadorPixel));
 		            int yLocation = AdaptadorPosicionPixel.transformarY((int) (y*multiplicadorPixel));
@@ -155,11 +171,12 @@ public class NivelBuilder {
 	                	nivelCreado.agregarPlataforma(bloqueCreado);
 	                	bloqueCreado.setNivel(nivelCreado);
 	                	
-	                }/*
+	                }
 	                else if(colorPixelActual == lakitu) {
 	                	Lakitu lakituCreado = fabrica.crearLakitu(xLocation, yLocation);
 	                	nivelCreado.agregarEnemigo(lakituCreado);
-	                }*/
+	                	lakituCreado.setNivel(nivelCreado);
+	                }
 	                else if(colorPixelActual == buzzy) {
 	                	Buzzy buzzyCreado = fabrica.crearBuzzy(xLocation, yLocation);
 	                	nivelCreado.agregarEnemigo(buzzyCreado);
@@ -219,11 +236,7 @@ public class NivelBuilder {
 	                	
 	                }  
 	            }
-	        }
-		}  catch (IOException e) {
-           System.out.println("Error al cargar la imagen: " + e.getMessage());
-		}
-		
+	        }		
 	}
 
 	
