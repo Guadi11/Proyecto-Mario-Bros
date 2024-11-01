@@ -9,6 +9,7 @@ import elementos.Enemigo;
 import juego.ControladorPartida;
 import parseo.GameFactory;
 import juego.Jugador;
+import observers.AdaptadorPosicionPixel;
 
 
 public class Lakitu extends Enemigo{
@@ -24,8 +25,43 @@ public class Lakitu extends Enemigo{
 		super (x,y,im);
 		ultimoLanzamiento = System.currentTimeMillis();
 	}
-	
 	public void actualizar() {
+		int alturaPiso = 72;
+		int alturaEnemigo = (int) (alturaPiso + this.getHitbox().getHeight());
+		
+		//int alturaPiso = 109; 
+		int limiteDerecho =  AdaptadorPosicionPixel.transformarX(7471);
+		int limiteY_ventana = 0;
+		moverEnDireccion();
+		this.setPosX(posicionX + velX);
+		//posicionY += velY;
+		
+	/*
+			if (posicionY > alturaEnemigo){// || posicionY<alturaPiso) {
+			    velY -= 1;
+			}
+				else { 
+					posicionY = alturaEnemigo;
+					velY = 0; 
+						}
+		*/
+		if (posicionX < 0) {
+	        posicionX = 0; 
+	        this.moverDerecha();
+	    }else if (posicionX > limiteDerecho) {
+	    	posicionX = limiteDerecho;	
+	    	this.moverIzquierda();
+	    }
+		if (posicionY < limiteY_ventana)
+			morir();
+		actualizarPosicionHitbox();
+		notificar();
+
+	}
+	
+	
+	
+	public void actualizarSpiny() {
         ahora = System.currentTimeMillis();
         if (ahora - ultimoLanzamiento >= intervaloLanzamientoSpinys) {
             lanzarSpiny();
@@ -76,7 +112,7 @@ public class Lakitu extends Enemigo{
 	}
 	
 	public int puntosQueResta() {
-		return Spiny.puntosQueResta();
+		return 30;
 	}
 	
 	public int puntosQueDa() {

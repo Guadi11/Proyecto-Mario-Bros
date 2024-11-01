@@ -42,7 +42,7 @@ public abstract class GameFactory {
 		lakitu.setControlador(controladorPartida);
 		setearHitbox(lakitu, sprite);
 		
-		return null;
+		return lakitu;
 	}
 	
 	public Koopa crearKoopa(int x, int y) {

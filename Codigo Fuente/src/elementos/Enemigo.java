@@ -41,22 +41,27 @@ public abstract class Enemigo extends Movible implements VisitorAJugador, Visita
 	}
 	
 	public void actualizar() {
-		int alturaPiso = 109; 
+		int alturaPiso = 72;
+		int alturaEnemigo = (int) (alturaPiso + this.getHitbox().getHeight());
+		
+		//int alturaPiso = 109; 
 		int limiteDerecho =  AdaptadorPosicionPixel.transformarX(7471);
 		int limiteY_ventana = 0;
 		moverEnDireccion();
 		this.setPosX(posicionX + velX);
 		posicionY += velY;
 		
-		if (!colisionConBloque)
-			velY-=1;
-			/*if (posicionY > alturaPiso){// || posicionY<alturaPiso) {
+		if (!colisionConBloque){
+			velY-=1; 
+		}else {
+			if (posicionY > alturaEnemigo){// || posicionY<alturaPiso) {
 			    velY -= 1;
 			}
 				else { 
-					posicionY = alturaPiso;
+					posicionY = alturaEnemigo;
 					velY = 0; 
-						}*/
+						}
+		}
 		
 		if (posicionX < 0) {
 	        posicionX = 0; 
@@ -69,8 +74,8 @@ public abstract class Enemigo extends Movible implements VisitorAJugador, Visita
 		notificar();
 
 	}
-	public void ColisionaConBloque(boolean c) {
-		colisionConBloque = c;
+	public void ColisionaConBloque(boolean valor) {
+		colisionConBloque = valor;
 	}
 	public void setVelX(int direc) {
 		this.velX = direc;

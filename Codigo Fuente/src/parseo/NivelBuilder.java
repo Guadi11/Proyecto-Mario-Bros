@@ -29,7 +29,7 @@ public class NivelBuilder {
 	private void crearNivel() {
 		
 		try {
-			 BufferedImage mapImage = ImageIO.read(new File("imagenes/mapaRGBtestT.png"));
+			 BufferedImage mapImage = ImageIO.read(new File("imagenes/mapaRGB2.png"));
 	        // Obtengo las dimensiones de la imagen
 	        int ancho = mapImage.getWidth();
 	        int alto = mapImage.getHeight();
@@ -52,7 +52,7 @@ public class NivelBuilder {
 			
 			int goomba = new Color(255, 0, 255).getRGB();
 			int koopa = new Color(255, 255, 255).getRGB();
-			//int lakitu = new Color(60, 255, 150).getRGB();
+			int lakitu = new Color(60, 255, 150).getRGB();
 			int buzzy = new Color(255, 125, 125).getRGB();
 			int spiny = new Color(255,200,125).getRGB();
 			
@@ -155,11 +155,12 @@ public class NivelBuilder {
 	                	nivelCreado.agregarPlataforma(bloqueCreado);
 	                	bloqueCreado.setNivel(nivelCreado);
 	                	
-	                }/*
+	                }
 	                else if(colorPixelActual == lakitu) {
 	                	Lakitu lakituCreado = fabrica.crearLakitu(xLocation, yLocation);
 	                	nivelCreado.agregarEnemigo(lakituCreado);
-	                }*/
+	                	lakituCreado.setNivel(nivelCreado);
+	                }
 	                else if(colorPixelActual == buzzy) {
 	                	Buzzy buzzyCreado = fabrica.crearBuzzy(xLocation, yLocation);
 	                	nivelCreado.agregarEnemigo(buzzyCreado);

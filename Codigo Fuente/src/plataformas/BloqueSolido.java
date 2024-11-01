@@ -41,6 +41,7 @@ public class BloqueSolido extends Plataforma implements VisitorPlataformas{
 	@Override
 	public void visitar(Enemigo enemigo) {
 		//enemigo choca contra bloque. si lo choca de costado le cambia la direccion
+		
 				if(enemigo.getBoundsBottom().intersects(this.getBoundsTop())) {
 					enemigo.setPosY((int) (this.getPosY() + enemigo.getHitbox().getHeight()));	
 				} 
