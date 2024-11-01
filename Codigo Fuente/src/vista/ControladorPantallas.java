@@ -2,6 +2,8 @@ package vista;
 
 
 import javax.swing.JFrame;
+import javax.swing.Timer;
+
 import elementos.ElementoJugador;
 import elementos.ElementoLogico;
 import juego.ControladorPartida;
@@ -144,5 +146,7 @@ public class ControladorPantallas implements ControladorDePantallas, Controlador
 	public void removerObserver(ObserverGrafico observer) {
 		this.panelJuego.removerElemento(observer);
 	}
-
+	public Timer getTimerNivel() {
+		return panelJuego.timerNivel;
+	}
 }

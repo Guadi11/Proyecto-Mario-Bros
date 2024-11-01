@@ -3,6 +3,8 @@ package juego;
 import java.awt.event.KeyEvent;
 import java.util.List;
 
+import javax.swing.Timer;
+
 import parseo.*;
 import archivos.ControladorSonidos;
 import archivos.Ranking;
@@ -59,6 +61,11 @@ public class ControladorPartida {
 		hiloJugador.detener();
 		hiloEnemigo.detener();
 		controladorSonido.reproducirSonidoAccion(TipoSonidos.muerteMario);
+		
+		if (pantallas.getTimerNivel()!=null) {
+			pantallas.getTimerNivel().stop();
+		}
+		Timer delayTimer = new Timer(2000, e -> {
 		int monedas = this.nivelActual.getJugador().getMonedas();
 		int puntaje = this.nivelActual.getJugador().getPuntaje();
 		int vidas = this.nivelActual.getJugador().getVida();
@@ -69,8 +76,10 @@ public class ControladorPartida {
 		this.nivelActual.getJugador().getInfo().setMonedas(monedas);
 		this.nivelActual.getJugador().getInfo().actualizarPuntaje(puntaje);
 		this.nivelActual.getJugador().getInfo().setVidas(vidas);	
+	});
+		delayTimer.setRepeats(false); // Para que el temporizador solo ejecute una vez
+	    delayTimer.start();
 	}
-	
 	private void registrarObservers() {
 		registrarObserverJugador(this.nivelActual.getJugador());
 		registrarObserversPlataformas(this.nivelActual.getPlataformas());
@@ -78,7 +87,6 @@ public class ControladorPartida {
 		// observers provisorios para el testeo de power ups
 		registrarObserversPowerUps(this.nivelActual.getPowerUps());
 	}
-	
 	private void registrarObserversPowerUps(List<PowerUp> powerUps) {
 		for(PowerUp elemento : powerUps) {
 			Observer observer = pantallas.registrarElemento(elemento);
@@ -136,9 +144,8 @@ public class ControladorPartida {
 	}
 	
 	public void timeOut() {
-		hiloSonido.detener();
+		//hiloSonido.detener();
 		controladorSonido.detenerSonidoJuego(TipoSonidos.advertenciaTiempo);
-		controladorSonido.reproducirSonidoAccion(TipoSonidos.muerteMario);
 		this.reiniciarNivel();
 	}
 	
