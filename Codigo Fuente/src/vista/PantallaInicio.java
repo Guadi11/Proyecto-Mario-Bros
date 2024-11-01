@@ -11,8 +11,8 @@ import javax.swing.JPanel;
 
 public class PantallaInicio extends JPanel{
 
-	private static final long serialVersionUID = 1L;
-	protected JButton botonStart;
+	    private static final long serialVersionUID = 1L;
+	    protected JButton botonStart;
         protected JButton botonRanking;
         protected JLabel imagenFondo;
         protected ControladorPantallas controlador;

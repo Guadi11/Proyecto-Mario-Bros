@@ -146,6 +146,7 @@ public class ControladorPartida {
 	public void timeOut() {
 		//hiloSonido.detener();
 		controladorSonido.detenerSonidoJuego(TipoSonidos.advertenciaTiempo);
+		this.pantallas.mostrarPantallaTimeUp();
 		this.reiniciarNivel();
 	}
 	

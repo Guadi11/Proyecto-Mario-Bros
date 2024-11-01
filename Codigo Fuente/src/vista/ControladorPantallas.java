@@ -24,8 +24,10 @@ public class ControladorPantallas implements ControladorDePantallas, Controlador
 	protected PantallaSeleccionModo panelSeleccion;
 	protected PantallaRanking panelRanking;
 	protected PantallaJuego panelJuego;
-	protected PantallaFinal panelFinal;
+	protected PantallaGameOver panelGameOver;
+	protected PantallaTimeUp panelTimeUp;
 	protected PantallaNombre panelNombre;
+	protected PantallaVictoria panelVictoria;
 	protected ControladorPartida partida;
 
 	
@@ -36,8 +38,10 @@ public class ControladorPantallas implements ControladorDePantallas, Controlador
 		panelSeleccion = new PantallaSeleccionModo(this);
 		panelRanking = new PantallaRanking(this, null);
 		panelJuego = new PantallaJuego(this);
-		panelFinal = new PantallaFinal(this);
+		panelGameOver = new PantallaGameOver(this);
+		panelTimeUp = new PantallaTimeUp(this);
 		panelNombre = new PantallaNombre(this,partida);
+		panelVictoria = new PantallaVictoria(this);
 		
 		configurarVentana();
 		registrarOyenteVentana();
@@ -83,10 +87,27 @@ public class ControladorPantallas implements ControladorDePantallas, Controlador
 		ventana.setContentPane(panelNombre);
 		refrescar();
 	}
+	
+	public void mostrarPantallaGameOver() {
+		ventana.setContentPane(panelGameOver);
+		panelGameOver.iniciarTemporizador();
+		refrescar();
+	}
+	
+	public void mostrarPantallaTimeUp() {
+		ventana.setContentPane(panelTimeUp);
+		panelTimeUp.iniciarTemporizador();
+		refrescar();
+	}
 
 	@Override
 	public void mostrarPantallaSeleccion() {
 		ventana.setContentPane(panelSeleccion);
+		refrescar();
+	}
+	
+	public void mostrarPantallaVictoria() {
+		ventana.setContentPane(panelVictoria);
 		refrescar();
 	}
 
@@ -124,17 +145,14 @@ public class ControladorPantallas implements ControladorDePantallas, Controlador
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public void accionarPantallaGameOver() {
+		
+	}
 
 	@Override
 	public void accionarInicioJuego(GameFactory fabrica) {
 		this.partida.iniciarPartida(fabrica);
-	}
-
-	@Override
-	public void mostrarPantallaGameOver() {
-		ventana.setContentPane(panelFinal);
-		panelFinal.iniciarTemporizador();
-		refrescar();
 	}
 	
 	public void reiniciarNivel() {
