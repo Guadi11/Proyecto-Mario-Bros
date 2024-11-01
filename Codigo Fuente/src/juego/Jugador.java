@@ -96,11 +96,11 @@ public class Jugador extends Movible implements Visitable, ElementoJugador{
 		
 		int limiteDerecho =  AdaptadorPosicionPixel.transformarX(7471);
 		int limiteY_ventana = 0;
-		System.out.println("esta arriba de bloque?: "+arribaDeBloque);
+		//System.out.println("esta arriba de bloque?: "+arribaDeBloque);
 		posicionX += velX;
 		posicionY += velY;
 		estaEnLaHitboxDelBloque();
-		System.out.println("Altura hitbox: "+this.getHitbox().getMaxY());
+		//System.out.println("Altura hitbox: "+this.getHitbox().getMaxY());
 		
 		if (!arribaDeBloque) { //ojo que este arriba del bloque solo lo estas activando cuando se sube a ladrillo solido, falta el resto
 			if ( posicionY > alturaMario || posicionY < alturaMario ) {

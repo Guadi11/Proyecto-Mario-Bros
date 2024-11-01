@@ -16,7 +16,7 @@ public class Lakitu extends Enemigo{
 
 	protected Enemigo Spiny;
 	protected long ultimoLanzamiento;
-	protected long intervaloLanzamientoSpinys = 2000;
+	protected long intervaloLanzamientoSpinys = 4000;
 	protected GameFactory fabrica;
 	protected ControladorPartida controladorPartida;
 	protected long ahora;
@@ -28,23 +28,12 @@ public class Lakitu extends Enemigo{
 	public void actualizar() {
 		int alturaPiso = 72;
 		int alturaEnemigo = (int) (alturaPiso + this.getHitbox().getHeight());
-		
-		//int alturaPiso = 109; 
+		 
 		int limiteDerecho =  AdaptadorPosicionPixel.transformarX(7471);
 		int limiteY_ventana = 0;
 		moverEnDireccion();
 		this.setPosX(posicionX + velX);
-		//posicionY += velY;
 		
-	/*
-			if (posicionY > alturaEnemigo){// || posicionY<alturaPiso) {
-			    velY -= 1;
-			}
-				else { 
-					posicionY = alturaEnemigo;
-					velY = 0; 
-						}
-		*/
 		if (posicionX < 0) {
 	        posicionX = 0; 
 	        this.moverDerecha();
@@ -56,7 +45,7 @@ public class Lakitu extends Enemigo{
 			morir();
 		actualizarPosicionHitbox();
 		notificar();
-
+		actualizarSpiny();
 	}
 	
 	
@@ -64,26 +53,20 @@ public class Lakitu extends Enemigo{
 	public void actualizarSpiny() {
         ahora = System.currentTimeMillis();
         if (ahora - ultimoLanzamiento >= intervaloLanzamientoSpinys) {
+        	System.out.println("lanza Spiny");
             lanzarSpiny();
             ultimoLanzamiento = ahora;
         }
     }
 	
 	public void lanzarSpiny() {
-		enemigos.Spiny nuevoSpiny = inicializarSpiny();
-		nuevoSpiny.serLanzado();
-    }
-	
-	private Spiny inicializarSpiny() {
-		Spiny nuevoSpiny = fabrica.crearSpiny(this.posicionX-1, this.posicionY);
+		/*
+		Spiny nuevoSpiny = fabrica.crearSpiny(this.posicionX, this.posicionY); //ver posY
 		this.nivel.agregarEnemigo(nuevoSpiny);
-		observerSpiny(nuevoSpiny);
-		return nuevoSpiny;
-	}
-	
-	private void observerSpiny(Spiny spiny) {
-		controladorPartida.registrarObserverElementoIndividual(spiny);
-	}
+		controladorPartida.registrarObserverElementoIndividual(nuevoSpiny);
+		nuevoSpiny.setNivel(this.nivel);
+		*/
+    }
 	
 	public void visitar (Jugador jugador) {
 		//Si es de arriba, muere. Sino, mata a jugador

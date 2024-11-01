@@ -9,14 +9,15 @@ import elementos.Enemigo;
 import juego.Jugador;
 
 public class Spiny extends Enemigo{
-	protected long ALTURA_MAXIMA = 600;
+	protected long ALTURA_MAXIMA = 600; //550 en realidad
+	protected long velocidadEnMill = 3000;
 	private int nuevaPosicionX = 0;
 	private int nuevaPosicionY = 0;
 	
 	public Spiny (int x, int y, Sprite imagen) {
 		super (x,y,imagen);
 	}
-	
+	/*
 	public void serLanzado() {
 		while (getPosY() < ALTURA_MAXIMA) {
 		nuevaPosicionY = (int) (posicionY - velocidadEnMill*(1/60));
@@ -24,8 +25,8 @@ public class Spiny extends Enemigo{
 		nuevaPosicionX = (int) (posicionX - velocidadEnMill*(1/60));
 		setPosX (nuevaPosicionX);
 		}
-		moverse();
-	}
+		actualizar();
+	} */
 	
 	public void moverse() { //para cuando se desplaza por el suelo
 		/*ver tema colisiones/heapbox y sentido del enemigo
@@ -60,7 +61,7 @@ public class Spiny extends Enemigo{
 	}
 	
 	public int puntosQueDa() {
-		return 0;
+		return 60;
 	}
 	
 	@Override
