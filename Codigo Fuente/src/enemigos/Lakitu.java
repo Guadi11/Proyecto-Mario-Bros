@@ -16,7 +16,7 @@ public class Lakitu extends Enemigo{
 
 	protected Enemigo Spiny;
 	protected long ultimoLanzamiento;
-	protected long intervaloLanzamientoSpinys = 4000;
+	protected long intervaloLanzamientoSpinys = 3000;
 	protected GameFactory fabrica;
 	protected ControladorPartida controladorPartida;
 	protected long ahora; 
