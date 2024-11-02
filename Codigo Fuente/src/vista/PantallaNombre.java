@@ -78,7 +78,8 @@ public class PantallaNombre extends JPanel{
 	        public void actionPerformed(ActionEvent e) {
 	             String nombreJugador = campoNombre.getText();
 	             if (!nombreJugador.isEmpty()) {
-                  controladorPartida.guardarNombreJugador(nombreJugador);	                    controlador.mostrarPantallaSeleccion();//llama a un método en ControladorPartida para guardar el nombre
+                  controladorPartida.guardarNombre(nombreJugador);                   
+                  controlador.mostrarPantallaSeleccion();//llama a un método en ControladorPartida para guardar el nombre
 	              JOptionPane.showMessageDialog(null, "Nombre guardado: " + nombreJugador);
 	             } else {
 	                 JOptionPane.showMessageDialog(null, "Por favor, ingresa un nombre.");

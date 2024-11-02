@@ -2,6 +2,7 @@ package Launcher;
 
 import java.awt.EventQueue;
 
+import archivos.TopRanking;
 import colisiones.ControladorColisiones;
 import juego.ControladorPartida;
 import vista.ControladorPantallas;
@@ -22,7 +23,8 @@ public class Launcher {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-						ControladorPartida partida =  new ControladorPartida();
+						TopRanking ranking = new TopRanking();
+						ControladorPartida partida =  new ControladorPartida(ranking);
 						ControladorPantallas pantallas = new ControladorPantallas(partida);
 						partida.setControladorPantallas(pantallas);
 						pantallas.mostrarPantallaInicial();

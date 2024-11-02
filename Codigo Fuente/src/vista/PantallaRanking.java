@@ -1,12 +1,13 @@
 package vista;
 
 import javax.swing.*;
+
+import archivos.TopRanking;
+import archivos.Usuario;
+
 import java.awt.*;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-import juego.Jugador;
 
 
 
@@ -15,15 +16,15 @@ public class PantallaRanking extends JPanel{
 	    private static final long serialVersionUID = 1L;
 	    protected JLabel tituloRanking;
 	    protected JButton botonAtras;
-	    protected List<Jugador> jugadores;
 	    protected JLabel imagenRanking;
 	    protected ControladorPantallas controlador;
+	    protected TopRanking topCinco;
 
-	    public PantallaRanking(ControladorPantallas controlador, List<Jugador> jugadores) {
+	    public PantallaRanking(ControladorPantallas controlador, TopRanking ranking) {
 	    	this.controlador = controlador;
-	        this.jugadores = new ArrayList<>(); 
 	        this.setPreferredSize(new Dimension(ConstantesPantalla.panelAncho, ConstantesPantalla.panelAlto));
 	        this.setLayout(null);
+	        topCinco = ranking;
 	        
 	        agregarImagenFondo();
 	        agregarTituloRanking();
@@ -49,7 +50,7 @@ public class PantallaRanking extends JPanel{
 	    }
 
 	    private void mostrarRanking() {
-	    	if (jugadores == null || jugadores.isEmpty()) {
+	    	if (topCinco.getLista().isEmpty()) {
 	            System.out.println("No hay jugadores en el ranking.");
 	            return;
 	        }
@@ -57,8 +58,8 @@ public class PantallaRanking extends JPanel{
 	        int yPosition = 100; //Posición inicial en y
 	        int ranking = 1;
 	        
-	        for (Jugador jugador : jugadores) {
-	            JLabel jugadorLabel = new JLabel(ranking + ". " + jugador.getName() + " - " + jugador.getPuntaje());
+	        for (Usuario e : topCinco.getLista()) {
+	            JLabel jugadorLabel = new JLabel(ranking + ". " + e.getNombre() + " - " + e.getPuntajeTotal());
 	            jugadorLabel.setBounds(100, yPosition, ConstantesPantalla.panelAncho - 200, 30);
 	            decorarLabelsRanking(null, jugadorLabel);
 	            this.add(jugadorLabel);
