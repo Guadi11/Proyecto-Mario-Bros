@@ -13,6 +13,8 @@ public class ControladorSonidosJuego {
 		sonidosJuego.put(TipoSonidos.finNivel, new Sonido ("audio/sonidoFinalNivel.wav"));
 		sonidosJuego.put(TipoSonidos.bajaCañeria, new Sonido ("audio/cañeria.wav"));
 		sonidosJuego.put(TipoSonidos.speedBackground, new Sonido ("audio/speedBackground.wav"));
+		sonidosJuego.put(TipoSonidos.victoria, new Sonido ("audio/mundoDespejado.wav"));
+		sonidosJuego.put(TipoSonidos.fuegosArtificiales, new Sonido ("audio/fuegosArtificiales.wav"));
 	}
 	
 	public void reproducirSonido (TipoSonidos tipo) {
