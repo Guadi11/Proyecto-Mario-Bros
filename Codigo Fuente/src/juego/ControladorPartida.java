@@ -32,7 +32,7 @@ public class ControladorPartida {
 	protected String nombreUsuario;
 	
 	
-	public ControladorPartida(TopRanking r) {;
+	public ControladorPartida(TopRanking r) {
 		this.numNivelActual = 1;
 		ranking = r;
 	}

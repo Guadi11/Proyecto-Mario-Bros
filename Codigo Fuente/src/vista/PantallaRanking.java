@@ -24,7 +24,7 @@ public class PantallaRanking extends JPanel{
 	    	this.controlador = controlador;
 	        this.setPreferredSize(new Dimension(ConstantesPantalla.panelAncho, ConstantesPantalla.panelAlto));
 	        this.setLayout(null);
-	        
+	        topCinco = ranking;
 	        agregarImagenFondo();
 	        agregarTituloRanking();
 	        mostrarRanking();
