@@ -169,6 +169,7 @@ public class ControladorPartida {
 	public void victoria() {
 		controladorSonido.reproducirSonidoJuego(TipoSonidos.victoria);
 		agregarUsuario();
+		this.pantallas.mostrarPantallaVictoria();
 	}
 	
 	public void timeOut() {
@@ -246,6 +247,10 @@ public class ControladorPartida {
 	}
 	public HiloSonido getHiloSonido() {
 		return hiloSonido;
+	}
+	
+	public HiloEnemigo getHiloEnemigo() {
+		return hiloEnemigo;
 	}
 
 	/*public void musicaEstrella() {

@@ -19,16 +19,13 @@ public class Lakitu extends Enemigo{
 	protected long intervaloLanzamientoSpinys = 4000;
 	protected GameFactory fabrica;
 	protected ControladorPartida controladorPartida;
-	protected long ahora;
+	protected long ahora; 
 	
 	public Lakitu (int x, int y, Sprite im) {
 		super (x,y,im);
 		ultimoLanzamiento = System.currentTimeMillis();
 	}
 	public void actualizar() {
-		int alturaPiso = 72;
-		int alturaEnemigo = (int) (alturaPiso + this.getHitbox().getHeight());
-		 
 		int limiteDerecho =  AdaptadorPosicionPixel.transformarX(7471);
 		int limiteY_ventana = 0;
 		moverEnDireccion();
@@ -43,12 +40,11 @@ public class Lakitu extends Enemigo{
 	    }
 		if (posicionY < limiteY_ventana)
 			morir();
+		
 		actualizarPosicionHitbox();
 		notificar();
 		actualizarSpiny();
-	}
-	
-	
+	}	
 	
 	public void actualizarSpiny() {
         ahora = System.currentTimeMillis();
@@ -60,12 +56,11 @@ public class Lakitu extends Enemigo{
     }
 	
 	public void lanzarSpiny() {
-		/*
-		Spiny nuevoSpiny = fabrica.crearSpiny(this.posicionX, this.posicionY); //ver posY
-		this.nivel.agregarEnemigo(nuevoSpiny);
+		Spiny nuevoSpiny = fabrica.crearSpiny(this.posicionX, this.posicionY - 36); //ver posY
+		controladorPartida.getHiloEnemigo().registrarEnemigo(nuevoSpiny);
 		controladorPartida.registrarObserverElementoIndividual(nuevoSpiny);
 		nuevoSpiny.setNivel(this.nivel);
-		*/
+		
     }
 	
 	public void visitar (Jugador jugador) {

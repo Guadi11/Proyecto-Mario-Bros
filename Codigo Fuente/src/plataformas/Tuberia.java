@@ -88,10 +88,11 @@ public class Tuberia extends Plataforma implements VisitorPlataformas{
 		} 
 		else if(enemigo.getBoundsRight().intersects(this.getBoundsLeft())) { 
 			enemigo.setPosX((int) (this.getPosX() - enemigo.getHitbox().getWidth()));
+			enemigo.moverIzquierda();
 		}
 		else if(enemigo.getBoundsLeft().intersects(this.getBoundsRight())) {
 			enemigo.setPosX((int) (this.getPosX() + this.hitbox.getWidth()));
-			//jugador.setPosX((int) (this.getPosX() + jugador.getHitbox().getWidth()));
+			enemigo.moverDerecha();
 		} 
 	}
 
