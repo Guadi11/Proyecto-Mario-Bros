@@ -1,11 +1,13 @@
 package Launcher;
 
-import java.awt.EventQueue;
 
 import archivos.TopRanking;
 import colisiones.ControladorColisiones;
 import juego.ControladorPartida;
 import vista.ControladorPantallas;
+
+import java.awt.EventQueue;
+import java.io.*;;
 
 public class Launcher {
 
@@ -24,6 +26,22 @@ public class Launcher {
 			public void run() {
 				try {
 						TopRanking ranking = new TopRanking();
+						try {
+							FileInputStream fileInputStream = new FileInputStream("./puntajes.tdp");
+							ObjectInputStream objectInputStream = new ObjectInputStream (fileInputStream);
+							ranking = (TopRanking) objectInputStream.readObject();
+							objectInputStream.close();
+						}
+						catch (FileNotFoundException e) {
+							
+						}
+						catch (IOException e) {
+							e.printStackTrace();
+						}
+						catch (ClassNotFoundException e) {
+							e.printStackTrace();
+						}
+						
 						ControladorPartida partida =  new ControladorPartida(ranking);
 						ControladorPantallas pantallas = new ControladorPantallas(partida);
 						partida.setControladorPantallas(pantallas);

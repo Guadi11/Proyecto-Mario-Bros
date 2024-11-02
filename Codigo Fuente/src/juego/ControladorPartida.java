@@ -238,7 +238,8 @@ public class ControladorPartida {
 		ingresado.setPuntajeTotal(nivelActual.getJugador().getPuntaje());
 		ranking.agregarJugador(ingresado);
 		System.out.println("Ranking:  ");
-		System.out.println("Usuario mostrado: "+ranking.getLista().get(0));
+		for (Usuario e:ranking.getLista())
+			System.out.println("Usuario mostrado: "+e.getNombre());
 	}
 	public void guardarNombre(String nombre) {
 		nombreUsuario = nombre;

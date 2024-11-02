@@ -24,7 +24,6 @@ public class PantallaRanking extends JPanel{
 	    	this.controlador = controlador;
 	        this.setPreferredSize(new Dimension(ConstantesPantalla.panelAncho, ConstantesPantalla.panelAlto));
 	        this.setLayout(null);
-	        topCinco = ranking;
 	        
 	        agregarImagenFondo();
 	        agregarTituloRanking();
@@ -50,25 +49,17 @@ public class PantallaRanking extends JPanel{
 	    }
 
 	    private void mostrarRanking() {
-	    	if (topCinco.getLista().isEmpty()) {
-	            System.out.println("No hay jugadores en el ranking.");
-	            return;
-	        }
-	    	
 	        int yPosition = 100; //Posición inicial en y
-	        int ranking = 1;
+	        int posicion = 1;
 	        
 	        for (Usuario e : topCinco.getLista()) {
-	            JLabel jugadorLabel = new JLabel(ranking + ". " + e.getNombre() + " - " + e.getPuntajeTotal());
+	            JLabel jugadorLabel = new JLabel(posicion + ". " + e.getNombre() + " - " + e.getPuntajeTotal());
 	            jugadorLabel.setBounds(100, yPosition, ConstantesPantalla.panelAncho - 200, 30);
 	            decorarLabelsRanking(null, jugadorLabel);
 	            this.add(jugadorLabel);
 	            
 	            yPosition += 40; 
-	            ranking++;
-	            
-	            if (ranking>5)
-	            	break; 
+	            posicion++; 
 	        }
 	    }
 
