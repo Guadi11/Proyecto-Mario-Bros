@@ -73,7 +73,7 @@ public class NivelBuilder {
 			int spiny = new Color(255,200,125).getRGB();
 			
 			/*
-			int tuberiaPiranha = new Color(250, 50, 100).getRGB();	
+			int tuberiaConPiranha = new Color(250, 50, 100).getRGB();	
 			*/
 			
 			//Colores provisorios, testeo de power ups
@@ -92,37 +92,32 @@ public class NivelBuilder {
 		            
 		            int xLocation = AdaptadorPosicionPixel.transformarX((int) (x*multiplicadorPixel));
 		            int yLocation = AdaptadorPosicionPixel.transformarY((int) (y*multiplicadorPixel));
-		            //int xLocation = (int) (x*multiplicadorPixel);
-		            //int yLocation = (int) (y*multiplicadorPixel);
 		
 		            if (colorPixelActual == jugador) {
 		            	Jugador jugadorCreado = fabrica.crearJugador(xLocation, yLocation);
 	                	nivelCreado.agregarJugador(jugadorCreado);
 	                	jugadorCreado.setNivel(nivelCreado);
 	                	
-	                }else if (colorPixelActual == ladrilloSolido) {
+	                }
+		            else if (colorPixelActual == ladrilloSolido) {
 	                	LadrilloSolido ladrilloCreado = fabrica.crearLadrilloSolido(xLocation,yLocation);
 	                	nivelCreado.agregarPlataforma(ladrilloCreado);
 	                	ladrilloCreado.setNivel(nivelCreado);
 	                	
-	                }else if (colorPixelActual == goomba) {
+	                }
+	                else if (colorPixelActual == goomba) {
 	                    Goomba goombaCreado = fabrica.crearGoomba(xLocation, yLocation);
 	                    nivelCreado.agregarEnemigo(goombaCreado);
 	                    goombaCreado.setNivel(nivelCreado);
 	                    
-	                }else if (colorPixelActual == preguntaMoneda) {
+	                }
+	                else if (colorPixelActual == preguntaMoneda) {
 	                	BloqueDePregunta bloqueCreado = fabrica.crearBloqueDePregunta(xLocation, yLocation);
 	                	bloqueCreado.setPowerUp("Moneda");
 	                	nivelCreado.agregarPlataforma(bloqueCreado);
 	                	bloqueCreado.setNivel(nivelCreado);
 	                	
-	                }else if (colorPixelActual == tuberiaSinPiranha) {
-	                	Tuberia tuberiaCreada = fabrica.crearTuberia1(xLocation, yLocation);//+35
-	                	tuberiaCreada.poseePiranha(false);
-	                	nivelCreado.agregarPlataforma(tuberiaCreada);  
-	                	tuberiaCreada.setNivel(nivelCreado);
-	                	
-	                }		            
+	                }
 	                else if (colorPixelActual == preguntaSuperChampi) {
 	                	BloqueDePregunta bloqueCreado = fabrica.crearBloqueDePregunta(xLocation, yLocation);
 	                	bloqueCreado.setPowerUp("SuperChampiñon");
@@ -216,7 +211,22 @@ public class NivelBuilder {
 	                	nivelCreado.agregarPowerUp(champiñonVerdeCreado);
 	                	champiñonVerdeCreado.setNivel(nivelCreado);
 	                	
-	                }
+	                }/*
+	                else if (colorPixelActual == tuberiaConPiranha) {
+	                	Tuberia tuberiaCreada = fabrica.crearTuberia1(xLocation, yLocation);//+35
+	                	tuberiaCreada.poseePiranha(true);
+	                	nivelCreado.agregarPlataforma(tuberiaCreada);  
+	                	tuberiaCreada.setNivel(nivelCreado);
+	                	
+	                }	*/
+	                else if (colorPixelActual == tuberiaSinPiranha) {
+	                	Tuberia tuberiaCreada = fabrica.crearTuberia1(xLocation, yLocation);
+	                	tuberiaCreada.setNivel(nivelCreado);//+35
+	                	tuberiaCreada.poseePiranha(true); //false
+	                	nivelCreado.agregarPlataforma(tuberiaCreada);  
+	                	//tuberiaCreada.setNivel(nivelCreado);
+	                	
+	                }	
 	                else if(colorPixelActual == tuberia2) {
 	                	Tuberia tuberia2Creada = fabrica.crearTuberia2(xLocation, yLocation);
 	                	nivelCreado.agregarPlataforma(tuberia2Creada);

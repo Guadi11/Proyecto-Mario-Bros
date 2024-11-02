@@ -7,6 +7,7 @@ import colisiones.VisitorPlataformas;
 import elementos.Elemento;
 import elementos.Enemigo;
 import juego.Jugador;
+import observers.AdaptadorPosicionPixel;
 
 public class Piranha extends Enemigo{
 	protected long intervaloParaSalir = 3000;
@@ -16,18 +17,23 @@ public class Piranha extends Enemigo{
 	protected long ahora;
 	private long tiempoCambioEstado;
 	private final long duracionEspera = 2000;
+	private int alturaEscondida, alturaAfuera;
 	
 	public Piranha(int x, int y, Sprite imagen) {
 		super(x, y, imagen);
-		iniciarMovimientoPiranha();
+		estadoPiranha = 1;
+		alturaEscondida = this.getPosY();
+		alturaAfuera = (int) (alturaEscondida + this.getHitbox().getHeight());
+		//iniciarMovimientoPiranha();
 		tiempoCambioEstado = System.currentTimeMillis();
 	}
 	
 	public void iniciarMovimientoPiranha() {
+		//System.out.println("entra a iniciarMovimiento");
 		long ahora = System.currentTimeMillis();
 		switch (estadoPiranha) {
         case 0: 
-            if (this.getPosY() > posicionY) { 
+            if (this.getPosY() > alturaEscondida) { 
                 this.descender(); 
             }else {
                 estadoPiranha = 1; 
@@ -35,7 +41,7 @@ public class Piranha extends Enemigo{
             break;
 
         case 1: 
-            if (this.getPosY() < posicionY + 4) { 
+            if (this.getPosY() < alturaAfuera) { 
                 this.comenzarAscenso(); 
             }else {
                 estadoPiranha = 2; 
@@ -54,13 +60,22 @@ public class Piranha extends Enemigo{
         	comenzarAscenso();
 	}
 	public void comenzarAscenso() {
-			this.setPosY(posicionY+1);
+		velY +=1;
+		posicionY += velY;
+		//this.setPosY(posicionY+1); //ver esto
 			//ir cambiando imagen para que parexca que asciende
 	}
 	public void descender() {
-			this.setPosY(posicionY-1);
+		velY -= 1;
+		posicionY += velY;
+			//this.setPosY(posicionY-1);
 			//cambiar imagenes
 	}
+	public void actualizar() {
+		iniciarMovimientoPiranha();
+		//tiempoCambioEstado = System.currentTimeMillis();
+	}
+	
 	public void visitar(Jugador jugador) {
 		//Siempre hace daño al jugador, no importa de donde sea la colision. Solo muere con bola de fuego.
 		int restarPuntos = puntosQueResta();
