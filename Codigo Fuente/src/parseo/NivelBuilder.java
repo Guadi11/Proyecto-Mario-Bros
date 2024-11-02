@@ -213,19 +213,23 @@ public class NivelBuilder {
 	                	
 	                }/*
 	                else if (colorPixelActual == tuberiaConPiranha) {
-	                	Tuberia tuberiaCreada = fabrica.crearTuberia1(xLocation, yLocation);//+35
-	                	tuberiaCreada.poseePiranha(true);
+	                	Tuberia tuberiaCreada = fabrica.crearTuberia1(xLocation, yLocation);
+	                
+	                	int posicionPiranha = (int) (xLocation + tuberiaCreada.getHitbox().getWidth()/3); //para que aparezca en el medio
+						piranha = fabrica.crearPiranha(posicionPiranha, yLocation); 
+						
+						this.nivel.agregarEnemigo(piranha);
+						piranha.setNivel(this.nivel);
+	                	
 	                	nivelCreado.agregarPlataforma(tuberiaCreada);  
 	                	tuberiaCreada.setNivel(nivelCreado);
 	                	
 	                }	*/
 	                else if (colorPixelActual == tuberiaSinPiranha) {
-	                	Tuberia tuberiaCreada = fabrica.crearTuberia1(xLocation, yLocation);
-	                	tuberiaCreada.setNivel(nivelCreado);//+35
+	                	Tuberia tuberiaCreada = fabrica.crearTuberia1(xLocation, yLocation);      
+	                	nivelCreado.agregarPlataforma(tuberiaCreada);
+	                	tuberiaCreada.setNivel(nivelCreado);
 	                	tuberiaCreada.poseePiranha(true); //false
-	                	nivelCreado.agregarPlataforma(tuberiaCreada);  
-	                	//tuberiaCreada.setNivel(nivelCreado);
-	                	
 	                }	
 	                else if(colorPixelActual == tuberia2) {
 	                	Tuberia tuberia2Creada = fabrica.crearTuberia2(xLocation, yLocation);
