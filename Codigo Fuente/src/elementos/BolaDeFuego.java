@@ -6,9 +6,10 @@ import colisiones.VisitorAJugador;
 import colisiones.VisitorBolaDeFuego;
 import colisiones.VisitorPlataformas;
 import juego.InfoJugador;
+import juego.Jugador;
 
 public class BolaDeFuego extends Movible implements VisitorBolaDeFuego, Visitable{
-	protected InfoJugador jugador;
+	protected Jugador jugador;
 	private int velocidadX;
     private int velocidadY;
     private int gravedad;
@@ -23,9 +24,18 @@ public class BolaDeFuego extends Movible implements VisitorBolaDeFuego, Visitabl
 	
     public BolaDeFuego(int x, int y, Sprite imagen) {
 		super(x, y, imagen);
-		establecerVelocidadX();
-		establecerVelocidadY();
+
 	}
+    
+    public void actualizar() {
+    	System.out.println("entra al actualizar bola de fuego");
+    	//movimiento de bola de fuego
+    	//cuando choca con alguna plataforma muere
+    	
+    	//direccion = this.jugador.getVelocidadX();
+		//establecerVelocidadX();
+		//establecerVelocidadY();
+    }
     
 	public void establecerVelocidadX() {
 		velocidadX = VELOCIDAD_INICIAL * direccion;
@@ -58,7 +68,7 @@ public class BolaDeFuego extends Movible implements VisitorBolaDeFuego, Visitabl
 		//no importa de donde sea la colision, los mata de una a todos
 		int puntosPorMatar = enemigo.puntosQueDa();
 		enemigo.morir();
-		jugador.actualizarPuntaje(puntosPorMatar);
+		jugador.getInfo().actualizarPuntaje(puntosPorMatar);
 	}
 	
 	@Override
@@ -82,6 +92,10 @@ public class BolaDeFuego extends Movible implements VisitorBolaDeFuego, Visitabl
 	public void aceptarVisita(VisitorBolaDeFuego visitor) {
 		// entra a este metodo cuando el visitor sea una bola de fuego. No entra nunca aca
 		visitor.visitar(this);
+	}
+	
+	public void setJugador(Jugador jugador) {
+		this.jugador = jugador;
 	}
 
 }

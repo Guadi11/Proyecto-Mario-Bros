@@ -1,5 +1,7 @@
 package juego;
 
+import parseo.GameFactory;
+
 public class InfoJugador {
 
 	protected Jugador jugador;
@@ -81,6 +83,10 @@ public class InfoJugador {
 	}
 	public void setPuntaje(int p) {
 		puntaje = p;
+	}
+		
+	public Nivel getNivel() {
+		return this.nivel;
 	}
 	
 }

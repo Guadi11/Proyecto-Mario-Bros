@@ -2,7 +2,9 @@ package states;
 
 import archivos.ControladorSonidosAcciones;
 import archivos.Sprite;
+import juego.ControladorPartida;
 import juego.Jugador;
+import parseo.GameFactory;
 
 
 public abstract class State {
@@ -10,6 +12,8 @@ public abstract class State {
 	protected Jugador jugador;
 	protected Sprite sprite;
 	protected ControladorSonidosAcciones controladorSonidosAccion;
+	protected ControladorPartida controlador;
+	protected GameFactory fabrica;
 	protected Normal normal;
 	protected SuperMario superMario;
 	protected Fuego fuego;
@@ -31,6 +35,7 @@ public abstract class State {
 	public abstract int obtenerPuntosFFuego();
 	
 	public abstract void activar();
+	public abstract void disparar();
 	
 	public abstract void recibirSuperChampiñon();
 	public abstract void recibirFlorDeFuego();
@@ -50,6 +55,12 @@ public abstract class State {
 	
 	public void setInvulnerable(Invulnerable invulnerable) {
 		this.invulnerable = invulnerable;
+	}
+	public void setControlador(ControladorPartida controlador) {
+		this.controlador = controlador;
+	}
+	public void setFabrica(GameFactory factory) {
+		this.fabrica = factory;
 	}
 	
 	public Fuego getFuego() {

@@ -126,4 +126,8 @@ public class Invulnerable extends State{
 		return false;
 	}
 
+	@Override
+	public void disparar() {	
+	}
+
 }

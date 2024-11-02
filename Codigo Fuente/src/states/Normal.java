@@ -6,6 +6,7 @@ import javax.swing.ImageIcon;
 
 import archivos.Sprite;
 import archivos.TipoSonidos;
+import elementos.BolaDeFuego;
 import juego.Jugador;
 
 
@@ -105,4 +106,18 @@ public class Normal extends State {
 		return false;
 	}
 
+	@Override
+	public void disparar() { //esto despues sacarlo de normal
+		 lanzarBolaDeFuego();
+	}
+
+	 public void lanzarBolaDeFuego() {     //esto despues sacarlo de normal    
+		 int posicionYBola = (int) (jugador.getPosY() - jugador.getHitbox().getHeight()/4);
+		 BolaDeFuego nuevaBola = this.fabrica.crearBolaDeFuego(jugador.getPosX(), posicionYBola); //ver pos
+		 controlador.getHiloEnemigo().registrarBolaDeFuego(nuevaBola);
+		 controlador.registrarObserverElementoIndividual(nuevaBola);
+		 nuevaBola.setNivel(jugador.getInfo().getNivel());
+		 nuevaBola.setJugador(jugador);
+	 }
+	
 }

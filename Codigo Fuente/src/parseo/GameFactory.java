@@ -29,6 +29,8 @@ public abstract class GameFactory {
 		Sprite sprite = new Sprite(rutaCarpeta + "/mario.png");
 		Jugador jugador = new Jugador(x, y, sprite);
 		setearHitbox(jugador, sprite);
+		jugador.getState().setFabrica(this);
+		jugador.getState().setControlador(controladorPartida);
 		
 		//System.out.println("Jugador hitbox right posYsuperior: " +  jugador.getBoundsRight().y + ". hitbox right extremo inferior: " + (jugador.getBoundsRight().y - jugador.getBoundsRight().height));
 		return jugador;

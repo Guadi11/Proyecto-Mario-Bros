@@ -6,6 +6,9 @@ import javax.swing.ImageIcon;
 
 import archivos.Sprite;
 import archivos.TipoSonidos;
+import elementos.BolaDeFuego;
+import enemigos.Spiny;
+import juego.ControladorPartida;
 import juego.Jugador;
 
 public class Fuego extends SuperMario{
@@ -13,10 +16,10 @@ public class Fuego extends SuperMario{
 	protected Sprite sprite;
 	protected State estadoAnterior;
 	
-	
 	public Fuego(Jugador jugador) {
 		super(jugador);
 		this.sprite = new Sprite("imagenes/modoUno/mariofuego.png");
+		controlador = null;
 	}
 	
 	public void activar() {
@@ -39,15 +42,18 @@ public class Fuego extends SuperMario{
 		return sprite;
 	}
 
-	/*
 	public void disparar() { 
         lanzarBolaDeFuego();
     }
 	
-    public void lanzarBolaDeFuego() {
-        BolaDeFuego nuevaBola = new BolaDeFuego(jugador.getPosX(), jugador.getPosY(), null); //Crearlo bien con la fabrica
+    public void lanzarBolaDeFuego() {     
+    	int posicionYBola = (int) (jugador.getPosY() - jugador.getHitbox().getHeight()/4);
+        BolaDeFuego nuevaBola = this.fabrica.crearBolaDeFuego(jugador.getPosX(), posicionYBola); //ver pos
+        controlador.getHiloEnemigo().registrarBolaDeFuego(nuevaBola);
+        controlador.registrarObserverElementoIndividual(nuevaBola);
+        nuevaBola.setNivel(jugador.getInfo().getNivel());
+        nuevaBola.setJugador(jugador);
     }
-    */
 	
 	@Override
 	public void recibirSuperChampiñon() {

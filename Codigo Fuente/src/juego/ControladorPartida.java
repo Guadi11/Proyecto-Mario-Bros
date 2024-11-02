@@ -205,20 +205,22 @@ public class ControladorPartida {
 		int tecla = e.getKeyCode();
     	
 	    switch (tecla) {
-	        case KeyEvent.VK_LEFT:
+	        case KeyEvent.VK_A: //KeyEvent.VK_LEFT
 	            nivelActual.getJugador().moverIzquierda();
 	            break;
-	        case KeyEvent.VK_RIGHT:
+	        case KeyEvent.VK_D: //KeyEvent.VK_RIGHT
 	        	nivelActual.getJugador().moverDerecha();
 	            break;
-	        case KeyEvent.VK_UP:
+	        case KeyEvent.VK_W: // KeyEvent.VK_UP
 	        	nivelActual.getJugador().saltar();
 	            break;
+	        case KeyEvent.VK_SPACE:
+	        	nivelActual.getJugador().getState().disparar();
 	    }
 	}
 	public void desactiveMovement (KeyEvent e) {
 		int tecla = e.getKeyCode();
-		if (tecla == KeyEvent.VK_LEFT || tecla == KeyEvent.VK_RIGHT) {
+		if (tecla == KeyEvent.VK_A || tecla ==KeyEvent.VK_D) {
 	        nivelActual.getJugador().frenarMovimiento(); // Detiene el movimiento al soltar las teclas
 		}
 

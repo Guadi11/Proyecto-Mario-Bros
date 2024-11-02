@@ -100,4 +100,8 @@ public class SuperMario extends State{
 	public boolean esGrande() {
 		return true;
 	}
+
+	@Override
+	public void disparar() {
+	}
 }

@@ -61,6 +61,7 @@ public class Jugador extends Movible implements Visitable, ElementoJugador{
 	    invulnerable.setFuego(fuego);
 	    
 	    estado = normal;
+	    //estado.activar();
 	}
 	
 	public void setState(State estado) {
@@ -169,7 +170,7 @@ public class Jugador extends Movible implements Visitable, ElementoJugador{
 		return this.info.getVida();
 	}
 
-	public int getVelocidad() {
+	public int getVelocidadX() {
 		return this.velX;
 	}
 	
@@ -213,5 +214,6 @@ public class Jugador extends Movible implements Visitable, ElementoJugador{
 	public void setName(String nombre) {
 		this.nombre=nombre;
 	}
+	
 }
 

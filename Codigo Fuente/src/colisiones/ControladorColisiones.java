@@ -63,6 +63,7 @@ public class ControladorColisiones {
 	    		e.aceptarVisita(p);
 			}     
 	    }
+	    //otro while e iterator para las bolas de fuego
 		
 		
 	}
