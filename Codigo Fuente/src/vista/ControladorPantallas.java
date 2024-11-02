@@ -184,4 +184,7 @@ public class ControladorPantallas implements ControladorDePantallas, Controlador
 	public Timer getTimerNivel() {
 		return panelJuego.timerNivel;
 	}
+	public void actualizacionLabelNivel() {
+		panelJuego.actualizarLabelsNivel();
+	}
 }

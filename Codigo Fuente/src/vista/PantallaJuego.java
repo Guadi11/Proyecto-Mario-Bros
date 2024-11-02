@@ -303,9 +303,14 @@ public class PantallaJuego extends JPanel implements KeyListener{
 		this.controladorPantalla.partida.getControladorSonidos().reproducirSonidoJuego(TipoSonidos.speedBackground);
 	}
 	public void actualizarLabelsNivel() {
-		//TODO
-		
-	}
+		int numeroNivelActual=0;
+		try {
+            numeroNivelActual = Integer.parseInt(labelNivelActual.getText());
+        } catch (NumberFormatException e) {
+            System.out.println("El texto en JLabel no es un número válido.");
+        }
+		labelNivelActual.setText(textoConDigitos(numeroNivelActual+1,1));
+}
 	
     public void keyPressed(KeyEvent e) {
         controladorPantalla.getControladorPartida().activeMovement(e);
@@ -322,6 +327,7 @@ public class PantallaJuego extends JPanel implements KeyListener{
     public void keyTyped(KeyEvent e) {
         // es para taclas especiales. Generalmente no se usa para juegos.
     }
+    
     
    
 
