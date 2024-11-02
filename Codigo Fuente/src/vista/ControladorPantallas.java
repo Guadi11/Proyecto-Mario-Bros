@@ -15,6 +15,10 @@ import observers.ObserverJugador;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 
 
 public class ControladorPantallas implements ControladorDePantallas, ControladorEntreJuegoVista{
@@ -36,7 +40,7 @@ public class ControladorPantallas implements ControladorDePantallas, Controlador
 		ConfigurarFuente.cargarFuente();
 		panelInicio = new PantallaInicio(this);
 		panelSeleccion = new PantallaSeleccionModo(this);
-		panelRanking = new PantallaRanking(this, null);
+		panelRanking = new PantallaRanking(this, partida.getRanking());
 		panelJuego = new PantallaJuego(this);
 		panelGameOver = new PantallaGameOver(this);
 		panelTimeUp = new PantallaTimeUp(this);
@@ -112,13 +116,26 @@ public class ControladorPantallas implements ControladorDePantallas, Controlador
 	}
 
 	public void registrarOyenteVentana(){
-	        ventana.addWindowListener(new WindowAdapter() {
-	            @Override
-	            public void windowClosing(WindowEvent evento){
-	                
-	            }
-	        });
-	}
+        ventana.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent evento){
+                try {
+                	FileOutputStream fileOutputStream = new FileOutputStream("./puntajes.tdp");
+                	ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+                	objectOutputStream.writeObject(partida.getRanking());
+                	objectOutputStream.flush();
+                	objectOutputStream.close();
+                }
+                catch(FileNotFoundException e) {
+                	e.printStackTrace();
+                }
+                catch(IOException e) {
+                	e.printStackTrace();
+                }
+            }
+        });
+}
+
 
 	@Override
 	public Observer registrarElemento(ElementoLogico elem) {

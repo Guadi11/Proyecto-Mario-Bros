@@ -7,8 +7,9 @@ import javax.swing.Timer;
 
 import parseo.*;
 import archivos.ControladorSonidos;
-import archivos.Ranking;
 import archivos.TipoSonidos;
+import archivos.TopRanking;
+import archivos.Usuario;
 import colisiones.ControladorColisiones;
 import elementos.*;
 import observers.Observer;
@@ -20,20 +21,20 @@ public class ControladorPartida {
 	protected ControladorEntreJuegoVista pantallas;
 	protected NivelBuilder creadorNivel;
 	protected GameFactory fabrica;
-	protected Ranking ranking;
+	protected TopRanking ranking;
 	protected Nivel nivelActual;
-	protected String nombreJugador;
 	protected int numNivelActual;
 	protected ControladorColisiones colisiones;
 	protected HiloJugador hiloJugador;
 	protected HiloEnemigo hiloEnemigo;
 	protected HiloSonido hiloSonido;
 	protected ControladorSonidos controladorSonido;
+	protected String nombreUsuario;
 	
 	
-	public ControladorPartida() {
-		this.ranking = new Ranking();
+	public ControladorPartida(TopRanking r) {;
 		this.numNivelActual = 1;
+		ranking = r;
 	}
 	
 	public void iniciarPartida(GameFactory factory, int numeroNivel){
@@ -170,12 +171,14 @@ public class ControladorPartida {
 		hiloEnemigo.detener();
 		hiloSonido.detener();
 		controladorSonido.reproducirSonidoAccion(TipoSonidos.muerteMario);
+		agregarUsuario();
 		this.pantallas.mostrarPantallaGameOver();
 		//this.nivelActual = null;
 	}
 	
 	public void victoria(int puntajeFinal) {
 		controladorSonido.reproducirSonidoJuego(TipoSonidos.finNivel);
+		agregarUsuario();
 	}
 	
 	public void timeOut() {
@@ -194,12 +197,12 @@ public class ControladorPartida {
 	}
 	
 	public void setNombreJugador(String nombre){
-		this.nombreJugador = nombre;
+		nombreUsuario = nombre;
 	}
 	
 	
 	//getters
-	public Ranking getRanking(){
+	public TopRanking getRanking(){
 		return this.ranking;
 	}
 	
@@ -235,12 +238,17 @@ public class ControladorPartida {
 
 	
 	public String getNombreJugador() {
-		return nombreJugador;
+		return nombreUsuario;
 	}
-	
-	public void guardarNombreJugador(String nombre) {
-		this.nombreJugador = nombre;
-		System.out.println("Nombre guardado : " + nombreJugador);
+	public void agregarUsuario() { //crea el usuario y lo agrega a la lista con el top5.
+		Usuario ingresado = new Usuario (nombreUsuario);
+		ingresado.setPuntajeTotal(nivelActual.getJugador().getPuntaje());
+		ranking.agregarJugador(ingresado);
+		System.out.println("Ranking:  ");
+		System.out.println("Usuario mostrado: "+ranking.getLista().get(0));
+	}
+	public void guardarNombre(String nombre) {
+		nombreUsuario = nombre;
 	}
 
 	public ControladorSonidos getControladorSonidos() {
