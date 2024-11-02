@@ -29,8 +29,7 @@ public class Buzzy extends Enemigo{
 			if(escondido) {
 				jugador.getInfo().actualizarPuntaje(this.puntosQueDa());
 				System.out.println("entro a escondido");
-				morir();
-				this.estoyMuerto = true;				
+				morir();			
 			} else {
 				System.out.println("entro a NO escondido");
 				escondido = true;

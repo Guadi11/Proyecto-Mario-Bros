@@ -1,6 +1,7 @@
 package juego;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import colisiones.ControladorColisiones;
@@ -24,21 +25,21 @@ public class HiloEnemigo extends Thread {
 
 	public void run(){
 	 	while(enEjecucion){
-	 		synchronized (controlador.getNivelActual().getEnemigos()) { //  && controlador.getNivelActual().getBolasDeFuego()
-	            for (Enemigo e : controlador.getNivelActual().getEnemigos()) {
-	                e.actualizar();
-	                colisiones.detectarColisionEnemigos(e);
-	            }
-	            
-	            if (!enemigosPendientes.isEmpty()) {
-	                controlador.getNivelActual().getEnemigos().addAll(enemigosPendientes);
-	                enemigosPendientes.clear();
-	            }
+	 		synchronized (controlador.getNivelActual().getEnemigos()) { //  && controlador.getNivelActual().getBolasDeFuego() si genera problemas
+	 			Iterator<Enemigo> iteratorE = controlador.getNivelActual().getEnemigos().iterator();	 
+	 			while (iteratorE.hasNext()) {
+	 				Enemigo e = iteratorE.next();
+	 				e.actualizar();
+	 				colisiones.detectarColisionEnemigos(e);	
+	 					if(e.estaMuerto()) {
+	 						iteratorE.remove();
+	 					}
+	 			}
 	            for (BolaDeFuego b : controlador.getNivelActual().getBolasDeFuego()) {
 	            	b.actualizar();
 	            	//falta chequear que bola de fuego colisione con plataformas
 	            }
-	            
+	            agregarPendientes();
 	        }
 	        try {
 	            Thread.sleep(16); // Aproximadamente 60fps
@@ -46,6 +47,18 @@ public class HiloEnemigo extends Thread {
 	            e.printStackTrace();
 	        }
 	 	}
+	}
+
+	private void agregarPendientes() {
+		 if (!enemigosPendientes.isEmpty()) {
+             controlador.getNivelActual().getEnemigos().addAll(enemigosPendientes);
+             enemigosPendientes.clear();
+         }
+		 if (!bolasFuegoPendientes.isEmpty()) {
+              controlador.getNivelActual().getBolasDeFuego().addAll(bolasFuegoPendientes);
+              bolasFuegoPendientes.clear();
+         }
+		
 	}
 
 	public void detener() {

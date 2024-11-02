@@ -63,8 +63,18 @@ public class ControladorColisiones {
 	    		e.aceptarVisita(p);
 			}     
 	    }
-	    //otro while e iterator para las bolas de fuego
-		
+	    
+	    Iterator<BolaDeFuego> iteratorBolasFuego = nivel.getBolasDeFuego().iterator(); 
+	    while(iteratorBolasFuego.hasNext()) {
+	    	BolaDeFuego b = iteratorBolasFuego.next();
+	    	
+	    	if(enemigoHitbox.intersects(b.getHitbox())) {
+	    		e.aceptarVisita(b);
+	    		if(e.estaMuerto()) {
+	    			iteratorBolasFuego.remove();
+				}
+	    	}
+	    }
 		
 	}
 }

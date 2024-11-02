@@ -72,7 +72,6 @@ public class Lakitu extends Enemigo{
 			jugador.saltarAlMatar();
 			jugador.getInfo().actualizarPuntaje(this.puntosQueDa());
 			morir();
-			this.estoyMuerto = true;
 		} else {
 			jugador.getInfo().actualizarPuntaje(-this.puntosQueResta());
 			jugador.getState().recibirDaño();

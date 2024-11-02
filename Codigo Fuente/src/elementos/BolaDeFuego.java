@@ -28,13 +28,14 @@ public class BolaDeFuego extends Movible implements VisitorBolaDeFuego, Visitabl
 	}
     
     public void actualizar() {
-    	System.out.println("entra al actualizar bola de fuego");
     	//movimiento de bola de fuego
     	//cuando choca con alguna plataforma muere
     	
-    	//direccion = this.jugador.getVelocidadX();
+    	//direccion = this.jugador.getVelocidadX(); //no se si esto tiene sentido
 		//establecerVelocidadX();
 		//establecerVelocidadY();
+    	
+    	
     }
     
 	public void establecerVelocidadX() {
@@ -69,6 +70,7 @@ public class BolaDeFuego extends Movible implements VisitorBolaDeFuego, Visitabl
 		int puntosPorMatar = enemigo.puntosQueDa();
 		enemigo.morir();
 		jugador.getInfo().actualizarPuntaje(puntosPorMatar);
+		this.morir();
 	}
 	
 	@Override

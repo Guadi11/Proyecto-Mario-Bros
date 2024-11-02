@@ -29,7 +29,6 @@ public class Koopa extends Enemigo{
 					System.out.println("entro a escondido");
 					jugador.getInfo().actualizarPuntaje(this.puntosQueDa());
 					morir();
-					this.estoyMuerto = true;	
 				} else {
 					System.out.println("entro a NO escondido");
 					escondido = true;

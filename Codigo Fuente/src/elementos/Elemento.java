@@ -71,6 +71,7 @@ public abstract class Elemento implements ElementoLogico{
 		
 	}
 	public void morir() {
+		this.estoyMuerto = true;
 		this.nivel.removerElemento(this);
 	}
 	public void setNivel(Nivel nivel) {

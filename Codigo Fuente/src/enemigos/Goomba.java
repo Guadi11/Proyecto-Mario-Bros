@@ -21,7 +21,6 @@ public class Goomba extends Enemigo{
 			jugador.setJumped(false);
 			jugador.getInfo().actualizarPuntaje(this.puntosQueDa());
 			morir();
-			this.estoyMuerto = true;
 			jugador.saltarAlMatar();
 	
 		} else {
