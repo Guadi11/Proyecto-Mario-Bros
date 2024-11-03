@@ -178,7 +178,7 @@ public class ControladorPantallas implements ControladorDePantallas, Controlador
 		refrescar();
 	}
 	public void pasarNivel() {
-		ventana.setContentPane(panelJuego);
+		reiniciarNivel();
 		panelJuego.actualizarLabelsNivel();
 		refrescar();
 	}
