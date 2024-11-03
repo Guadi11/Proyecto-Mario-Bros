@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 
 
-public class ControladorPantallas implements ControladorDePantallas, ControladorEntreJuegoVista{
+public class ControladorPantallas implements  ControladorEntreJuegoVista{
 
 	protected JFrame ventana;
 	protected PantallaInicio panelInicio;
@@ -151,37 +151,18 @@ public class ControladorPantallas implements ControladorDePantallas, Controlador
 		return observerJugador;
 	}
 
-	@Override
-	public void accionarPantallaRanking() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void accionarPantallaSeleccion() {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	public void accionarPantallaGameOver() {
-		
-	}
-
-	@Override
 	public void accionarInicioJuego(GameFactory fabrica) {
 		this.partida.iniciarPartida(fabrica, 1);
+		panelJuego.actualizarLabelsNivel();
 	}
 	
 	public void reiniciarNivel() {
 		this.panelJuego = new PantallaJuego(this);
 		ventana.setContentPane(panelJuego);
-		refrescar();
-	}
-	public void pasarNivel() {
-		reiniciarNivel();
 		panelJuego.actualizarLabelsNivel();
 		refrescar();
 	}
+	
 	public void removerObserver(ObserverGrafico observer) {
 		this.panelJuego.removerElemento(observer);
 	}

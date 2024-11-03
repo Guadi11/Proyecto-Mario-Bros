@@ -303,13 +303,8 @@ public class PantallaJuego extends JPanel implements KeyListener{
 		this.controladorPantalla.partida.getControladorSonidos().reproducirSonidoJuego(TipoSonidos.speedBackground);
 	}
 	public void actualizarLabelsNivel() {
-		int numeroNivelActual=0;
-		try {
-            numeroNivelActual = Integer.parseInt(labelNivelActual.getText());
-        } catch (NumberFormatException e) {
-            System.out.println("El texto en JLabel no es un número válido.");
-        }
-		labelNivelActual.setText(textoConDigitos(numeroNivelActual+1,1));
+		int numeroNivelActual = this.controladorPantalla.getControladorPartida().getNumNivel();	
+		labelNivelActual.setText(textoConDigitos(numeroNivelActual,1));
 }
 	
     public void keyPressed(KeyEvent e) {
