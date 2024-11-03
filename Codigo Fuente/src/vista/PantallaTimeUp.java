@@ -2,6 +2,7 @@ package vista;
 
 
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.Timer;
 
 import java.awt.Color;
@@ -23,10 +24,10 @@ public class PantallaTimeUp extends JPanel{
 	
 
 	private static final long serialVersionUID = 1L;
-	protected JLabel imagenGameOver;
 	protected JLabel imagenTimeUp;
 	protected ControladorPantallas controlador;
 	protected JButton botonRanking;
+	protected JLabel tituloTimeUp;
 	protected Timer timer;
 	
 	
@@ -34,8 +35,10 @@ public class PantallaTimeUp extends JPanel{
 		this.controlador = controlador;
 		this.setPreferredSize(new Dimension(ConstantesPantalla.panelAncho, ConstantesPantalla.panelAlto));
         this.setLayout(null);
+        this.setBackground(Color.BLACK);
         
-        agregarImagenTimeUp();
+        agregarTituloTimeUp();
+        //agregarImagenTimeUp();
         agregarBotonRanking();
 		
 	}
@@ -45,7 +48,7 @@ public class PantallaTimeUp extends JPanel{
 		iniciarTemporizador(5000);
 	}
 	
-	protected void agregarImagenTimeUp() {
+	/*protected void agregarImagenTimeUp() {
 		ImageIcon icon2 = new ImageIcon(getClass().getResource("/imagenes/imagentimeup.png"));
 		Image imagen2 = icon2.getImage().getScaledInstance(ConstantesPantalla.panelAncho, ConstantesPantalla.panelAlto, Image.SCALE_SMOOTH);
 		imagenTimeUp = new JLabel(new ImageIcon(imagen2));
@@ -53,12 +56,21 @@ public class PantallaTimeUp extends JPanel{
 		
 		add(imagenTimeUp);
 
-	}
+	}*/
+	
+	 private void agregarTituloTimeUp() {
+	        tituloTimeUp = new JLabel("GAME OVER");
+	        tituloTimeUp.setHorizontalAlignment(SwingConstants.CENTER);
+	        tituloTimeUp.setBounds(0, 220, ConstantesPantalla.panelAncho, 50);
+	        decorarLabelTimeUp(tituloTimeUp);
+	        add(tituloTimeUp);
+	  }
 	
 	 protected void agregarBotonRanking() {
 	     botonRanking = new JButton("Ranking");
-	     botonRanking.setBounds(300, ConstantesPantalla.panelAlto - 100, 200, 50);
+	     botonRanking.setBounds(280, ConstantesPantalla.panelAlto - 100, 200, 50);
          botonRanking.setBackground(Color.BLACK);
+         botonRanking.setForeground(Color.WHITE);
          decorarBotonRanking(botonRanking);
 	     botonRanking.addActionListener(e -> {
            detenerTemporizador(); //detener el temporizador al hacer clic en ranking
@@ -80,6 +92,24 @@ public class PantallaTimeUp extends JPanel{
 	     boton.setFont(marioFont);
 	     boton.setForeground(Color.WHITE);
 	 }
+	 
+	 private void decorarLabelTimeUp(JLabel tituloTimeUp) {
+	 		Font marioFont = null;
+	 		try {
+	 			InputStream is = getClass().getResourceAsStream("/archivos/mario-font.ttf");
+	 			marioFont = Font.createFont(Font.TRUETYPE_FONT, is).deriveFont(28f);
+	 		} catch (FontFormatException | IOException e) {
+	 			e.printStackTrace();
+	 			//por si la fuente personalizada no se puede cargar
+	 			marioFont = new Font("Arial", Font.BOLD, 20);
+	 		}
+	 		if(tituloTimeUp != null) {
+	 			tituloTimeUp.setFont(marioFont);
+	 			tituloTimeUp.setForeground(Color.WHITE);
+	 		}
+	 
+	     }
+	 
 	 
 	 protected void iniciarTemporizador(int delay) {
          timer = new Timer(delay, new ActionListener() {

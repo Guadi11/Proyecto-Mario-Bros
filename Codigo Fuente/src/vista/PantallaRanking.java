@@ -24,21 +24,25 @@ public class PantallaRanking extends JPanel{
 	    	this.controlador = controlador;
 	        this.setPreferredSize(new Dimension(ConstantesPantalla.panelAncho, ConstantesPantalla.panelAlto));
 	        this.setLayout(null);
+	        this.setBackground(Color.BLACK);
+	        
 	        topCinco = ranking;
-	        agregarImagenFondo();
+	        
+	       // agregarImagenFondo();
+	        agregarBotonAtras(controlador);
 	        agregarTituloRanking();
 	        mostrarRanking();
-	        agregarBotonAtras(controlador);
+	       
 	    }
 	    
-	    private void agregarImagenFondo() {
+	   /* private void agregarImagenFondo() {
 	    	  ImageIcon icon = new ImageIcon(getClass().getResource("/imagenes/imagenfondoranking.png"));
 	          Image imagen = icon.getImage().getScaledInstance(ConstantesPantalla.panelAncho, ConstantesPantalla.panelAlto, Image.SCALE_SMOOTH);
 	          imagenRanking = new JLabel(new ImageIcon(imagen));
 	          imagenRanking.setBounds(0, -30, ConstantesPantalla.panelAncho, ConstantesPantalla.panelAlto);
 			
 	          add(imagenRanking);
-	    }
+	    }*/
 
 	    private void agregarTituloRanking() {
 	        tituloRanking = new JLabel("Ranking");
@@ -65,11 +69,21 @@ public class PantallaRanking extends JPanel{
 
 	    private void agregarBotonAtras(ControladorPantallas controlador) {
 	        botonAtras = new JButton("Atras");
-	        botonAtras.setBounds(300, ConstantesPantalla.panelAlto - 100, 150, 50);
+	        botonAtras.setBounds(328, ConstantesPantalla.panelAlto - 100, 150, 50);
 	        botonAtras.setBackground(Color.BLACK);
+	        botonAtras.setForeground(Color.WHITE);
+	        botonAtras.setOpaque(true);
+	        botonAtras.setBorderPainted(true);
+	        
 	        decorarBotonRanking(botonAtras);
+	        
 	        botonAtras.addActionListener(e -> controlador.mostrarPantallaInicial());
 	        this.add(botonAtras);
+	        
+	        botonAtras.repaint();
+	        botonAtras.revalidate();
+	        this.repaint();
+	        this.revalidate();
 	    }
 	    
 	    private void decorarLabelsRanking(JLabel tituloRanking, JLabel labelJugador) {
