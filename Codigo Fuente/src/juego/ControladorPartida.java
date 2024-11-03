@@ -139,22 +139,23 @@ public class ControladorPartida {
 	
 	public void gameOver(int puntajeFinal){
 		numNivelActual = 1;
-		hiloJugador.detener();
-		hiloEnemigo.detener();
-		hiloSonido.detener();
+		detenerHilos();
 		controladorSonido.reproducirSonidoAccion(TipoSonidos.muerteMario);
 		agregarUsuario();
 		this.pantallas.mostrarPantallaGameOver();
 	}
 	
 	public void victoria() {
+		numNivelActual = 1;
+		detenerHilos();
 		controladorSonido.reproducirSonidoJuego(TipoSonidos.victoria);
 		agregarUsuario();
 		this.pantallas.mostrarPantallaVictoria();
 	}
 	
 	public void timeOut() {
-		//hiloSonido.detener();
+		numNivelActual = 1;
+		detenerHilos();
 		controladorSonido.detenerSonidoJuego(TipoSonidos.advertenciaTiempo);
 		this.pantallas.mostrarPantallaTimeUp();
 		this.reiniciarNivel();

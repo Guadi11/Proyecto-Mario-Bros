@@ -113,6 +113,7 @@ public class ControladorPantallas implements  ControladorEntreJuegoVista{
 	
 	public void mostrarPantallaVictoria() {
 		ventana.setContentPane(panelVictoria);
+		panelVictoria.iniciarTemporizador();
 		refrescar();
 	}
 
@@ -135,7 +136,7 @@ public class ControladorPantallas implements  ControladorEntreJuegoVista{
                 }
             }
         });
-}
+  }
 
 
 	@Override

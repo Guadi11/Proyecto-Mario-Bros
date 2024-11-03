@@ -38,7 +38,7 @@ public class PantallaGameOver extends JPanel{
         this.setBackground(Color.BLACK);
         
    
-        agregarTituloRanking();
+        agregarTituloGameOver();
         //agregarImagenGameOver();
         agregarBotonRanking();
 		
@@ -59,7 +59,7 @@ public class PantallaGameOver extends JPanel{
   
 	}*/
 	
-	 private void agregarTituloRanking() {
+	 private void agregarTituloGameOver() {
 	        tituloGameOver = new JLabel("GAME OVER");
 	        tituloGameOver.setHorizontalAlignment(SwingConstants.CENTER);
 	        tituloGameOver.setBounds(0, 200, ConstantesPantalla.panelAncho, 50);

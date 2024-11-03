@@ -29,8 +29,8 @@ public class PantallaRanking extends JPanel{
 	        topCinco = ranking;
 	        
 	       // agregarImagenFondo();
-	        agregarBotonAtras(controlador);
 	        agregarTituloRanking();
+	        agregarBotonAtras(controlador);
 	        mostrarRanking();
 	       
 	    }

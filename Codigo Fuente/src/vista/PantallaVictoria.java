@@ -1,60 +1,89 @@
 package vista;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.Timer;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class PantallaVictoria extends JPanel {
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+
+
+public class PantallaVictoria extends JPanel{
+	
+
+	private static final long serialVersionUID = 1L;
+	protected JLabel tituloVictoria;
+	protected ControladorPantallas controlador;
+	protected JButton botonRanking;
+	private Timer timer;
+	
+	
+	public PantallaVictoria(ControladorPantallas controlador) {
+		this.controlador = controlador;
+		this.setPreferredSize(new Dimension(ConstantesPantalla.panelAncho, ConstantesPantalla.panelAlto));
+        this.setLayout(null);
+        this.setBackground(Color.BLACK);
+        
+   
+        agregarTituloVictoria();
+        //agregarImagenGameOver();
+        agregarBotonRanking();
 		
-	 private static final long serialVersionUID = 1L;
-	 private JLabel imagenVictoria;
-	 private JButton botonAtras;
-	 private JButton botonRanking;
-     private ControladorPantallas controlador;
-
-     
-     
-	 public PantallaVictoria(ControladorPantallas controlador) {
-		 this.controlador = controlador;
-	     this.setPreferredSize(new Dimension(ConstantesPantalla.panelAncho, ConstantesPantalla.panelAlto));
-	     this.setLayout(null);
-	 
-	     agregarImagenFondo();
-	     agregarBotonAtras();
-         agregarBotonRanking();
+	}
+	
+	public void iniciarTemporizador() {
+		 //mostrar pantalla por 5 segundos
+		iniciarTemporizador(5000);
+	}
+	
+	/*protected void agregarImagenGameOver() {
+		ImageIcon icon1 = new ImageIcon(getClass().getResource("/imagenes/imagenfondogameover.png"));
+		Image imagen1 = icon1.getImage().getScaledInstance(ConstantesPantalla.panelAncho, ConstantesPantalla.panelAlto, Image.SCALE_SMOOTH);
+        imagenGameOver = new JLabel(new ImageIcon(imagen1));
+        imagenGameOver.setBounds(0, -40, ConstantesPantalla.panelAncho, ConstantesPantalla.panelAlto);
+ 
+        add(imagenGameOver);
+  
+	}*/
+	
+	 private void agregarTituloVictoria() {
+	        tituloVictoria = new JLabel("VICTORIA");
+	        tituloVictoria.setHorizontalAlignment(SwingConstants.CENTER);
+	        tituloVictoria.setBounds(0, 200, ConstantesPantalla.panelAncho, 50);
+	        decorarLabelVictoria(tituloVictoria);
+	        add(tituloVictoria);
 	  }
-
-	 protected void agregarImagenFondo() {
-		 ImageIcon icon = new ImageIcon(getClass().getResource("/imagenes/imagenvictoria.png"));
-	     Image imagen = icon.getImage().getScaledInstance(ConstantesPantalla.panelAncho, ConstantesPantalla.panelAlto, Image.SCALE_SMOOTH);
-         imagenVictoria = new JLabel(new ImageIcon(imagen));
-         imagenVictoria.setBounds(0, 0, ConstantesPantalla.panelAncho, ConstantesPantalla.panelAlto);
-         this.add(imagenVictoria);
-         
+	
+	
+	 protected void agregarBotonRanking() {
+	        botonRanking = new JButton("Ranking");
+	        botonRanking.setBounds(280, ConstantesPantalla.panelAlto - 100, 240, 50);
+	        botonRanking.setBackground(Color.BLACK);
+	        botonRanking.setForeground(Color.WHITE);    
+	        botonRanking.setOpaque(true);             
+	        decorarBotonRanking(botonRanking);
+	        botonRanking.addActionListener(e -> {
+	            detenerTemporizador(); //detener el temporizador al hacer clic en ranking
+	            controlador.mostrarPantallaRanking();
+	        });
+	        add(botonRanking);
 	 }
-
-     protected void agregarBotonAtras() {
-        botonAtras = new JButton("Atras");
-        botonAtras.setBounds(300, ConstantesPantalla.panelAlto - 150, 200, 50);
-	    botonAtras.setBackground(Color.BLACK); 
-	    decorarBotones(botonAtras);
-	    botonAtras.addActionListener(e -> controlador.mostrarPantallaInicial());
-	    this.add(botonAtras);
-	 }
-
-     protected void agregarBotonRanking() {
-	     botonRanking = new JButton("Ranking");
-	     botonRanking.setBounds(300, ConstantesPantalla.panelAlto - 80, 250, 50);
-         botonRanking.setBackground(Color.BLACK);
-         decorarBotones(botonRanking);
-         botonRanking.addActionListener(e -> controlador.mostrarPantallaRanking());
-	     this.add(botonRanking);
-     }
-
-	 protected void decorarBotones(JButton boton) {
-        Font marioFont = null;
-        	try {
+	
+	
+	 protected void decorarBotonRanking(JButton boton) {
+	        Font marioFont = null;
+	        try {
 	            InputStream is = getClass().getResourceAsStream("/archivos/mario-font.ttf");
 	            marioFont = Font.createFont(Font.TRUETYPE_FONT, is).deriveFont(20f);
 	        } catch (FontFormatException | IOException e) {
@@ -62,11 +91,49 @@ public class PantallaVictoria extends JPanel {
 	            marioFont = new Font("Arial", Font.BOLD, 20);
 	        }
 
-	    boton.setFont(marioFont);
-	    boton.setForeground(Color.WHITE);
-	    
+	        boton.setFont(marioFont);
+	        boton.setForeground(Color.WHITE);
 	 }
-}
+	 
+	 private void decorarLabelVictoria(JLabel tituloVictoria) {
+ 		Font marioFont = null;
+ 		try {
+ 			InputStream is = getClass().getResourceAsStream("/archivos/mario-font.ttf");
+ 			marioFont = Font.createFont(Font.TRUETYPE_FONT, is).deriveFont(28f);
+ 		} catch (FontFormatException | IOException e) {
+ 			e.printStackTrace();
+ 			//por si la fuente personalizada no se puede cargar
+ 			marioFont = new Font("Arial", Font.BOLD, 20);
+ 		}
+ 		if(tituloVictoria != null) {
+ 			tituloVictoria.setFont(marioFont);
+ 			tituloVictoria.setForeground(Color.WHITE);
+ 		}
+ 
+     }
+	 
+	 protected void iniciarTemporizador(int delay) {
+         timer = new Timer(delay, new ActionListener() {
+             @Override
+             public void actionPerformed(ActionEvent e) {
+                 finalizarPantalla();
+                 timer.stop(); 
+             }
+         });
+         timer.setRepeats(false); 
+         timer.start();
+     }
+	 
+	 protected void detenerTemporizador() {
+	        if (timer != null) {
+	            timer.stop();
+	        }
+	 }
+	
+	 protected void finalizarPantalla() {
+	 	controlador.mostrarPantallaInicial();
+	 }
 
+}
 
 
