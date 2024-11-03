@@ -61,7 +61,7 @@ public class ControladorPartida {
 	public void reiniciarNivel(){
 		detenerHilos();
 		sonidoReinicio();
-		timerParaEsperar();
+		timerParaReiniciar();
 	}
 	private void detenerHilos() {
 		hiloSonido.detener();
@@ -79,12 +79,13 @@ public class ControladorPartida {
 		this.nivelActual.getJugador().getInfo().setMonedas(monedas);
 		this.nivelActual.getJugador().getInfo().actualizarPuntaje(puntaje);
 		this.nivelActual.getJugador().getInfo().setVidas(vidas);	
+		this.nivelActual.getJugador().getInfo().setNivel(nivelActual);
 	}
-	private void timerParaEsperar() {
+	private void timerParaReiniciar() {
 		if (pantallas.getTimerNivel()!=null) {
 			pantallas.getTimerNivel().stop();
 		}
-		Timer delayTimer = new Timer(4000, e -> {
+		Timer delayTimer = new Timer(2000, e -> {
 		int monedas = this.nivelActual.getJugador().getMonedas();
 		int puntaje = this.nivelActual.getJugador().getPuntaje();
 		int vidas = this.nivelActual.getJugador().getVida();
@@ -144,13 +145,31 @@ public class ControladorPartida {
 	public void iniciarNivel(Nivel nivel){
 		//TODO
 	}
-	
+	private void timerParaPasar() {
+		if (pantallas.getTimerNivel()!=null) {
+			pantallas.getTimerNivel().stop();
+		}
+		Timer delayTimer = new Timer(4500, e -> {
+		int monedas = this.nivelActual.getJugador().getMonedas();
+		int puntaje = this.nivelActual.getJugador().getPuntaje();
+		int vidas = this.nivelActual.getJugador().getVida();
+		resetPantallaYPartida();
+		setAtributosInfoJugador(monedas, puntaje, vidas);
+	});
+		delayTimer.setRepeats(false); // Para que el temporizador solo ejecute una vez
+	    delayTimer.start();
+	}
+	private void resetPantallaYPartida() {
+		pantallas.pasarNivel();
+		iniciarPartida(this.fabrica, numNivelActual);
+		
+	}
 	public void siguienteNivel(){
 		if(numNivelActual < 3) {
 			numNivelActual++;
 			detenerHilos();
 			sonidoPaseNivel();
-			timerParaEsperar();
+			timerParaPasar();
 		}else {
 			victoria();
 		} 

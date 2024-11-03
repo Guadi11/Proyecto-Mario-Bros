@@ -177,14 +177,15 @@ public class ControladorPantallas implements ControladorDePantallas, Controlador
 		ventana.setContentPane(panelJuego);
 		refrescar();
 	}
-	
+	public void pasarNivel() {
+		ventana.setContentPane(panelJuego);
+		panelJuego.actualizarLabelsNivel();
+		refrescar();
+	}
 	public void removerObserver(ObserverGrafico observer) {
 		this.panelJuego.removerElemento(observer);
 	}
 	public Timer getTimerNivel() {
 		return panelJuego.timerNivel;
-	}
-	public void actualizacionLabelNivel() {
-		panelJuego.actualizarLabelsNivel();
 	}
 }

@@ -20,6 +20,6 @@ public interface ControladorEntreJuegoVista {
 	public void reiniciarNivel();
 	public void removerObserver(ObserverGrafico observer);
 	public Timer getTimerNivel();
-	public void actualizacionLabelNivel();
+	public void pasarNivel();
 
 }
