@@ -76,6 +76,7 @@ public class ControladorPantallas implements  ControladorEntreJuegoVista{
 	
 	@Override
 	public void mostrarPantallaJuego() {
+		this.panelJuego = new PantallaJuego(this);
 		ventana.setContentPane(panelJuego);
 		GameFactory modoUno = new ModoUnoFactory(); //Editar luego cuando tengamos los dos modos funcionando
 		accionarInicioJuego(modoUno);
