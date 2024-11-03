@@ -33,23 +33,31 @@ import java.io.IOException;
 	    public void configurarLoop() {
 		    clip.setLoopPoints(0, -1); // Desde el inicio hasta el final del archivo
 	            clip.loop(Clip.LOOP_CONTINUOUSLY);
+	            audioOn = true;
 		    }
 	    public void stopLoop() {
 		    if (clip != null && clip.isRunning()) {
 		           clip.stop();
 		           clip.close();
 		        }
-		    }
-
+		}
+	    public void reanudar() {
+	        if (!audioOn) {
+	            clip.start(); // Reanuda desde la posición actual
+	            audioOn = true;
+	        }
+	    }
 	    public void detener() {
-	        clip.stop(); // Detiene el clip
-	        audioOn = true;
+	    	if (clip.isRunning()) {
+	    	clip.stop(); // Detiene el clip
+	        audioOn = false;
+	    	}
 	    }
 
 	    public void cerrar() {
 	        clip.close(); // Cierra el clip
 	    }
-	    public boolean EnReproduccion() {
+	    public boolean enReproduccion() {
 	    	return audioOn;
 	    }
 	}

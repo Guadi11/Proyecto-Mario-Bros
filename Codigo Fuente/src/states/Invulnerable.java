@@ -31,16 +31,15 @@ public class Invulnerable extends State{
 	
 	public void activar() {
 		jugador.setState(this);
-        tiempoActivacion = System.currentTimeMillis();
-        //musicaEstrella();
         if (estadoAnterior.esGrande()) {
         	spriteActual = spriteGrande;
         } else {
         	spriteActual = spriteNormal;
         }
         jugador.getSprite().setSprite(spriteActual.getRutaImagen());
+        this.jugador.getInfo().getNivel().getControladorPartida().getHiloSonido().detenerLoop();
+        this.controladorSonidosAccion.reproducirSonido(TipoSonidos.agarroEstrella);
         iniciarTemporizador();
-        //encontrar sonidoInvulnerable y activarlo, ademas de parar HiloSonido
         actualizarMedidas();
     }
 	
@@ -68,13 +67,14 @@ public class Invulnerable extends State{
 	}
 	
 	private void iniciarTemporizador() {
-        timer = new Timer((int) duracion, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        timer = new Timer((int) duracion,e -> { 
+            	this.controladorSonidosAccion.detenerSonido(TipoSonidos.agarroEstrella);
+                if (!this.jugador.getInfo().getNivel().getControladorPartida().getHiloSonido().enEjecucion()) {
+                    this.jugador.getInfo().getNivel().getControladorPartida().getHiloSonido().reanudar();
+                }
             	estadoAnterior.activar();
-                timer.stop(); // Detener el temporizador una vez que haya terminado
-            }
-        });
+            	this.timer.stop(); 
+            });
         timer.setRepeats(false); // Asegurarse de que solo se ejecute una vez
         timer.start();
     }
@@ -102,6 +102,8 @@ public class Invulnerable extends State{
 	
 	public void recibirDaño() {
 		this.estadoAnterior.activar();
+		this.controladorSonidosAccion.detenerSonido(TipoSonidos.agarroEstrella);
+		this.jugador.getInfo().getNivel().getControladorPartida().getHiloSonido().reanudar();
 		//en algun lugar se esta llamando erroneamente a jugador.getInfo().recibirDaño() y reinicia cuando no deberia
 	}
 	

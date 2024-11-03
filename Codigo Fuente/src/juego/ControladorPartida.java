@@ -69,9 +69,11 @@ public class ControladorPartida {
 		hiloEnemigo.detener();
 	}
 	private void sonidoReinicio() {
+		//controladorSonido.detenerSonidoAccion(TipoSonidos.agarroEstrella);
 		controladorSonido.reproducirSonidoAccion(TipoSonidos.muerteMario);
 	}
 	private void sonidoPaseNivel() {
+		//controladorSonido.detenerSonidoAccion(TipoSonidos.agarroEstrella);
 		controladorSonido.reproducirSonidoJuego(TipoSonidos.finNivel);
 		controladorSonido.reproducirSonidoJuego(TipoSonidos.fuegosArtificiales);
 	}
