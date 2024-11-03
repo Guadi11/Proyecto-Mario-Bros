@@ -27,14 +27,14 @@ public class NivelBuilder {
 		try {
 			switch (nivelACrear) {
 			case 1:
-				mapa = ImageIO.read(new File("imagenes/mapaRGBtestT.png"));
+				mapa = ImageIO.read(new File("imagenes/mapaRGB1Terminado.png")); 
 			 break;
 			
 			case 2:
-				mapa = ImageIO.read(new File("imagenes/mapaRGB2.png"));
+				mapa = ImageIO.read(new File("imagenes/mapaRGB2Terminado.png"));
 			 break;
 			case 3:
-				mapa = ImageIO.read(new File("imagenes/mapaRGB2.png"));
+				mapa = ImageIO.read(new File("imagenes/mapaRGB3Terminado.png"));
 			 break;
 			default:
 				
@@ -72,9 +72,9 @@ public class NivelBuilder {
 			int buzzy = new Color(255, 125, 125).getRGB();
 			int spiny = new Color(255,200,125).getRGB();
 			
-			/*
+			
 			int tuberiaConPiranha = new Color(250, 50, 100).getRGB();	
-			*/
+			
 			
 			//Colores provisorios, testeo de power ups
 			int moneda = new Color(255, 180, 0).getRGB();
@@ -211,8 +211,14 @@ public class NivelBuilder {
 	                	nivelCreado.agregarPowerUp(champiñonVerdeCreado);
 	                	champiñonVerdeCreado.setNivel(nivelCreado);
 	                	
-	                }/*
+	                }
 	                else if (colorPixelActual == tuberiaConPiranha) {
+	                	Tuberia tuberiaCreada = fabrica.crearTuberia1(xLocation, yLocation);      
+	                	nivelCreado.agregarPlataforma(tuberiaCreada);
+	                	tuberiaCreada.setNivel(nivelCreado);
+	                	tuberiaCreada.poseePiranha(true); //false
+	                	
+	                	/*
 	                	Tuberia tuberiaCreada = fabrica.crearTuberia1(xLocation, yLocation);
 	                
 	                	int posicionPiranha = (int) (xLocation + tuberiaCreada.getHitbox().getWidth()/3); //para que aparezca en el medio
@@ -223,13 +229,13 @@ public class NivelBuilder {
 	                	
 	                	nivelCreado.agregarPlataforma(tuberiaCreada);  
 	                	tuberiaCreada.setNivel(nivelCreado);
-	                	
-	                }	*/
+	                	*/
+	                }	
 	                else if (colorPixelActual == tuberiaSinPiranha) {
 	                	Tuberia tuberiaCreada = fabrica.crearTuberia1(xLocation, yLocation);      
 	                	nivelCreado.agregarPlataforma(tuberiaCreada);
 	                	tuberiaCreada.setNivel(nivelCreado);
-	                	tuberiaCreada.poseePiranha(true); //false
+	                	tuberiaCreada.poseePiranha(false); //false
 	                }	
 	                else if(colorPixelActual == tuberia2) {
 	                	Tuberia tuberia2Creada = fabrica.crearTuberia2(xLocation, yLocation);
