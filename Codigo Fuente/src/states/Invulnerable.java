@@ -38,6 +38,7 @@ public class Invulnerable extends State{
         }
         jugador.getSprite().setSprite(spriteActual.getRutaImagen());
         this.jugador.getInfo().getNivel().getControladorPartida().getHiloSonido().detenerLoop();
+        this.jugador.getInfo().getNivel().getControladorPartida().getControladorSonidos().detenerSonidoJuego(TipoSonidos.speedBackground);
         this.controladorSonidosAccion.reproducirSonido(TipoSonidos.agarroEstrella);
         iniciarTemporizador();
         actualizarMedidas();
@@ -67,16 +68,24 @@ public class Invulnerable extends State{
 	}
 	
 	private void iniciarTemporizador() {
-        timer = new Timer((int) duracion,e -> { 
-            	this.controladorSonidosAccion.detenerSonido(TipoSonidos.agarroEstrella);
-                if (!this.jugador.getInfo().getNivel().getControladorPartida().getHiloSonido().enEjecucion()) {
-                    this.jugador.getInfo().getNivel().getControladorPartida().getHiloSonido().reanudar();
-                }
-            	estadoAnterior.activar();
-            	this.timer.stop(); 
-            });
-        timer.setRepeats(false); // Asegurarse de que solo se ejecute una vez
-        timer.start();
+        	timer = new Timer((int) duracion, e -> { 
+    	        this.controladorSonidosAccion.detenerSonido(TipoSonidos.agarroEstrella);
+    	        
+    	        // Verificar si es necesario reactivar speedBackground
+    	        if (this.jugador.getInfo().getNivel().getControladorPartida().getControladorPantallas().getTiempoRestante() <= 60) {
+    	            this.jugador.getInfo().getNivel().getControladorPartida().getControladorSonidos().reproducirSonidoJuego(TipoSonidos.speedBackground);
+    	        }
+
+    	        // Reactivar el sonido de fondo si corresponde
+    	        if (!this.jugador.getInfo().getNivel().getControladorPartida().getHiloSonido().enEjecucion()) {
+    	            this.jugador.getInfo().getNivel().getControladorPartida().getHiloSonido().renaudar();
+    	        }
+
+    	        estadoAnterior.activar();
+    	        this.timer.stop();
+    	    });
+    	    timer.setRepeats(false); // Asegurarse de que solo se ejecute una vez
+    	    timer.start();
     }
 	
 	@Override

@@ -179,4 +179,7 @@ public class ControladorPantallas implements  ControladorEntreJuegoVista{
 	public void setFabrica(GameFactory factory) {
 		this.fabrica = factory;
 	}
+	public int getTiempoRestante() {
+		return panelJuego.tiempoRestante;
+	}
 }

@@ -16,7 +16,7 @@ public HiloSonido() {
  public void run(){
 	 while (enEjecucion) {
             if (!backGround.enReproduccion()) {
-                backGround.reanudar(); // Reanuda si no está en reproducción
+                backGround.renaudar(); // Reanuda si no está en reproducción
             }
             try {
                 Thread.sleep(16); // Aproximadamente 60 fps
@@ -33,10 +33,10 @@ public HiloSonido() {
 	 backGround.detener();
 	 enEjecucion=false;
  }
- public void reanudar() {
+ public void renaudar() {
 	 if (!enEjecucion) {
             enEjecucion = true;
-            backGround.reanudar(); // Reanuda el audio desde donde se detuvo
+            backGround.renaudar(); // Reanuda el audio desde donde se detuvo
         }
     }
  public void detener() {

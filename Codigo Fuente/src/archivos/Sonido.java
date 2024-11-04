@@ -41,7 +41,7 @@ import java.io.IOException;
 		           clip.close();
 		        }
 		}
-	    public void reanudar() {
+	    public void renaudar() {
 	        if (!audioOn) {
 	            clip.start(); // Reanuda desde la posición actual
 	            audioOn = true;

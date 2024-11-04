@@ -59,7 +59,7 @@ public class ControladorPartida {
 		hiloEnemigo = new HiloEnemigo(this, colisiones);
 		hiloEnemigo.start();
 		hiloSonido = new HiloSonido();
-		hiloSonido.start();
+		hiloSonido.start();;
 	}
 	
 	public void reiniciarNivel(){
@@ -76,11 +76,13 @@ public class ControladorPartida {
 	
 	private void sonidoReinicio() {
 		//controladorSonido.detenerSonidoAccion(TipoSonidos.agarroEstrella);
+		controladorSonido.detenerSonidoJuego(TipoSonidos.speedBackground);
 		controladorSonido.reproducirSonidoAccion(TipoSonidos.muerteMario);
 	}
-	
+
 	private void sonidoPaseNivel() {
 		//controladorSonido.detenerSonidoAccion(TipoSonidos.agarroEstrella);
+		controladorSonido.detenerSonidoJuego(TipoSonidos.speedBackground);
 		controladorSonido.reproducirSonidoJuego(TipoSonidos.finNivel);
 		controladorSonido.reproducirSonidoJuego(TipoSonidos.fuegosArtificiales);
 	}
@@ -291,6 +293,9 @@ public class ControladorPartida {
 	
 	public String getNombreJugador() {
 		return nombreUsuario;
+	}
+	public ControladorEntreJuegoVista getControladorPantallas() {
+		return pantallas;
 	}
 	
 	//Setters
