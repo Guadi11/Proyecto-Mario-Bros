@@ -30,11 +30,13 @@ public class ControladorPartida {
 	protected HiloSonido hiloSonido;
 	protected ControladorSonidos controladorSonido;
 	protected String nombreUsuario;
+	protected boolean[] keyDown;
 	
 	
 	public ControladorPartida(TopRanking r) {
 		this.numNivelActual = 1;
 		ranking = r;
+		keyDown = new boolean[3];
 	}
 	
 	//Gestion de niveles
@@ -208,14 +210,17 @@ public class ControladorPartida {
 		int tecla = e.getKeyCode();
     	
 	    switch (tecla) {
-	        case KeyEvent.VK_A: //KeyEvent.VK_LEFT
+	        case KeyEvent.VK_A: 
 	            nivelActual.getJugador().moverIzquierda();
+	            keyDown[1] = true;
 	            break;
-	        case KeyEvent.VK_D: //KeyEvent.VK_RIGHT
+	        case KeyEvent.VK_D: 
 	        	nivelActual.getJugador().moverDerecha();
+	        	keyDown[2] = true;
 	            break;
-	        case KeyEvent.VK_W: // KeyEvent.VK_UP
+	        case KeyEvent.VK_W:
 	        	nivelActual.getJugador().saltar();
+	        	keyDown[0] = true;
 	            break;
 	        case KeyEvent.VK_SPACE:
 	        	nivelActual.getJugador().getState().disparar();
@@ -224,9 +229,15 @@ public class ControladorPartida {
 	
 	public void desactiveMovement (KeyEvent e) {
 		int tecla = e.getKeyCode();
-		if (tecla == KeyEvent.VK_A || tecla == KeyEvent.VK_D) {
-	        nivelActual.getJugador().frenarMovimiento(); // Detiene el movimiento al soltar las teclas
+		if (tecla == KeyEvent.VK_A) {
+			keyDown[1] = false;
 		}
+		if (tecla == KeyEvent.VK_D) {
+			keyDown[2] = false;
+		}
+		if(!keyDown[1] && !keyDown[2]) {
+			nivelActual.getJugador().frenarMovimiento(); 
+		}		
 	}
 	
 	//Gestion de Ranking
