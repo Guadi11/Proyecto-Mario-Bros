@@ -10,8 +10,8 @@ import juego.Jugador;
 
 public class BolaDeFuego extends Movible implements VisitorBolaDeFuego, Visitable{
 	protected Jugador jugador;
-	private int velocidadX;
-    private int velocidadY;
+	private int velX;
+    private int velY;
     private int gravedad;
     //private boolean activa; para ver si desactivar o no al momento de tirarlas?
     private int direccion;
@@ -24,37 +24,33 @@ public class BolaDeFuego extends Movible implements VisitorBolaDeFuego, Visitabl
 	
     public BolaDeFuego(int x, int y, Sprite imagen) {
 		super(x, y, imagen);
-
+		velX = 0;
 	}
     
     public void actualizar() {
-    	//movimiento de bola de fuego
-    	//cuando choca con alguna plataforma muere
-    	
-    	//direccion = this.jugador.getVelocidadX(); //no se si esto tiene sentido
-		//establecerVelocidadX();
-		//establecerVelocidadY();
-    	
-    	
+    	velX = 5;
+    	this.setPosX(this.posicionX + velX);
+    	actualizarPosicionHitbox();
+		notificar(); 	
     }
     
 	public void establecerVelocidadX() {
-		velocidadX = VELOCIDAD_INICIAL * direccion;
+		velX = VELOCIDAD_INICIAL * direccion;
 	}
 	
 	public void establecerVelocidadY() {
-		velocidadY = VELOCIDAD_INICIAL;
+		velY = VELOCIDAD_INICIAL;
 	}
 	
 	public void moverse() {
-        velocidadY += gravedad;
-        setPosX(posicionX + velocidadX);
-        setPosY(posicionY + velocidadY);
+        velY += gravedad;
+        setPosX(posicionX + velX);
+        setPosY(posicionY + velY);
 
         final int PISO_Y = 441; 
         if (posicionY >= PISO_Y) {
             posicionY = PISO_Y;
-            velocidadY = (int) (-velocidadY * VELOCIDAD_REBOTE);
+            velY = (int) (-velY * VELOCIDAD_REBOTE);
         }
         verificarEliminacion();
     }
@@ -87,6 +83,7 @@ public class BolaDeFuego extends Movible implements VisitorBolaDeFuego, Visitabl
 	@Override
 	public void aceptarVisita(VisitorPlataformas visitor) {
 		// entra a este metodo cuando el visitor sea plataforma (sin incluir vacio)
+		System.out.println("entra a aceptar visita de plataforma");
 		visitor.visitar(this);
 	}
 

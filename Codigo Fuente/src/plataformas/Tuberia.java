@@ -107,8 +107,6 @@ public class Tuberia extends Plataforma implements VisitorPlataformas{
 
 	@Override
 	public void visitar(BolaDeFuego bola) {
-		//si choca al costado, bola de fuego muere. Si es arriba, sigue rebotando
-		
 	}
 
 	@Override

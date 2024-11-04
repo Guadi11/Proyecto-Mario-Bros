@@ -35,10 +35,25 @@ public class HiloEnemigo extends Thread {
 	 						iteratorE.remove();
 	 					}
 	 			}
+	 			
+	 			Iterator<BolaDeFuego> iteratorBF = controlador.getNivelActual().getBolasDeFuego().iterator();
+	 			while(iteratorBF.hasNext()) {
+	 				BolaDeFuego b = iteratorBF.next();
+	 				b.actualizar();
+	 				colisiones.detectarColisionBolasDeFuego(b);
+	            	if(b.estaMuerto()) {
+	            		iteratorBF.remove();
+	            	}
+	 			}
+	 			
+	 			/*
 	            for (BolaDeFuego b : controlador.getNivelActual().getBolasDeFuego()) {
 	            	b.actualizar();
-	            	//falta chequear que bola de fuego colisione con plataformas
-	            }
+	            	colisiones.detectarColisionBolasDeFuego(b);
+	            	if(b.estaMuerto()) {
+	            		iteratorBF.remove(b);
+	            	}
+	            }*/
 	            agregarPendientes();
 	        }
 	        try {

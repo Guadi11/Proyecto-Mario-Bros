@@ -77,4 +77,16 @@ public class ControladorColisiones {
 	    }
 		
 	}
+	
+	public void detectarColisionBolasDeFuego(BolaDeFuego b) {
+		Rectangle bolaFuegoHitbox = b.getHitbox();
+		Iterator<Plataforma> iteratorPlat = nivel.getPlataformas().iterator();    
+	    while (iteratorPlat.hasNext()) {
+	    	Plataforma p = iteratorPlat.next();
+	       
+	    	if (bolaFuegoHitbox.intersects(p.getHitbox())) {
+	    		b.aceptarVisita(p);
+			}     
+	    }	
+	}
 }
