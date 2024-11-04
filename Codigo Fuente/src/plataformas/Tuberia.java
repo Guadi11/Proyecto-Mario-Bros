@@ -34,8 +34,8 @@ public class Tuberia extends Plataforma implements VisitorPlataformas{
     
 	public void crearPiranha() {
 		int posicionPiranha = (int) (this.posicionX + this.getHitbox().getWidth()/3); //para que aparezca en el medio
-		piranha = fabrica.crearPiranha(posicionPiranha, this.posicionY); 
-		this.nivel.agregarEnemigo(piranha);
+		piranha = fabrica.crearPiranha(posicionPiranha, this.posicionY-3); //el -3 es para que mario no la toque cuando esta escondida
+		this.nivel.agregarEnemigo(piranha);									//igual si salta arriba pasa que la toca igual a veces, detaaaalles
 		piranha.setNivel(this.nivel);
 		controladorPartida.registrarObserverElementoIndividual(piranha);
 		

@@ -82,9 +82,10 @@ public class PantallaJuego extends JPanel implements KeyListener{
 		panelJuego.setPreferredSize(new Dimension(imagenFondoJuego.getWidth(), imagenFondoJuego.getHeight()));
 		
 		panelScroll = new JScrollPane(panelJuego);
-		panelScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		panelScroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		panelScroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
 		panelScroll.setBounds(0, 0, ConstantesPantalla.panelAncho, ConstantesPantalla.panelJuegoAlto);
+		panelScroll.setBorder(null);
 		
 		this.add(panelScroll, BorderLayout.CENTER);
 		this.iniciarTimer();

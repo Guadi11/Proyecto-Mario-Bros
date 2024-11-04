@@ -80,7 +80,7 @@ public class PantallaNombre extends JPanel{
 	             if (!nombreJugador.isEmpty()) {
                   controladorPartida.guardarNombre(nombreJugador);                   
                   controlador.mostrarPantallaSeleccion();//llama a un método en ControladorPartida para guardar el nombre
-	              JOptionPane.showMessageDialog(null, "Nombre guardado: " + nombreJugador);
+	              //JOptionPane.showMessageDialog(null, "Nombre guardado: " + nombreJugador);
 	             } else {
 	                 JOptionPane.showMessageDialog(null, "Por favor, ingresa un nombre.");
 	             }
