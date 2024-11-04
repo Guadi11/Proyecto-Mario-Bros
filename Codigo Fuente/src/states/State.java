@@ -80,5 +80,6 @@ public abstract class State {
 	}
 
 	public abstract boolean esGrande();
+	public abstract boolean esInvulnerable();
 
 }

@@ -104,4 +104,9 @@ public class SuperMario extends State{
 	@Override
 	public void disparar() {
 	}
+
+	@Override
+	public boolean esInvulnerable() {
+		return false;
+	}
 }

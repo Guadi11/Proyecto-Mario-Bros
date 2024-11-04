@@ -15,18 +15,25 @@ public class Goomba extends Enemigo{
 	}
 	
 	public void visitar (Jugador jugador) {
-		if(jugador.getBoundsBottom().intersects(this.getBoundsTop())) {
-			jugador.setPosY((int) (this.getPosY() + jugador.getHitbox().getHeight()));
-			jugador.setVelY(0);
-			jugador.setJumped(false);
+		if(!jugador.getState().esInvulnerable()) {
+			if(jugador.getBoundsBottom().intersects(this.getBoundsTop())) {
+				jugador.setPosY((int) (this.getPosY() + jugador.getHitbox().getHeight()));
+				jugador.setVelY(0);
+				jugador.setJumped(false);
+				jugador.getInfo().actualizarPuntaje(this.puntosQueDa());
+				morir();
+				jugador.saltarAlMatar();
+		
+			} else {
+				jugador.getInfo().actualizarPuntaje(-this.puntosQueResta());
+				jugador.getState().recibirDaño();
+			}
+		}else {
 			jugador.getInfo().actualizarPuntaje(this.puntosQueDa());
 			morir();
-			jugador.saltarAlMatar();
-	
-		} else {
-			jugador.getInfo().actualizarPuntaje(-this.puntosQueResta());
-			jugador.getState().recibirDaño();
 		}
+		
+		
 	}
 	
 	public int puntosQueResta() {

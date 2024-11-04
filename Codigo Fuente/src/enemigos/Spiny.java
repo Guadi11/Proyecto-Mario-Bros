@@ -41,9 +41,14 @@ public class Spiny extends Enemigo{
 		
 	public void visitar (Jugador jugador) {
 		//siempre hace daño al jugador, no importa de donde sea la colision. solo muere con bola de fuego
-		int puntosDaño = this.puntosQueResta();
-		jugador.getInfo().actualizarPuntaje(-puntosDaño);
-		jugador.getState().recibirDaño();
+		if(!jugador.getState().esInvulnerable()) {
+			int puntosDaño = this.puntosQueResta();
+			jugador.getInfo().actualizarPuntaje(-puntosDaño);
+			jugador.getState().recibirDaño();
+		}else {
+			jugador.getInfo().actualizarPuntaje(this.puntosQueDa());
+			morir();
+		}
 	}
 	
 	@Override

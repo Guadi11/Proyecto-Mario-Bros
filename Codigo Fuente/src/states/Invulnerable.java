@@ -101,9 +101,11 @@ public class Invulnerable extends State{
     }
 	
 	public void recibirDaño() {
+		
+		/*
 		this.estadoAnterior.activar();
 		this.controladorSonidosAccion.detenerSonido(TipoSonidos.agarroEstrella);
-		this.jugador.getInfo().getNivel().getControladorPartida().getHiloSonido().reanudar();
+		this.jugador.getInfo().getNivel().getControladorPartida().getHiloSonido().reanudar();  */
 		//en algun lugar se esta llamando erroneamente a jugador.getInfo().recibirDaño() y reinicia cuando no deberia
 	}
 	
@@ -130,6 +132,11 @@ public class Invulnerable extends State{
 
 	@Override
 	public void disparar() {	
+	}
+
+	@Override
+	public boolean esInvulnerable() {
+		return true;
 	}
 
 }

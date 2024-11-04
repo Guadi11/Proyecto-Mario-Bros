@@ -119,5 +119,10 @@ public class Normal extends State {
 		 nuevaBola.setNivel(jugador.getInfo().getNivel());
 		 nuevaBola.setJugador(jugador);
 	 }
+
+	@Override
+	public boolean esInvulnerable() {
+		return false;
+	}
 	
 }

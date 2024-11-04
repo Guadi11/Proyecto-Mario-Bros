@@ -78,9 +78,15 @@ public class Piranha extends Enemigo{
 	
 	public void visitar(Jugador jugador) {
 		//Siempre hace daño al jugador, no importa de donde sea la colision. Solo muere con bola de fuego.
-		int restarPuntos = puntosQueResta();
-		jugador.getInfo().actualizarPuntaje(-restarPuntos);
-		jugador.getState().recibirDaño();
+		if(!jugador.getState().esInvulnerable()) {
+			int restarPuntos = puntosQueResta();
+			jugador.getInfo().actualizarPuntaje(-restarPuntos);
+			jugador.getState().recibirDaño();
+		}else {
+			jugador.getInfo().actualizarPuntaje(this.puntosQueDa());
+			morir();
+		}
+		
 	}
 	
 	@Override
