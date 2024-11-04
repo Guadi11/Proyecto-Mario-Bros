@@ -151,7 +151,7 @@ public class NivelBuilder {
 	                	bloqueCreado.setNivel(nivelCreado);
 	                }
 	                else if(colorPixelActual == koopa) {
-	                	Koopa koopaCreado = fabrica.crearKoopa(xLocation, yLocation + 13);
+	                	Koopa koopaCreado = fabrica.crearKoopa(xLocation, yLocation); //+13
 	                	nivelCreado.agregarEnemigo(koopaCreado);
 	                	koopaCreado.setNivel(nivelCreado);
 	                }
