@@ -18,9 +18,12 @@ public class PantallaSeleccionModo extends JPanel{
         protected JButton botonModo2;
         protected JLabel imagenFondo;
         protected ControladorPantallas controlador;
+        protected GameFactory fabricaUno, fabricaDos;
 
    
         public PantallaSeleccionModo(ControladorPantallas controlador){
+        	fabricaUno = new ModoUnoFactory();
+        	fabricaDos = new ModoDosFactory();
             this.controlador = controlador;
             this.setPreferredSize(new Dimension(ConstantesPantalla.panelAncho, ConstantesPantalla.panelAlto));
             setLayout(null);
@@ -43,36 +46,40 @@ public class PantallaSeleccionModo extends JPanel{
         private void agregarBotonModoUno(){
             botonModo1 = new JButton(); //para ver la visibilidad agregar texto
             botonModo1.setBounds(280,300,200,50);
+            
             botonModo1.setContentAreaFilled(false); 
             botonModo1.setBorderPainted(true); 
             botonModo1.setFocusPainted(false); 
             botonModo1.setOpaque(false);
-            GameFactory fabrica = new ModoUnoFactory();
-            controlador.setFabrica(fabrica);
-            botonModo1.addActionListener(e -> controlador.mostrarPantallaJuego());
+ 
+            botonModo1.addActionListener(e -> {
+            	controlador.setFabrica(fabricaUno);
+            	controlador.mostrarPantallaJuego();
+            });
             
             add(botonModo1);
             imagenFondo.add(botonModo1);
             botonModo1.setVisible(true);
-           
         }
     
         private void agregarBotonModoDos(){
             botonModo2 = new JButton();
             botonModo2.setBounds(280,390,200,50);
-            botonModo2.setBackground(new Color(223,227,40));
+            //botonModo2.setBackground(new Color(223,227,40));
+            
             botonModo2.setContentAreaFilled(false); 
             botonModo2.setBorderPainted(true); 
             botonModo2.setFocusPainted(false); 
             botonModo2.setOpaque(false);
-            //GameFactory fabrica = new ModoDosFactory();
-            //controlador.setFabrica(fabrica);
-            //botonModo1.addActionListener(e -> controlador.mostrarPantallaJuego());
-            
+   
+            botonModo2.addActionListener(e -> {
+            	controlador.setFabrica(fabricaDos);
+            	controlador.mostrarPantallaJuego();
+            });
+        
             add(botonModo2);
             imagenFondo.add(botonModo2);
             botonModo2.setVisible(true);
-           
         }
 
 }

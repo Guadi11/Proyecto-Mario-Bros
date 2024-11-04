@@ -238,6 +238,8 @@ public abstract class GameFactory {
 		int alto = imagen.getHeight(null);
 		elem.setHitbox(ancho, alto);
 	}
-
+	public String getRutaCarpeta() {
+		return this.rutaCarpeta;
+	}
 	
 }

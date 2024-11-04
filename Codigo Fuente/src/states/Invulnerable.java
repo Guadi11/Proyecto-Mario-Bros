@@ -1,8 +1,6 @@
 package states;
 
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.Timer;
@@ -10,6 +8,7 @@ import javax.swing.Timer;
 import archivos.Sprite;
 import archivos.TipoSonidos;
 import juego.Jugador;
+import parseo.GameFactory;
 
 
 public class Invulnerable extends State{
@@ -17,26 +16,23 @@ public class Invulnerable extends State{
 	protected long tiempoActivacion;
 	protected final long duracion = 6500;
 	protected State estadoAnterior;
-	protected Sprite spriteGrande, spriteNormal, spriteActual;
+	protected Sprite spriteGrande, spriteNormal, sprite;
 	protected Timer timer;
 	
 	
 	public Invulnerable(Jugador jugador) {
 		super(jugador);
 		this.estadoAnterior = jugador.getState();
-		this.spriteGrande = new Sprite("imagenes/modoUno/invulnerable.png"); //esta imagen esta mal, es chiquita
-		this.spriteNormal = new Sprite("imagenes/modoUno/invulnerablemini.png");
-		spriteActual = spriteGrande;
 	}
 	
 	public void activar() {
 		jugador.setState(this);
         if (estadoAnterior.esGrande()) {
-        	spriteActual = spriteGrande;
+        	sprite = spriteGrande;
         } else {
-        	spriteActual = spriteNormal;
+        	sprite = spriteNormal;
         }
-        jugador.getSprite().setSprite(spriteActual.getRutaImagen());
+        jugador.getSprite().setSprite(sprite.getRutaImagen());
         this.jugador.getInfo().getNivel().getControladorPartida().getHiloSonido().detenerLoop();
         this.jugador.getInfo().getNivel().getControladorPartida().getControladorSonidos().detenerSonidoJuego(TipoSonidos.speedBackground);
         this.controladorSonidosAccion.reproducirSonido(TipoSonidos.agarroEstrella);
@@ -45,7 +41,7 @@ public class Invulnerable extends State{
     }
 	
 	private void actualizarMedidas() {
-		ImageIcon iconoImagen = new ImageIcon(spriteActual.getRutaImagen());
+		ImageIcon iconoImagen = new ImageIcon(sprite.getRutaImagen());
 		Image imagen = iconoImagen.getImage();
 		int ancho = imagen.getWidth(null);
 		int alto = imagen.getHeight(null);
@@ -146,6 +142,16 @@ public class Invulnerable extends State{
 	@Override
 	public boolean esInvulnerable() {
 		return true;
+	}
+
+	@Override
+	public void setFabrica(GameFactory factory) {
+		// TODO Auto-generated method stub
+		this.fabrica = factory;
+		this.rutaCarpeta = fabrica.getRutaCarpeta();
+		this.spriteGrande = new Sprite(rutaCarpeta + "/invulnerable.png"); 
+		this.spriteNormal = new Sprite(rutaCarpeta + "/invulnerablemini.png");
+		sprite = spriteGrande;
 	}
 
 }

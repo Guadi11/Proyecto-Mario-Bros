@@ -14,6 +14,7 @@ public abstract class State {
 	protected ControladorSonidosAcciones controladorSonidosAccion;
 	protected ControladorPartida controlador;
 	protected GameFactory fabrica;
+	protected String rutaCarpeta;
 	protected Normal normal;
 	protected SuperMario superMario;
 	protected Fuego fuego;
@@ -41,6 +42,7 @@ public abstract class State {
 	public abstract void recibirFlorDeFuego();
 	public abstract void recibirEstrella();
 	public abstract void reproducirSonidoSalto();
+	public abstract void setFabrica(GameFactory factory);
 	public void setNormal(Normal normal) {
 		this.normal = normal;
 	}
@@ -58,9 +60,6 @@ public abstract class State {
 	}
 	public void setControlador(ControladorPartida controlador) {
 		this.controlador = controlador;
-	}
-	public void setFabrica(GameFactory factory) {
-		this.fabrica = factory;
 	}
 	
 	public Fuego getFuego() {

@@ -18,8 +18,6 @@ public class LadrilloSolido extends Plataforma implements VisitorPlataformas{
 
 	@Override
 	public void visitar(Jugador jugador) {
-		System.out.println("ladrillo solido: "+this.getHitbox().toString());
-		System.out.println("Jugador: "+jugador.getHitbox().toString());
 		jugador.ultimoBloqueColision(this);
 		
 		if(jugador.getBoundsBottom().intersects(this.getBoundsTop())) {
@@ -49,10 +47,8 @@ public class LadrilloSolido extends Plataforma implements VisitorPlataformas{
 
 	@Override
 	public void visitar(Enemigo enemigo) {
-		//enemigo choca contra bloque
 		if(enemigo.getBoundsBottom().intersects(this.getBoundsTop())) {
 			enemigo.setPosY((int) (this.getPosY() + enemigo.getHitbox().getHeight()));
-			//enemigo.setVelY(0);	
 		} 
 		else if(enemigo.getBoundsLeft().intersects(this.getBoundsRight())) {
 			enemigo.setPosX((int) (this.getPosX() + this.hitbox.getWidth()));
@@ -63,9 +59,7 @@ public class LadrilloSolido extends Plataforma implements VisitorPlataformas{
 			enemigo.moverIzquierda();
 		} 
 		else if(enemigo.getBoundsTop().intersects(this.getBoundsBottom())){
-			System.out.println("golpeo desde abajo");
 			enemigo.setPosY((int) (this.getPosY() - this.getHitbox().getHeight()));
-			//enemigo.setVelY(0);
 		}
 	}
 
