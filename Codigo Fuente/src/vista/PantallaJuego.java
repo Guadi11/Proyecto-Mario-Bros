@@ -88,7 +88,6 @@ public class PantallaJuego extends JPanel implements KeyListener{
 		panelScroll.setBorder(null);
 		
 		this.add(panelScroll, BorderLayout.CENTER);
-		this.iniciarTimer();
 	}
 	
 	private void agregarImagenFondo() {

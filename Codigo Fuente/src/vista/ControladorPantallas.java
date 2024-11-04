@@ -80,6 +80,7 @@ public class ControladorPantallas implements  ControladorEntreJuegoVista{
 		ventana.setContentPane(panelJuego);
 		GameFactory modoUno = new ModoUnoFactory(); //Editar luego cuando tengamos los dos modos funcionando
 		accionarInicioJuego(modoUno);
+		panelJuego.iniciarTimer();
 		refrescar();
 	}
 	
@@ -162,6 +163,7 @@ public class ControladorPantallas implements  ControladorEntreJuegoVista{
 		this.panelJuego = new PantallaJuego(this);
 		ventana.setContentPane(panelJuego);
 		panelJuego.actualizarLabelsNivel();
+		panelJuego.iniciarTimer();
 		refrescar();
 	}
 	

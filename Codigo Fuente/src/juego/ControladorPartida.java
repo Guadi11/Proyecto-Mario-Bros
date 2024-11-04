@@ -143,6 +143,7 @@ public class ControladorPartida {
 		numNivelActual = 1;
 		detenerHilos();
 		controladorSonido.reproducirSonidoAccion(TipoSonidos.muerteMario);
+		pantallas.getTimerNivel().stop();
 		agregarUsuario();
 		this.pantallas.mostrarPantallaGameOver();
 	}
@@ -151,6 +152,7 @@ public class ControladorPartida {
 		numNivelActual = 1;
 		detenerHilos();
 		controladorSonido.reproducirSonidoJuego(TipoSonidos.victoria);
+		pantallas.getTimerNivel().stop();
 		agregarUsuario();
 		this.pantallas.mostrarPantallaVictoria();
 	}
