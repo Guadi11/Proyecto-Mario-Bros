@@ -63,8 +63,9 @@ public class NivelBuilder {
 			int preguntaFlorDeFuego = new Color(0, 255, 255).getRGB();
 			int preguntaEstrella = new Color(115, 0, 255).getRGB();
 			int tuberiaSinPiranha = new Color(255,255,0).getRGB();
-			int tuberia2 = new Color(200,255,0).getRGB();
-			int tuberia3 = new Color(160,255,0).getRGB();
+			int tuberiaConPiranha = new Color(250, 50, 100).getRGB();	
+			//int tuberia2 = new Color(200,255,0).getRGB();
+			//int tuberia3 = new Color(160,255,0).getRGB();
 			
 			int goomba = new Color(255, 0, 255).getRGB();
 			int koopa = new Color(255, 255, 255).getRGB();
@@ -73,7 +74,7 @@ public class NivelBuilder {
 			int spiny = new Color(255,200,125).getRGB();
 			
 			
-			int tuberiaConPiranha = new Color(250, 50, 100).getRGB();	
+		
 			
 			
 			//Colores provisorios, testeo de power ups
@@ -151,7 +152,7 @@ public class NivelBuilder {
 	                	bloqueCreado.setNivel(nivelCreado);
 	                }
 	                else if(colorPixelActual == koopa) {
-	                	Koopa koopaCreado = fabrica.crearKoopa(xLocation, yLocation); //+13
+	                	Koopa koopaCreado = fabrica.crearKoopa(xLocation, yLocation);
 	                	nivelCreado.agregarEnemigo(koopaCreado);
 	                	koopaCreado.setNivel(nivelCreado);
 	                }
@@ -236,18 +237,6 @@ public class NivelBuilder {
 	                	nivelCreado.agregarPlataforma(tuberiaCreada);
 	                	tuberiaCreada.setNivel(nivelCreado);
 	                	tuberiaCreada.poseePiranha(false); //false
-	                }	
-	                else if(colorPixelActual == tuberia2) {
-	                	Tuberia tuberia2Creada = fabrica.crearTuberia2(xLocation, yLocation);
-	                	nivelCreado.agregarPlataforma(tuberia2Creada);
-	                	tuberia2Creada.setNivel(nivelCreado);
-	                	
-	                }
-	                else if(colorPixelActual == tuberia3) {
-	                	Tuberia tuberia3Creada = fabrica.crearTuberia3(xLocation, yLocation);
-	                	nivelCreado.agregarPlataforma(tuberia3Creada);
-	                	tuberia3Creada.setNivel(nivelCreado);
-	                	
 	                }
 	                else if(colorPixelActual == castillo) {
 	                	Castillo castilloCreado = fabrica.crearCastillo(xLocation, yLocation);
@@ -259,7 +248,6 @@ public class NivelBuilder {
 	        }		
 	}
 
-	
 	public Nivel getNivel() {
 		return this.nivelCreado;
 	}

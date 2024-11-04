@@ -6,15 +6,15 @@ import colisiones.Visitable;
 import colisiones.VisitorAJugador;
 import colisiones.VisitorBolaDeFuego;
 import colisiones.VisitorPlataformas;
+import elementos.Elemento;
 import elementos.ElementoJugador;
-import elementos.Movible;
 import elementos.Plataforma;
 import observers.AdaptadorPosicionPixel;
 import states.*;
 
 
 
-public class Jugador extends Movible implements Visitable, ElementoJugador{
+public class Jugador extends Elemento implements Visitable, ElementoJugador{
 	
 	protected State estado;
 	protected InfoJugador info;
@@ -124,10 +124,6 @@ public class Jugador extends Movible implements Visitable, ElementoJugador{
 		actualizarPosicionHitbox();
 		notificar();
     }
-	
-	public void moverse() {
-		
-	}
 
 	public void saltar() {
 		if (!isJumped) { 
@@ -136,12 +132,12 @@ public class Jugador extends Movible implements Visitable, ElementoJugador{
 	        estado.reproducirSonidoSalto();
 	    }	
 	}
+	
 	public void saltarAlMatar() {
 		if (!isJumped) { 
 	        velY = 10; 
 	        isJumped = true;
 	        this.nivel.controladorPartida.controladorSonido.reproducirSonidoAccion(TipoSonidos.muerteEnemigo);
-	        //estado.reproducirSonidoSalto();
 	    }	
 	}
 	
@@ -174,22 +170,21 @@ public class Jugador extends Movible implements Visitable, ElementoJugador{
 		return this.velX;
 	}
 	
-
 	@Override
 	public void aceptarVisita(VisitorAJugador visitor) {
-		//entra en este metodo cuando el visitor sea enemigo, powerUp o vacio
+		//Entra en este metodo cuando el visitor sea enemigo, powerUp o vacio.
 		visitor.visitar(this);
 	}
 
 	@Override
 	public void aceptarVisita(VisitorPlataformas visitor) {
-		// entra en este metodo cuando el visitor sea una plataforma (no vacio)
+		// Entra en este metodo cuando el visitor sea una plataforma (no vacio).
 		visitor.visitar(this);
 	}
 
 	@Override
 	public void aceptarVisita(VisitorBolaDeFuego visitor) {
-		// entra a este metodo cuando el visitor sea una bola de fuego, lo cual nunca sucede
+		// Entra a este metodo cuando el visitor sea una bola de fuego, lo cual nunca sucede.
 	}
 	
 	public boolean estaArribaDeBloque() {
@@ -199,6 +194,7 @@ public class Jugador extends Movible implements Visitable, ElementoJugador{
 	public void ultimoBloqueColision(Plataforma l) {
 		ultimoBloque = l;
 	}
+	
 	public void estaEnLaHitboxDelBloque(){
 		if(ultimoBloque!=null)
 			if (this.getHitbox().intersects(ultimoBloque.getHitbox())) {
@@ -207,7 +203,6 @@ public class Jugador extends Movible implements Visitable, ElementoJugador{
 	}
 
 	public String getName() {
-		// TODO Auto-generated method stub
 		return nombre;
 	}
 	

@@ -44,12 +44,12 @@ public class PantallaSeleccionModo extends JPanel{
         }
     
         private void agregarBotonModoUno(){
-            botonModo1 = new JButton(); //para ver la visibilidad agregar texto
+            botonModo1 = new JButton(); 
             botonModo1.setBounds(280,300,200,50);
             
             botonModo1.setContentAreaFilled(false); 
-            botonModo1.setBorderPainted(true); 
-            botonModo1.setFocusPainted(false); 
+            botonModo1.setBorderPainted(false); 
+            botonModo1.setFocusPainted(false);  //todos estos metodos podrian ir en uno aparte, que usa tmb boton 2
             botonModo1.setOpaque(false);
  
             botonModo1.addActionListener(e -> {
@@ -68,7 +68,7 @@ public class PantallaSeleccionModo extends JPanel{
             //botonModo2.setBackground(new Color(223,227,40));
             
             botonModo2.setContentAreaFilled(false); 
-            botonModo2.setBorderPainted(true); 
+            botonModo2.setBorderPainted(false); 
             botonModo2.setFocusPainted(false); 
             botonModo2.setOpaque(false);
    

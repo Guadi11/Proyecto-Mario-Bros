@@ -6,7 +6,7 @@ import archivos.Sprite;
 import colisiones.VisitorPlataformas;
 import juego.Nivel;
 
-public abstract class Plataforma extends Estatico implements VisitorPlataformas{
+public abstract class Plataforma extends Elemento implements VisitorPlataformas{
 	
 	protected Nivel nivel;
 

@@ -20,62 +20,44 @@ public class Koopa extends Enemigo{
 	
 		
 		public void visitar (Jugador jugador) {
-			//si es de arriba, cambia de imagen y deja de moverse (algun boolean). Segundo golpe (desde donde sea) se mueve y
-			//muere al chocar con plataforma. Usar el boolean. 
-			//sino, mata a jugador
 			if(!jugador.getState().esInvulnerable()) {
-				if(jugador.getBoundsBottom().intersects(this.getBoundsTop())) {
+				if(chocaArriba(jugador)) {
+					chocar(jugador);
 					if(escondido) {
-						jugador.getInfo().actualizarPuntaje(this.puntosQueDa());
-						morir();
+						enemigoMuere(jugador);
 					} else {
 						escondido = true;
 					}
-					jugador.setPosY((int) (this.getPosY() + jugador.getHitbox().getHeight()));
-					jugador.setVelY(0);
-					jugador.setJumped(false);
-					jugador.saltarAlMatar();
-		
 				} else {
-					jugador.getInfo().actualizarPuntaje(-this.puntosQueResta());
-					jugador.getState().recibirDaño();
+					jugadorMuere(jugador);
 				}
 			}else {
-				jugador.getInfo().actualizarPuntaje(this.puntosQueDa());
-				morir();
+				enemigoMuere(jugador);
 			}
-			
-			
-			/*
-			if (this.fueColisionArriba()) { 
-				System.out.println("Koopa recibio daño desde arriba.");
-				jugador.getInfo().actualizarPuntaje(this.puntosQueDa());
-				morir();
-			}else {
-				System.out.println("colision por el costado");
-				jugador.getInfo().actualizarPuntaje(-this.puntosQueResta());
-				jugador.getState().recibirDaño();
-			} */
-			
-			/*
-			if (this.fueColisionArriba()) { 
-				if(!escondido) {
-					System.out.println("Koopa recibio daño desde arriba 1 vez.");
-					escondido = true;
-					//Cambiar imagen a koopa escondido
-				} else {
-					System.out.println("Koopa recibio daño desde arriba 1 vez.");
-					jugador.getInfo().actualizarPuntaje(this.puntosQueDa());
-					morir();
-				}
-			} else {
-					System.out.println("colision por el costado");
-					jugador.getInfo().actualizarPuntaje(this.puntosQueResta());
-					jugador.getState().recibirDaño();
-				
-			}  */
 		}
 		
+		private void enemigoMuere(Jugador jugador) {
+			jugador.getInfo().actualizarPuntaje(this.puntosQueDa());
+			morir();
+		}
+
+		private void jugadorMuere(Jugador jugador) {
+			jugador.getInfo().actualizarPuntaje(-this.puntosQueResta());
+			jugador.getState().recibirDaño();
+		}
+
+		private void chocar(Jugador jugador) {
+			jugador.setPosY((int) (this.getPosY() + jugador.getHitbox().getHeight()));
+			jugador.setVelY(0);
+			jugador.setJumped(false);
+			jugador.saltarAlMatar();	
+		}
+		
+		public boolean chocaArriba(Jugador jugador) {
+			return jugador.getBoundsBottom().intersects(this.getBoundsTop());
+		}
+		
+
 		@Override
 		public void visitar(Elemento elem) {
 			// vacio
@@ -94,32 +76,21 @@ public class Koopa extends Enemigo{
 			return 90;
 		}
 		
-		public void moverse() {
-			/* modificar
-			int nuevaPosicionX=posicionX + velocidad*(1/60);
-			
-		if (velocidad<0) {
-			//imagen.cambiarImagen("Koopa_a_izq.png");
-		}
-		setPosX(nuevaPosicionX);
-		//imagen.actualizarPosicion (posicionX, posicionY); */
-		}
-		
 		@Override
 		public void aceptarVisita(VisitorAJugador visitor) {
-			// entra a este metodo cuando el visitor es enemigo, powerUp o vacio. Solo sucede con vacio
+			// Entra a este metodo cuando el visitor es enemigo, powerUp o vacio. Solo sucede con vacio.
 			visitor.visitar(this);
 		}
 
 		@Override
 		public void aceptarVisita(VisitorPlataformas visitor) {
-			// entra a este metodo cuando el visitor sea plataforma (sin incluir vacio)
+			// Entra a este metodo cuando el visitor sea plataforma (sin incluir vacio).
 			visitor.visitar(this);
 		}
 
 		@Override
 		public void aceptarVisita(VisitorBolaDeFuego visitor) {
-			// entra a este metodo cuando el visitor sea una bola de fuego
+			// Entra a este metodo cuando el visitor sea una bola de fuego.
 			visitor.visitar(this);
 		}
 

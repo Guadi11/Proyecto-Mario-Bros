@@ -6,7 +6,7 @@ import colisiones.VisitorAJugador;
 import observers.AdaptadorPosicionPixel;
 import observers.Observer;
 
-public abstract class Enemigo extends Movible implements VisitorAJugador, Visitable{
+public abstract class Enemigo extends Elemento implements VisitorAJugador, Visitable{
 	
 	protected Observer observer;
 	protected long velocidadEnMill = 3000;
@@ -44,7 +44,6 @@ public abstract class Enemigo extends Movible implements VisitorAJugador, Visita
 		int alturaPiso = 72;
 		int alturaEnemigo = (int) (alturaPiso + this.getHitbox().getHeight());
 		
-		//int alturaPiso = 109; 
 		int limiteDerecho =  AdaptadorPosicionPixel.transformarX(7471);
 		int limiteY_ventana = 0;
 		moverEnDireccion();
@@ -54,7 +53,7 @@ public abstract class Enemigo extends Movible implements VisitorAJugador, Visita
 		if (!colisionConBloque){
 			velY-=1; 
 		}else {
-			if (posicionY > alturaEnemigo){// || posicionY<alturaPiso) {
+			if (posicionY > alturaEnemigo) {
 			    velY -= 1;
 			}
 				else { 
@@ -74,9 +73,11 @@ public abstract class Enemigo extends Movible implements VisitorAJugador, Visita
 		notificar();
 
 	}
+	
 	public void ColisionaConBloque(boolean valor) {
 		colisionConBloque = valor;
 	}
+	
 	public void setVelX(int direc) {
 		this.velX = direc;
 	}

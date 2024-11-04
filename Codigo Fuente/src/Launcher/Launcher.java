@@ -11,17 +11,7 @@ import java.io.*;;
 
 public class Launcher {
 
-	public static void main(String [] args) {
-		
-		/*
-		ControladorPartida partida =  new ControladorPartida();
-		ControladorPantallas pantallas = new ControladorPantallas(partida);
-		partida.setControladorPantallas(pantallas);
-		pantallas.mostrarPantallaInicial();
-		*/
-		
-		
-		
+	public static void main(String [] args) {		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -32,13 +22,7 @@ public class Launcher {
 							ranking = (TopRanking) objectInputStream.readObject();
 							objectInputStream.close();
 						}
-						catch (FileNotFoundException e) {
-							
-						}
-						catch (IOException e) {
-							e.printStackTrace();
-						}
-						catch (ClassNotFoundException e) {
+						catch (IOException | ClassNotFoundException e) {
 							e.printStackTrace();
 						}
 						

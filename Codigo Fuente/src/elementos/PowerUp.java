@@ -7,7 +7,7 @@ import colisiones.VisitorBolaDeFuego;
 import colisiones.VisitorPlataformas;
 import states.State;
 
-public abstract class PowerUp extends Movible implements VisitorAJugador, Visitable{
+public abstract class PowerUp extends Elemento implements VisitorAJugador, Visitable{
 	
 	protected int velocidad = 2;
 	protected State estadoMario;

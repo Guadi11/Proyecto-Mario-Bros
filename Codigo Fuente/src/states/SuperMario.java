@@ -71,6 +71,8 @@ public class SuperMario extends State{
 	
 	public void recibirEstrella() {
 		jugador.getInfo().actualizarPuntaje(this.obtenerPuntosEstrella());
+		this.getInvulnerable().setControlador(controlador);
+		this.getInvulnerable().setFabrica(fabrica);
 		this.getInvulnerable().setAnterior(this);
 		this.getInvulnerable().activar();
 		
