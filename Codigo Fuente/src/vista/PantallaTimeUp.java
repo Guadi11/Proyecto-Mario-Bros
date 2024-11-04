@@ -48,35 +48,28 @@ public class PantallaTimeUp extends JPanel{
 		iniciarTemporizador(5000);
 	}
 	
-	/*protected void agregarImagenTimeUp() {
-		ImageIcon icon2 = new ImageIcon(getClass().getResource("/imagenes/imagentimeup.png"));
-		Image imagen2 = icon2.getImage().getScaledInstance(ConstantesPantalla.panelAncho, ConstantesPantalla.panelAlto, Image.SCALE_SMOOTH);
-		imagenTimeUp = new JLabel(new ImageIcon(imagen2));
-		imagenTimeUp.setBounds(0, -40, ConstantesPantalla.panelAncho, ConstantesPantalla.panelAlto);
-		
-		add(imagenTimeUp);
-
-	}*/
+	protected void agregarTituloTimeUp() {
+        tituloTimeUp = new JLabel("TIME UP");
+        tituloTimeUp.setHorizontalAlignment(SwingConstants.CENTER);
+	    tituloTimeUp.setBounds(0, 220, ConstantesPantalla.panelAncho, 50);
+	    
+        decorarLabelTimeUp(tituloTimeUp);
+        add(tituloTimeUp);
+	}
 	
-	 private void agregarTituloTimeUp() {
-	        tituloTimeUp = new JLabel("GAME OVER");
-	        tituloTimeUp.setHorizontalAlignment(SwingConstants.CENTER);
-	        tituloTimeUp.setBounds(0, 220, ConstantesPantalla.panelAncho, 50);
-	        decorarLabelTimeUp(tituloTimeUp);
-	        add(tituloTimeUp);
-	  }
-	
-	 protected void agregarBotonRanking() {
-	     botonRanking = new JButton("Ranking");
-	     botonRanking.setBounds(280, ConstantesPantalla.panelAlto - 100, 200, 50);
-         botonRanking.setBackground(Color.BLACK);
-         botonRanking.setForeground(Color.WHITE);
-         decorarBotonRanking(botonRanking);
-	     botonRanking.addActionListener(e -> {
-           detenerTemporizador(); //detener el temporizador al hacer clic en ranking
-           controlador.mostrarPantallaRanking();
-	     });
-	     add(botonRanking);
+	protected void agregarBotonRanking() {
+	    botonRanking = new JButton("Ranking");
+	    botonRanking.setBounds(280, ConstantesPantalla.panelAlto - 100, 200, 50);
+        botonRanking.setBackground(Color.BLACK);
+        botonRanking.setForeground(Color.WHITE);
+         
+        decorarBotonRanking(botonRanking);
+        botonRanking.addActionListener(e -> {
+        detenerTemporizador(); //detener el temporizador al hacer clic en ranking
+        controlador.mostrarPantallaRanking();
+        });
+        
+	    add(botonRanking);
 	 }
 	
 	 protected void decorarBotonRanking(JButton boton) {
@@ -88,7 +81,6 @@ public class PantallaTimeUp extends JPanel{
 	       e.printStackTrace();
 	       marioFont = new Font("Arial", Font.BOLD, 20);
 	     }
-
 	     boton.setFont(marioFont);
 	     boton.setForeground(Color.WHITE);
 	 }
@@ -107,9 +99,7 @@ public class PantallaTimeUp extends JPanel{
 	 			tituloTimeUp.setFont(marioFont);
 	 			tituloTimeUp.setForeground(Color.WHITE);
 	 		}
-	 
-	     }
-	 
+	 }
 	 
 	 protected void iniciarTemporizador(int delay) {
          timer = new Timer(delay, new ActionListener() {

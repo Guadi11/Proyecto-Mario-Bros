@@ -13,6 +13,7 @@ public class Fuego extends SuperMario{
 	protected Sprite sprite;
 	protected State estadoAnterior;
 	
+	
 	public Fuego(Jugador jugador) {
 		super(jugador);
 		this.sprite = new Sprite("imagenes/modoUno/mariofuego.png");
@@ -35,7 +36,7 @@ public class Fuego extends SuperMario{
 		this.jugador.getHitbox().setBounds(jugador.getPosX(), posY, ancho, alto);
 	}
 	
-	public Sprite getSprite() {//este getSprite creo que no es llamado nunca
+	public Sprite getSprite() {
 		return sprite;
 	}
 

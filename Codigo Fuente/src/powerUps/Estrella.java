@@ -25,6 +25,7 @@ public class Estrella extends PowerUp{
 		this.nivel.removerElemento(this);
 		this.nivel.getControladorPartida().musicaEstrella();
 	}*/
+	
 	@Override
 	public void visitar(Elemento elem) {
 		// vacio
@@ -37,7 +38,7 @@ public class Estrella extends PowerUp{
 	
 	public void descender() {
 		if (posicionY < limiteInferior)
-			setPosY(posicionY-1);
+			setPosY(posicionY - 1);
 	}
 	
 	public void movimientoADerecha() {

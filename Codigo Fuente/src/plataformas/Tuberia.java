@@ -15,10 +15,12 @@ import juego.Jugador;
 import parseo.GameFactory;
 
 public class Tuberia extends Plataforma implements VisitorPlataformas{
+	
 	protected Piranha piranha;
     protected boolean poseePiranha;
     protected GameFactory fabrica;
     protected ControladorPartida controladorPartida;
+    
 	
     public Tuberia(int x, int y, Sprite imagen) {
 		super(x, y, imagen);
@@ -39,9 +41,8 @@ public class Tuberia extends Plataforma implements VisitorPlataformas{
 		piranha.setNivel(this.nivel);
 		controladorPartida.registrarObserverElementoIndividual(piranha);
 		
-	}	
+	}		
 	
-	//Set
     public void setFabrica(GameFactory factory) {
     	this.fabrica = factory;
     }
@@ -111,7 +112,7 @@ public class Tuberia extends Plataforma implements VisitorPlataformas{
 
 	@Override
 	public void visitar(Elemento elem) {
-		//dejarlo vacio
+		
 		
 	}
 }

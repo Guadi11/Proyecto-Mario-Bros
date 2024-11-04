@@ -6,9 +6,10 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class ConfigurarFuente {
+	
     private static Font fuenteMario;
 
-    // Carga la fuente Mario
+    //carga la fuente Mario
     public static void cargarFuente() {
         if (fuenteMario == null) {
             try (InputStream is = ConfigurarFuente.class.getResourceAsStream("/archivos/mario-font.ttf")) {
@@ -20,7 +21,7 @@ public class ConfigurarFuente {
         }
     }
 
-    // Método para obtener la fuente Mario en un tamaño específico
+    //metodo para obtener la fuente Mario en un tamaño específico
     public static Font getFuenteMario(float tamaño) {
         return fuenteMario.deriveFont(tamaño);
     }

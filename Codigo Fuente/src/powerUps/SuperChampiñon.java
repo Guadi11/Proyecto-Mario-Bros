@@ -11,6 +11,7 @@ public class SuperChampiñon extends PowerUp{
 	
 	private long limiteInferior = 441;
 	
+	
 	public SuperChampiñon(int x, int y, Sprite imagen) {
 		super(x, y, imagen);
 	}
@@ -23,7 +24,7 @@ public class SuperChampiñon extends PowerUp{
 	public void morir() {
 		this.nivel.removerElemento(this);
 		this.nivel.getControladorPartida().getControladorSonidos().reproducirSonidoAccion(TipoSonidos.powerUp);
-		}
+	}
 
 	@Override
 	public void visitar(Elemento elem) {

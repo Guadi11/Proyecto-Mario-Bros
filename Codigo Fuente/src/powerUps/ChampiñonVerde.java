@@ -7,7 +7,9 @@ import elementos.PowerUp;
 import juego.Jugador;
 
 public class ChampiñonVerde extends PowerUp{
-	private long limiteInferior=441;
+	
+	private long limiteInferior = 441;
+	
 	
 	public ChampiñonVerde(int x, int y, Sprite imagen) {
 		super(x, y, imagen);
@@ -39,7 +41,7 @@ public class ChampiñonVerde extends PowerUp{
 	
 	public void descender() {
 		if (posicionY < limiteInferior)
-			setPosY(posicionY-1);
+			setPosY(posicionY - 1);
 	}
 	
 	public void movimientoADerecha() {
@@ -47,7 +49,7 @@ public class ChampiñonVerde extends PowerUp{
 		setPosX(nuevaPosicionX);
 	}
 	public void movimientoAIzquierda() {
-		int nuevaPosicionX=posicionX- velocidad*(1/60);
+		int nuevaPosicionX = posicionX - velocidad*(1/60);
 		setPosX(nuevaPosicionX);
 	}
 }

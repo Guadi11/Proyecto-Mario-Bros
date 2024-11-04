@@ -25,7 +25,6 @@ public class PantallaInicio extends JPanel{
             agregarImagenFondo();
             agregarBotonStart();
             agregarBotonRanking();
-		
         }
     
         private void agregarImagenFondo(){
@@ -34,8 +33,7 @@ public class PantallaInicio extends JPanel{
             imagenFondo = new JLabel(new ImageIcon(imagen));
             imagenFondo.setBounds(0, -40, ConstantesPantalla.panelAncho, ConstantesPantalla.panelAlto);
 		
-            add(imagenFondo);
-		
+            add(imagenFondo);		
         }
     
         private void agregarBotonStart(){
@@ -48,23 +46,20 @@ public class PantallaInicio extends JPanel{
             botonStart.addActionListener(e -> controlador.mostrarPantallaNombre());
 		
             add(botonStart);
-            imagenFondo.add(botonStart);
-            //botonStart.setVisible(false);
-		
+            imagenFondo.add(botonStart);	
         }
         
         private void agregarBotonRanking(){
             botonRanking = new JButton();
             botonRanking.setBounds(295, 435, 200, 70);
-            botonRanking.setContentAreaFilled(false); // Hace el fondo transparente
-            botonRanking.setBorderPainted(false); // Elimina el borde
-            botonRanking.setFocusPainted(false); // Elimina el borde cuando el botón está enfocado
+            botonRanking.setContentAreaFilled(false); //hace el fondo transparente
+            botonRanking.setBorderPainted(false); //elimina el borde
+            botonRanking.setFocusPainted(false); //elimina el borde cuando el botón está enfocado
             botonRanking.setOpaque(false);
             botonRanking.addActionListener(e -> controlador.mostrarPantallaRanking());
             
             add(botonRanking);
-            imagenFondo.add(botonRanking);
-		
+            imagenFondo.add(botonRanking);		
         }
 	
 }

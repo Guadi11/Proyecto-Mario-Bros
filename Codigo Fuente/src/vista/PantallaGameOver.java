@@ -39,9 +39,7 @@ public class PantallaGameOver extends JPanel{
         
    
         agregarTituloGameOver();
-        //agregarImagenGameOver();
-        agregarBotonRanking();
-		
+        agregarBotonRanking();		
 	}
 	
 	public void iniciarTemporizador() {
@@ -49,39 +47,28 @@ public class PantallaGameOver extends JPanel{
 		iniciarTemporizador(5000);
 	}
 	
-	/*protected void agregarImagenGameOver() {
-		ImageIcon icon1 = new ImageIcon(getClass().getResource("/imagenes/imagenfondogameover.png"));
-		Image imagen1 = icon1.getImage().getScaledInstance(ConstantesPantalla.panelAncho, ConstantesPantalla.panelAlto, Image.SCALE_SMOOTH);
-        imagenGameOver = new JLabel(new ImageIcon(imagen1));
-        imagenGameOver.setBounds(0, -40, ConstantesPantalla.panelAncho, ConstantesPantalla.panelAlto);
- 
-        add(imagenGameOver);
-  
-	}*/
-	
-	 private void agregarTituloGameOver() {
-	        tituloGameOver = new JLabel("GAME OVER");
-	        tituloGameOver.setHorizontalAlignment(SwingConstants.CENTER);
-	        tituloGameOver.setBounds(0, 200, ConstantesPantalla.panelAncho, 50);
-	        decorarLabelGameOver(tituloGameOver);
-	        add(tituloGameOver);
-	  }
-	
+	private void agregarTituloGameOver() {
+        tituloGameOver = new JLabel("GAME OVER");
+        tituloGameOver.setHorizontalAlignment(SwingConstants.CENTER);
+	    tituloGameOver.setBounds(0, 200, ConstantesPantalla.panelAncho, 50);
+	    
+        decorarLabelGameOver(tituloGameOver);
+        add(tituloGameOver);
+	  }	
 	
 	 protected void agregarBotonRanking() {
-	        botonRanking = new JButton("Ranking");
-	        botonRanking.setBounds(280, ConstantesPantalla.panelAlto - 100, 240, 50);
-	        botonRanking.setBackground(Color.BLACK);
-	        botonRanking.setForeground(Color.WHITE);    
-	        botonRanking.setOpaque(true);             
-	        decorarBotonRanking(botonRanking);
-	        botonRanking.addActionListener(e -> {
-	            detenerTemporizador(); //detener el temporizador al hacer clic en ranking
-	            controlador.mostrarPantallaRanking();
-	        });
-	        add(botonRanking);
-	 }
-	
+	     botonRanking = new JButton("Ranking");
+	     botonRanking.setBounds(280, ConstantesPantalla.panelAlto - 100, 240, 50);
+         botonRanking.setBackground(Color.BLACK);
+         botonRanking.setForeground(Color.WHITE);    
+	     botonRanking.setOpaque(true);             
+	     decorarBotonRanking(botonRanking);
+         botonRanking.addActionListener(e -> {
+        	 detenerTemporizador(); //detener el temporizador al hacer clic en ranking
+	         controlador.mostrarPantallaRanking();
+	     });
+	     add(botonRanking);
+	 }	
 	
 	 protected void decorarBotonRanking(JButton boton) {
 	        Font marioFont = null;

@@ -33,9 +33,7 @@ import java.awt.event.KeyListener;
 
 public class PantallaJuego extends JPanel implements KeyListener{
 
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	protected JPanel panelJuego;
 	protected JPanel panelInformacion;
@@ -51,21 +49,22 @@ public class PantallaJuego extends JPanel implements KeyListener{
 	protected Timer timerNivel;
 	protected int tiempoRestante=400;
 	
+	
 	public PantallaJuego(ControladorPantallas controladorPantalla) {
 		this.controladorPantalla = controladorPantalla;
 		this.setPreferredSize(new Dimension(ConstantesPantalla.panelAncho, ConstantesPantalla.panelAlto));
 		this.setLayout(new BorderLayout());
 		agregarPanelInformacion();
 		agregarPanelJuego();
-		 this.setFocusable(true);
-		 this.addKeyListener(this);
-		 this.requestFocusInWindow();  // Asegura que el panel recibe el foco
+		this.setFocusable(true);
+		this.addKeyListener(this);
+		this.requestFocusInWindow(); //asegura que el panel recibe el foco
 	}
 	
 	@Override
 	public void addNotify() {
 	    super.addNotify();
-	    requestFocusInWindow();  // Asegura que el panel recibe el foco cuando es mostrado
+	    requestFocusInWindow(); //asegura que el panel recibe el foco cuando es mostrado
 	}
 
 	private void agregarPanelJuego() {
@@ -103,8 +102,7 @@ public class PantallaJuego extends JPanel implements KeyListener{
 		Image imagenEscalada = iconoImagen.getImage().getScaledInstance(nuevoAncho, ConstantesPantalla.panelJuegoAlto,  Image.SCALE_SMOOTH);
 		Icon iconoImagenEscalado = new ImageIcon(imagenEscalada);
 		imagenFondoJuego.setIcon(iconoImagenEscalado);
-		imagenFondoJuego.setBounds(0, 0, nuevoAncho, nuevoAlto);
-		
+		imagenFondoJuego.setBounds(0, 0, nuevoAncho, nuevoAlto);		
 	}
 	 
 	private void agregarPanelInformacion() {
@@ -133,8 +131,7 @@ public class PantallaJuego extends JPanel implements KeyListener{
 		panelInformacion.setOpaque(false);
 		
 		agregarLabelsInfo();
-		this.add(panelInformacion, BorderLayout.NORTH);
-		
+		this.add(panelInformacion, BorderLayout.NORTH);		
 	}
 
 	private void agregarLabelsInfo() {
@@ -168,8 +165,7 @@ public class PantallaJuego extends JPanel implements KeyListener{
 		    colocarLabelsInfo(labelTituloNivel, labelNivelActual, 655);
 
 		    panelInformacion.revalidate();
-		    panelInformacion.repaint();
-			
+		    panelInformacion.repaint();			
 	}
 
 	private void decorarLabelsInfo(JLabel labelTitulo, JLabel labelValor) {
@@ -188,7 +184,7 @@ public class PantallaJuego extends JPanel implements KeyListener{
 
 		    labelTitulo.setForeground(Color.WHITE);
 		    labelValor.setForeground(Color.WHITE);
-		}
+	}
 
 	
 	private void colocarLabelsInfo(JLabel labelTitulo, JLabel labelValor, int posicionX) {
@@ -294,33 +290,34 @@ public class PantallaJuego extends JPanel implements KeyListener{
             labelTiempo.setText(textoConDigitos(tiempoRestante, 3));
         }
 	}
+	
 	public void sonidoPocoTiempo() {
 		this.controladorPantalla.partida.getControladorSonidos().detenerSonidoJuego(TipoSonidos.speedBackground);
 		this.controladorPantalla.partida.getControladorSonidos().reproducirSonidoJuego(TipoSonidos.advertenciaTiempo);
 	}
+	
 	public void sonidoSpeedBackground() {
 		this.controladorPantalla.partida.getHiloSonido().pararLoop();
 		this.controladorPantalla.partida.getControladorSonidos().reproducirSonidoJuego(TipoSonidos.speedBackground);
 	}
+	
 	public void actualizarLabelsNivel() {
 		int numeroNivelActual = this.controladorPantalla.getControladorPartida().getNumNivel();	
 		labelNivelActual.setText(textoConDigitos(numeroNivelActual,1));
-}
+    }
 	
     public void keyPressed(KeyEvent e) {
-        controladorPantalla.getControladorPartida().activeMovement(e);
-   
+        controladorPantalla.getControladorPartida().activeMovement(e);  
     }
 
   
     public void keyReleased(KeyEvent e) {
-        controladorPantalla.getControladorPartida().desactiveMovement(e);
-      
+        controladorPantalla.getControladorPartida().desactiveMovement(e);     
     }
 
     
     public void keyTyped(KeyEvent e) {
-        // es para taclas especiales. Generalmente no se usa para juegos.
+        // es para teclas especiales. Generalmente no se usa para juegos.
     }
     
     

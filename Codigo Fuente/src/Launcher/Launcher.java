@@ -20,8 +20,6 @@ public class Launcher {
 		pantallas.mostrarPantallaInicial();
 		*/
 		
-		
-		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {

@@ -45,7 +45,7 @@ public class ControladorPantallas implements  ControladorEntreJuegoVista{
 		panelJuego = new PantallaJuego(this);
 		panelGameOver = new PantallaGameOver(this);
 		panelTimeUp = new PantallaTimeUp(this);
-		panelNombre = new PantallaNombre(this,partida);
+		panelNombre = new PantallaNombre(this, partida);
 		panelVictoria = new PantallaVictoria(this);
 		
 		configurarVentana();
@@ -59,7 +59,6 @@ public class ControladorPantallas implements  ControladorEntreJuegoVista{
 		ventana.setSize(ConstantesPantalla.ventanaAncho, ConstantesPantalla.ventanaAlto);
 		ventana.setVisible(true);
 	}
-
 	
 	public ControladorPartida getControladorPartida() {
 		return this.partida;
@@ -138,9 +137,8 @@ public class ControladorPantallas implements  ControladorEntreJuegoVista{
                 	e.printStackTrace();
                 }
             }
-        });
+      });
   }
-
 
 	@Override
 	public Observer registrarElemento(ElementoLogico elem) {
@@ -172,6 +170,7 @@ public class ControladorPantallas implements  ControladorEntreJuegoVista{
 	public void removerObserver(ObserverGrafico observer) {
 		this.panelJuego.removerElemento(observer);
 	}
+	
 	public Timer getTimerNivel() {
 		return panelJuego.timerNivel;
 	}
@@ -179,7 +178,9 @@ public class ControladorPantallas implements  ControladorEntreJuegoVista{
 	public void setFabrica(GameFactory factory) {
 		this.fabrica = factory;
 	}
+	
 	public int getTiempoRestante() {
 		return panelJuego.tiempoRestante;
 	}
+	
 }

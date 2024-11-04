@@ -37,7 +37,6 @@ public class PantallaVictoria extends JPanel{
         
    
         agregarTituloVictoria();
-        //agregarImagenGameOver();
         agregarBotonRanking();
 		
 	}
@@ -47,31 +46,22 @@ public class PantallaVictoria extends JPanel{
 		iniciarTemporizador(5000);
 	}
 	
-	/*protected void agregarImagenGameOver() {
-		ImageIcon icon1 = new ImageIcon(getClass().getResource("/imagenes/imagenfondogameover.png"));
-		Image imagen1 = icon1.getImage().getScaledInstance(ConstantesPantalla.panelAncho, ConstantesPantalla.panelAlto, Image.SCALE_SMOOTH);
-        imagenGameOver = new JLabel(new ImageIcon(imagen1));
-        imagenGameOver.setBounds(0, -40, ConstantesPantalla.panelAncho, ConstantesPantalla.panelAlto);
- 
-        add(imagenGameOver);
-  
-	}*/
-	
-	 private void agregarTituloVictoria() {
-	        tituloVictoria = new JLabel("VICTORIA");
-	        tituloVictoria.setHorizontalAlignment(SwingConstants.CENTER);
-	        tituloVictoria.setBounds(0, 200, ConstantesPantalla.panelAncho, 50);
-	        decorarLabelVictoria(tituloVictoria);
-	        add(tituloVictoria);
+	protected void agregarTituloVictoria() {
+        tituloVictoria = new JLabel("VICTORIA");
+        tituloVictoria.setHorizontalAlignment(SwingConstants.CENTER);
+	    tituloVictoria.setBounds(0, 200, ConstantesPantalla.panelAncho, 50);
+	    
+        decorarLabelVictoria(tituloVictoria);
+        add(tituloVictoria);
 	  }
-	
 	
 	 protected void agregarBotonRanking() {
 	        botonRanking = new JButton("Ranking");
 	        botonRanking.setBounds(280, ConstantesPantalla.panelAlto - 100, 240, 50);
 	        botonRanking.setBackground(Color.BLACK);
 	        botonRanking.setForeground(Color.WHITE);    
-	        botonRanking.setOpaque(true);             
+	        botonRanking.setOpaque(true);        
+	        
 	        decorarBotonRanking(botonRanking);
 	        botonRanking.addActionListener(e -> {
 	            detenerTemporizador(); //detener el temporizador al hacer clic en ranking
@@ -79,7 +69,6 @@ public class PantallaVictoria extends JPanel{
 	        });
 	        add(botonRanking);
 	 }
-	
 	
 	 protected void decorarBotonRanking(JButton boton) {
 	        Font marioFont = null;
@@ -95,7 +84,7 @@ public class PantallaVictoria extends JPanel{
 	        boton.setForeground(Color.WHITE);
 	 }
 	 
-	 private void decorarLabelVictoria(JLabel tituloVictoria) {
+	 protected void decorarLabelVictoria(JLabel tituloVictoria) {
  		Font marioFont = null;
  		try {
  			InputStream is = getClass().getResourceAsStream("/archivos/mario-font.ttf");
@@ -109,7 +98,6 @@ public class PantallaVictoria extends JPanel{
  			tituloVictoria.setFont(marioFont);
  			tituloVictoria.setForeground(Color.WHITE);
  		}
- 
      }
 	 
 	 protected void iniciarTemporizador(int delay) {

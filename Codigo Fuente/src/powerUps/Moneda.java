@@ -17,10 +17,12 @@ public class Moneda extends PowerUp{
 		jugador.getInfo().aumentarMoneda();
 		morir();
 	}
+	
 	public void morir() {
 		this.nivel.removerElemento(this);
 		this.nivel.getControladorPartida().getControladorSonidos().reproducirSonidoAccion(TipoSonidos.moneda);
 		}
+	
 	@Override
 	public void visitar(Elemento elem) {
 		//vacio

@@ -31,20 +31,10 @@ public class PantallaRanking extends JPanel{
 	       // agregarImagenFondo();
 	        agregarTituloRanking();
 	        agregarBotonAtras(controlador);
-	        mostrarRanking();
-	       
+	        mostrarRanking();	       
 	    }
-	    
-	   /* private void agregarImagenFondo() {
-	    	  ImageIcon icon = new ImageIcon(getClass().getResource("/imagenes/imagenfondoranking.png"));
-	          Image imagen = icon.getImage().getScaledInstance(ConstantesPantalla.panelAncho, ConstantesPantalla.panelAlto, Image.SCALE_SMOOTH);
-	          imagenRanking = new JLabel(new ImageIcon(imagen));
-	          imagenRanking.setBounds(0, -30, ConstantesPantalla.panelAncho, ConstantesPantalla.panelAlto);
-			
-	          add(imagenRanking);
-	    }*/
 
-	    private void agregarTituloRanking() {
+	    protected void agregarTituloRanking() {
 	        tituloRanking = new JLabel("Ranking");
 	        tituloRanking.setHorizontalAlignment(SwingConstants.CENTER);
 	        tituloRanking.setBounds(0, 20, ConstantesPantalla.panelAncho, 50);
@@ -52,22 +42,7 @@ public class PantallaRanking extends JPanel{
 	        add(tituloRanking);
 	    }
 
-	    private void mostrarRanking() {
-	        int yPosition = 100; //Posición inicial en y
-	        int posicion = 1;
-	        
-	        for (Usuario e : topCinco.getLista()) {
-	            JLabel jugadorLabel = new JLabel(posicion + ". " + e.getNombre() + " - " + e.getPuntajeTotal());
-	            jugadorLabel.setBounds(100, yPosition, ConstantesPantalla.panelAncho - 200, 30);
-	            decorarLabelsRanking(null, jugadorLabel);
-	            this.add(jugadorLabel);
-	            
-	            yPosition += 40; 
-	            posicion++; 
-	        }
-	    }
-
-	    private void agregarBotonAtras(ControladorPantallas controlador) {
+	    protected void agregarBotonAtras(ControladorPantallas controlador) {
 	        botonAtras = new JButton("Atras");
 	        botonAtras.setBounds(328, ConstantesPantalla.panelAlto - 100, 150, 50);
 	        botonAtras.setBackground(Color.BLACK);
@@ -84,6 +59,21 @@ public class PantallaRanking extends JPanel{
 	        botonAtras.revalidate();
 	        this.repaint();
 	        this.revalidate();
+	    }
+	    
+	    private void mostrarRanking() {
+	        int yPosition = 100; //Posición inicial en y
+	        int posicion = 1;
+	        
+	        for (Usuario e : topCinco.getLista()) {
+	            JLabel jugadorLabel = new JLabel(posicion + ". " + e.getNombre() + " - " + e.getPuntajeTotal());
+	            jugadorLabel.setBounds(100, yPosition, ConstantesPantalla.panelAncho - 200, 30);
+	            decorarLabelsRanking(null, jugadorLabel);
+	            this.add(jugadorLabel);
+	            
+	            yPosition += 40; 
+	            posicion++; 
+	        }
 	    }
 	    
 	    private void decorarLabelsRanking(JLabel tituloRanking, JLabel labelJugador) {
@@ -120,7 +110,6 @@ public class PantallaRanking extends JPanel{
 	       boton.setFont(marioFont);
 	       boton.setForeground(Color.WHITE);
 	   }
-
 	    
 }
 	

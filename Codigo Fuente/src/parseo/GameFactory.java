@@ -17,6 +17,7 @@ public abstract class GameFactory {
 	protected String rutaCarpeta;
 	protected ControladorPartida controladorPartida;
 	
+	
 	protected GameFactory(String ruta) {
 		this.rutaCarpeta = ruta;
 	}
@@ -238,6 +239,5 @@ public abstract class GameFactory {
 		int alto = imagen.getHeight(null);
 		elem.setHitbox(ancho, alto);
 	}
-
 	
 }

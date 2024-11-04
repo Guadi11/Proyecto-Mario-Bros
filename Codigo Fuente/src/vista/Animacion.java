@@ -3,18 +3,19 @@ package vista;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 public class Animacion{
+	
 	    private int index = 0, contadorImagenes = 0, frames;
 	    private BufferedImage imagenActual;
 	    private BufferedImage[] imagenesAnimacion;
 	    public int velocidad;
 
 	    public Animacion (BufferedImage...args) {
-	    	this.velocidad=5;
-	    	imagenesAnimacion=new BufferedImage[args.length];
-	    	for (int i=0; i<args.length; i++) {
+	    	this.velocidad = 5;
+	    	imagenesAnimacion = new BufferedImage[args.length];
+	    	for (int i = 0; i<args.length; i++) {
 	    		imagenesAnimacion[i]=args[i];
 	    	}
-	    	frames=args.length;
+	    	frames = args.length;
 	    }
 
 	    public BufferedImage animar(){
