@@ -5,10 +5,7 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 import archivos.Sprite;
-import archivos.TipoSonidos;
 import elementos.BolaDeFuego;
-import enemigos.Spiny;
-import juego.ControladorPartida;
 import juego.Jugador;
 
 public class Fuego extends SuperMario{
@@ -47,12 +44,12 @@ public class Fuego extends SuperMario{
     }
 	
     public void lanzarBolaDeFuego() {     
-    	int posicionYBola = (int) (jugador.getPosY() - jugador.getHitbox().getHeight()/4);
-        BolaDeFuego nuevaBola = this.fabrica.crearBolaDeFuego(jugador.getPosX(), posicionYBola); //ver pos
-        controlador.getHiloEnemigo().registrarBolaDeFuego(nuevaBola);
-        controlador.registrarObserverElementoIndividual(nuevaBola);
-        nuevaBola.setNivel(jugador.getInfo().getNivel());
-        nuevaBola.setJugador(jugador);
+   	 int posicionYBola = (int) (jugador.getPosY() - jugador.getHitbox().getHeight()/4);
+	 BolaDeFuego nuevaBola = this.fabrica.crearBolaDeFuego(jugador.getPosX(), posicionYBola); //ver pos
+	 controlador.getHiloEnemigo().registrarBolaDeFuego(nuevaBola);
+	 controlador.registrarObserverElementoIndividual(nuevaBola);
+	 nuevaBola.setNivel(jugador.getInfo().getNivel());
+	 nuevaBola.setJugador(jugador);
     }
 	
 	@Override

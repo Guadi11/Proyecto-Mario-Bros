@@ -33,6 +33,7 @@ public class ControladorPantallas implements  ControladorEntreJuegoVista{
 	protected PantallaNombre panelNombre;
 	protected PantallaVictoria panelVictoria;
 	protected ControladorPartida partida;
+	protected GameFactory fabrica;
 
 	
 	public ControladorPantallas(ControladorPartida controladorPartida) {
@@ -78,8 +79,9 @@ public class ControladorPantallas implements  ControladorEntreJuegoVista{
 	public void mostrarPantallaJuego() {
 		this.panelJuego = new PantallaJuego(this);
 		ventana.setContentPane(panelJuego);
-		GameFactory modoUno = new ModoUnoFactory(); //Editar luego cuando tengamos los dos modos funcionando
-		accionarInicioJuego(modoUno);
+		accionarInicioJuego(fabrica);
+		//GameFactory modoUno = new ModoUnoFactory(); //Editar luego cuando tengamos los dos modos funcionando
+		//accionarInicioJuego(modoUno);
 		panelJuego.iniciarTimer();
 		refrescar();
 	}
@@ -172,5 +174,9 @@ public class ControladorPantallas implements  ControladorEntreJuegoVista{
 	}
 	public Timer getTimerNivel() {
 		return panelJuego.timerNivel;
+	}
+	
+	public void setFabrica(GameFactory factory) {
+		this.fabrica = factory;
 	}
 }

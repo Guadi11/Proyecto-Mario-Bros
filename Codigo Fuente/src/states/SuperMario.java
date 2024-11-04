@@ -71,6 +71,8 @@ public class SuperMario extends State{
 	
 	public void recibirFlorDeFuego() {
 		jugador.getInfo().actualizarPuntaje(this.obtenerPuntosFFuego());
+		this.getFuego().setControlador(controlador);
+		this.getFuego().setFabrica(fabrica);
 		this.getFuego().activar();
 	}
 	

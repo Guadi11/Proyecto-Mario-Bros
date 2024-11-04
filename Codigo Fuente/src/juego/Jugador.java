@@ -61,7 +61,7 @@ public class Jugador extends Movible implements Visitable, ElementoJugador{
 	    invulnerable.setFuego(fuego);
 	    
 	    estado = normal;
-	    //estado.activar();
+	    estado.activar();
 	}
 	
 	public void setState(State estado) {

@@ -66,11 +66,15 @@ public class Normal extends State {
 	
 	public void recibirSuperChampiñon() {
 		jugador.getInfo().actualizarPuntaje(this.obtenerPuntosSChamp());
+		this.getSuperMario().setControlador(controlador);
+		this.getSuperMario().setFabrica(fabrica);
 		this.getSuperMario().activar();			
 	}
 	
 	public void recibirFlorDeFuego() {
 		jugador.getInfo().actualizarPuntaje(this.obtenerPuntosFFuego());
+		this.getSuperMario().setControlador(controlador);
+		this.getSuperMario().setFabrica(fabrica);
 		this.getSuperMario().activar();
 	}
 	

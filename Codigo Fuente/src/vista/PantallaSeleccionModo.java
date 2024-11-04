@@ -9,6 +9,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import parseo.*;
+
 
 public class PantallaSeleccionModo extends JPanel{
    
@@ -42,14 +44,16 @@ public class PantallaSeleccionModo extends JPanel{
             botonModo1 = new JButton(); //para ver la visibilidad agregar texto
             botonModo1.setBounds(280,300,200,50);
             botonModo1.setContentAreaFilled(false); 
-            botonModo1.setBorderPainted(false); 
+            botonModo1.setBorderPainted(true); 
             botonModo1.setFocusPainted(false); 
             botonModo1.setOpaque(false);
+            GameFactory fabrica = new ModoUnoFactory();
+            controlador.setFabrica(fabrica);
             botonModo1.addActionListener(e -> controlador.mostrarPantallaJuego());
             
             add(botonModo1);
             imagenFondo.add(botonModo1);
-            //botonModo1.setVisible(false);
+            botonModo1.setVisible(true);
            
         }
     
@@ -58,12 +62,16 @@ public class PantallaSeleccionModo extends JPanel{
             botonModo2.setBounds(280,390,200,50);
             botonModo2.setBackground(new Color(223,227,40));
             botonModo2.setContentAreaFilled(false); 
-            botonModo2.setBorderPainted(false); 
+            botonModo2.setBorderPainted(true); 
             botonModo2.setFocusPainted(false); 
             botonModo2.setOpaque(false);
+            //GameFactory fabrica = new ModoDosFactory();
+            //controlador.setFabrica(fabrica);
+            //botonModo1.addActionListener(e -> controlador.mostrarPantallaJuego());
+            
             add(botonModo2);
             imagenFondo.add(botonModo2);
-            //botonModo2.setVisible(false);
+            botonModo2.setVisible(true);
            
         }
 
