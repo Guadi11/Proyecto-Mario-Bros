@@ -56,9 +56,7 @@ public class Piranha extends Enemigo{
             break;
 		}
 	}
-	public void moverse() {
-        	comenzarAscenso();
-	}
+	
 	public void comenzarAscenso() {
 		velY +=1;
 		posicionY += velY;
@@ -77,18 +75,23 @@ public class Piranha extends Enemigo{
 	}
 	
 	public void visitar(Jugador jugador) {
-		//Siempre hace daño al jugador, no importa de donde sea la colision. Solo muere con bola de fuego.
 		if(!jugador.getState().esInvulnerable()) {
-			int restarPuntos = puntosQueResta();
-			jugador.getInfo().actualizarPuntaje(-restarPuntos);
-			jugador.getState().recibirDaño();
+			jugadorMuere(jugador);
 		}else {
-			jugador.getInfo().actualizarPuntaje(this.puntosQueDa());
-			morir();
+			enemigoMuere(jugador);
 		}
-		
 	}
 	
+	private void enemigoMuere(Jugador jugador) {
+		jugador.getInfo().actualizarPuntaje(this.puntosQueDa());
+		morir();
+	}
+
+	private void jugadorMuere(Jugador jugador) {
+		jugador.getInfo().actualizarPuntaje(-puntosQueResta());
+		jugador.getState().recibirDaño();
+	}
+
 	@Override
 	public void visitar(Elemento elem) {
 		// vacio
@@ -109,19 +112,19 @@ public class Piranha extends Enemigo{
 	
 	@Override
 	public void aceptarVisita(VisitorAJugador visitor) {
-		// entra a este metodo cuando el visitor es enemigo, powerUp o vacio. Solo sucede con vacio
+		// Entra a este metodo cuando el visitor es enemigo, powerUp o vacio. Solo sucede con vacio.
 		visitor.visitar(this);
 	}
 
 	@Override
 	public void aceptarVisita(VisitorPlataformas visitor) {
-		// entra a este metodo cuando el visitor sea plataforma (sin incluir vacio)
+		// Entra a este metodo cuando el visitor sea plataforma (sin incluir vacio).
 		visitor.visitar(this);
 	}
 
 	@Override
 	public void aceptarVisita(VisitorBolaDeFuego visitor) {
-		// entra a este metodo cuando el visitor sea una bola de fuego
+		// Entra a este metodo cuando el visitor sea una bola de fuego.
 		visitor.visitar(this);
 	}
 

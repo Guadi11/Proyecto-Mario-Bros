@@ -7,6 +7,7 @@ import javax.swing.ImageIcon;
 import archivos.Sprite;
 import archivos.TipoSonidos;
 import juego.Jugador;
+import parseo.GameFactory;
 
 
 public class SuperMario extends State{
@@ -17,21 +18,12 @@ public class SuperMario extends State{
 	
 	public SuperMario(Jugador jugador) {
 		super(jugador);
-		this.sprite = new Sprite("imagenes/modoUno/supermario.png");
 	}
 	
 	public void activar() {
 		jugador.setState(this);
 		jugador.getSprite().setSprite(this.sprite.getRutaImagen());
-		actualizarMedidas(); /*
-		System.out.println("altura hitbox izquierdo grande: " + jugador.getBoundsLeft().height);
-		System.out.println("ancho hitbox izquierdo grande: " + jugador.getBoundsLeft().width);
-		System.out.println("altura hitbox derecho grande: " + jugador.getBoundsRight().height);
-		System.out.println("ancho hitbox derecho: " + jugador.getBoundsRight().width);
-		System.out.println("altura hitbox top grande: " + jugador.getBoundsTop().height);
-		System.out.println("ancho hitbox top grande: " + jugador.getBoundsTop().width);
-		System.out.println("altura hitbox bot grande: " + jugador.getBoundsBottom().height);
-		System.out.println("ancho hitbox bot grande: " + jugador.getBoundsBottom().width);  */
+		actualizarMedidas();
 	}
 	
 	private void actualizarMedidas() {
@@ -50,6 +42,7 @@ public class SuperMario extends State{
 	}
 	
 	public void recibirDaño() {
+		System.out.println("entra a recibir daño de supermario");
 		this.getNormal().activar();
 		//en algun lugar se esta llamando erroneamente a jugador.getInfo().recibirDaño() y reinicia cuando no deberia
 	}
@@ -78,6 +71,8 @@ public class SuperMario extends State{
 	
 	public void recibirEstrella() {
 		jugador.getInfo().actualizarPuntaje(this.obtenerPuntosEstrella());
+		this.getInvulnerable().setControlador(controlador);
+		this.getInvulnerable().setFabrica(fabrica);
 		this.getInvulnerable().setAnterior(this);
 		this.getInvulnerable().activar();
 		
@@ -110,5 +105,11 @@ public class SuperMario extends State{
 	@Override
 	public boolean esInvulnerable() {
 		return false;
+	}
+	
+	public void setFabrica(GameFactory factory) {
+		this.fabrica = factory;
+		this.rutaCarpeta = fabrica.getRutaCarpeta();
+		this.sprite = new Sprite(rutaCarpeta + "/supermario.png");
 	}
 }

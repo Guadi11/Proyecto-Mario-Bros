@@ -64,24 +64,37 @@ public class Lakitu extends Enemigo{
     }
 	
 	public void visitar (Jugador jugador) {
-		//Si es de arriba, muere. Sino, mata a jugador
 		if(!jugador.getState().esInvulnerable()) {
-			if(jugador.getBoundsBottom().intersects(this.getBoundsTop())) {
-				jugador.setPosY((int) (this.getPosY() + jugador.getHitbox().getHeight()));
-				jugador.setVelY(0);
-				jugador.setJumped(false);
-				jugador.saltarAlMatar();
-				jugador.getInfo().actualizarPuntaje(this.puntosQueDa());
-				morir();
+			if(chocaArriba(jugador)) {
+				chocar(jugador);
+				enemigoMuere(jugador);
 			} else {
-				jugador.getInfo().actualizarPuntaje(-this.puntosQueResta());
-				jugador.getState().recibirDaño();
+				jugadorMuere(jugador);
 			}
 		}else {
-			jugador.getInfo().actualizarPuntaje(this.puntosQueDa());
-			morir();
+			enemigoMuere(jugador);
 		}
 		
+	}
+	private void jugadorMuere(Jugador jugador) {
+		jugador.getInfo().actualizarPuntaje(-this.puntosQueResta());
+		jugador.getState().recibirDaño();
+	}
+	
+	private void enemigoMuere(Jugador jugador) {
+		jugador.getInfo().actualizarPuntaje(this.puntosQueDa());
+		morir();
+	}
+	
+	private void chocar(Jugador jugador) {
+		jugador.setPosY((int) (this.getPosY() + jugador.getHitbox().getHeight()));
+		jugador.setVelY(0);
+		jugador.setJumped(false);
+		jugador.saltarAlMatar();
+	}
+	
+	public boolean chocaArriba(Jugador jugador) {
+		return jugador.getBoundsBottom().intersects(this.getBoundsTop());
 	}
 	
 	@Override
@@ -102,19 +115,6 @@ public class Lakitu extends Enemigo{
 		return 60;
 	}
 	
-	public void moverse() {
-		/*ver tema colisiones/heapbox y sentido del enemigo
-		 int nuevaPosicionX=(int) (posicionX + velocidad*(1/60));
-		 
-		if (velocidad<0) {
-			//imagen.cambiarImagen("Lakitu_a_izq.png");
-		}else {
-			//imagen.cambiarImagen ("Lakitu_a_der.png");
-		}
-		setPosX(nuevaPosicionX);
-		//imagen.actualizarPosicion (posicionX, posicionY);*/
-	}
-	
 	//Set
 	public void setFabrica(GameFactory factory) {
 		this.fabrica = factory;
@@ -126,19 +126,19 @@ public class Lakitu extends Enemigo{
 	
 	@Override
 	public void aceptarVisita(VisitorAJugador visitor) {
-		// entra a este metodo cuando el visitor es enemigo, powerUp o vacio. Solo sucede con vacio
+		// Entra a este metodo cuando el visitor es enemigo, powerUp o vacio. Solo sucede con vacio.
 		visitor.visitar(this);
 	}
 
 	@Override
 	public void aceptarVisita(VisitorPlataformas visitor) {
-		// entra a este metodo cuando el visitor sea plataforma (sin incluir vacio)
+		// Entra a este metodo cuando el visitor sea plataforma (sin incluir vacio).
 		visitor.visitar(this);
 	}
 
 	@Override
 	public void aceptarVisita(VisitorBolaDeFuego visitor) {
-		// entra a este metodo cuando el visitor sea una bola de fuego
+		// Entra a este metodo cuando el visitor sea una bola de fuego.
 		visitor.visitar(this);
 	}
 }

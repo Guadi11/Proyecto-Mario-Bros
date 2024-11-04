@@ -14,19 +14,24 @@ import parseo.*;
 
 public class PantallaSeleccionModo extends JPanel{
    
+
 	protected JButton botonModo1;
     protected JButton botonModo2;
     protected JLabel imagenFondo;
     protected ControladorPantallas controlador;
-    
-    
+    protected GameFactory fabricaUno, fabricaDos;
+
+   
     public PantallaSeleccionModo(ControladorPantallas controlador){
+    	fabricaUno = new ModoUnoFactory();
+    	fabricaDos = new ModoDosFactory();
     	this.controlador = controlador;
     	this.setPreferredSize(new Dimension(ConstantesPantalla.panelAncho, ConstantesPantalla.panelAlto));
     	setLayout(null);
     	agregarImagenFondo();
     	agregarBotonModoUno();
-    	agregarBotonModoDos();          
+    	agregarBotonModoDos();
+           
     }
     
     protected void agregarImagenFondo(){
@@ -37,41 +42,45 @@ public class PantallaSeleccionModo extends JPanel{
        
     	add(imagenFondo); 
     }
-    
-    protected void agregarBotonModoUno(){
-    	botonModo1 = new JButton(); //para ver la visibilidad agregar texto
+
+    private void agregarBotonModoUno(){
+    	botonModo1 = new JButton(); 
     	botonModo1.setBounds(280,300,200,50);
-    	botonModo1.setContentAreaFilled(false); 
-    	botonModo1.setBorderPainted(true); 
-    	botonModo1.setFocusPainted(false); 
-    	botonModo1.setOpaque(false);
-            
-    	GameFactory fabrica = new ModoUnoFactory();
-    	controlador.setFabrica(fabrica);
-    	botonModo1.addActionListener(e -> controlador.mostrarPantallaJuego());
     	
+    	botonModo1.setContentAreaFilled(false); 
+    	botonModo1.setBorderPainted(false); 
+    	botonModo1.setFocusPainted(false);  //todos estos metodos podrian ir en uno aparte, que usa tmb boton 2
+    	botonModo1.setOpaque(false);
+    	
+    	botonModo1.addActionListener(e -> {
+    		controlador.setFabrica(fabricaUno);
+    		controlador.mostrarPantallaJuego();
+      	});
+           
     	add(botonModo1);
     	imagenFondo.add(botonModo1);
-    	botonModo1.setVisible(true); 
+    	botonModo1.setVisible(true);
     }
-    
-    private void agregarBotonModoDos(){
-    	botonModo2 = new JButton();
-    	botonModo2.setBounds(280,390,200,50);
-    	botonModo2.setBackground(new Color(223,227,40));
-    	botonModo2.setContentAreaFilled(false); 
-    	botonModo2.setBorderPainted(true); 
-    	botonModo2.setFocusPainted(false); 
-    	botonModo2.setOpaque(false);
+    	
+     private void agregarBotonModoDos(){
+    	 botonModo2 = new JButton();
+    	 botonModo2.setBounds(280,390,200,50);
+    	 //botonModo2.setBackground(new Color(223,227,40));
             
-    	//GameFactory fabrica = new ModoDosFactory();
-    	//controlador.setFabrica(fabrica);
-    	//botonModo1.addActionListener(e -> controlador.mostrarPantallaJuego());
-            
-    	add(botonModo2);
-    	imagenFondo.add(botonModo2);
-    	botonModo2.setVisible(true);
-    }
+    	 botonModo2.setContentAreaFilled(false); 
+    	 botonModo2.setBorderPainted(false); 
+    	 botonModo2.setFocusPainted(false); 
+    	 botonModo2.setOpaque(false);
+   
+    	 botonModo2.addActionListener(e -> {
+    		 controlador.setFabrica(fabricaDos);
+    		 controlador.mostrarPantallaJuego();
+         });
+        
+    	 add(botonModo2);
+    	 imagenFondo.add(botonModo2);
+    	 botonModo2.setVisible(true);
+     }
 
 }
     
