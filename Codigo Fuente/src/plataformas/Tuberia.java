@@ -22,7 +22,7 @@ public class Tuberia extends Plataforma implements VisitorPlataformas{
 	public Tuberia(int x, int y, Sprite imagen) {
 		super(x, y, imagen);
 	}
-	
+
 	public void setFabrica(GameFactory factory) {
 		this.fabrica = factory;
 	}
@@ -31,7 +31,6 @@ public class Tuberia extends Plataforma implements VisitorPlataformas{
 		this.controladorPartida = controlador;
 	}
 
-	@Override
 	public void visitar(Jugador jugador) { 
 		if(chocaArriba(jugador)) {
 			ubicarArriba(jugador);
@@ -59,17 +58,14 @@ public class Tuberia extends Plataforma implements VisitorPlataformas{
 		} 
 	}
 
-	@Override
 	public void visitar(PowerUp power) {
 		// Vacio.
 	}
 
-	@Override
 	public void visitar(BolaDeFuego bola) {
 		// Vacio.
 	}
 
-	@Override
 	public void visitar(Elemento elem) {
 		// Vacio.
 	}

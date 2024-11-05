@@ -18,45 +18,30 @@ public class Piranha extends Enemigo{
 		subiendo = true;
 	}
 	public void subir() {
-		velY = 2;
+		velY = 1;
 	}
 
 	public void bajar() {
-		velY = -2;
+		velY = -1;
 
-	}
-	public void estado() {
-		int maxAltura = (int) (minAltura + this.getHitbox().getHeight());
-		if (posicionY >= maxAltura) {
-			posicionY = maxAltura;
-			subiendo = false;
-		} 
-		else if (posicionY<=minAltura){
-			posicionY = minAltura;
-			subiendo = true;
-		}
 	}
 
 	public void actualizar() {
-		System.out.println("posicion 0Y: "+posicionY);
+		int maxAltura = (int) (minAltura + this.getHitbox().getHeight());
+
 		if (subiendo) {
 			subir();
 		} else {
 			bajar();
-        }System.out.println("posicion 1Y: "+posicionY);
-    
-        posicionY += velY;
-        
-        System.out.println("velX: "+velY);
-        System.out.println("posicion 2Y: "+posicionY);
-        estado();
-        System.out.println("posicion 3Y: "+posicionY);
-        System.out.println("estado: "+subiendo);
-        actualizarPosicionHitbox();
-        System.out.println("posicion 4Y: "+posicionY);
-        notificar();
-        System.out.println("posicion 5Y: "+posicionY);
-		
+		}
+		posicionY += velY;
+		if (posicionY>=maxAltura) {
+			subiendo = false;
+		} else if (posicionY<=minAltura)
+			subiendo = true;
+
+		notificar();
+
 	}
 	
 	public void visitar(Jugador jugador) {
@@ -77,7 +62,6 @@ public class Piranha extends Enemigo{
 		jugador.getState().recibirDaño();
 	}
 
-	@Override
 	public void visitar(Elemento elem) {
 		// Vacio.
 	}
