@@ -46,7 +46,7 @@ public class InfoJugador {
 	}
 
 	private void morir() {
-		this.nivel.getControladorPartida().gameOver(puntaje);
+		this.nivel.getControladorPartida().gameOver();
 	}
 
 	//Set

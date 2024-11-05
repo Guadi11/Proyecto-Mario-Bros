@@ -138,7 +138,7 @@ public class ControladorPartida {
 		} 
 	}
 
-	public void gameOver(int puntajeFinal){
+	public void gameOver(){
 		numNivelActual = 1;
 		detenerHilos();
 		controladorSonido.reproducirSonidoAccion(TipoSonidos.muerteMario);
@@ -157,11 +157,17 @@ public class ControladorPartida {
 	}
 
 	public void timeOut() {
-		numNivelActual = 1;
-		detenerHilos();
-		controladorSonido.detenerSonidoJuego(TipoSonidos.advertenciaTiempo);
-		this.pantallas.mostrarPantallaTimeUp();
-		this.reiniciarNivel();
+		if (this.nivelActual.jugador.info.vida>1) {
+			numNivelActual = 1;
+			this.nivelActual.jugador.info.restarVida();
+			detenerHilos();
+			controladorSonido.detenerSonidoJuego(TipoSonidos.advertenciaTiempo);
+			this.pantallas.mostrarPantallaTimeUp();
+			this.reiniciarNivel();
+		}
+		else {
+			gameOver();
+		}
 	}
 
 	//Gestion de observers
