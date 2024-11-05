@@ -82,6 +82,7 @@ public class ControladorPantallas implements  ControladorEntreJuegoVista{
 	}
 
 	public void mostrarPantallaRanking() {
+		panelRanking.actualizarRanking();
 		ventana.setContentPane(panelRanking);
 		refrescar();
 	}

@@ -27,10 +27,7 @@ public class PantallaRanking extends JPanel{
 		this.setBackground(Color.BLACK);
 
 		topCinco = ranking;
-	
-		agregarTituloRanking();
-		agregarBotonAtras(controlador);
-		mostrarRanking();	       
+		actualizarRanking();
 	}
 
 	protected void agregarTituloRanking() {
@@ -111,6 +108,19 @@ public class PantallaRanking extends JPanel{
 		boton.setFont(marioFont);
 		boton.setForeground(Color.WHITE);
 	}
+	
+	public void actualizarRanking() {
+	    this.removeAll();
+
+	    agregarTituloRanking();
+	    agregarBotonAtras(controlador);
+
+	    mostrarRanking();
+
+	    this.revalidate();
+	    this.repaint();
+	}
+
 }
 
 
