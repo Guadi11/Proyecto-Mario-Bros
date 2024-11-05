@@ -15,31 +15,14 @@ import parseo.GameFactory;
 public class Tuberia extends Plataforma implements VisitorPlataformas{
 
 	protected Piranha piranha;
-	protected boolean poseePiranha;
 	protected GameFactory fabrica;
 	protected ControladorPartida controladorPartida;
 
 
 	public Tuberia(int x, int y, Sprite imagen) {
 		super(x, y, imagen);
-		poseePiranha = false;
 	}
-
-	public void poseePiranha(boolean posee) {
-		poseePiranha = posee;
-		if(poseePiranha) {
-			crearPiranha();
-		}
-	}
-
-	public void crearPiranha() {
-		int posicionPiranha = (int) (this.posicionX + this.getHitbox().getWidth()/3); //Para que aparezca en el medio.
-		piranha = fabrica.crearPiranha(posicionPiranha, this.posicionY-3); 
-		this.nivel.agregarEnemigo(piranha);									
-		piranha.setNivel(this.nivel);
-		controladorPartida.registrarObserverElementoIndividual(piranha);
-	}		
-
+	
 	public void setFabrica(GameFactory factory) {
 		this.fabrica = factory;
 	}

@@ -210,18 +210,22 @@ public class NivelBuilder {
 					champiñonVerdeCreado.setNivel(nivelCreado);
 
 				}
-				else if (colorPixelActual == tuberiaConPiranha) {
-					Tuberia tuberiaCreada = fabrica.crearTuberia1(xLocation, yLocation);      
+				else if (colorPixelActual == tuberiaConPiranha) {				
+					Tuberia tuberiaCreada = fabrica.crearTuberia1(xLocation, yLocation);  
+					int posicionPiranha = (int) (xLocation + tuberiaCreada.getHitbox().getWidth()/3);
+					Piranha piranha = fabrica.crearPiranha(posicionPiranha, yLocation);
+					
+					this.nivelCreado.agregarEnemigo(piranha);
+					piranha.setNivel(nivelCreado);
+					
 					nivelCreado.agregarPlataforma(tuberiaCreada);
 					tuberiaCreada.setNivel(nivelCreado);
-					tuberiaCreada.poseePiranha(true); 
-					
+
 				}	
 				else if (colorPixelActual == tuberiaSinPiranha) {
 					Tuberia tuberiaCreada = fabrica.crearTuberia1(xLocation, yLocation);      
 					nivelCreado.agregarPlataforma(tuberiaCreada);
 					tuberiaCreada.setNivel(nivelCreado);
-					tuberiaCreada.poseePiranha(false);
 					
 				}
 				else if(colorPixelActual == castillo) {
