@@ -3,18 +3,18 @@ package elementos;
 import archivos.Sprite;
 import colisiones.Visitable;
 import colisiones.VisitorAJugador;
+import juego.Jugador;
 import observers.AdaptadorPosicionPixel;
 import observers.Observer;
 
 public abstract class Enemigo extends Elemento implements VisitorAJugador, Visitable{
-	
+
 	protected Observer observer;
-	protected long velocidadEnMill = 3000;
 	protected int velX, velY;
 	protected boolean aIzquierda;
 	protected boolean colisionConBloque;
-	
-	
+
+
 	public Enemigo(int x, int y, Sprite imagen) {
 		super(x, y, imagen);
 		velX = 0;
@@ -24,11 +24,11 @@ public abstract class Enemigo extends Elemento implements VisitorAJugador, Visit
 
 	public abstract int puntosQueResta();
 	public abstract int puntosQueDa();
-	
+
 	public void moverIzquierda() {
 		aIzquierda = true;
 	}
-	
+
 	public void moverDerecha() {
 		aIzquierda = false;
 	}
@@ -39,50 +39,57 @@ public abstract class Enemigo extends Elemento implements VisitorAJugador, Visit
 			velX = 2;
 		}
 	}
-	
+
 	public void actualizar() {
 		int alturaPiso = 72;
 		int alturaEnemigo = (int) (alturaPiso + this.getHitbox().getHeight());
-		
+
 		int limiteDerecho =  AdaptadorPosicionPixel.transformarX(7471);
 		int limiteY_ventana = 0;
 		moverEnDireccion();
 		this.setPosX(posicionX + velX);
 		posicionY += velY;
-		
+
 		if (!colisionConBloque){
 			velY-=1; 
 		}else {
 			if (posicionY > alturaEnemigo) {
-			    velY -= 1;
+				velY -= 1;
 			}
-				else { 
-					posicionY = alturaEnemigo;
-					velY = 0; 
-						}
+			else { 
+				posicionY = alturaEnemigo;
+				velY = 0; 
+			}
 		}
-		
+
 		if (posicionX < 0) {
-	        posicionX = 0; 
-	    }else if (posicionX > limiteDerecho) {
-	    	posicionX = limiteDerecho;	
-	    }
+			posicionX = 0; 
+		}else if (posicionX > limiteDerecho) {
+			posicionX = limiteDerecho;	
+		}
 		if (posicionY<limiteY_ventana)
 			morir();
 		actualizarPosicionHitbox();
 		notificar();
 
 	}
-	
+
 	public void ColisionaConBloque(boolean valor) {
 		colisionConBloque = valor;
 	}
-	
+
 	public void setVelX(int direc) {
 		this.velX = direc;
 	}
 
 	public void setVelY(int direc) {
 		this.velY = direc;
+	}
+
+	protected void chocar(Jugador jugador) {
+		jugador.setPosY((int) (this.getPosY() + jugador.getHitbox().getHeight()));
+		jugador.setVelY(0);
+		jugador.setJumped(false);
+		jugador.saltarAlMatar();
 	}
 }

@@ -10,75 +10,58 @@ import elementos.PowerUp;
 import juego.Jugador;
 
 public class BloqueSolido extends Plataforma implements VisitorPlataformas{
-	
+
 	public BloqueSolido(int x, int y, Sprite imagen) {
 		super(x, y, imagen);
 	}
 
 	@Override
 	public void visitar(Jugador jugador) {
-		//jugador choca contra bloque. Nunca se rompe
-		if(jugador.getBoundsBottom().intersects(this.getBoundsTop())) {
-			//System.out.println("colisionando arriba del bloque solido");
-			jugador.setPosY((int) (this.getPosY() + jugador.getHitbox().getHeight()));
-			jugador.setVelY(0);
-			jugador.setJumped(false);
-	
+		if(chocaArriba(jugador)) {
+			ubicarArriba(jugador);
 		} 
-		else if(jugador.getBoundsLeft().intersects(this.getBoundsRight())) {
+		else if(chocaDerecha(jugador)) {
 			jugador.setPosX((int) (this.getPosX() + this.hitbox.getWidth()));
 		} 
-		else if(jugador.getBoundsRight().intersects(this.getBoundsLeft())) {
+		else if(chocaIzquierda(jugador)) {
 			jugador.setPosX((int) (this.getPosX() - jugador.getHitbox().getWidth()));
 		} 
-		else if(jugador.getBoundsTop().intersects(this.getBoundsBottom())){
+		else if(chocaAbajo(jugador)){
 			jugador.setPosY((int) (this.getPosY() - this.getHitbox().getHeight()));
 			jugador.setVelY(0);
 		}
-		
 	}
 
 	@Override
 	public void visitar(Enemigo enemigo) {
-		//enemigo choca contra bloque. si lo choca de costado le cambia la direccion
-		
-				if(enemigo.getBoundsBottom().intersects(this.getBoundsTop())) {
-					enemigo.setPosY((int) (this.getPosY() + enemigo.getHitbox().getHeight()));	
-				} 
-				else if(enemigo.getBoundsLeft().intersects(this.getBoundsRight())) {
-					enemigo.setPosX((int) (this.getPosX() + this.hitbox.getWidth()));
-					enemigo.moverDerecha();
-				}
-				else if(enemigo.getBoundsRight().intersects(this.getBoundsLeft())) {
-					enemigo.setPosX((int) (this.getPosX() - enemigo.getHitbox().getWidth()));
-					enemigo.moverIzquierda();
-				} 
-				else if(enemigo.getBoundsTop().intersects(this.getBoundsBottom())){
-					System.out.println("golpeo desde abajo");
-					enemigo.setPosY((int) (this.getPosY() - this.getHitbox().getHeight()));
-					//enemigo.setVelY(0);
-				}
-		
+		if(chocaArriba(enemigo)) {
+			enemigo.setPosY((int) (this.getPosY() + enemigo.getHitbox().getHeight()));	
+		} 
+		else if(chocaDerecha(enemigo)) {
+			enemigo.setPosX((int) (this.getPosX() + this.hitbox.getWidth()));
+			enemigo.moverDerecha();
+		}
+		else if(chocaIzquierda(enemigo)) {
+			enemigo.setPosX((int) (this.getPosX() - enemigo.getHitbox().getWidth()));
+			enemigo.moverIzquierda();
+		} 
+		else if(chocaAbajo(enemigo)){
+			enemigo.setPosY((int) (this.getPosY() - this.getHitbox().getHeight()));
+		}
 	}
 
 	@Override
 	public void visitar(PowerUp power) {
-		//powerUp choca contra bloque. Algunos caminan normal, otros rebotan (caso aparte?): estrella
-		//si lo choca de costado le cambia la direccion
-		
+		//Vacio.
 	}
 
 	@Override
 	public void visitar(BolaDeFuego bola) {
-		//la bola de fuego choca contra el bloque, va rebotando (no se si es algo que importe aca o es algo interno a bola de fuego)
-		//si choca de costado muere la bola
-		
+		//Vacio.
 	}
 
 	@Override
 	public void visitar(Elemento elem) {
-		//dejarlo vacio
-		
+		//Vacio.
 	}
-	
 }

@@ -18,7 +18,6 @@ public class Koopa extends Enemigo{
 			
 		}
 	
-		
 		public void visitar (Jugador jugador) {
 			if(!jugador.getState().esInvulnerable()) {
 				if(chocaArriba(jugador)) {
@@ -46,21 +45,9 @@ public class Koopa extends Enemigo{
 			jugador.getState().recibirDaño();
 		}
 
-		private void chocar(Jugador jugador) {
-			jugador.setPosY((int) (this.getPosY() + jugador.getHitbox().getHeight()));
-			jugador.setVelY(0);
-			jugador.setJumped(false);
-			jugador.saltarAlMatar();	
-		}
-		
-		public boolean chocaArriba(Jugador jugador) {
-			return jugador.getBoundsBottom().intersects(this.getBoundsTop());
-		}
-		
-
 		@Override
 		public void visitar(Elemento elem) {
-			// vacio
+			// Vacio.
 		}
 		
 		public int recibirDaño() {
@@ -93,5 +80,4 @@ public class Koopa extends Enemigo{
 			// Entra a este metodo cuando el visitor sea una bola de fuego.
 			visitor.visitar(this);
 		}
-
 }

@@ -7,7 +7,6 @@ import colisiones.VisitorPlataformas;
 import elementos.Elemento;
 import elementos.Enemigo;
 import juego.Jugador;
-import observers.AdaptadorPosicionPixel;
 
 public class Piranha extends Enemigo{
 	private int minAltura;
@@ -19,11 +18,11 @@ public class Piranha extends Enemigo{
 		subiendo = true;
 	}
 	public void subir() {
-		velY=2;
+		velY = 2;
 	}
 
 	public void bajar() {
-		velY=-2;
+		velY = -2;
 
 	}
 	public void estado() {
@@ -36,7 +35,6 @@ public class Piranha extends Enemigo{
 			posicionY = minAltura;
 			subiendo = true;
 		}
-
 	}
 
 	public void actualizar() {
@@ -81,7 +79,7 @@ public class Piranha extends Enemigo{
 
 	@Override
 	public void visitar(Elemento elem) {
-		// vacio
+		// Vacio.
 	}
 
 	public int recibirDaño() {
@@ -114,6 +112,4 @@ public class Piranha extends Enemigo{
 		// Entra a este metodo cuando el visitor sea una bola de fuego.
 		visitor.visitar(this);
 	}
-
-
 }

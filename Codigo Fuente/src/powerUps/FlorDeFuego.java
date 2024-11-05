@@ -13,28 +13,20 @@ public class FlorDeFuego extends PowerUp{
 		super(x, y, imagen);
 
 	}
-	
-	public void moverse() {
-		
-	}
 
 	public void visitar(Jugador jugador) {
 		State estadoMario = jugador.getState();
 		estadoMario.recibirFlorDeFuego();
 		morir();
 	}
+
 	public void morir() {
 		this.nivel.removerElemento(this);
 		this.nivel.getControladorPartida().getControladorSonidos().reproducirSonidoAccion(TipoSonidos.powerUp);
-		}
+	}
 
 	@Override
 	public void visitar(Elemento elem) {
-		//vacio 
+		// Vacio. 
 	}
-	
-	/*blic void morir() {
-		setHitbox(0,0);
-		//imagen.eliminar()
-	}*/
 }

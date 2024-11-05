@@ -28,18 +28,6 @@ public class Goomba extends Enemigo{
 		}	
 	}
 	
-	private void chocar(Jugador jugador) {
-		jugador.setPosY((int) (this.getPosY() + jugador.getHitbox().getHeight()));
-		jugador.setVelY(0);
-		jugador.setJumped(false);
-		jugador.saltarAlMatar();
-	}
-
-	public boolean chocaArriba(Jugador jugador) {
-		return jugador.getBoundsBottom().intersects(this.getBoundsTop());
-	}
-	
-	
 	private void jugadorMuere(Jugador jugador) {
 		jugador.getInfo().actualizarPuntaje(-this.puntosQueResta());
 		jugador.getState().recibirDaño();
@@ -61,19 +49,16 @@ public class Goomba extends Enemigo{
 	public void aceptarVisita(VisitorAJugador visitor) {
 		// Entra a este metodo cuando el visitor es enemigo, powerUp o vacio. Solo sucede con vacio.
 		visitor.visitar(this);
-		
 	}
 
 	public void aceptarVisita(VisitorPlataformas visitor) {
 		// Entra a este metodo cuando el visitor sea plataforma (sin incluir vacio).
 		visitor.visitar(this);
-		
 	}
 
 	public void aceptarVisita(VisitorBolaDeFuego visitor) {
 		// Entra a este metodo cuando el visitor sea una bola de fuego.
 		visitor.visitar(this);
-		
 	}
 
 	@Override

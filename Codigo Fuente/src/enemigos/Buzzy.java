@@ -32,7 +32,7 @@ public class Buzzy extends Enemigo{
 			enemigoMuere(jugador);
 		}
 	}
-	
+
 	private void jugadorMuere(Jugador jugador) {
 		jugador.getInfo().actualizarPuntaje(-this.puntosQueResta());
 		jugador.getState().recibirDaño();
@@ -43,25 +43,14 @@ public class Buzzy extends Enemigo{
 		morir();
 	}
 
-	private void chocar(Jugador jugador) {
-		jugador.setPosY((int) (this.getPosY() + jugador.getHitbox().getHeight()));
-		jugador.setVelY(0);
-		jugador.setJumped(false);
-		jugador.saltarAlMatar();
-	}
-
-	public boolean chocaArriba(Jugador jugador) {
-		return jugador.getBoundsBottom().intersects(this.getBoundsTop());
-	}
-	
 	@Override
 	public void visitar(Elemento elem) {
-		//vacio	
+		//Vacio.
 	}
 
 	public int recibirDaño() {
 		this.morir();
-		int puntos=this.puntosQueDa();
+		int puntos = this.puntosQueDa();
 		return puntos;
 	}
 
@@ -90,5 +79,4 @@ public class Buzzy extends Enemigo{
 		// Entra a este metodo cuando el visitor sea una bola de fuego.
 		visitor.visitar(this);
 	}
-
 }

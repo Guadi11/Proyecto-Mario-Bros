@@ -19,19 +19,17 @@ public class LadrilloSolido extends Plataforma implements VisitorPlataformas{
 	@Override
 	public void visitar(Jugador jugador) {
 		jugador.ultimoBloqueColision(this);
-		
-		if(jugador.getBoundsBottom().intersects(this.getBoundsTop())) {
-			jugador.setPosY((int) (this.getPosY() + jugador.getHitbox().getHeight()));
-			jugador.setVelY(0);
-			jugador.setJumped(false);
+
+		if(chocaArriba(jugador)) {
+			ubicarArriba(jugador);
 		} 
-		else if(jugador.getBoundsLeft().intersects(this.getBoundsRight())) {
+		else if(chocaDerecha(jugador)) {
 			jugador.setPosX((int) (this.getPosX() + this.hitbox.getWidth()));
 		}
-		else if(jugador.getBoundsRight().intersects(this.getBoundsLeft())) {
+		else if(chocaIzquierda(jugador)) {
 			jugador.setPosX((int) (this.getPosX() - jugador.getHitbox().getWidth()));
 		} 
-		else if(jugador.getBoundsTop().intersects(this.getBoundsBottom())){
+		else if(chocaAbajo(jugador)){
 			jugador.setPosY((int) (this.getPosY() - this.getHitbox().getHeight()));
 			jugador.setVelY(0);
 			if(jugador.getState().esGrande()) {
@@ -47,39 +45,35 @@ public class LadrilloSolido extends Plataforma implements VisitorPlataformas{
 
 	@Override
 	public void visitar(Enemigo enemigo) {
-		if(enemigo.getBoundsBottom().intersects(this.getBoundsTop())) {
+		if(chocaArriba(enemigo)) {
 			enemigo.setPosY((int) (this.getPosY() + enemigo.getHitbox().getHeight()));
 		} 
-		else if(enemigo.getBoundsLeft().intersects(this.getBoundsRight())) {
+		else if(chocaDerecha(enemigo)) {
 			enemigo.setPosX((int) (this.getPosX() + this.hitbox.getWidth()));
 			enemigo.moverDerecha();
 		}
-		else if(enemigo.getBoundsRight().intersects(this.getBoundsLeft())) {
+		else if(chocaIzquierda(enemigo)) {
 			enemigo.setPosX((int) (this.getPosX() - enemigo.getHitbox().getWidth()));
 			enemigo.moverIzquierda();
 		} 
-		else if(enemigo.getBoundsTop().intersects(this.getBoundsBottom())){
+		else if(chocaAbajo(enemigo)){
 			enemigo.setPosY((int) (this.getPosY() - this.getHitbox().getHeight()));
 		}
 	}
 
 	@Override
 	public void visitar(PowerUp power) {
-		//powerUp choca contra bloque. Algunos caminan normal, otros rebotan (caso aparte?): estrella
-		
+		//Vacio.
 	}
 
 	@Override
 	public void visitar(BolaDeFuego bola) {
-		//la bola de fuego choca contra el bloque, va rebotando (no se si es algo que importe aca o es algo interno a bola de fuego)
-		//si lo choca de costado muere la bola
-		
+		//Vacio.
 	}
 
 	@Override
 	public void visitar(Elemento elem) {
-		//dejarlo vacio
-		
+		//Vacio.
 	}
-	
+
 }

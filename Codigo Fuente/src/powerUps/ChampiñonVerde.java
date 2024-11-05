@@ -10,7 +10,6 @@ public class ChampiñonVerde extends PowerUp{
 	
 	private long limiteInferior = 441;
 	
-	
 	public ChampiñonVerde(int x, int y, Sprite imagen) {
 		super(x, y, imagen);
 	}
@@ -27,7 +26,7 @@ public class ChampiñonVerde extends PowerUp{
 	}
 	
 	public void visitar(Elemento elem) {
-		// vacio
+		// Vacio.
 	}
 	
 	public int puntosQueDa() {
@@ -48,6 +47,7 @@ public class ChampiñonVerde extends PowerUp{
 		int nuevaPosicionX = posicionX + velocidad*(1/60);
 		setPosX(nuevaPosicionX);
 	}
+	
 	public void movimientoAIzquierda() {
 		int nuevaPosicionX = posicionX - velocidad*(1/60);
 		setPosX(nuevaPosicionX);

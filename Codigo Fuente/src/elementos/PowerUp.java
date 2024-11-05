@@ -18,19 +18,19 @@ public abstract class PowerUp extends Elemento implements VisitorAJugador, Visit
 	
 	@Override
 	public void aceptarVisita(VisitorAJugador visitor) {
-		// entra a este metodo cuando el visitor es enemigo, powerUp o vacio. Solo sucede con vacio
+		// Entra a este metodo cuando el visitor es enemigo, powerUp o vacio. Solo sucede con vacio.
 		visitor.visitar(this);
 	}
 
 	@Override
 	public void aceptarVisita(VisitorPlataformas visitor) {
-		// entra a este metodo cuando el visitor sea plataforma (sin incluir vacio)
+		// Entra a este metodo cuando el visitor sea plataforma (sin incluir vacio).
 		visitor.visitar(this);
 	}
 
 	@Override
 	public void aceptarVisita(VisitorBolaDeFuego visitor) {
-		// entra a este metodo cuando el visitor sea una bola de fuego. No entra nunca aca
+		// Entra a este metodo cuando el visitor sea una bola de fuego. No entra nunca aca.
 		visitor.visitar(this);
 	}
 }
