@@ -38,9 +38,10 @@ public class Sonido {
     }
 
     public void configurarLoop() {
-        clip.setLoopPoints(0, -1); // Desde el inicio hasta el final del archivo
-        clip.loop(Clip.LOOP_CONTINUOUSLY);
-        audioOn = true;
+    	if (!audioOn) {
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
+            audioOn = true;
+        }
     }
 
     public void stopLoop() {
@@ -52,7 +53,7 @@ public class Sonido {
 
     public void renaudar() {
         if (!audioOn) {
-            clip.start(); // Reanuda desde la posición actual
+            clip.start();
             audioOn = true;
         }
     }

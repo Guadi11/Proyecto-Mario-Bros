@@ -58,8 +58,10 @@ public class ControladorPartida {
 		hiloJugador.start();
 		hiloEnemigo = new HiloEnemigo(this, colisiones);
 		hiloEnemigo.start();
-		hiloSonido = new HiloSonido();
-		hiloSonido.start();;
+		if (hiloSonido == null || !hiloSonido.isAlive()) {
+	        hiloSonido = new HiloSonido();
+	        hiloSonido.start();
+	    }
 	}
 
 	public void reiniciarNivel(){
@@ -69,7 +71,7 @@ public class ControladorPartida {
 	}
 
 	private void detenerHilos() {
-		hiloSonido.detener();
+		hiloSonido.pararLoop();
 		hiloJugador.detener();
 		hiloEnemigo.detener();
 	}

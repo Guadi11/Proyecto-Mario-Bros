@@ -15,10 +15,10 @@ public class HiloSonido extends Thread {
     public void run(){
         while (enEjecucion) {
             if (!backGround.enReproduccion()) {
-                backGround.renaudar(); // Reanuda si no está en reproducción
+                backGround.renaudar(); 
             }
             try {
-                Thread.sleep(16); // Aproximadamente 60 fps
+                Thread.sleep(16); 
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -33,7 +33,7 @@ public class HiloSonido extends Thread {
     public void renaudar() {
         if (!enEjecucion) {
             enEjecucion = true;
-            backGround.reproducirAudioFondo(); // Configura el loop desde el inicio
+            backGround.reproducirAudioFondo(); 
         }
     }
 

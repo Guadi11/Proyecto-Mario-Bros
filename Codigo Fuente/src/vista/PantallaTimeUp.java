@@ -100,15 +100,15 @@ public class PantallaTimeUp extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				finalizarPantalla();
-				timer.stop(); // Detener el temporizador una vez que haya terminado
+				timer.stop(); 
 			}
 		});
-		timer.setRepeats(false); // Asegurarse de que solo se ejecute una vez
+		timer.setRepeats(false); 
 		timer.start();
 	}
 
 	protected void detenerTemporizador() {
-		if (timer != null) {
+		if (timer != null && timer.isRunning()) {
 			timer.stop();
 		}
 	}
@@ -116,4 +116,4 @@ public class PantallaTimeUp extends JPanel{
 	protected void finalizarPantalla() {
 	}
 
-}
+} 
