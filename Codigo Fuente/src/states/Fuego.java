@@ -7,6 +7,7 @@ import javax.swing.ImageIcon;
 import archivos.Sprite;
 import elementos.BolaDeFuego;
 import juego.Jugador;
+import parseo.GameFactory;
 
 public class Fuego extends SuperMario{
 	
@@ -16,7 +17,6 @@ public class Fuego extends SuperMario{
 
 	public Fuego(Jugador jugador) {
 		super(jugador);
-		this.sprite = new Sprite("imagenes/modoUno/mariofuego.png");
 		controlador = null;
 	}
 
@@ -78,5 +78,11 @@ public class Fuego extends SuperMario{
 
 	public boolean esGrande() {
 		return true;
+	}
+	
+	public void setFabrica(GameFactory factory) {
+		this.fabrica = factory;
+		this.rutaCarpeta = fabrica.getRutaCarpeta();
+		this.sprite = new Sprite(rutaCarpeta + "/mariofuego.png");
 	}
 }
