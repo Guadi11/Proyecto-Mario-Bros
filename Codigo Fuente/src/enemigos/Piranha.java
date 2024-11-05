@@ -10,68 +10,55 @@ import juego.Jugador;
 import observers.AdaptadorPosicionPixel;
 
 public class Piranha extends Enemigo{
-	protected long intervaloParaSalir = 3000;
-	private int estadoPiranha; // 0 = Descenso, 1 = Ascenso, 2 = Espera arriba
-	protected long tiempoFueraTuberia = 2000;
-	protected long contadorTiempoFuera = 0;
-	protected long ahora;
-	private long tiempoCambioEstado;
-	private final long duracionEspera = 2000;
-	private int alturaEscondida, alturaAfuera;
-	
+	private int minAltura;
+	protected boolean subiendo;
+
 	public Piranha(int x, int y, Sprite imagen) {
 		super(x, y, imagen);
-		estadoPiranha = 1;
-		alturaEscondida = this.getPosY();
-		alturaAfuera = (int) (alturaEscondida + this.getHitbox().getHeight());
-		//iniciarMovimientoPiranha();
-		tiempoCambioEstado = System.currentTimeMillis();
+		minAltura = y;
+		subiendo = true;
 	}
-	
-	public void iniciarMovimientoPiranha() {
-		//System.out.println("entra a iniciarMovimiento");
-		long ahora = System.currentTimeMillis();
-		switch (estadoPiranha) {
-        case 0: 
-            if (this.getPosY() > alturaEscondida) { 
-                this.descender(); 
-            }else {
-                estadoPiranha = 1; 
-            }
-            break;
+	public void subir() {
+		velY=2;
+	}
 
-        case 1: 
-            if (this.getPosY() < alturaAfuera) { 
-                this.comenzarAscenso(); 
-            }else {
-                estadoPiranha = 2; 
-                tiempoCambioEstado = ahora; 
-            }
-            break;
+	public void bajar() {
+		velY=-2;
 
-        case 2: 
-            if (ahora - tiempoCambioEstado >= duracionEspera) {
-                estadoPiranha = 0; 
-            }
-            break;
+	}
+	public void estado() {
+		int maxAltura = (int) (minAltura + this.getHitbox().getHeight());
+		if (posicionY >= maxAltura) {
+			posicionY = maxAltura;
+			subiendo = false;
+		} 
+		else if (posicionY<=minAltura){
+			posicionY = minAltura;
+			subiendo = true;
 		}
+
 	}
-	
-	public void comenzarAscenso() {
-		velY +=1;
-		posicionY += velY;
-		//this.setPosY(posicionY+1); //ver esto
-			//ir cambiando imagen para que parexca que asciende
-	}
-	public void descender() {
-		velY -= 1;
-		posicionY += velY;
-			//this.setPosY(posicionY-1);
-			//cambiar imagenes
-	}
+
 	public void actualizar() {
-		iniciarMovimientoPiranha();
-		//tiempoCambioEstado = System.currentTimeMillis();
+		System.out.println("posicion 0Y: "+posicionY);
+		if (subiendo) {
+			subir();
+		} else {
+			bajar();
+        }System.out.println("posicion 1Y: "+posicionY);
+    
+        posicionY += velY;
+        
+        System.out.println("velX: "+velY);
+        System.out.println("posicion 2Y: "+posicionY);
+        estado();
+        System.out.println("posicion 3Y: "+posicionY);
+        System.out.println("estado: "+subiendo);
+        actualizarPosicionHitbox();
+        System.out.println("posicion 4Y: "+posicionY);
+        notificar();
+        System.out.println("posicion 5Y: "+posicionY);
+		
 	}
 	
 	public void visitar(Jugador jugador) {

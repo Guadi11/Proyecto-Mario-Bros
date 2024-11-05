@@ -25,6 +25,7 @@ public class Castillo extends Plataforma implements VisitorAJugador{
 	public void visitar(Jugador jugador) {
 		this.nivel.getControladorPartida().siguienteNivel();
 		sonido();
+		System.out.println("Entro al castillo.");
 		//gestiona el ganar nivel
 		//this.nivel.getControladorPartida().victoria(jugador.getInfo().getPuntaje());
 	}
