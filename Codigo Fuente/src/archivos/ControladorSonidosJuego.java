@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class ControladorSonidosJuego {
 	protected Map<TipoSonidos, Sonido> sonidosJuego= new HashMap<>();
-	
+
 	public ControladorSonidosJuego () {
 		sonidosJuego.put(TipoSonidos.advertenciaTiempo, new Sonido ("audio/advertenciaTiempo.wav"));
 		sonidosJuego.put(TipoSonidos.aparecePowerUp, new Sonido ("audio/aparecePowerUp.wav"));
@@ -16,10 +16,11 @@ public class ControladorSonidosJuego {
 		sonidosJuego.put(TipoSonidos.victoria, new Sonido ("audio/mundoDespejado.wav"));
 		sonidosJuego.put(TipoSonidos.fuegosArtificiales, new Sonido ("audio/fuegosArtificiales.wav"));
 	}
-	
+
 	public void reproducirSonido (TipoSonidos tipo) {
-		 sonidosJuego.get(tipo).reproducirSonido();
-	 }
+		sonidosJuego.get(tipo).reproducirSonido();
+	}
+	
 	public void detenerSonido (TipoSonidos tipo) {
 		sonidosJuego.get(tipo).detener();
 	}

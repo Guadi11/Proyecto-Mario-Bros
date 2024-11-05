@@ -11,57 +11,58 @@ import javax.swing.JPanel;
 
 public class PantallaInicio extends JPanel{
 
-	    private static final long serialVersionUID = 1L;
-	    protected JButton botonStart;
-        protected JButton botonRanking;
-        protected JLabel imagenFondo;
-        protected ControladorPantallas controlador;
+	private static final long serialVersionUID = 1L;
+	protected JButton botonStart;
+	protected JButton botonRanking;
+	protected JLabel imagenFondo;
+	protected ControladorPantallas controlador;
+
+	public PantallaInicio(ControladorPantallas controlador){
+		this.controlador = controlador;
+		this.setPreferredSize(new Dimension(ConstantesPantalla.panelAncho, ConstantesPantalla.panelAlto));
+		this.setLayout(null);
+		agregarImagenFondo();
+		agregarBotonStart();
+		agregarBotonRanking();
+	}
+
+	private void agregarImagenFondo(){
+		ImageIcon icon = new ImageIcon(getClass().getResource("/imagenes/imageninicio.png"));
+		Image imagen = icon.getImage().getScaledInstance(ConstantesPantalla.panelAncho, ConstantesPantalla.panelAlto, Image.SCALE_SMOOTH);
+		imagenFondo = new JLabel(new ImageIcon(imagen));
+		imagenFondo.setBounds(0, -40, ConstantesPantalla.panelAncho, ConstantesPantalla.panelAlto);
+
+		add(imagenFondo);		
+	}
+
+	private void agregarBotonStart(){
+		botonStart = new JButton();
+		botonStart.setBounds(310, 325, 150, 70);
+		decorarBoton(botonStart);
 	
-    
-        public PantallaInicio(ControladorPantallas controlador){
-            this.controlador = controlador;
-            this.setPreferredSize(new Dimension(ConstantesPantalla.panelAncho, ConstantesPantalla.panelAlto));
-            this.setLayout(null);//para poder hacer los cambios manualmente
-            agregarImagenFondo();
-            agregarBotonStart();
-            agregarBotonRanking();
-        }
-    
-        private void agregarImagenFondo(){
-            ImageIcon icon = new ImageIcon(getClass().getResource("/imagenes/imageninicio.png"));
-            Image imagen = icon.getImage().getScaledInstance(ConstantesPantalla.panelAncho, ConstantesPantalla.panelAlto, Image.SCALE_SMOOTH);
-            imagenFondo = new JLabel(new ImageIcon(imagen));
-            imagenFondo.setBounds(0, -40, ConstantesPantalla.panelAncho, ConstantesPantalla.panelAlto);
-		
-            add(imagenFondo);		
-        }
-    
-        private void agregarBotonStart(){
-            botonStart = new JButton();
-            botonStart.setBounds(310, 325, 150, 70);
-            botonStart.setContentAreaFilled(false); 
-            botonStart.setBorderPainted(false); 
-            botonStart.setFocusPainted(false); 
-            botonStart.setOpaque(false);
-            botonStart.addActionListener(e -> controlador.mostrarPantallaNombre());
-		
-            add(botonStart);
-            imagenFondo.add(botonStart);	
-        }
-        
-        private void agregarBotonRanking(){
-            botonRanking = new JButton();
-            botonRanking.setBounds(295, 435, 200, 70);
-            botonRanking.setContentAreaFilled(false); //hace el fondo transparente
-            botonRanking.setBorderPainted(false); //elimina el borde
-            botonRanking.setFocusPainted(false); //elimina el borde cuando el botón está enfocado
-            botonRanking.setOpaque(false);
-            botonRanking.addActionListener(e -> controlador.mostrarPantallaRanking());
-            
-            add(botonRanking);
-            imagenFondo.add(botonRanking);		
-        }
+		botonStart.addActionListener(e -> controlador.mostrarPantallaNombre());
+
+		add(botonStart);
+		imagenFondo.add(botonStart);	
+	}
+
+	private void agregarBotonRanking(){
+		botonRanking = new JButton();
+		botonRanking.setBounds(295, 435, 200, 70);
+		decorarBoton(botonRanking);
 	
+		botonRanking.addActionListener(e -> controlador.mostrarPantallaRanking());
+
+		add(botonRanking);
+		imagenFondo.add(botonRanking);		
+	}
+	
+	private void decorarBoton(JButton botonStart2) {
+		botonStart2.setContentAreaFilled(false); 
+		botonStart2.setBorderPainted(false); 
+		botonStart2.setFocusPainted(false); 
+		botonStart2.setOpaque(false);
+	}
 }
 
 

@@ -8,14 +8,12 @@ import elementos.ElementoJugador;
 import elementos.ElementoLogico;
 import juego.ControladorPartida;
 import parseo.GameFactory;
-import parseo.ModoUnoFactory;
 import observers.Observer;
 import observers.ObserverGrafico;
 import observers.ObserverJugador;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -35,7 +33,7 @@ public class ControladorPantallas implements  ControladorEntreJuegoVista{
 	protected ControladorPartida partida;
 	protected GameFactory fabrica;
 
-	
+
 	public ControladorPantallas(ControladorPartida controladorPartida) {
 		this.partida = controladorPartida;
 		ConfigurarFuente.cargarFuente();
@@ -47,7 +45,7 @@ public class ControladorPantallas implements  ControladorEntreJuegoVista{
 		panelTimeUp = new PantallaTimeUp(this);
 		panelNombre = new PantallaNombre(this, partida);
 		panelVictoria = new PantallaVictoria(this);
-		
+
 		configurarVentana();
 		registrarOyenteVentana();
 	}
@@ -59,7 +57,7 @@ public class ControladorPantallas implements  ControladorEntreJuegoVista{
 		ventana.setSize(ConstantesPantalla.ventanaAncho, ConstantesPantalla.ventanaAlto);
 		ventana.setVisible(true);
 	}
-	
+
 	public ControladorPartida getControladorPartida() {
 		return this.partida;
 	}
@@ -68,39 +66,37 @@ public class ControladorPantallas implements  ControladorEntreJuegoVista{
 		ventana.revalidate();
 		ventana.repaint();
 	}
-	
+
 	public void mostrarPantallaInicial() {
 		ventana.setContentPane(panelInicio);
 		refrescar();
 	}
-	
+
 	@Override
 	public void mostrarPantallaJuego() {
 		this.panelJuego = new PantallaJuego(this);
 		ventana.setContentPane(panelJuego);
 		accionarInicioJuego(fabrica);
-		//GameFactory modoUno = new ModoUnoFactory(); //Editar luego cuando tengamos los dos modos funcionando
-		//accionarInicioJuego(modoUno);
 		panelJuego.iniciarTimer();
 		refrescar();
 	}
-	
+
 	public void mostrarPantallaRanking() {
 		ventana.setContentPane(panelRanking);
 		refrescar();
 	}
-	
+
 	public void mostrarPantallaNombre() {
 		ventana.setContentPane(panelNombre);
 		refrescar();
 	}
-	
+
 	public void mostrarPantallaGameOver() {
 		ventana.setContentPane(panelGameOver);
 		panelGameOver.iniciarTemporizador();
 		refrescar();
 	}
-	
+
 	public void mostrarPantallaTimeUp() {
 		ventana.setContentPane(panelTimeUp);
 		panelTimeUp.iniciarTemporizador();
@@ -112,7 +108,7 @@ public class ControladorPantallas implements  ControladorEntreJuegoVista{
 		ventana.setContentPane(panelSeleccion);
 		refrescar();
 	}
-	
+
 	public void mostrarPantallaVictoria() {
 		ventana.setContentPane(panelVictoria);
 		panelVictoria.iniciarTemporizador();
@@ -120,25 +116,22 @@ public class ControladorPantallas implements  ControladorEntreJuegoVista{
 	}
 
 	public void registrarOyenteVentana(){
-        ventana.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosing(WindowEvent evento){
-                try {
-                	FileOutputStream fileOutputStream = new FileOutputStream("./puntajes.tdp");
-                	ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-                	objectOutputStream.writeObject(partida.getRanking());
-                	objectOutputStream.flush();
-                	objectOutputStream.close();
-                }
-                catch(FileNotFoundException e) {
-                	e.printStackTrace();
-                }
-                catch(IOException e) {
-                	e.printStackTrace();
-                }
-            }
-      });
-  }
+		ventana.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent evento){
+				try {
+					FileOutputStream fileOutputStream = new FileOutputStream("./puntajes.tdp");
+					ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+					objectOutputStream.writeObject(partida.getRanking());
+					objectOutputStream.flush();
+					objectOutputStream.close();
+				}
+				catch(IOException  e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
 	@Override
 	public Observer registrarElemento(ElementoLogico elem) {
@@ -158,7 +151,7 @@ public class ControladorPantallas implements  ControladorEntreJuegoVista{
 		this.partida.iniciarPartida(fabrica, 1);
 		panelJuego.actualizarLabelsNivel();
 	}
-	
+
 	public void reiniciarNivel() {
 		this.panelJuego = new PantallaJuego(this);
 		ventana.setContentPane(panelJuego);
@@ -166,21 +159,21 @@ public class ControladorPantallas implements  ControladorEntreJuegoVista{
 		panelJuego.iniciarTimer();
 		refrescar();
 	}
-	
+
 	public void removerObserver(ObserverGrafico observer) {
 		this.panelJuego.removerElemento(observer);
 	}
-	
+
 	public Timer getTimerNivel() {
 		return panelJuego.timerNivel;
 	}
-	
+
 	public void setFabrica(GameFactory factory) {
 		this.fabrica = factory;
 	}
-	
+
 	public int getTiempoRestante() {
 		return panelJuego.tiempoRestante;
 	}
-	
+
 }

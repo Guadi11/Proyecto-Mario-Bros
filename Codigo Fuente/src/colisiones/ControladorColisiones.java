@@ -9,14 +9,14 @@ import elementos.*;
 
 public class ControladorColisiones {
 	protected Nivel nivel;
-	
+
 	public ControladorColisiones(Nivel n) {
 		nivel = n;
 	}
-	
+
 	public void detectarColisionJugador() {
 		Rectangle jugadorHitbox = nivel.getJugador().getHitbox(); 
-		
+
 		Iterator<Enemigo> iteratorE = nivel.getEnemigos().iterator();	 
 		while (iteratorE.hasNext()) {
 			Enemigo e = iteratorE.next();
@@ -27,66 +27,64 @@ public class ControladorColisiones {
 				}
 			}
 		}
-		
+
 		Iterator<PowerUp> iteratorPU = nivel.getPowerUps().iterator();    
-	    while (iteratorPU.hasNext()) {
-	    	PowerUp p = iteratorPU.next();
-	       
-	    	if (jugadorHitbox.intersects(p.getHitbox())) {
+		while (iteratorPU.hasNext()) {
+			PowerUp p = iteratorPU.next();
+
+			if (jugadorHitbox.intersects(p.getHitbox())) {
 				nivel.getJugador().aceptarVisita(p);
 				iteratorPU.remove();
 			}     
-	    }
-	    
-	    Iterator<Plataforma> iteratorPlat = nivel.getPlataformas().iterator();    
-	    while (iteratorPlat.hasNext()) {
-	    	Plataforma p = iteratorPlat.next();
-	       
-	    	if (jugadorHitbox.intersects(p.getHitbox())) {
+		}
+
+		Iterator<Plataforma> iteratorPlat = nivel.getPlataformas().iterator();    
+		while (iteratorPlat.hasNext()) {
+			Plataforma p = iteratorPlat.next();
+
+			if (jugadorHitbox.intersects(p.getHitbox())) {
 				nivel.getJugador().aceptarVisita(p);
 				if(p.estaMuerto()) {
 					iteratorPlat.remove();
 				}
 			}     
-	    }
+		}
 	}
-	
-	
-	public void detectarColisionEnemigos(Enemigo e) { //o elemento
+
+	public void detectarColisionEnemigos(Enemigo e) {
 		Rectangle enemigoHitbox = e.getHitbox();
 		Iterator<Plataforma> iteratorPlat = nivel.getPlataformas().iterator();    
-	    while (iteratorPlat.hasNext()) {
-	    	Plataforma p = iteratorPlat.next();
-	       
-	    	if (enemigoHitbox.intersects(p.getHitbox())) {
-	    		e.ColisionaConBloque(true);
-	    		e.aceptarVisita(p);
+		while (iteratorPlat.hasNext()) {
+			Plataforma p = iteratorPlat.next();
+
+			if (enemigoHitbox.intersects(p.getHitbox())) {
+				e.ColisionaConBloque(true);
+				e.aceptarVisita(p);
 			}     
-	    }
-	    
-	    Iterator<BolaDeFuego> iteratorBolasFuego = nivel.getBolasDeFuego().iterator(); 
-	    while(iteratorBolasFuego.hasNext()) {
-	    	BolaDeFuego b = iteratorBolasFuego.next();
-	    	
-	    	if(enemigoHitbox.intersects(b.getHitbox())) {
-	    		e.aceptarVisita(b);
-	    		if(e.estaMuerto()) {
-	    			iteratorBolasFuego.remove();
+		}
+
+		Iterator<BolaDeFuego> iteratorBolasFuego = nivel.getBolasDeFuego().iterator(); 
+		while(iteratorBolasFuego.hasNext()) {
+			BolaDeFuego b = iteratorBolasFuego.next();
+
+			if(enemigoHitbox.intersects(b.getHitbox())) {
+				e.aceptarVisita(b);
+				if(e.estaMuerto()) {
+					iteratorBolasFuego.remove();
 				}
-	    	}
-	    }
-		
+			}
+		}
 	}
-	
+
 	public void detectarColisionBolasDeFuego(BolaDeFuego b) {
 		Rectangle bolaFuegoHitbox = b.getHitbox();
 		Iterator<Plataforma> iteratorPlat = nivel.getPlataformas().iterator();    
-	    while (iteratorPlat.hasNext()) {
-	    	Plataforma p = iteratorPlat.next();
-	       
-	    	if (bolaFuegoHitbox.intersects(p.getHitbox())) {
-	    		b.aceptarVisita(p);
+		while (iteratorPlat.hasNext()) {
+			Plataforma p = iteratorPlat.next();
+
+			if (bolaFuegoHitbox.intersects(p.getHitbox())) {
+				b.aceptarVisita(p);
 			}     
-	    }	
+		}	
 	}
 }

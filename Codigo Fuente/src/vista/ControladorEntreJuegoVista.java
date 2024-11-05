@@ -14,7 +14,7 @@ public interface ControladorEntreJuegoVista {
 	public void mostrarPantallaGameOver();
 	public void mostrarPantallaTimeUp();
 	public void mostrarPantallaVictoria();
-	
+
 	public Observer registrarElemento(ElementoLogico elem);
 	public Observer registrarElemento(ElementoJugador jugador);
 	public void reiniciarNivel();
