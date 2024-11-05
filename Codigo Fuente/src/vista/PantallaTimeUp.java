@@ -114,7 +114,6 @@ public class PantallaTimeUp extends JPanel{
 	}
 
 	protected void finalizarPantalla() {
-		controlador.mostrarPantallaInicial();
 	}
 
 }

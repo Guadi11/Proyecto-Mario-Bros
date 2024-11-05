@@ -33,7 +33,7 @@ public class Invulnerable extends State{
 			sprite = spriteNormal;
 		}
 		jugador.getSprite().setSprite(sprite.getRutaImagen());
-		this.jugador.getInfo().getNivel().getControladorPartida().getHiloSonido().detenerLoop();
+		this.jugador.getInfo().getNivel().getControladorPartida().getHiloSonido().pararLoop();
 		this.jugador.getInfo().getNivel().getControladorPartida().getControladorSonidos().detenerSonidoJuego(TipoSonidos.speedBackground);
 		this.controladorSonidosAccion.reproducirSonido(TipoSonidos.agarroEstrella);
 		iniciarTemporizador();
@@ -61,13 +61,11 @@ public class Invulnerable extends State{
 			// Verificar si es necesario reactivar speedBackground
 			if (this.jugador.getInfo().getNivel().getControladorPartida().getControladorPantallas().getTiempoRestante() <= 60) {
 				this.jugador.getInfo().getNivel().getControladorPartida().getControladorSonidos().reproducirSonidoJuego(TipoSonidos.speedBackground);
-			}
-
-			// Reactivar el sonido de fondo si corresponde
-			if (!this.jugador.getInfo().getNivel().getControladorPartida().getHiloSonido().enEjecucion()) {
-				this.jugador.getInfo().getNivel().getControladorPartida().getHiloSonido().renaudar();
-			}
-
+			}else {
+				if (!this.jugador.getInfo().getNivel().getControladorPartida().getHiloSonido().enEjecucion()) {
+					this.jugador.getInfo().getNivel().getControladorPartida().getHiloSonido().renaudar();
+				}
+			}	
 			estadoAnterior.activar();
 			this.timer.stop();
 		});

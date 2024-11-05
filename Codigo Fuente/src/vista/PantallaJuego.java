@@ -262,7 +262,6 @@ public class PantallaJuego extends JPanel implements KeyListener{
 		});
 		timerNivel.start();
 	}
-
 	public void actualizarTimer() {
 		if (tiempoRestante > 61 || tiempoRestante < 61 & tiempoRestante > 4 || tiempoRestante <= 3 && tiempoRestante > 0) {
 			tiempoRestante--; 
@@ -282,6 +281,7 @@ public class PantallaJuego extends JPanel implements KeyListener{
 					labelTiempo.setText(textoConDigitos(tiempoRestante, 3));
 				}
 	}
+	
 
 	public void sonidoPocoTiempo() {
 		this.controladorPantalla.partida.getControladorSonidos().detenerSonidoJuego(TipoSonidos.speedBackground);
