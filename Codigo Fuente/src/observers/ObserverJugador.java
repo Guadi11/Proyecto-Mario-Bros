@@ -15,11 +15,10 @@ public class ObserverJugador extends ObserverGrafico{
 		this.jugadorObservado = observado;
 		actualizar();		
 	}
-	
+
 	@Override
 	public void actualizar() {
 		super.actualizar();
 		pantallaJuego.actualizarInfoJugador(jugadorObservado);
 	}
-
 }

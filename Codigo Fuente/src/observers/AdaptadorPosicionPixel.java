@@ -9,7 +9,7 @@ public class AdaptadorPosicionPixel {
 	}
 	
 	public static int transformarY(int y) {
-		return ConstantesPantalla.panelJuegoAlto - y; //o panelAlto??
+		return ConstantesPantalla.panelJuegoAlto - y; 
 	}
 	
 }
