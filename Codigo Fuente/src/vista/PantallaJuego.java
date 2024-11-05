@@ -154,7 +154,7 @@ public class PantallaJuego extends JPanel implements KeyListener{
 
 		// Colocar etiquetas en el panel
 		colocarLabelsInfo(labelTituloPuntaje, labelPuntaje, 5);
-		colocarLabelsInfo(labelTituloMonedas, labelMonedas, 205);
+		colocarLabelsInfo(labelTituloMonedas, labelMonedas, 180);
 		colocarLabelsInfo(labelTituloTiempo, labelTiempo, 335);
 		colocarLabelsInfo(labelTituloVidas, labelVidas, 495);
 		colocarLabelsInfo(labelTituloNivel, labelNivelActual, 655);

@@ -1,5 +1,10 @@
 package archivos;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.*;
 
@@ -25,7 +30,7 @@ public class TopRanking implements Serializable {
 
 		jugadores.add(index, nuevoJugador);
 
-		// Si hay más de 5 jugadores elimimo el ultimo.
+		// Si hay más de 5 jugadores elimino el ultimo.
 		eliminarUltimo();
 	}
 
@@ -39,4 +44,7 @@ public class TopRanking implements Serializable {
 		return jugadores;
 	}
 }
+
+
+
 

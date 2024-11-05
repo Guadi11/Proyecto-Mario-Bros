@@ -154,6 +154,7 @@ public class ControladorPartida {
 		pantallas.getTimerNivel().stop();
 		agregarUsuario();
 		this.pantallas.mostrarPantallaVictoria();
+		
 	}
 
 	public void timeOut() {
